@@ -5,40 +5,49 @@ from tkinter import ttk
 root = tk.Tk()
 root.geometry("300x300")
 
-entry1 = ttk.Entry(root, width=30)
-entry2 = tk.Entry(root, width=30)
-entry3 = tk.Entry(root, width=30)
-entry1.insert(0, 'TTK Input Box')
-entry2.insert(0, 'TK Input Box')
-entry3.insert(0, 'Password')
-entry3.config(show='*')
 
-entry1.pack()
-entry2.pack()
-entry3.pack()
+class EntryWidget():
+    def __init__(self, tk_root):
+        # Generating one ttk instance and two tk instances
+        self.entry1 = ttk.Entry(root, width=30)
+        self.entry2 = tk.Entry(root, width=30)
+        self.entry3 = tk.Entry(root, width=30)
 
-# THIS IS REALLY BAD AND SHOULD NOT HAPPEN
-# This only works with defined globals. Kind of pisses me off.
-def callback():
-    val1 = entry1.get()
-    val3 = entry3.get()
-    print(f'The value in the first box is "{val1}"')
-    print(f'The password is {val3}')
-    
-    # TTK can use .state()
-    # Options are disabled, !disabled, readonly
-    entry1.state(['readonly'])
-    
-    # TK must use .config(state=) for the same behavior
-    # Options are distabled, normal, or readonly for tk
-    entry2.config(state='disabled')
-    entry3.config(state='normal')
+        # Inserting text at, I guess, the 0th character entry
+        # I don't actually think that's true, though.
+        # Modifying to any other number seems to do nothing
+        self.entry1.insert(0, 'TTK Input Box')
+        self.entry2.insert(0, 'TK Input Box')
+
+        # Setting a password field to show up as asterisks instead
+        self.entry3.insert(0, 'Password')
+        self.entry3.config(show='*')
+
+        # Making sure these show up
+        self.entry1.pack()
+        self.entry2.pack()
+        self.entry3.pack()
+
+        # Labels and buttons - covered previously
+        self.label = tk.Label(tk_root, text='Button Testing')
+        self.label.pack()
+        self.button = tk.Button(tk_root,
+                                text='Activation Button',
+                                command=self.callback)
+        self.button.pack()
+
+    def callback(self):
+        print(f'The value in the first box is "{self.entry1.get()}"')
+        print(f'The password is {self.entry3.get()}')
+
+        # TTK can use .state()
+        # Options are disabled, !disabled, readonly
+        self.entry1.state(['readonly'])
+
+        # TK must use .config(state=) for the same behavior
+        # Options are distabled, normal, or readonly for tk
+        self.entry2.config(state='disabled')
 
 
-label = tk.Label(root, text='Button Testing')
-label.pack()
-
-button = tk.Button(root, text='Activation Button', command=callback)
-button.pack()
-
+app = EntryWidget(root)
 root.mainloop()

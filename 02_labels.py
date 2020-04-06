@@ -11,8 +11,7 @@ label.config(bg='yellow')
 label.config(font='Times 15')
 label.config(text='Final update to label')
 label.config(wraplength='100')
-label.config(justify=tk.LEFT) # Default is center, it seems
+label.config(justify=tk.LEFT)  # Default is center, it seems
 label.pack()
-
 
 root.mainloop()
