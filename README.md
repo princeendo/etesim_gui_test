@@ -27,8 +27,11 @@ The GUI has been updated to include a "spinbox" which has a range of values (ins
 ##### 1.1.1.10 MessageBox
 A separate GUI has been developed which puts up pop-up windows to either inform you or query a yes/no response. I'm not sure of the best use for this right now.
 ##### 1.1.1.11 Text Editor
+A separate GUI has been developed which has a box for entering text that can be captured into a variable. I'm not sure of the best use for this right now.
 ##### 1.1.1.12 Place Geometry Manager
+A separate GUI has been developed which describes how to place objects by manually specifying absolute or relative coordinates. Auto-scales relative coordinates. May prove useful.
 ##### 1.1.1.13 Frames
+A separate GUI has been developed which describes how to develop frames (which seem like sub-GUIs) and how to place them.
 #### 1.1.2 Advanced Widgets
 ## X. TODO List
 ### X.1 Backend
