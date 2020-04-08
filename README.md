@@ -2,7 +2,7 @@
 Documentation of Progress on ETESim GUI
 
 ## 1. Learning Progress
-### 1.1 Python Tkinter Masterclass (Udemy)
+### 1.1 [Python Tkinter Masterclass](https://www.udemy.com/course/python-tkinter-masterclass/)
 I enrolled in this class to try to learn the "correct" way to do Python GUI programming. There are multiple modules that I will be going through
 #### 1.1.1 Basic Widgets
 This should get me up to speed on the basics of tkinter development
@@ -33,6 +33,33 @@ A separate GUI has been developed which describes how to place objects by manual
 ##### 1.1.1.13 Frames
 A separate GUI has been developed which describes how to develop frames (which seem like sub-GUIs) and how to place them.
 #### 1.1.2 Advanced Widgets
+These additional features will be useful for building a robust GUI
+##### 1.1.2.14 ProgressBar
+A separate GUI has been developed which can be used to show the progress of a program.
+##### 1.1.2.15 PanedWindow widget
+A separate GUI has been developed which segments a GUI into panes for different displays.
+##### 1.1.2.16 Tabs
+A standalone GUI has been developed which shows different tabs for segmenting a display.
+##### 1.1.2.17 ListBox Widget
+A standalone GUI has been deveoped which shows items in a list which can be selected.
+##### 1.1.2.18 Using Images
+A standalone GUI has been developed for displaying images.
+##### 1.1.2.19 How to Create a Menu for Our Apps
+A standalone GUI has been developed which has drop-down menus (which don't do anything but allow you to quit).
+##### 1.1.2.20 How to Create the TreeView Widget
+A standalone GUI with a list display in tree format (so it collapses) has been developed.
+##### 1.1.2.21 Creating a Scrollbar
+A standalone GUI which has a scrollbar for a text box has been developed.
+##### 1.1.2.22 Using the Canvas Widget
+A standalone GUI demonstrating how to place geometric objects has been developed.
+##### 1.1.2.23 Using Style for Our Apps
+This section was skipped because it is likely not relevant.
+##### 1.1.2.24 Using Open file Dialog
+A standalone GUI which opens a text file and displays its contents in a text box has been developed.
+##### 1.1.2.25 Save File Dialog
+The previous GUI has been extended to allow for the contents of a text box to be saved into a file.
+##### 1.1.2.26 Color Dialog
+The previous GUI has been extended to change the color of the text inside.
 ## X. TODO List
 ### X.1 Backend
 * Dictionary for mapping internal variables to human-readable names

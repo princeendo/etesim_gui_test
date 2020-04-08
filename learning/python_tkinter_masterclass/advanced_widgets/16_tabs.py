@@ -5,7 +5,7 @@ from tkinter import ttk
 
 class TabsExample():
     def __init__(self, tk_root):
-        iconfile = r'C:\Users\white\Desktop\simple-icon.png'
+        iconfile = 'simple-icon.png'
         self.icon = tk.PhotoImage(file=iconfile)
 
         # Creating a Notebook seems to be the key to making tabs
