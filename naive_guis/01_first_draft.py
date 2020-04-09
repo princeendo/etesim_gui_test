@@ -14,7 +14,7 @@ from tkinter import ttk
 import matplotlib
 matplotlib.use("TkAgg")  # To use with Tkinter
 
-LARGE_FONT = ("Verdana", 12)
+# LARGE_FONT = ("Verdana", 12)
 
 
 class SimpleGUI(tk.Tk):
@@ -22,11 +22,11 @@ class SimpleGUI(tk.Tk):
 
         # initializing and adding a GUI icon and title
         tk.Tk.__init__(self, *args, **kwargs)
-        tk.Tk.iconbitmap(self, default="D:\\clienticon.ico")
-        tk.Tk.wm_title(self, "Sea of BTC Client")
-        
+        tk.Tk.iconbitmap(self, default="window_icon_radar.ico")
+        tk.Tk.wm_title(self, "ETESim Plotting Suite")
+
         container = tk.Frame(self)
-        container.pack(side="top", fill="both", expand = True)
+        container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
 
