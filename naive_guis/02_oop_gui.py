@@ -31,7 +31,7 @@ class SimpleGUI(tk.Tk):
 
         # initializing and adding a GUI icon and title
         tk.Tk.__init__(self, *args, **kwargs)
-        tk.Tk.iconbitmap(self, default="window_icon_radar.ico")
+        tk.Tk.iconbitmap(self, default="images/window_icon_radar.ico")
         tk.Tk.wm_title(self, "ETESim Plotting Suite")
         self.geometry("650x250+450+250")
 
@@ -49,7 +49,7 @@ class SimpleGUI(tk.Tk):
         # Tab 1: Data Input
         ################################################################
         self.tab1 = ttk.Frame(self.tabs,)
-        self.datainput_icon = tk.PhotoImage(file='input-data-1.png')
+        self.datainput_icon = tk.PhotoImage(file='images/input-data-1.png')
         self.tabs.add(self.tab1,
                       text='Data Input',
                       image=self.datainput_icon,
@@ -90,7 +90,8 @@ class SimpleGUI(tk.Tk):
         ################################################################
         # Tab 2: Graph Options
         ################################################################
-        self.graphsettings_icon = tk.PhotoImage(file='graph-settings-icon.png')
+        gs_ico = 'images/graph-settings-icon.png'
+        self.graphsettings_icon = tk.PhotoImage(file=gs_ico)
         self.tab2 = ttk.Frame(self.tabs,)
         self.tabs.add(
                 self.tab2,
@@ -190,7 +191,7 @@ class SimpleGUI(tk.Tk):
         ################################################################
         # Tab 3: Save Options
         ################################################################
-        self.saveoptions_icon = tk.PhotoImage(file='save-disk.png')
+        self.saveoptions_icon = tk.PhotoImage(file='images/save-disk.png')
         self.tab3 = ttk.Frame(self.tabs,)
         self.tabs.add(
                 self.tab3,
@@ -236,7 +237,7 @@ class SimpleGUI(tk.Tk):
         ################################################################
         # Tab 4: Viewer
         ################################################################
-        self.viewer_icon = tk.PhotoImage(file='three-dim-graph.png')
+        self.viewer_icon = tk.PhotoImage(file='images/three-dim-graph.png')
         self.tab4 = ttk.Frame(self.tabs,)
         self.tabs.add(
                 self.tab4,
