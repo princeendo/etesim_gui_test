@@ -24,6 +24,8 @@ matplotlib.use("TkAgg")  # To use with Tkinter
 # TODO: Add plot title
 # TODO: Add option for legend
 # TODO: Add labels and ComboBoxes for each parameter
+# TODO: Add callback function for xyzLimits to update value meaningfully
+#       -> Try using try/except to see if the value makes sense as a number
 
 
 def correctTopDir(topdir):
