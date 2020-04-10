@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 # Module-Level Imports
-import os
 import platform
 import tkinter as tk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -18,6 +17,13 @@ import matplotlib
 matplotlib.use("TkAgg")  # To use with Tkinter
 
 # LARGE_FONT = ("Verdana", 12)
+
+# TODO: Add Color Option for Graphs
+# TODO: Split up graph styles across two lines
+# TODO: Add a series of fields for each separate graph
+# TODO: Add plot title
+# TODO: Add option for legend
+# TODO: Add labels and ComboBoxes for each parameter
 
 
 def correctTopDir(topdir):
@@ -188,6 +194,63 @@ class SimpleGUI(tk.Tk):
         self.scatterOn.grid(row=thisrow, column=3, padx=(22, 0))
         self.scatterStyleComboBox.grid(row=thisrow, column=4)
 
+        ########################################
+        # Row 3 - X Minimum and Maximum Values
+        ########################################
+        thisrow += 1
+
+        self.xMin = None
+        self.xMax = None
+        self.xMinLabel = tk.Label(self.tab2, text='Min: ')
+        self.xMaxLabel = tk.Label(self.tab2, text='Max: ')
+        self.xMinEntry = tk.Entry(self.tab2, width=8)
+        self.xMaxEntry = tk.Entry(self.tab2, width=8)
+        self.xLimits = tk.BooleanVar(value=False)
+        self.xLimitsRow = thisrow
+        self.xLimitsBox = tk.Checkbutton(self.tab2,
+                                         text='Modify X Limits',
+                                         variable=self.xLimits,
+                                         command=self.showXLimits)
+        self.xLimitsBox.grid(row=thisrow, column=0, sticky=tk.W)
+        ########################################
+        # Row 4 - Y Minimum and Maximum Values
+        ########################################
+        thisrow += 1
+
+        self.yMin = None
+        self.yMax = None
+        self.yMinLabel = tk.Label(self.tab2, text='Min: ')
+        self.yMaxLabel = tk.Label(self.tab2, text='Max: ')
+        self.yMinEntry = tk.Entry(self.tab2, width=8)
+        self.yMaxEntry = tk.Entry(self.tab2, width=8)
+        self.yLimits = tk.BooleanVar(value=False)
+        self.yLimitsRow = thisrow
+        self.yLimitsBox = tk.Checkbutton(self.tab2,
+                                         text='Modify Y Limits',
+                                         variable=self.yLimits,
+                                         command=self.showYLimits)
+        self.yLimitsBox.grid(row=thisrow, column=0, sticky=tk.W)
+
+        ########################################
+        # Row 5 - Z Minimum and Maximum Values
+        ########################################
+        thisrow += 1
+
+        self.zMin = None
+        self.zMax = None
+        self.zMinLabel = tk.Label(self.tab2, text='Min: ')
+        self.zMaxLabel = tk.Label(self.tab2, text='Max: ')
+        self.zMinEntry = tk.Entry(self.tab2, width=8)
+        self.zMaxEntry = tk.Entry(self.tab2, width=8)
+        self.zLimits = tk.BooleanVar(value=False)
+        self.zLimitsRow = thisrow
+        self.zLimitsBox = tk.Checkbutton(self.tab2,
+                                         text='Modify Z Limits',
+                                         variable=self.zLimits,
+                                         command=self.showZLimits)
+        if self.dimensions.get() == 3:
+            self.zLimitsBox.grid(row=thisrow, column=0, sticky=tk.W)
+
         ################################################################
         # Tab 3: Save Options
         ################################################################
@@ -223,7 +286,7 @@ class SimpleGUI(tk.Tk):
         self.imageTypeLabel.grid(row=1, sticky=tk.W)
         self.imageType = tk.StringVar()
 
-        # TODO: Change "state" to 'readonly' and make it matter in code
+        # TODO: Change "state" to 'readonly' and implement extensions
         self.imageTypeComboBox = ttk.Combobox(self.tab3,
                                               textvariable=self.imageType,
                                               values=self.imageTypeOptions,
@@ -243,7 +306,7 @@ class SimpleGUI(tk.Tk):
                 self.tab4,
                 text='Viewer',
                 image=self.viewer_icon,   # The icon feature is awesome
-                compound=tk.LEFT,)               # Places icon left of text
+                compound=tk.LEFT,)        # Places icon left of text
 
     def getTopDir(self):
         """
@@ -293,7 +356,13 @@ class SimpleGUI(tk.Tk):
         return defaultPaths[thisOS]
 
     def setGraphDimensions(self):
-        self.graphDimensions = self.dimensions
+        self.graphDimensions = self.dimensions.get()
+        if self.graphDimensions == 3:
+            self.zLimitsBox.grid(row=self.zLimitsRow, column=0, sticky=tk.W)
+        else:
+            self.zLimits.set(False)
+            self.zLimitsBox.grid_remove()
+            self.showZLimits()
 
     def setNumPlots(self):
         self.numPlots = int(self.numPlotsSpinBox.get())
@@ -306,6 +375,42 @@ class SimpleGUI(tk.Tk):
         if self.plotStyle.get() == 'scatter':
             self.lineStyleComboBox.config(state='disabled')
             self.scatterStyleComboBox.config(state='readonly')
+
+    def showXLimits(self):
+        if self.xLimits.get():  # if checked
+            self.xMinLabel.grid(row=self.xLimitsRow, column=1)
+            self.xMinEntry.grid(row=self.xLimitsRow, column=2)
+            self.xMaxLabel.grid(row=self.xLimitsRow, column=3)
+            self.xMaxEntry.grid(row=self.xLimitsRow, column=4)
+        else:
+            self.xMinLabel.grid_remove()
+            self.xMinEntry.grid_remove()
+            self.xMaxLabel.grid_remove()
+            self.xMaxEntry.grid_remove()
+
+    def showYLimits(self):
+        if self.yLimits.get():  # if checked
+            self.yMinLabel.grid(row=self.yLimitsRow, column=1)
+            self.yMinEntry.grid(row=self.yLimitsRow, column=2)
+            self.yMaxLabel.grid(row=self.yLimitsRow, column=3)
+            self.yMaxEntry.grid(row=self.yLimitsRow, column=4)
+        else:
+            self.yMinLabel.grid_remove()
+            self.yMinEntry.grid_remove()
+            self.yMaxLabel.grid_remove()
+            self.yMaxEntry.grid_remove()
+
+    def showZLimits(self):
+        if self.zLimits.get():  # if checked
+            self.zMinLabel.grid(row=self.zLimitsRow, column=1)
+            self.zMinEntry.grid(row=self.zLimitsRow, column=2)
+            self.zMaxLabel.grid(row=self.zLimitsRow, column=3)
+            self.zMaxEntry.grid(row=self.zLimitsRow, column=4)
+        else:
+            self.zMinLabel.grid_remove()
+            self.zMinEntry.grid_remove()
+            self.zMaxLabel.grid_remove()
+            self.zMaxEntry.grid_remove()
 
 
 app = SimpleGUI()
