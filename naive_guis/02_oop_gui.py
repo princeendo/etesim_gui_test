@@ -28,12 +28,6 @@ matplotlib.use("TkAgg")  # To use with Tkinter
 #       -> Try using try/except to see if the value makes sense as a number
 
 
-def correctTopDir(topdir):
-    if platform.system() == 'Windows':
-        topdir = '\\'.join(topdir.split('/'))
-    return topdir
-
-
 class SimpleGUI(tk.Tk):
     def __init__(self, *args, **kwargs):
 
@@ -321,7 +315,7 @@ class SimpleGUI(tk.Tk):
         kwargs = {'title': 'Select Directory Containing Run(s)',
                   'initialdir': self.default_path(), }
         self.topDir = filedialog.askdirectory(**kwargs)
-        self.topDir = correctTopDir(self.topDir)
+        self.topDir = os.path.abspath(self.topDir)
 
         # Updates text widget with path (deletes old path)
         self.topDirPath.delete('1.0', tk.END)
@@ -338,7 +332,7 @@ class SimpleGUI(tk.Tk):
         kwargs = {'title': 'Select Ouput Directory',
                   'initialdir': self.default_path(), }
         self.outDir = filedialog.askdirectory(**kwargs)
-        self.outDir = correctTopDir(self.outDir)
+        self.outDir = os.path.abspath(self.outDir)
 
         # Updates text widget with path (deletes old path)
         self.outDirPath.delete('1.0', tk.END)
