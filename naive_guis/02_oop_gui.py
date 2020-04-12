@@ -1,20 +1,25 @@
 # -*- coding: utf-8 -*-
 
 # Module-Level Imports
+import os
 import platform
+import numpy as np
 import tkinter as tk
+from tkinter import messagebox as mb
+from tkinter import ttk
+from tkinter import filedialog
+import pandas as pd
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 # The original function was deprecated so we're importing the new one
 # to match the tutorial more closely
 from matplotlib.backends.backend_tkagg import (NavigationToolbar2Tk
                                                as NavigationToolbar2TkAgg)
 from matplotlib.figure import Figure
-from tkinter import ttk
-from tkinter import filedialog
 
 # Imports and settings for Tkinter
 import matplotlib
 matplotlib.use("TkAgg")  # To use with Tkinter
+
 
 # LARGE_FONT = ("Verdana", 12)
 
@@ -28,12 +33,6 @@ matplotlib.use("TkAgg")  # To use with Tkinter
 #       -> Try using try/except to see if the value makes sense as a number
 
 
-def correctTopDir(topdir):
-    if platform.system() == 'Windows':
-        topdir = '\\'.join(topdir.split('/'))
-    return topdir
-
-
 class SimpleGUI(tk.Tk):
     def __init__(self, *args, **kwargs):
 
@@ -42,6 +41,8 @@ class SimpleGUI(tk.Tk):
         tk.Tk.iconbitmap(self, default="images/window_icon_radar.ico")
         tk.Tk.wm_title(self, "ETESim Plotting Suite")
         self.geometry("650x250+450+250")
+
+        self.plotCols = ['']
 
         # Creating a Notebook seems to be the key to making tabs
         self.tabs = ttk.Notebook(self,)
@@ -69,6 +70,7 @@ class SimpleGUI(tk.Tk):
         self.topDirLabel = tk.Label(self.tab1, text='Directory with Run(s): ')
         self.topDirLabel.grid(row=0, sticky=tk.W)
 
+        self.topDir = ''
         self.topDirPath = tk.Text(self.tab1, relief=tk.SUNKEN)
         self.topDirPath.config(width=40, height=1.45)
         self.topDirPath.grid(row=0, column=1, columnspan=5, sticky=tk.W)
@@ -78,6 +80,12 @@ class SimpleGUI(tk.Tk):
                                             height=1,
                                             command=self.getTopDir)
         self.topDirBrowseButton.grid(row=0, column=6, padx=4)
+
+        self.topDirLoadButton = tk.Button(self.tab1,
+                                          text='Load',
+                                          height=1,
+                                          command=self.loadFromTopDir)
+        self.topDirLoadButton.grid(row=0, column=7, padx=4)
 
         ########################################
         # Row 1 - Threat Type(s)
@@ -310,6 +318,40 @@ class SimpleGUI(tk.Tk):
                 image=self.viewer_icon,   # The icon feature is awesome
                 compound=tk.LEFT,)        # Places icon left of text
 
+        ########################################
+        # Row 0 - X Plot Column
+        ########################################
+        thisrow = 0
+        self.x, self.y, self.z = tk.StringVar(), tk.StringVar(), tk.StringVar()
+        self.xLabel = tk.Label(self.tab4, text='X=')
+        self.xLabel.grid(row=thisrow, column=0, sticky=tk.W)
+        self.xComboBox = ttk.Combobox(self.tab4, textvariable=self.x,
+                                      values=self.plotCols, state='readonly',
+                                      width=30)
+        self.xComboBox.grid(row=thisrow, column=1)
+
+        ########################################
+        # Row 0 - X Plot Column
+        ########################################
+        thisrow += 1
+        self.yLabel = tk.Label(self.tab4, text='Y=')
+        self.yLabel.grid(row=thisrow, column=0, sticky=tk.W)
+        self.yComboBox = ttk.Combobox(self.tab4, textvariable=self.y,
+                                      values=self.plotCols, state='readonly',
+                                      width=30)
+        self.yComboBox.grid(row=thisrow, column=1)
+
+        ########################################
+        # Row 2 - X Plot Column
+        ########################################
+        thisrow += 1
+        self.zLabel = tk.Label(self.tab4, text='Z=')
+        self.zLabel.grid(row=thisrow, column=0, sticky=tk.W)
+        self.zComboBox = ttk.Combobox(self.tab4, textvariable=self.z,
+                                      values=self.plotCols, state='readonly',
+                                      width=30)
+        self.zComboBox.grid(row=thisrow, column=1)
+
     def getTopDir(self):
         """
         Opens a file browswer for the run files. Once selected,
@@ -321,11 +363,36 @@ class SimpleGUI(tk.Tk):
         kwargs = {'title': 'Select Directory Containing Run(s)',
                   'initialdir': self.default_path(), }
         self.topDir = filedialog.askdirectory(**kwargs)
-        self.topDir = correctTopDir(self.topDir)
+        if self.topDir != '':
+            self.topDir = os.path.abspath(self.topDir)
 
         # Updates text widget with path (deletes old path)
         self.topDirPath.delete('1.0', tk.END)
         self.topDirPath.insert(1.0, self.topDir)
+
+    def loadFromTopDir(self):
+        if not os.path.isdir(self.topDir):
+            mb.showinfo('Invalid directory',                 # title
+                        'Please choose a valid directory!',  # message
+                        icon='warning',)
+            return
+        self.setMissileFile()
+
+    def setMissileFile(self):
+        mfile = os.path.join(self.topDir, 'NotionalETEOutput.xlsx')
+        if not os.path.isfile(mfile):
+            mb.showinfo('File Not Found',                       # title
+                        'No valid files found in directory!',   # message
+                        icon='warning',)
+            return
+        self.missileFile = os.path.abspath(mfile)
+        self.missileDF = pd.read_excel(self.missileFile)
+        self.plotCols = [''] + [col for col, val
+                                in self.missileDF.dtypes.items()
+                                if val == np.dtype('float64')]
+        self.xComboBox['values'] = self.plotCols
+        self.yComboBox['values'] = self.plotCols
+        self.zComboBox['values'] = self.plotCols
 
     def getOutDir(self):
         """
@@ -338,7 +405,7 @@ class SimpleGUI(tk.Tk):
         kwargs = {'title': 'Select Ouput Directory',
                   'initialdir': self.default_path(), }
         self.outDir = filedialog.askdirectory(**kwargs)
-        self.outDir = correctTopDir(self.outDir)
+        self.outDir = os.path.abspath(self.outDir)
 
         # Updates text widget with path (deletes old path)
         self.outDirPath.delete('1.0', tk.END)
