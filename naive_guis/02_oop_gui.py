@@ -9,12 +9,13 @@ from tkinter import messagebox as mb
 from tkinter import ttk
 from tkinter import filedialog
 import pandas as pd
+import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 # The original function was deprecated so we're importing the new one
-# to match the tutorial more closely
+# to match tutorials more closely
 from matplotlib.backends.backend_tkagg import (NavigationToolbar2Tk
                                                as NavigationToolbar2TkAgg)
-from matplotlib.figure import Figure
+# from matplotlib.figure import Figure
 
 # Imports and settings for Tkinter
 import matplotlib
@@ -35,6 +36,8 @@ matplotlib.use("TkAgg")  # To use with Tkinter
 # TODO: Add CheckBox to auto-update graph on any change
 # TODO: Use self.viewPane.winfo_height() and self.viewPane.winfo_width()
 #       to render graph that fits within window
+#       (Maybe call update_idletasks() first to guarantee information)
+# TODO: Ensure plotting function makes call to winfo_width/height() first
 
 
 class SimpleGUI(tk.Tk):
@@ -57,6 +60,9 @@ class SimpleGUI(tk.Tk):
 
         self.build_tabs()
 
+    ####################################################################
+    # UI Design
+    ####################################################################
     def build_tabs(self):
         ################################################################
         # Tab 1: Data Input
@@ -372,6 +378,12 @@ class SimpleGUI(tk.Tk):
                                       width=30)
         self.zComboBox.grid(row=thisrow, column=1)
 
+    ####################################################################
+    # Callback functions
+    ####################################################################
+    def todo(self):
+        pass
+
     def getTopDir(self):
         """
         Opens a file browswer for the run files. Once selected,
@@ -431,19 +443,6 @@ class SimpleGUI(tk.Tk):
         self.outDirPath.delete('1.0', tk.END)
         self.outDirPath.insert(1.0, self.outDir)
 
-    def todo(self):
-        pass
-
-    def default_path(self):
-        defaultPaths = {'windows': 'C:\\',
-                        'unix': '/',
-                        'linux': '//',
-                        'macos': None,
-                        'sunos': None,
-                        }
-        thisOS = platform.system().lower()
-        return defaultPaths[thisOS]
-
     def setGraphDimensions(self):
         self.graphDimensions = self.dimensions.get()
         if self.graphDimensions == 3:
@@ -500,6 +499,19 @@ class SimpleGUI(tk.Tk):
             self.zMinEntry.grid_remove()
             self.zMaxLabel.grid_remove()
             self.zMaxEntry.grid_remove()
+
+    ####################################################################
+    # Utility functions
+    ####################################################################
+    def default_path(self):
+        defaultPaths = {'windows': 'C:\\',
+                        'unix': '/',
+                        'linux': '//',
+                        'macos': None,
+                        'sunos': None,
+                        }
+        thisOS = platform.system().lower()
+        return defaultPaths[thisOS]
 
 
 app = SimpleGUI()
