@@ -37,6 +37,7 @@ matplotlib.use("TkAgg")  # To use with Tkinter
 # TODO: Add CheckBox to auto-update graph on any change
 # TODO: Remove radio button for 2D/3D from graph settings
 # TODO: Move x/y/z limits to viewer pane
+# TODO: Add status bar on bottom (panedwindow) to give feedback
 
 
 class SimpleGUI(tk.Tk):
@@ -207,29 +208,7 @@ class SimpleGUI(tk.Tk):
         self.numPlotsSpinBox.set('1')
 
         ########################################
-        # Row 1 - 2D/3D Options
-        ########################################
-        thisrow += 1
-        self.dimensions = tk.IntVar(self.graphOptionsTab, 2)
-        self.dimensionsLabel = tk.Label(self.graphOptionsTab,
-                                        text='Dimensions: ')
-        self.dimensionsLabel.grid(row=thisrow, column=0, sticky=tk.W,)
-        self.radio2D = ttk.Radiobutton(self.graphOptionsTab,
-                                       text='2D',       # Button text
-                                       value=2,         # Stored value
-                                       var=self.dimensions,
-                                       command=self.setGraphDimensions,)
-        self.radio3D = ttk.Radiobutton(self.graphOptionsTab,
-                                       text='3D',       # Button text
-                                       value=3,         # Stored value
-                                       var=self.dimensions,
-                                       command=self.setGraphDimensions,)
-
-        self.radio2D.grid(row=thisrow, column=1,)
-        self.radio3D.grid(row=thisrow, column=3,)
-
-        ########################################
-        # Row 2 - Plot Style Options
+        # Row 1 - Plot Style Options
         ########################################
         thisrow += 1
         self.plotOptions = ('line', 'scatter')
@@ -277,7 +256,7 @@ class SimpleGUI(tk.Tk):
         self.scatterStyleComboBox.grid(row=thisrow, column=4)
 
         ########################################
-        # Row 3 - X Minimum and Maximum Values
+        # Row 2 - X Minimum and Maximum Values
         ########################################
         thisrow += 1
 
@@ -295,7 +274,7 @@ class SimpleGUI(tk.Tk):
                                          command=self.showHideXLimits)
         self.xLimitsBox.grid(row=thisrow, column=0, sticky=tk.W)
         ########################################
-        # Row 4 - Y Minimum and Maximum Values
+        # Row 3 - Y Minimum and Maximum Values
         ########################################
         thisrow += 1
 
@@ -330,7 +309,7 @@ class SimpleGUI(tk.Tk):
                                          text='Modify Z Limits',
                                          variable=self.zLimits,
                                          command=self.showHideZLimits)
-        if self.dimensions.get() == 3:
+        if self.graphDimensions == 3:
             self.zLimitsBox.grid(row=thisrow, column=0, sticky=tk.W)
 
         ################################################################
