@@ -10,11 +10,11 @@ from tkinter import ttk
 from tkinter import filedialog
 import pandas as pd
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 # The original function was deprecated so we're importing the new one
 # to match tutorials more closely
-from matplotlib.backends.backend_tkagg import (NavigationToolbar2Tk
-                                               as NavigationToolbar2TkAgg)
+from matplotlib.backends.backend_tkagg import NavigationToolbar2Tk
 # from matplotlib.figure import Figure
 
 # Imports and settings for Tkinter
@@ -29,15 +29,14 @@ matplotlib.use("TkAgg")  # To use with Tkinter
 # TODO: Add a series of fields for each separate graph
 # TODO: Add plot title
 # TODO: Add option for legend
+# TODO: Add option for x/y/z labels
 # TODO: Add callback function for xyzLimits to update value meaningfully
 #       -> Try using try/except to see if the value makes sense as a number
 # TODO: Add labelframe and put X/Y/Z dropdowns inside of it
 # TODO: Add button to render graph manually
 # TODO: Add CheckBox to auto-update graph on any change
-# TODO: Use self.viewPane.winfo_height() and self.viewPane.winfo_width()
-#       to render graph that fits within window
-#       (Maybe call update_idletasks() first to guarantee information)
-# TODO: Ensure plotting function makes call to winfo_width/height() first
+# TODO: Remove radio button for 2D/3D from graph settings
+# TODO: Move x/y/z limits to viewer pane
 
 
 class SimpleGUI(tk.Tk):
@@ -49,7 +48,16 @@ class SimpleGUI(tk.Tk):
         tk.Tk.wm_title(self, "ETESim Plotting Suite")
         self.geometry("850x550+150+50")
 
+        # We need to set some sample values for the GUI not to crash
         self.plotCols = ['']
+        self.graphDimensions = 2
+        self.x = []
+        self.y = []
+        self.z = []
+        self.missileDF = pd.DataFrame({' ': []})
+        self.toolbar = None
+        self.figure = None
+        self.canvas = None
 
         # Creating a Notebook seems to be the key to making tabs
         self.tabs = ttk.Notebook(self,)
@@ -59,6 +67,7 @@ class SimpleGUI(tk.Tk):
         self.tabs.pack(fill=tk.BOTH, expand=True)
 
         self.build_tabs()
+        self.showPlot()
 
     ####################################################################
     # UI Design
@@ -67,9 +76,9 @@ class SimpleGUI(tk.Tk):
         ################################################################
         # Tab 1: Data Input
         ################################################################
-        self.tab1 = ttk.Frame(self.tabs,)
+        self.inputTab = ttk.Frame(self.tabs,)
         self.datainput_icon = tk.PhotoImage(file='images/input-data-1.png')
-        self.tabs.add(self.tab1,
+        self.tabs.add(self.inputTab,
                       text='Data Input',
                       image=self.datainput_icon,
                       compound=tk.LEFT,)
@@ -77,21 +86,22 @@ class SimpleGUI(tk.Tk):
         ########################################
         # Row 0 - Browsing for Directory
         ########################################
-        self.topDirLabel = tk.Label(self.tab1, text='Directory with Run(s): ')
+        self.topDirLabel = tk.Label(self.inputTab,
+                                    text='Directory with Run(s): ')
         self.topDirLabel.grid(row=0, sticky=tk.W)
 
         self.topDir = ''
-        self.topDirPath = tk.Text(self.tab1, relief=tk.SUNKEN)
+        self.topDirPath = tk.Text(self.inputTab, relief=tk.SUNKEN)
         self.topDirPath.config(width=40, height=1.45)
         self.topDirPath.grid(row=0, column=1, columnspan=5, sticky=tk.W)
 
-        self.topDirBrowseButton = tk.Button(self.tab1,
+        self.topDirBrowseButton = tk.Button(self.inputTab,
                                             text='Browse',
                                             height=1,
                                             command=self.getTopDir)
         self.topDirBrowseButton.grid(row=0, column=6, padx=4)
 
-        self.topDirLoadButton = tk.Button(self.tab1,
+        self.topDirLoadButton = tk.Button(self.inputTab,
                                           text='Load',
                                           height=1,
                                           command=self.loadFromTopDir)
@@ -101,10 +111,10 @@ class SimpleGUI(tk.Tk):
         # Row 1 - Threat Type(s)
         ########################################
         self.threatTypeOptions = ('Infer', 'ABT', 'TBM')
-        self.threatTypeLabel = tk.Label(self.tab1, text='Threat: ')
+        self.threatTypeLabel = tk.Label(self.inputTab, text='Threat: ')
         self.threatTypeLabel.grid(row=1, sticky=tk.W)
         self.threatType = tk.StringVar()
-        self.threatTypeComboBox = ttk.Combobox(self.tab1,
+        self.threatTypeComboBox = ttk.Combobox(self.inputTab,
                                                textvariable=self.threatType,
                                                values=self.threatTypeOptions,
                                                state='readonly',
@@ -114,13 +124,61 @@ class SimpleGUI(tk.Tk):
         self.threatTypeComboBox.grid(row=1, column=1, columnspan=2)
 
         ################################################################
-        # Tab 2: Graph Options
+        # Tab 2: Save Options
+        ################################################################
+        self.saveoptions_icon = tk.PhotoImage(file='images/save-disk.png')
+        self.saveOptionsTab = ttk.Frame(self.tabs,)
+        self.tabs.add(
+                self.saveOptionsTab,
+                text='Saving Options',
+                image=self.saveoptions_icon,   # The icon feature is awesome
+                compound=tk.LEFT,)               # Places icon left of text
+
+        ########################################
+        # Row 0 - Output Directory
+        ########################################
+        self.outDirLabel = tk.Label(self.saveOptionsTab,
+                                    text='Output Directory: ')
+        self.outDirLabel.grid(row=0, sticky=tk.W)
+
+        self.outDirPath = tk.Text(self.saveOptionsTab, relief=tk.SUNKEN)
+        self.outDirPath.config(width=40, height=1.45)
+        self.outDirPath.grid(row=0, column=1, columnspan=5, sticky=tk.W)
+
+        self.outDirBrowseButton = tk.Button(self.saveOptionsTab,
+                                            text='Browse',
+                                            height=1,
+                                            command=self.getOutDir)
+        self.outDirBrowseButton.grid(row=0, column=6, padx=4)
+
+        ########################################
+        # Row 1 - Image Save Type
+        ########################################
+        self.imageTypeOptions = ('JPG', 'PDF', 'PNG', 'TIFF')
+        self.imageTypeLabel = tk.Label(self.saveOptionsTab,
+                                       text='Image Format: ')
+        self.imageTypeLabel.grid(row=1, sticky=tk.W)
+        self.imageType = tk.StringVar()
+
+        # TODO: Change "state" to 'readonly' and implement extensions
+        self.imageTypeComboBox = ttk.Combobox(self.saveOptionsTab,
+                                              textvariable=self.imageType,
+                                              values=self.imageTypeOptions,
+                                              state='disabled',
+                                              width=20,)
+
+        # Sets the default to PNG since it looks nice and is small
+        self.imageTypeComboBox.set('PNG')
+        self.imageTypeComboBox.grid(row=1, column=1, columnspan=2)
+
+        ################################################################
+        # Tab 3: Graph Options
         ################################################################
         gs_ico = 'images/graph-settings-icon.png'
         self.graphsettings_icon = tk.PhotoImage(file=gs_ico)
-        self.tab2 = ttk.Frame(self.tabs,)
+        self.graphOptionsTab = ttk.Frame(self.tabs,)
         self.tabs.add(
-                self.tab2,
+                self.graphOptionsTab,
                 text='Graph Options',
                 image=self.graphsettings_icon,   # The icon feature is awesome
                 compound=tk.LEFT,)               # Places icon left of text
@@ -130,14 +188,15 @@ class SimpleGUI(tk.Tk):
         ########################################
         thisrow = 0
         # Setting up a 'spinbox' where you can only select a range of values
-        self.numPlots = tk.IntVar(self.tab2, 1)
-        self.numPlotsLabel = ttk.Label(self.tab2, text='Simultaneous Plots: ')
+        self.numPlots = tk.IntVar(self.graphOptionsTab, 1)
+        self.numPlotsLabel = ttk.Label(self.graphOptionsTab,
+                                       text='Simultaneous Plots: ')
         self.numPlotsLabel.grid(row=thisrow, column=0, padx=(0, 10))
 
         # This can be done with tk or ttk
         # If using tk, the default value is from_ or use the "value" keyword
         # If using ttk, you have to set the default value with .set()
-        self.numPlotsSpinBox = ttk.Spinbox(self.tab2,
+        self.numPlotsSpinBox = ttk.Spinbox(self.graphOptionsTab,
                                            from_=1,
                                            to=5,
                                            command=self.setNumPlots,
@@ -151,15 +210,16 @@ class SimpleGUI(tk.Tk):
         # Row 1 - 2D/3D Options
         ########################################
         thisrow += 1
-        self.dimensions = tk.IntVar(self.tab2, 2)
-        self.dimensionsLabel = tk.Label(self.tab2, text='Dimensions: ')
+        self.dimensions = tk.IntVar(self.graphOptionsTab, 2)
+        self.dimensionsLabel = tk.Label(self.graphOptionsTab,
+                                        text='Dimensions: ')
         self.dimensionsLabel.grid(row=thisrow, column=0, sticky=tk.W,)
-        self.radio2D = ttk.Radiobutton(self.tab2,
+        self.radio2D = ttk.Radiobutton(self.graphOptionsTab,
                                        text='2D',       # Button text
                                        value=2,         # Stored value
                                        var=self.dimensions,
                                        command=self.setGraphDimensions,)
-        self.radio3D = ttk.Radiobutton(self.tab2,
+        self.radio3D = ttk.Radiobutton(self.graphOptionsTab,
                                        text='3D',       # Button text
                                        value=3,         # Stored value
                                        var=self.dimensions,
@@ -173,15 +233,16 @@ class SimpleGUI(tk.Tk):
         ########################################
         thisrow += 1
         self.plotOptions = ('line', 'scatter')
-        self.plotStyle = tk.StringVar(self.tab2, 'line')
-        self.plotStyleLabel = tk.Label(self.tab2, text='Plot Style: ',)
+        self.plotStyle = tk.StringVar(self.graphOptionsTab, 'line')
+        self.plotStyleLabel = tk.Label(self.graphOptionsTab,
+                                       text='Plot Style: ',)
         self.plotStyleLabel.grid(row=thisrow, column=0, sticky=tk.W)
-        self.lineOn = ttk.Radiobutton(self.tab2,
+        self.lineOn = ttk.Radiobutton(self.graphOptionsTab,
                                       text='Line',          # Button text
                                       value='line',         # Stored value
                                       var=self.plotStyle,
                                       command=self.setPlotStyleOptions,)
-        self.scatterOn = ttk.Radiobutton(self.tab2,
+        self.scatterOn = ttk.Radiobutton(self.graphOptionsTab,
                                          text='Scatter',       # Button text
                                          value='scatter',      # Stored value
                                          var=self.plotStyle,
@@ -189,24 +250,25 @@ class SimpleGUI(tk.Tk):
 
         # Setting up a ComboBox to be placed beside Line Style radio button
         self.lineStyleOptions = ('-', '--', ':', '-.', )
-        self.lineStyle = tk.StringVar(self.tab2, '-')
+        self.lineStyle = tk.StringVar(self.graphOptionsTab, '-')
         lineStyle_kwargs = {'textvariable': self.lineStyle,
                             'values': self.lineStyleOptions,
                             'state': 'readonly',
                             'width': 5}
-        self.lineStyleComboBox = ttk.Combobox(self.tab2, **lineStyle_kwargs)
+        self.lineStyleComboBox = ttk.Combobox(self.graphOptionsTab,
+                                              **lineStyle_kwargs)
 
         # Setting up a ComboBox to be placed beside Scatter Style radio button
         self.scatterStyleOptions = ('o', 'v', '^', '<', '>', '8', 's', 'p',
                                     '*', 'h', 'H', 'D', 'd', 'P', 'X')
-        self.scatterStyle = tk.StringVar(self.tab2, 'o')
+        self.scatterStyle = tk.StringVar(self.graphOptionsTab, 'o')
 
         scatterStyle_kwargs = {'textvariable': self.scatterStyle,
                                'values': self.scatterStyleOptions,
                                'state': 'disabled',
                                'width': 5}
 
-        self.scatterStyleComboBox = ttk.Combobox(self.tab2,
+        self.scatterStyleComboBox = ttk.Combobox(self.graphOptionsTab,
                                                  **scatterStyle_kwargs)
 
         self.lineOn.grid(row=thisrow, column=1, padx=(7, 0))
@@ -221,16 +283,16 @@ class SimpleGUI(tk.Tk):
 
         self.xMin = None
         self.xMax = None
-        self.xMinLabel = tk.Label(self.tab2, text='Min: ')
-        self.xMaxLabel = tk.Label(self.tab2, text='Max: ')
-        self.xMinEntry = tk.Entry(self.tab2, width=8)
-        self.xMaxEntry = tk.Entry(self.tab2, width=8)
+        self.xMinLabel = tk.Label(self.graphOptionsTab, text='Min: ')
+        self.xMaxLabel = tk.Label(self.graphOptionsTab, text='Max: ')
+        self.xMinEntry = tk.Entry(self.graphOptionsTab, width=8)
+        self.xMaxEntry = tk.Entry(self.graphOptionsTab, width=8)
         self.xLimits = tk.BooleanVar(value=False)
         self.xLimitsRow = thisrow
-        self.xLimitsBox = tk.Checkbutton(self.tab2,
+        self.xLimitsBox = tk.Checkbutton(self.graphOptionsTab,
                                          text='Modify X Limits',
                                          variable=self.xLimits,
-                                         command=self.showXLimits)
+                                         command=self.showHideXLimits)
         self.xLimitsBox.grid(row=thisrow, column=0, sticky=tk.W)
         ########################################
         # Row 4 - Y Minimum and Maximum Values
@@ -239,16 +301,16 @@ class SimpleGUI(tk.Tk):
 
         self.yMin = None
         self.yMax = None
-        self.yMinLabel = tk.Label(self.tab2, text='Min: ')
-        self.yMaxLabel = tk.Label(self.tab2, text='Max: ')
-        self.yMinEntry = tk.Entry(self.tab2, width=8)
-        self.yMaxEntry = tk.Entry(self.tab2, width=8)
+        self.yMinLabel = tk.Label(self.graphOptionsTab, text='Min: ')
+        self.yMaxLabel = tk.Label(self.graphOptionsTab, text='Max: ')
+        self.yMinEntry = tk.Entry(self.graphOptionsTab, width=8)
+        self.yMaxEntry = tk.Entry(self.graphOptionsTab, width=8)
         self.yLimits = tk.BooleanVar(value=False)
         self.yLimitsRow = thisrow
-        self.yLimitsBox = tk.Checkbutton(self.tab2,
+        self.yLimitsBox = tk.Checkbutton(self.graphOptionsTab,
                                          text='Modify Y Limits',
                                          variable=self.yLimits,
-                                         command=self.showYLimits)
+                                         command=self.showHideYLimits)
         self.yLimitsBox.grid(row=thisrow, column=0, sticky=tk.W)
 
         ########################################
@@ -258,77 +320,31 @@ class SimpleGUI(tk.Tk):
 
         self.zMin = None
         self.zMax = None
-        self.zMinLabel = tk.Label(self.tab2, text='Min: ')
-        self.zMaxLabel = tk.Label(self.tab2, text='Max: ')
-        self.zMinEntry = tk.Entry(self.tab2, width=8)
-        self.zMaxEntry = tk.Entry(self.tab2, width=8)
+        self.zMinLabel = tk.Label(self.graphOptionsTab, text='Min: ')
+        self.zMaxLabel = tk.Label(self.graphOptionsTab, text='Max: ')
+        self.zMinEntry = tk.Entry(self.graphOptionsTab, width=8)
+        self.zMaxEntry = tk.Entry(self.graphOptionsTab, width=8)
         self.zLimits = tk.BooleanVar(value=False)
         self.zLimitsRow = thisrow
-        self.zLimitsBox = tk.Checkbutton(self.tab2,
+        self.zLimitsBox = tk.Checkbutton(self.graphOptionsTab,
                                          text='Modify Z Limits',
                                          variable=self.zLimits,
-                                         command=self.showZLimits)
+                                         command=self.showHideZLimits)
         if self.dimensions.get() == 3:
             self.zLimitsBox.grid(row=thisrow, column=0, sticky=tk.W)
-
-        ################################################################
-        # Tab 3: Save Options
-        ################################################################
-        self.saveoptions_icon = tk.PhotoImage(file='images/save-disk.png')
-        self.tab3 = ttk.Frame(self.tabs,)
-        self.tabs.add(
-                self.tab3,
-                text='Saving Options',
-                image=self.saveoptions_icon,   # The icon feature is awesome
-                compound=tk.LEFT,)               # Places icon left of text
-
-        ########################################
-        # Row 0 - Output Directory
-        ########################################
-        self.outDirLabel = tk.Label(self.tab3, text='Output Directory: ')
-        self.outDirLabel.grid(row=0, sticky=tk.W)
-
-        self.outDirPath = tk.Text(self.tab3, relief=tk.SUNKEN)
-        self.outDirPath.config(width=40, height=1.45)
-        self.outDirPath.grid(row=0, column=1, columnspan=5, sticky=tk.W)
-
-        self.outDirBrowseButton = tk.Button(self.tab3,
-                                            text='Browse',
-                                            height=1,
-                                            command=self.getOutDir)
-        self.outDirBrowseButton.grid(row=0, column=6, padx=4)
-
-        ########################################
-        # Row 1 - Image Save Type
-        ########################################
-        self.imageTypeOptions = ('JPG', 'PDF', 'PNG', 'TIFF')
-        self.imageTypeLabel = tk.Label(self.tab3, text='Image Format: ')
-        self.imageTypeLabel.grid(row=1, sticky=tk.W)
-        self.imageType = tk.StringVar()
-
-        # TODO: Change "state" to 'readonly' and implement extensions
-        self.imageTypeComboBox = ttk.Combobox(self.tab3,
-                                              textvariable=self.imageType,
-                                              values=self.imageTypeOptions,
-                                              state='disabled',
-                                              width=20,)
-
-        # Sets the default to PNG since it looks nice and is small
-        self.imageTypeComboBox.set('PNG')
-        self.imageTypeComboBox.grid(row=1, column=1, columnspan=2)
 
         ################################################################
         # Tab 4: Viewer
         ################################################################
         self.viewer_icon = tk.PhotoImage(file='images/three-dim-graph.png')
-        self.tab4 = ttk.Frame(self.tabs,)
+        self.viewerTab = ttk.Frame(self.tabs,)
         self.tabs.add(
-                self.tab4,
+                self.viewerTab,
                 text='Viewer',
                 image=self.viewer_icon,   # The icon feature is awesome
                 compound=tk.LEFT,)        # Places icon left of text
 
-        self.graphPanes = ttk.Panedwindow(self.tab4, orient=tk.HORIZONTAL)
+        self.graphPanes = ttk.Panedwindow(self.viewerTab, orient=tk.HORIZONTAL)
         self.graphPanes.pack(fill=tk.BOTH, expand=True)
 
         ########################################
@@ -348,41 +364,81 @@ class SimpleGUI(tk.Tk):
         # Row 0 - X Plot Column
         ########################################
         thisrow = 0
-        self.x, self.y, self.z = tk.StringVar(), tk.StringVar(), tk.StringVar()
+        self.xCol = tk.StringVar()
         self.xLabel = tk.Label(self.editPane, text='X=')
         self.xLabel.grid(row=thisrow, column=0, sticky=tk.W)
-        self.xComboBox = ttk.Combobox(self.editPane, textvariable=self.x,
+        self.xComboBox = ttk.Combobox(self.editPane, textvariable=self.xCol,
                                       values=self.plotCols, state='readonly',
                                       width=30)
         self.xComboBox.grid(row=thisrow, column=1)
+        self.xComboBox.bind('<<ComboboxSelected>>', self.showPlot)
 
         ########################################
         # Row 1 - Y Plot Column
         ########################################
         thisrow += 1
+        self.yCol = tk.StringVar()
         self.yLabel = tk.Label(self.editPane, text='Y=')
         self.yLabel.grid(row=thisrow, column=0, sticky=tk.W)
-        self.yComboBox = ttk.Combobox(self.editPane, textvariable=self.y,
+        self.yComboBox = ttk.Combobox(self.editPane, textvariable=self.yCol,
                                       values=self.plotCols, state='readonly',
                                       width=30)
         self.yComboBox.grid(row=thisrow, column=1)
+        self.yComboBox.bind('<<ComboboxSelected>>', self.showPlot)
 
         ########################################
         # Row 2 - Z Plot Column
         ########################################
         thisrow += 1
+        self.zCol = tk.StringVar()
         self.zLabel = tk.Label(self.editPane, text='Z=')
         self.zLabel.grid(row=thisrow, column=0, sticky=tk.W)
-        self.zComboBox = ttk.Combobox(self.editPane, textvariable=self.z,
+        self.zComboBox = ttk.Combobox(self.editPane, textvariable=self.zCol,
                                       values=self.plotCols, state='readonly',
                                       width=30)
         self.zComboBox.grid(row=thisrow, column=1)
+        self.zComboBox.bind('<<ComboboxSelected>>', self.showPlot)
 
     ####################################################################
     # Callback functions
     ####################################################################
     def todo(self):
         pass
+
+    def setVals(self):
+
+        # Pulling values from the DataFrame
+        if self.xCol.get() == '':
+            self.x = []
+        else:
+            self.x = self.missileDF[self.xCol.get()].values
+
+        if self.yCol.get() == '':
+            self.y = []
+        else:
+            self.y = self.missileDF[self.yCol.get()].values
+
+        if self.zCol.get() == '':
+            self.graphDimensions = 2
+            self.z = []
+        else:
+            self.graphDimensions = 3
+            self.z = self.missileDF[self.zCol.get()].values
+
+        # If x or y are not set, we make both of them empty lists
+        # so graphing will not fail
+        if len(self.x) == 0:
+            self.y = []
+        elif len(self.y) == 0:
+            self.x = []
+
+        # If x or y are empty, then keep z empty
+        if len(self.x) == 0 or len(self.y) == 0:
+            self.z = []
+        # If the 3D option is set but z is not set, then make x and y empty
+        elif self.graphDimensions == 3 and len(self.z) == 0:
+            self.x = []
+            self.y = []
 
     def getTopDir(self):
         """
@@ -417,11 +473,17 @@ class SimpleGUI(tk.Tk):
                         'No valid files found in directory!',   # message
                         icon='warning',)
             return
+
+        # Saves the filename and reads the missile file into a DataFrame
         self.missileFile = os.path.abspath(mfile)
         self.missileDF = pd.read_excel(self.missileFile)
-        self.plotCols = [''] + [col for col, val
-                                in self.missileDF.dtypes.items()
-                                if val == np.dtype('float64')]
+
+        # Takes the columns from the DataFrame and makes them available
+        # to be plotted on any axis. The first entry will be blank
+        # so that users must choose to plot
+        self.plotCols = [''] + sorted([col for col, val
+                                       in self.missileDF.dtypes.items()
+                                       if val == np.dtype('float64')])
         self.xComboBox['values'] = self.plotCols
         self.yComboBox['values'] = self.plotCols
         self.zComboBox['values'] = self.plotCols
@@ -448,9 +510,12 @@ class SimpleGUI(tk.Tk):
         if self.graphDimensions == 3:
             self.zLimitsBox.grid(row=self.zLimitsRow, column=0, sticky=tk.W)
         else:
+            # This will uncheck the zLimits box and also
+            # Remove the line from being seen by the user
             self.zLimits.set(False)
             self.zLimitsBox.grid_remove()
-            self.showZLimits()
+            self.showHideZLimits()
+        self.showPlot()
 
     def setNumPlots(self):
         self.numPlots = int(self.numPlotsSpinBox.get())
@@ -464,7 +529,7 @@ class SimpleGUI(tk.Tk):
             self.lineStyleComboBox.config(state='disabled')
             self.scatterStyleComboBox.config(state='readonly')
 
-    def showXLimits(self):
+    def showHideXLimits(self):
         if self.xLimits.get():  # if checked
             self.xMinLabel.grid(row=self.xLimitsRow, column=1)
             self.xMinEntry.grid(row=self.xLimitsRow, column=2)
@@ -476,7 +541,7 @@ class SimpleGUI(tk.Tk):
             self.xMaxLabel.grid_remove()
             self.xMaxEntry.grid_remove()
 
-    def showYLimits(self):
+    def showHideYLimits(self):
         if self.yLimits.get():  # if checked
             self.yMinLabel.grid(row=self.yLimitsRow, column=1)
             self.yMinEntry.grid(row=self.yLimitsRow, column=2)
@@ -488,7 +553,7 @@ class SimpleGUI(tk.Tk):
             self.yMaxLabel.grid_remove()
             self.yMaxEntry.grid_remove()
 
-    def showZLimits(self):
+    def showHideZLimits(self):
         if self.zLimits.get():  # if checked
             self.zMinLabel.grid(row=self.zLimitsRow, column=1)
             self.zMinEntry.grid(row=self.zLimitsRow, column=2)
@@ -512,6 +577,46 @@ class SimpleGUI(tk.Tk):
                         }
         thisOS = platform.system().lower()
         return defaultPaths[thisOS]
+
+    ####################################################################
+    # Plotting function
+    ####################################################################
+    def showPlot(self, event=None):
+
+        # We want to destroy the old graph and plot on top of it
+        if None not in (self.figure, self.canvas, self.toolbar):
+            plt.close(self.figure)
+            self.canvas.get_tk_widget().pack_forget()
+            self.toolbar.pack_forget()
+        self.setVals()
+
+        # If there's no reason to update, don't update
+        if event is None:
+            return
+
+        # If all values are empty, then don't plot
+        if len(self.x) + len(self.y) + len(self.z) == 0:
+            return
+
+        self.figure = plt.Figure()
+
+        kwargs = {}
+        if self.graphDimensions == 3:
+            plotlist = (self.x, self.y, self.z)
+            kwargs['projection'] = '3d'
+        else:
+            plotlist = (self.x, self.y)
+        plot = self.figure.add_subplot(111, **kwargs)
+        plot.plot(*plotlist, color="#C41E3A", marker="o", linestyle="")
+
+        self.canvas = FigureCanvasTkAgg(self.figure, self.viewPane)
+        self.canvas.draw()
+        self.canvas.get_tk_widget().pack(side=tk.BOTTOM,
+                                         fill=tk.BOTH,
+                                         expand=True)
+        self.toolbar = NavigationToolbar2Tk(self.canvas, self.viewPane)
+        self.toolbar.update()
+        self.canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
 
 
 app = SimpleGUI()
