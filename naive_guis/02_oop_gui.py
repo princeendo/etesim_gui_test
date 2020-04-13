@@ -28,9 +28,13 @@ matplotlib.use("TkAgg")  # To use with Tkinter
 # TODO: Add a series of fields for each separate graph
 # TODO: Add plot title
 # TODO: Add option for legend
-# TODO: Add labels and ComboBoxes for each parameter
 # TODO: Add callback function for xyzLimits to update value meaningfully
 #       -> Try using try/except to see if the value makes sense as a number
+# TODO: Add labelframe and put X/Y/Z dropdowns inside of it
+# TODO: Add button to render graph manually
+# TODO: Add CheckBox to auto-update graph on any change
+# TODO: Use self.viewPane.winfo_height() and self.viewPane.winfo_width()
+#       to render graph that fits within window
 
 
 class SimpleGUI(tk.Tk):
@@ -40,7 +44,7 @@ class SimpleGUI(tk.Tk):
         tk.Tk.__init__(self, *args, **kwargs)
         tk.Tk.iconbitmap(self, default="images/window_icon_radar.ico")
         tk.Tk.wm_title(self, "ETESim Plotting Suite")
-        self.geometry("650x250+450+250")
+        self.geometry("850x550+150+50")
 
         self.plotCols = ['']
 
@@ -318,36 +322,52 @@ class SimpleGUI(tk.Tk):
                 image=self.viewer_icon,   # The icon feature is awesome
                 compound=tk.LEFT,)        # Places icon left of text
 
+        self.graphPanes = ttk.Panedwindow(self.tab4, orient=tk.HORIZONTAL)
+        self.graphPanes.pack(fill=tk.BOTH, expand=True)
+
+        ########################################
+        # Defining Edit and View Panes
+        ########################################
+        self.editPane = ttk.Frame(self.graphPanes, width=250,
+                                  relief=tk.SUNKEN,)
+        self.graphPanes.add(self.editPane)
+        # We don't want the edit frame to automatically resize
+        self.editPane.grid_propagate(0)
+        self.viewPane = ttk.Frame(self.graphPanes,)
+        #                          width=300, height=500,
+        #                          relief=tk.SUNKEN,)
+        self.graphPanes.add(self.viewPane)
+
         ########################################
         # Row 0 - X Plot Column
         ########################################
         thisrow = 0
         self.x, self.y, self.z = tk.StringVar(), tk.StringVar(), tk.StringVar()
-        self.xLabel = tk.Label(self.tab4, text='X=')
+        self.xLabel = tk.Label(self.editPane, text='X=')
         self.xLabel.grid(row=thisrow, column=0, sticky=tk.W)
-        self.xComboBox = ttk.Combobox(self.tab4, textvariable=self.x,
+        self.xComboBox = ttk.Combobox(self.editPane, textvariable=self.x,
                                       values=self.plotCols, state='readonly',
                                       width=30)
         self.xComboBox.grid(row=thisrow, column=1)
 
         ########################################
-        # Row 0 - X Plot Column
+        # Row 1 - Y Plot Column
         ########################################
         thisrow += 1
-        self.yLabel = tk.Label(self.tab4, text='Y=')
+        self.yLabel = tk.Label(self.editPane, text='Y=')
         self.yLabel.grid(row=thisrow, column=0, sticky=tk.W)
-        self.yComboBox = ttk.Combobox(self.tab4, textvariable=self.y,
+        self.yComboBox = ttk.Combobox(self.editPane, textvariable=self.y,
                                       values=self.plotCols, state='readonly',
                                       width=30)
         self.yComboBox.grid(row=thisrow, column=1)
 
         ########################################
-        # Row 2 - X Plot Column
+        # Row 2 - Z Plot Column
         ########################################
         thisrow += 1
-        self.zLabel = tk.Label(self.tab4, text='Z=')
+        self.zLabel = tk.Label(self.editPane, text='Z=')
         self.zLabel.grid(row=thisrow, column=0, sticky=tk.W)
-        self.zComboBox = ttk.Combobox(self.tab4, textvariable=self.z,
+        self.zComboBox = ttk.Combobox(self.editPane, textvariable=self.z,
                                       values=self.plotCols, state='readonly',
                                       width=30)
         self.zComboBox.grid(row=thisrow, column=1)
