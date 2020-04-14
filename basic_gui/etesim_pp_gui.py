@@ -51,7 +51,7 @@ class SimpleGUI(tk.Tk):
 
         # We need to set some sample values for the GUI not to crash
         self.plotCols = ['']
-        self.graphDimensions = 2
+        self.dimensions = 2
         self.x = []
         self.y = []
         self.z = []
@@ -60,39 +60,44 @@ class SimpleGUI(tk.Tk):
         self.figure = None
         self.canvas = None
 
+        self.mainPane = tk.PanedWindow(self, orient=tk.VERTICAL)
+        self.mainPane.pack(fill=tk.BOTH, expand=True)
+
         # Creating a Notebook seems to be the key to making tabs
-        self.tabs = ttk.Notebook(self,)
+        # build_tabs() compartmentalizes the code for making the tabs
+        self.tabs = ttk.Notebook(self.mainPane, height=500)
+        self.build_tabs(self.tabs)
+        self.mainPane.add(self.tabs)
 
-        # The fill can go horizontal (tk.X), vertical (tk.Y), or all (tk.BOTH)
-        # I assume the "expand" keyword allows for it to fill the space
-        self.tabs.pack(fill=tk.BOTH, expand=True)
+        # Adds a small bar along the bottom of the GUI for logging
+        self.logBar = tk.Frame(self.mainPane,)
+        self.logBar.pack(fill=tk.BOTH, expand=True)
+        self.mainPane.paneconfig(self.logBar, height=100)
+        self.mainPane.add(self.logBar)
 
-        self.build_tabs()
-        self.showPlot()
+    def build_tabs(self, parent):
+        """ A constructor for the tabbed layout of the UI """
 
-    ####################################################################
-    # UI Design
-    ####################################################################
-    def build_tabs(self):
-        ################################################################
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         # Tab 1: Data Input
-        ################################################################
-        self.inputTab = ttk.Frame(self.tabs,)
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        self.inputTab = ttk.Frame(parent,)
         self.datainput_icon = tk.PhotoImage(file='images/input-data-1.png')
-        self.tabs.add(self.inputTab,
-                      text='Data Input',
-                      image=self.datainput_icon,
-                      compound=tk.LEFT,)
+        parent.add(self.inputTab,
+                   text='Data Input',
+                   image=self.datainput_icon,
+                   compound=tk.LEFT,)
 
-        ########################################
+        # - - - - - - - - - - - - - - - -
         # Row 0 - Browsing for Directory
-        ########################################
         self.topDirLabel = tk.Label(self.inputTab,
                                     text='Directory with Run(s): ')
         self.topDirLabel.grid(row=0, sticky=tk.W)
 
-        self.topDir = ''
+        # TODO: Change this back to empty string
+        self.topDir = os.getcwd()
         self.topDirPath = tk.Text(self.inputTab, relief=tk.SUNKEN)
+        self.topDirPath.insert(tk.INSERT, self.topDir)
         self.topDirPath.config(width=40, height=1.45)
         self.topDirPath.grid(row=0, column=1, columnspan=5, sticky=tk.W)
 
@@ -108,9 +113,8 @@ class SimpleGUI(tk.Tk):
                                           command=self.loadFromTopDir)
         self.topDirLoadButton.grid(row=0, column=7, padx=4)
 
-        ########################################
+        # - - - - - - - - - - - - - - - -
         # Row 1 - Threat Type(s)
-        ########################################
         self.threatTypeOptions = ('Infer', 'ABT', 'TBM')
         self.threatTypeLabel = tk.Label(self.inputTab, text='Threat: ')
         self.threatTypeLabel.grid(row=1, sticky=tk.W)
@@ -124,20 +128,19 @@ class SimpleGUI(tk.Tk):
         self.threatTypeComboBox.set('Infer')  # Could use .current(0)
         self.threatTypeComboBox.grid(row=1, column=1, columnspan=2)
 
-        ################################################################
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         # Tab 2: Save Options
-        ################################################################
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         self.saveoptions_icon = tk.PhotoImage(file='images/save-disk.png')
-        self.saveOptionsTab = ttk.Frame(self.tabs,)
-        self.tabs.add(
+        self.saveOptionsTab = ttk.Frame(parent,)
+        parent.add(
                 self.saveOptionsTab,
                 text='Saving Options',
                 image=self.saveoptions_icon,   # The icon feature is awesome
                 compound=tk.LEFT,)               # Places icon left of text
 
-        ########################################
+        # - - - - - - - - - - - - - - - -
         # Row 0 - Output Directory
-        ########################################
         self.outDirLabel = tk.Label(self.saveOptionsTab,
                                     text='Output Directory: ')
         self.outDirLabel.grid(row=0, sticky=tk.W)
@@ -152,9 +155,8 @@ class SimpleGUI(tk.Tk):
                                             command=self.getOutDir)
         self.outDirBrowseButton.grid(row=0, column=6, padx=4)
 
-        ########################################
+        # - - - - - - - - - - - - - - - -
         # Row 1 - Image Save Type
-        ########################################
         self.imageTypeOptions = ('JPG', 'PDF', 'PNG', 'TIFF')
         self.imageTypeLabel = tk.Label(self.saveOptionsTab,
                                        text='Image Format: ')
@@ -172,21 +174,20 @@ class SimpleGUI(tk.Tk):
         self.imageTypeComboBox.set('PNG')
         self.imageTypeComboBox.grid(row=1, column=1, columnspan=2)
 
-        ################################################################
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         # Tab 3: Graph Options
-        ################################################################
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         gs_ico = 'images/graph-settings-icon.png'
         self.graphsettings_icon = tk.PhotoImage(file=gs_ico)
-        self.graphOptionsTab = ttk.Frame(self.tabs,)
-        self.tabs.add(
+        self.graphOptionsTab = ttk.Frame(parent,)
+        parent.add(
                 self.graphOptionsTab,
                 text='Graph Options',
                 image=self.graphsettings_icon,   # The icon feature is awesome
                 compound=tk.LEFT,)               # Places icon left of text
 
-        ########################################
+        # - - - - - - - - - - - - - - - -
         # Row 0 - Number of Plots
-        ########################################
         thisrow = 0
         # Setting up a 'spinbox' where you can only select a range of values
         self.numPlots = tk.IntVar(self.graphOptionsTab, 1)
@@ -207,9 +208,8 @@ class SimpleGUI(tk.Tk):
         self.numPlotsSpinBox.grid(row=thisrow, column=1)
         self.numPlotsSpinBox.set('1')
 
-        ########################################
+        # - - - - - - - - - - - - - - - -
         # Row 1 - Plot Style Options
-        ########################################
         thisrow += 1
         self.plotOptions = ('line', 'scatter')
         self.plotStyle = tk.StringVar(self.graphOptionsTab, 'line')
@@ -255,69 +255,12 @@ class SimpleGUI(tk.Tk):
         self.scatterOn.grid(row=thisrow, column=3, padx=(22, 0))
         self.scatterStyleComboBox.grid(row=thisrow, column=4)
 
-        ########################################
-        # Row 2 - X Minimum and Maximum Values
-        ########################################
-        thisrow += 1
-
-        self.xMin = None
-        self.xMax = None
-        self.xMinLabel = tk.Label(self.graphOptionsTab, text='Min: ')
-        self.xMaxLabel = tk.Label(self.graphOptionsTab, text='Max: ')
-        self.xMinEntry = tk.Entry(self.graphOptionsTab, width=8)
-        self.xMaxEntry = tk.Entry(self.graphOptionsTab, width=8)
-        self.xLimits = tk.BooleanVar(value=False)
-        self.xLimitsRow = thisrow
-        self.xLimitsBox = tk.Checkbutton(self.graphOptionsTab,
-                                         text='Modify X Limits',
-                                         variable=self.xLimits,
-                                         command=self.showHideXLimits)
-        self.xLimitsBox.grid(row=thisrow, column=0, sticky=tk.W)
-        ########################################
-        # Row 3 - Y Minimum and Maximum Values
-        ########################################
-        thisrow += 1
-
-        self.yMin = None
-        self.yMax = None
-        self.yMinLabel = tk.Label(self.graphOptionsTab, text='Min: ')
-        self.yMaxLabel = tk.Label(self.graphOptionsTab, text='Max: ')
-        self.yMinEntry = tk.Entry(self.graphOptionsTab, width=8)
-        self.yMaxEntry = tk.Entry(self.graphOptionsTab, width=8)
-        self.yLimits = tk.BooleanVar(value=False)
-        self.yLimitsRow = thisrow
-        self.yLimitsBox = tk.Checkbutton(self.graphOptionsTab,
-                                         text='Modify Y Limits',
-                                         variable=self.yLimits,
-                                         command=self.showHideYLimits)
-        self.yLimitsBox.grid(row=thisrow, column=0, sticky=tk.W)
-
-        ########################################
-        # Row 5 - Z Minimum and Maximum Values
-        ########################################
-        thisrow += 1
-
-        self.zMin = None
-        self.zMax = None
-        self.zMinLabel = tk.Label(self.graphOptionsTab, text='Min: ')
-        self.zMaxLabel = tk.Label(self.graphOptionsTab, text='Max: ')
-        self.zMinEntry = tk.Entry(self.graphOptionsTab, width=8)
-        self.zMaxEntry = tk.Entry(self.graphOptionsTab, width=8)
-        self.zLimits = tk.BooleanVar(value=False)
-        self.zLimitsRow = thisrow
-        self.zLimitsBox = tk.Checkbutton(self.graphOptionsTab,
-                                         text='Modify Z Limits',
-                                         variable=self.zLimits,
-                                         command=self.showHideZLimits)
-        if self.graphDimensions == 3:
-            self.zLimitsBox.grid(row=thisrow, column=0, sticky=tk.W)
-
-        ################################################################
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         # Tab 4: Viewer
-        ################################################################
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         self.viewer_icon = tk.PhotoImage(file='images/three-dim-graph.png')
-        self.viewerTab = ttk.Frame(self.tabs,)
-        self.tabs.add(
+        self.viewerTab = ttk.Frame(parent,)
+        parent.add(
                 self.viewerTab,
                 text='Viewer',
                 image=self.viewer_icon,   # The icon feature is awesome
@@ -326,57 +269,133 @@ class SimpleGUI(tk.Tk):
         self.graphPanes = ttk.Panedwindow(self.viewerTab, orient=tk.HORIZONTAL)
         self.graphPanes.pack(fill=tk.BOTH, expand=True)
 
-        ########################################
+        # - - - - - - - - - - - - - - - -
         # Defining Edit and View Panes
-        ########################################
         self.editPane = ttk.Frame(self.graphPanes, width=250,
                                   relief=tk.SUNKEN,)
         self.graphPanes.add(self.editPane)
         # We don't want the edit frame to automatically resize
         self.editPane.grid_propagate(0)
         self.viewPane = ttk.Frame(self.graphPanes,)
-        #                          width=300, height=500,
-        #                          relief=tk.SUNKEN,)
         self.graphPanes.add(self.viewPane)
 
-        ########################################
+        # - - - - - - - - - - - - - - - -
         # Row 0 - X Plot Column
-        ########################################
         thisrow = 0
         self.xCol = tk.StringVar()
         self.xLabel = tk.Label(self.editPane, text='X=')
-        self.xLabel.grid(row=thisrow, column=0, sticky=tk.W)
+        self.xLabel.grid(row=thisrow, column=0, sticky=tk.W, padx=(2, 0),)
         self.xComboBox = ttk.Combobox(self.editPane, textvariable=self.xCol,
                                       values=self.plotCols, state='readonly',
                                       width=30)
         self.xComboBox.grid(row=thisrow, column=1)
         self.xComboBox.bind('<<ComboboxSelected>>', self.showPlot)
 
-        ########################################
+        # - - - - - - - - - - - - - - - -
         # Row 1 - Y Plot Column
-        ########################################
         thisrow += 1
         self.yCol = tk.StringVar()
         self.yLabel = tk.Label(self.editPane, text='Y=')
-        self.yLabel.grid(row=thisrow, column=0, sticky=tk.W)
+        self.yLabel.grid(row=thisrow, column=0, sticky=tk.W, padx=(2, 0),)
         self.yComboBox = ttk.Combobox(self.editPane, textvariable=self.yCol,
                                       values=self.plotCols, state='readonly',
                                       width=30)
         self.yComboBox.grid(row=thisrow, column=1)
         self.yComboBox.bind('<<ComboboxSelected>>', self.showPlot)
 
-        ########################################
+        # - - - - - - - - - - - - - - - -
         # Row 2 - Z Plot Column
-        ########################################
         thisrow += 1
         self.zCol = tk.StringVar()
         self.zLabel = tk.Label(self.editPane, text='Z=')
-        self.zLabel.grid(row=thisrow, column=0, sticky=tk.W)
+        self.zLabel.grid(row=thisrow, column=0, sticky=tk.W, padx=(2, 0),)
         self.zComboBox = ttk.Combobox(self.editPane, textvariable=self.zCol,
                                       values=self.plotCols, state='readonly',
                                       width=30)
         self.zComboBox.grid(row=thisrow, column=1)
         self.zComboBox.bind('<<ComboboxSelected>>', self.showPlot)
+
+        # - - - - - - - - - - - - - - - -
+        # Row 3 - XYZ Min/Max Fields
+        thisrow += 1
+        self.xyzMinMaxFrame = ttk.LabelFrame(self.editPane,
+                                             text="Set Limits",
+                                             relief=tk.RIDGE)
+        self.xyzMinMaxFrame.grid(row=thisrow, column=1, sticky=tk.W,
+                                 padx=(2, 0))
+        entrykwargs = {'width': 8, 'validate': "key"}
+
+        # - - - - - - - - - -
+        # Row 3.0 - X Min/Max
+        self.xLimitsRow = 0
+        self.xLimits = tk.BooleanVar(value=False)
+
+        # Checkbox for turning on limit setting
+        self.xLimitsBox = tk.Checkbutton(self.xyzMinMaxFrame,
+                                         text='X ',
+                                         variable=self.xLimits,
+                                         command=self.showHideXLimits)
+        self.xLimitsBox.grid(row=self.xLimitsRow, column=0, sticky=tk.W)
+
+        # Entry for minimum Y value
+        self.xMin = tk.StringVar()
+        self.xMinEntry = tk.Entry(self.xyzMinMaxFrame, **entrykwargs)
+        self.xMinEntry['textvariable'] = self.xMin
+        self.xMinEntry.insert(0, 'Min')
+
+        # Entry for maximum Y value
+        self.xMax = tk.StringVar()
+        self.xMaxEntry = tk.Entry(self.xyzMinMaxFrame, **entrykwargs)
+        self.xMaxEntry['textvariable'] = self.xMax
+        self.xMaxEntry.insert(0, 'Max')
+
+        # - - - - - - - - - -
+        # Row 3.1 - Y Min/Max
+        self.yLimitsRow = 1
+        self.yLimits = tk.BooleanVar(value=False)
+
+        # Checkbox for turning on limit setting
+        self.yLimitsBox = tk.Checkbutton(self.xyzMinMaxFrame,
+                                         text='Y ',
+                                         variable=self.yLimits,
+                                         command=self.showHideYLimits)
+        self.yLimitsBox.grid(row=self.yLimitsRow, column=0, sticky=tk.W)
+
+        # Entry for minimum Y value
+        self.yMin = tk.StringVar()
+        self.yMinEntry = tk.Entry(self.xyzMinMaxFrame, **entrykwargs)
+        self.yMinEntry['textvariable'] = self.yMin
+        self.yMinEntry.insert(0, 'Min')
+
+        # Entry for maximum Y value
+        self.yMax = tk.StringVar()
+        self.yMaxEntry = tk.Entry(self.xyzMinMaxFrame, **entrykwargs)
+        self.yMaxEntry['textvariable'] = self.yMax
+        self.yMaxEntry.insert(0, 'Max')
+
+        # - - - - - - - - - -
+        # Row 3.2 - Z Min/Max
+        self.zLimitsRow = 2
+        self.zLimits = tk.BooleanVar(value=False)
+
+        # Checkbox for turning on limit setting
+        self.zLimitsBox = tk.Checkbutton(self.xyzMinMaxFrame,
+                                         text='Z ',
+                                         variable=self.zLimits,
+                                         command=self.showHideZLimits)
+        self.zLimitsBox.grid(row=self.zLimitsRow, column=0, sticky=tk.W)
+
+        # Entry for minimum Z value
+        self.zMin = tk.StringVar()
+        self.zMinEntry = tk.Entry(self.xyzMinMaxFrame, **entrykwargs)
+        self.zMinEntry['textvariable'] = self.zMin
+        self.zMinEntry.insert(0, 'Min')
+
+        # Entry for maximum Z value
+        self.zMax = tk.StringVar()
+        self.zMaxEntry = tk.Entry(self.xyzMinMaxFrame, **entrykwargs)
+        self.zMaxEntry['textvariable'] = self.zMax
+        self.zMaxEntry.insert(0, 'Max')
 
     ####################################################################
     # Callback functions
@@ -385,39 +404,25 @@ class SimpleGUI(tk.Tk):
         pass
 
     def setVals(self):
+        """ Loading x/y/z values from the DataFrame for plotting
+            if the user has selected an option from the drop-down menu.
+        """
 
-        # Pulling values from the DataFrame
-        if self.xCol.get() == '':
-            self.x = []
-        else:
-            self.x = self.missileDF[self.xCol.get()].values
-
-        if self.yCol.get() == '':
-            self.y = []
-        else:
-            self.y = self.missileDF[self.yCol.get()].values
-
+        # Setting graph dimensions based upon Z setting and
+        # loading values from DataFrame
         if self.zCol.get() == '':
-            self.graphDimensions = 2
+            self.dimensions = 2
             self.z = []
         else:
-            self.graphDimensions = 3
+            self.dimensions = 3
             self.z = self.missileDF[self.zCol.get()].values
 
-        # If x or y are not set, we make both of them empty lists
-        # so graphing will not fail
-        if len(self.x) == 0:
-            self.y = []
-        elif len(self.y) == 0:
-            self.x = []
-
-        # If x or y are empty, then keep z empty
-        if len(self.x) == 0 or len(self.y) == 0:
-            self.z = []
-        # If the 3D option is set but z is not set, then make x and y empty
-        elif self.graphDimensions == 3 and len(self.z) == 0:
-            self.x = []
-            self.y = []
+        # Pulling x/y values from the DataFrame
+        if (self.xCol.get() == '') or (self.yCol.get() == ''):
+            self.x, self.y, self.z = [], [], []
+        else:
+            self.x = self.missileDF[self.xCol.get()].values
+            self.y = self.missileDF[self.yCol.get()].values
 
     def getTopDir(self):
         """
@@ -428,7 +433,8 @@ class SimpleGUI(tk.Tk):
         """
 
         kwargs = {'title': 'Select Directory Containing Run(s)',
-                  'initialdir': self.default_path(), }
+                  'initialdir': self.default_path(),
+                  'mustexist': True, }
         self.topDir = filedialog.askdirectory(**kwargs)
         if self.topDir != '':
             self.topDir = os.path.abspath(self.topDir)
@@ -438,6 +444,8 @@ class SimpleGUI(tk.Tk):
         self.topDirPath.insert(1.0, self.topDir)
 
     def loadFromTopDir(self):
+        # If the entry is not a valid directory, display a warning
+        # message to the user
         if not os.path.isdir(self.topDir):
             mb.showinfo('Invalid directory',                 # title
                         'Please choose a valid directory!',  # message
@@ -484,18 +492,6 @@ class SimpleGUI(tk.Tk):
         self.outDirPath.delete('1.0', tk.END)
         self.outDirPath.insert(1.0, self.outDir)
 
-    def setGraphDimensions(self):
-        self.graphDimensions = self.dimensions.get()
-        if self.graphDimensions == 3:
-            self.zLimitsBox.grid(row=self.zLimitsRow, column=0, sticky=tk.W)
-        else:
-            # This will uncheck the zLimits box and also
-            # Remove the line from being seen by the user
-            self.zLimits.set(False)
-            self.zLimitsBox.grid_remove()
-            self.showHideZLimits()
-        self.showPlot()
-
     def setNumPlots(self):
         self.numPlots = int(self.numPlotsSpinBox.get())
 
@@ -510,38 +506,26 @@ class SimpleGUI(tk.Tk):
 
     def showHideXLimits(self):
         if self.xLimits.get():  # if checked
-            self.xMinLabel.grid(row=self.xLimitsRow, column=1)
             self.xMinEntry.grid(row=self.xLimitsRow, column=2)
-            self.xMaxLabel.grid(row=self.xLimitsRow, column=3)
-            self.xMaxEntry.grid(row=self.xLimitsRow, column=4)
+            self.xMaxEntry.grid(row=self.xLimitsRow, column=3)
         else:
-            self.xMinLabel.grid_remove()
             self.xMinEntry.grid_remove()
-            self.xMaxLabel.grid_remove()
             self.xMaxEntry.grid_remove()
 
     def showHideYLimits(self):
         if self.yLimits.get():  # if checked
-            self.yMinLabel.grid(row=self.yLimitsRow, column=1)
             self.yMinEntry.grid(row=self.yLimitsRow, column=2)
-            self.yMaxLabel.grid(row=self.yLimitsRow, column=3)
-            self.yMaxEntry.grid(row=self.yLimitsRow, column=4)
+            self.yMaxEntry.grid(row=self.yLimitsRow, column=3)
         else:
-            self.yMinLabel.grid_remove()
             self.yMinEntry.grid_remove()
-            self.yMaxLabel.grid_remove()
             self.yMaxEntry.grid_remove()
 
     def showHideZLimits(self):
         if self.zLimits.get():  # if checked
-            self.zMinLabel.grid(row=self.zLimitsRow, column=1)
             self.zMinEntry.grid(row=self.zLimitsRow, column=2)
-            self.zMaxLabel.grid(row=self.zLimitsRow, column=3)
-            self.zMaxEntry.grid(row=self.zLimitsRow, column=4)
+            self.zMaxEntry.grid(row=self.zLimitsRow, column=3)
         else:
-            self.zMinLabel.grid_remove()
             self.zMinEntry.grid_remove()
-            self.zMaxLabel.grid_remove()
             self.zMaxEntry.grid_remove()
 
     ####################################################################
@@ -580,7 +564,7 @@ class SimpleGUI(tk.Tk):
         self.figure = plt.Figure()
 
         kwargs = {}
-        if self.graphDimensions == 3:
+        if self.dimensions == 3:
             plotlist = (self.x, self.y, self.z)
             kwargs['projection'] = '3d'
         else:
@@ -600,6 +584,7 @@ class SimpleGUI(tk.Tk):
 
 app = SimpleGUI()
 try:
+    assert Axes3D  # to silence the linter
     app.mainloop()
 except KeyboardInterrupt:
     app.destroy()
