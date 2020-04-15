@@ -21,23 +21,21 @@ from matplotlib.backends.backend_tkagg import NavigationToolbar2Tk
 import matplotlib
 matplotlib.use("TkAgg")  # To use with Tkinter
 
-
-# LARGE_FONT = ("Verdana", 12)
-
-# TODO: Add Color Option for Graphs
 # TODO: Split up graph styles across two lines
 # TODO: Add a series of fields for each separate graph
-# TODO: Add plot title
 # TODO: Add option for legend
-# TODO: Add option for x/y/z labels
+# TODO: Add option for x/y/z labels (use labelframe)
 # TODO: Add callback function for xyzLimits to update value meaningfully
 #       -> Try using try/except to see if the value makes sense as a number
-# TODO: Add labelframe and put X/Y/Z dropdowns inside of it
+# TODO: Add LF and put X/Y/Z dropdowns inside of it
 # TODO: Add button to render graph manually
-# TODO: Add CheckBox to auto-update graph on any change
-# TODO: Remove radio button for 2D/3D from graph settings
-# TODO: Move x/y/z limits to viewer pane
-# TODO: Add status bar on bottom (panedwindow) to give feedback
+# TODO: Add color picker for graph options
+# TODO: Add manual color entry
+# TODO: Add font options:
+#       -> Family
+#       -> Color
+#       -> Size
+#       -> Bold/Italic/Underline buttons
 
 
 class SimpleGUI(tk.Tk):
@@ -48,6 +46,9 @@ class SimpleGUI(tk.Tk):
         tk.Tk.iconbitmap(self, default="images/window_icon_radar.ico")
         tk.Tk.wm_title(self, "ETESim Plotting Suite")
         self.geometry("850x550+150+50")
+
+        # Waiting for user to stop typing
+        self._after_id = None
 
         # We need to set some sample values for the GUI not to crash
         self.plotCols = ['']
@@ -60,20 +61,20 @@ class SimpleGUI(tk.Tk):
         self.figure = None
         self.canvas = None
 
-        self.mainPane = tk.PanedWindow(self, orient=tk.VERTICAL)
-        self.mainPane.pack(fill=tk.BOTH, expand=True)
-
         # Creating a Notebook seems to be the key to making tabs
         # build_tabs() compartmentalizes the code for making the tabs
-        self.tabs = ttk.Notebook(self.mainPane, height=500)
+        self.tabs = ttk.Notebook(self,
+                                 height=self.winfo_reqheight(),
+                                 width=self.winfo_reqwidth())
         self.build_tabs(self.tabs)
-        self.mainPane.add(self.tabs)
+        self.tabs.pack(fill=tk.BOTH)
+        self.tabs.bind("<Configure>", self.autosizer)
 
-        # Adds a small bar along the bottom of the GUI for logging
-        self.logBar = tk.Frame(self.mainPane,)
-        self.logBar.pack(fill=tk.BOTH, expand=True)
-        self.mainPane.paneconfig(self.logBar, height=100)
-        self.mainPane.add(self.logBar)
+        self.statusBar = ttk.Frame(self, height=100)
+        self.statusBar.pack(side=tk.BOTTOM)
+        self.status = tk.Label(self.statusBar, text="on the way…", bd=1,
+                               relief=tk.SUNKEN, height=1)
+        self.status.pack(fill=tk.BOTH)
 
     def build_tabs(self, parent):
         """ A constructor for the tabbed layout of the UI """
@@ -119,14 +120,14 @@ class SimpleGUI(tk.Tk):
         self.threatTypeLabel = tk.Label(self.inputTab, text='Threat: ')
         self.threatTypeLabel.grid(row=1, sticky=tk.W)
         self.threatType = tk.StringVar()
-        self.threatTypeComboBox = ttk.Combobox(self.inputTab,
-                                               textvariable=self.threatType,
-                                               values=self.threatTypeOptions,
-                                               state='readonly',
-                                               width=20,)
+        self.threatTypeCB = ttk.Combobox(self.inputTab,
+                                         textvariable=self.threatType,
+                                         values=self.threatTypeOptions,
+                                         state='readonly',
+                                         width=20,)
 
-        self.threatTypeComboBox.set('Infer')  # Could use .current(0)
-        self.threatTypeComboBox.grid(row=1, column=1, columnspan=2)
+        self.threatTypeCB.set('Infer')  # Could use .current(0)
+        self.threatTypeCB.grid(row=1, column=1, columnspan=2)
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         # Tab 2: Save Options
@@ -164,15 +165,15 @@ class SimpleGUI(tk.Tk):
         self.imageType = tk.StringVar()
 
         # TODO: Change "state" to 'readonly' and implement extensions
-        self.imageTypeComboBox = ttk.Combobox(self.saveOptionsTab,
-                                              textvariable=self.imageType,
-                                              values=self.imageTypeOptions,
-                                              state='disabled',
-                                              width=20,)
+        self.imageTypeCB = ttk.Combobox(self.saveOptionsTab,
+                                        textvariable=self.imageType,
+                                        values=self.imageTypeOptions,
+                                        state='disabled',
+                                        width=20,)
 
         # Sets the default to PNG since it looks nice and is small
-        self.imageTypeComboBox.set('PNG')
-        self.imageTypeComboBox.grid(row=1, column=1, columnspan=2)
+        self.imageTypeCB.set('PNG')
+        self.imageTypeCB.grid(row=1, column=1, columnspan=2)
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         # Tab 3: Graph Options
@@ -208,53 +209,6 @@ class SimpleGUI(tk.Tk):
         self.numPlotsSpinBox.grid(row=thisrow, column=1)
         self.numPlotsSpinBox.set('1')
 
-        # - - - - - - - - - - - - - - - -
-        # Row 1 - Plot Style Options
-        thisrow += 1
-        self.plotOptions = ('line', 'scatter')
-        self.plotStyle = tk.StringVar(self.graphOptionsTab, 'line')
-        self.plotStyleLabel = tk.Label(self.graphOptionsTab,
-                                       text='Plot Style: ',)
-        self.plotStyleLabel.grid(row=thisrow, column=0, sticky=tk.W)
-        self.lineOn = ttk.Radiobutton(self.graphOptionsTab,
-                                      text='Line',          # Button text
-                                      value='line',         # Stored value
-                                      var=self.plotStyle,
-                                      command=self.setPlotStyleOptions,)
-        self.scatterOn = ttk.Radiobutton(self.graphOptionsTab,
-                                         text='Scatter',       # Button text
-                                         value='scatter',      # Stored value
-                                         var=self.plotStyle,
-                                         command=self.setPlotStyleOptions,)
-
-        # Setting up a ComboBox to be placed beside Line Style radio button
-        self.lineStyleOptions = ('-', '--', ':', '-.', )
-        self.lineStyle = tk.StringVar(self.graphOptionsTab, '-')
-        lineStyle_kwargs = {'textvariable': self.lineStyle,
-                            'values': self.lineStyleOptions,
-                            'state': 'readonly',
-                            'width': 5}
-        self.lineStyleComboBox = ttk.Combobox(self.graphOptionsTab,
-                                              **lineStyle_kwargs)
-
-        # Setting up a ComboBox to be placed beside Scatter Style radio button
-        self.scatterStyleOptions = ('o', 'v', '^', '<', '>', '8', 's', 'p',
-                                    '*', 'h', 'H', 'D', 'd', 'P', 'X')
-        self.scatterStyle = tk.StringVar(self.graphOptionsTab, 'o')
-
-        scatterStyle_kwargs = {'textvariable': self.scatterStyle,
-                               'values': self.scatterStyleOptions,
-                               'state': 'disabled',
-                               'width': 5}
-
-        self.scatterStyleComboBox = ttk.Combobox(self.graphOptionsTab,
-                                                 **scatterStyle_kwargs)
-
-        self.lineOn.grid(row=thisrow, column=1, padx=(7, 0))
-        self.lineStyleComboBox.grid(row=thisrow, column=2)
-        self.scatterOn.grid(row=thisrow, column=3, padx=(22, 0))
-        self.scatterStyleComboBox.grid(row=thisrow, column=4)
-
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         # Tab 4: Viewer
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -271,9 +225,9 @@ class SimpleGUI(tk.Tk):
 
         # - - - - - - - - - - - - - - - -
         # Defining Edit and View Panes
-        self.editPane = ttk.Frame(self.graphPanes, width=250,
-                                  relief=tk.SUNKEN,)
+        self.editPane = ttk.Frame(self.graphPanes, width=250, relief=tk.GROOVE)
         self.graphPanes.add(self.editPane)
+
         # We don't want the edit frame to automatically resize
         self.editPane.grid_propagate(0)
         self.viewPane = ttk.Frame(self.graphPanes,)
@@ -284,12 +238,13 @@ class SimpleGUI(tk.Tk):
         thisrow = 0
         self.xCol = tk.StringVar()
         self.xLabel = tk.Label(self.editPane, text='X=')
-        self.xLabel.grid(row=thisrow, column=0, sticky=tk.W, padx=(2, 0),)
-        self.xComboBox = ttk.Combobox(self.editPane, textvariable=self.xCol,
-                                      values=self.plotCols, state='readonly',
-                                      width=30)
-        self.xComboBox.grid(row=thisrow, column=1)
-        self.xComboBox.bind('<<ComboboxSelected>>', self.showPlot)
+        self.xLabel.grid(row=thisrow, column=0, sticky=tk.W,
+                         padx=(2, 0), pady=(2, 0))
+        self.xCB = ttk.Combobox(self.editPane, textvariable=self.xCol,
+                                values=self.plotCols, state='readonly',
+                                width=30)
+        self.xCB.grid(row=thisrow, column=1)
+        self.xCB.bind('<<ComboboxSelected>>', self.showPlot)
 
         # - - - - - - - - - - - - - - - -
         # Row 1 - Y Plot Column
@@ -297,11 +252,11 @@ class SimpleGUI(tk.Tk):
         self.yCol = tk.StringVar()
         self.yLabel = tk.Label(self.editPane, text='Y=')
         self.yLabel.grid(row=thisrow, column=0, sticky=tk.W, padx=(2, 0),)
-        self.yComboBox = ttk.Combobox(self.editPane, textvariable=self.yCol,
-                                      values=self.plotCols, state='readonly',
-                                      width=30)
-        self.yComboBox.grid(row=thisrow, column=1)
-        self.yComboBox.bind('<<ComboboxSelected>>', self.showPlot)
+        self.yCB = ttk.Combobox(self.editPane, textvariable=self.yCol,
+                                values=self.plotCols, state='readonly',
+                                width=30)
+        self.yCB.grid(row=thisrow, column=1)
+        self.yCB.bind('<<ComboboxSelected>>', self.showPlot)
 
         # - - - - - - - - - - - - - - - -
         # Row 2 - Z Plot Column
@@ -309,11 +264,11 @@ class SimpleGUI(tk.Tk):
         self.zCol = tk.StringVar()
         self.zLabel = tk.Label(self.editPane, text='Z=')
         self.zLabel.grid(row=thisrow, column=0, sticky=tk.W, padx=(2, 0),)
-        self.zComboBox = ttk.Combobox(self.editPane, textvariable=self.zCol,
-                                      values=self.plotCols, state='readonly',
-                                      width=30)
-        self.zComboBox.grid(row=thisrow, column=1)
-        self.zComboBox.bind('<<ComboboxSelected>>', self.showPlot)
+        self.zCB = ttk.Combobox(self.editPane, textvariable=self.zCol,
+                                values=self.plotCols, state='readonly',
+                                width=30)
+        self.zCB.grid(row=thisrow, column=1)
+        self.zCB.bind('<<ComboboxSelected>>', self.showPlot)
 
         # - - - - - - - - - - - - - - - -
         # Row 3 - XYZ Min/Max Fields
@@ -321,9 +276,8 @@ class SimpleGUI(tk.Tk):
         self.xyzMinMaxFrame = ttk.LabelFrame(self.editPane,
                                              text="Set Limits",
                                              relief=tk.RIDGE)
-        self.xyzMinMaxFrame.grid(row=thisrow, column=1, sticky=tk.W,
-                                 padx=(2, 0))
-        entrykwargs = {'width': 8, 'validate': "key"}
+        self.xyzMinMaxFrame.grid(row=thisrow, column=1, sticky=tk.W,)
+        limitskwargs = {'width': 8, 'validate': "key"}
 
         # - - - - - - - - - -
         # Row 3.0 - X Min/Max
@@ -339,13 +293,13 @@ class SimpleGUI(tk.Tk):
 
         # Entry for minimum Y value
         self.xMin = tk.StringVar()
-        self.xMinEntry = tk.Entry(self.xyzMinMaxFrame, **entrykwargs)
+        self.xMinEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
         self.xMinEntry['textvariable'] = self.xMin
         self.xMinEntry.insert(0, 'Min')
 
         # Entry for maximum Y value
         self.xMax = tk.StringVar()
-        self.xMaxEntry = tk.Entry(self.xyzMinMaxFrame, **entrykwargs)
+        self.xMaxEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
         self.xMaxEntry['textvariable'] = self.xMax
         self.xMaxEntry.insert(0, 'Max')
 
@@ -363,13 +317,13 @@ class SimpleGUI(tk.Tk):
 
         # Entry for minimum Y value
         self.yMin = tk.StringVar()
-        self.yMinEntry = tk.Entry(self.xyzMinMaxFrame, **entrykwargs)
+        self.yMinEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
         self.yMinEntry['textvariable'] = self.yMin
         self.yMinEntry.insert(0, 'Min')
 
         # Entry for maximum Y value
         self.yMax = tk.StringVar()
-        self.yMaxEntry = tk.Entry(self.xyzMinMaxFrame, **entrykwargs)
+        self.yMaxEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
         self.yMaxEntry['textvariable'] = self.yMax
         self.yMaxEntry.insert(0, 'Max')
 
@@ -387,15 +341,82 @@ class SimpleGUI(tk.Tk):
 
         # Entry for minimum Z value
         self.zMin = tk.StringVar()
-        self.zMinEntry = tk.Entry(self.xyzMinMaxFrame, **entrykwargs)
+        self.zMinEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
         self.zMinEntry['textvariable'] = self.zMin
         self.zMinEntry.insert(0, 'Min')
 
         # Entry for maximum Z value
         self.zMax = tk.StringVar()
-        self.zMaxEntry = tk.Entry(self.xyzMinMaxFrame, **entrykwargs)
+        self.zMaxEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
         self.zMaxEntry['textvariable'] = self.zMax
         self.zMaxEntry.insert(0, 'Max')
+
+        # - - - - - - - - - - - - - - - -
+        # Row 4 - Custom Title
+        thisrow += 1
+        self.title = tk.StringVar()
+        self.titleLF = ttk.LabelFrame(self.editPane, text="Custom Title",
+                                      relief=tk.RIDGE)
+        self.titleLF.grid(row=thisrow, column=1, sticky=tk.W,)
+        titlekwargs = {'width': 30, 'textvariable': self.title, }
+        self.titleEntry = ttk.Entry(self.titleLF, **titlekwargs)
+        self.titleEntry.insert(0, '')
+
+        # Adds a waiting period for the user to stop typing
+        self.titleEntry.bind('<Key>', self.handle_wait)
+        self.titleEntry.grid(row=0, column=0, sticky=tk.W)
+
+        # - - - - - - - - - - - - - - - -
+        # Row 5 - Style Options
+        thisrow += 1
+
+        self.styleLF = ttk.LabelFrame(self.editPane, text="Style Options",
+                                      relief=tk.RIDGE)
+        self.styleLF.grid(row=thisrow, column=1, sticky=tk.W,)
+
+        # ------------------------------------------>
+
+        self.plotStyle = tk.StringVar(self.styleLF, 'line')
+
+        linekwargs = {'text': 'Line', 'var': self.plotStyle,
+                      'value': 'line', 'command': self.setPlotStyleOptions, }
+
+        scatterkwargs = {'text': 'Scatter', 'var': self.plotStyle,
+                         'value': 'scatter',
+                         'command': self.setPlotStyleOptions, }
+
+        self.lineOn = ttk.Radiobutton(self.styleLF, **linekwargs,)
+        self.scatterOn = ttk.Radiobutton(self.styleLF, **scatterkwargs)
+
+        # Setting up a CB to be placed beside Line Style radio button
+        self.lineStyleOptions = ('-', '--', ':', '-.', )
+        self.lineStyle = tk.StringVar(self.styleLF, '-')
+        lineStyle_kwargs = {'textvariable': self.lineStyle,
+                            'values': self.lineStyleOptions,
+                            'state': 'readonly',
+                            'width': 4}
+        self.lineStyleCB = ttk.Combobox(self.styleLF, **lineStyle_kwargs)
+
+        # Setting up a CB to be placed beside Scatter Style radio button
+        self.scatterStyleOptions = ('o', 'v', '^', '<', '>', '8', 's', 'p',
+                                    '*', 'h', 'H', 'D', 'd', 'P', 'X')
+        self.scatterStyle = tk.StringVar(self.graphOptionsTab, 'o')
+
+        scatterStyle_kwargs = {'textvariable': self.scatterStyle,
+                               'values': self.scatterStyleOptions,
+                               'state': 'disabled',
+                               'width': 4}
+
+        self.scatterStyleCB = ttk.Combobox(self.styleLF,
+                                           **scatterStyle_kwargs)
+
+        self.lineOn.grid(row=0, column=0, padx=(0, 0))
+        self.lineStyleCB.grid(row=0, column=1)
+        self.lineStyleCB.bind('<<ComboboxSelected>>', self.showPlot)
+        self.scatterOn.grid(row=0, column=2, padx=(10, 0))
+        self.scatterStyleCB.grid(row=0, column=3)
+        self.scatterStyleCB.bind('<<ComboboxSelected>>', self.showPlot)        
+        # ------------------------------------------>
 
     ####################################################################
     # Callback functions
@@ -471,9 +492,9 @@ class SimpleGUI(tk.Tk):
         self.plotCols = [''] + sorted([col for col, val
                                        in self.missileDF.dtypes.items()
                                        if val == np.dtype('float64')])
-        self.xComboBox['values'] = self.plotCols
-        self.yComboBox['values'] = self.plotCols
-        self.zComboBox['values'] = self.plotCols
+        self.xCB['values'] = self.plotCols
+        self.yCB['values'] = self.plotCols
+        self.zCB['values'] = self.plotCols
 
     def getOutDir(self):
         """
@@ -498,11 +519,12 @@ class SimpleGUI(tk.Tk):
     # Updates the options available based upon which radio button is selected
     def setPlotStyleOptions(self):
         if self.plotStyle.get() == 'line':
-            self.lineStyleComboBox.config(state='readonly')
-            self.scatterStyleComboBox.config(state='disabled')
+            self.lineStyleCB.config(state='readonly')
+            self.scatterStyleCB.config(state='disabled')
         if self.plotStyle.get() == 'scatter':
-            self.lineStyleComboBox.config(state='disabled')
-            self.scatterStyleComboBox.config(state='readonly')
+            self.lineStyleCB.config(state='disabled')
+            self.scatterStyleCB.config(state='readonly')
+        self.showPlot('update')  # Need a non-None event
 
     def showHideXLimits(self):
         if self.xLimits.get():  # if checked
@@ -541,10 +563,25 @@ class SimpleGUI(tk.Tk):
         thisOS = platform.system().lower()
         return defaultPaths[thisOS]
 
+    # Creates a function that waits for an event to finish
+    def handle_wait(self, event):
+
+        # cancel the old job
+        if self._after_id is not None:
+            self.after_cancel(self._after_id)
+
+        # create a new job
+        self._after_id = self.after(1500, lambda: self.showPlot(event=event))
+
+    # Adjusts the tabbed section size automatically
+    def autosizer(self, event=None):
+        self.tabs.config(height=self.winfo_height()-50,
+                         width=self.winfo_width()-145)
+
     ####################################################################
     # Plotting function
     ####################################################################
-    def showPlot(self, event=None):
+    def showPlot(self, event=None, item=None, mode=None):
 
         # We want to destroy the old graph and plot on top of it
         if None not in (self.figure, self.canvas, self.toolbar):
@@ -555,6 +592,7 @@ class SimpleGUI(tk.Tk):
 
         # If there's no reason to update, don't update
         if event is None:
+            print(event, item, mode)
             return
 
         # If all values are empty, then don't plot
@@ -569,8 +607,16 @@ class SimpleGUI(tk.Tk):
             kwargs['projection'] = '3d'
         else:
             plotlist = (self.x, self.y)
-        plot = self.figure.add_subplot(111, **kwargs)
-        plot.plot(*plotlist, color="#C41E3A", marker="o", linestyle="")
+        myplot = self.figure.add_subplot(111, **kwargs)
+        # myplot.plot(*plotlist, color="#C41E3A", marker="o", linestyle="")
+
+        if self.plotStyle.get() == 'line':
+            myplot.plot(*plotlist, linestyle=self.lineStyle.get())
+        else:
+            myplot.scatter(*plotlist, marker=self.scatterStyle.get())
+
+        if self.title.get() != '':
+            myplot.set_title(self.title.get())
 
         self.canvas = FigureCanvasTkAgg(self.figure, self.viewPane)
         self.canvas.draw()
