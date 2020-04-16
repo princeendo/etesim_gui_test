@@ -26,9 +26,8 @@ matplotlib.use("TkAgg")  # To use with Tkinter
 # TODO: Split up graph styles across two lines
 # TODO: Add a series of fields for each separate graph
 # TODO: Add option for legend
+# TODO: Add grid option
 # TODO: Add option for x/y/z labels (use labelframe)
-# TODO: Add callback function for xyzLimits to update value meaningfully
-#       -> Try using try/except to see if the value makes sense as a number
 # TODO: Add LF and put X/Y/Z dropdowns inside of it
 # TODO: Add button to render graph manually
 # TODO: Add color picker for graph options
@@ -36,6 +35,8 @@ matplotlib.use("TkAgg")  # To use with Tkinter
 # TODO: Add font options:
 #       -> Family
 #       -> Underline
+# TODO: For X/Y/Z limits, have Min/Max be in grey, disappear if focused on,
+#       and re-appear in grey if the input is invalid
 
 
 class SimpleGUI(tk.Tk):
@@ -166,7 +167,6 @@ class SimpleGUI(tk.Tk):
         self.imageTypeLabel.grid(row=1, sticky=tk.W)
         self.imageType = tk.StringVar()
 
-        # TODO: Change "state" to 'readonly' and implement extensions
         self.imageTypeCB = ttk.Combobox(self.saveOptionsTab,
                                         textvariable=self.imageType,
                                         values=self.imageTypeOptions,
@@ -298,12 +298,22 @@ class SimpleGUI(tk.Tk):
         self.xMinEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
         self.xMinEntry['textvariable'] = self.xMin
         self.xMinEntry.insert(0, 'Min')
+        self.xMinEntry.bind('<Key>', self.handle_wait)
+        self.xMinEntry.bind("<FocusIn>",
+                            lambda _: self.modifyLimitsEntry(_, 'xMin'))
+        self.xMinEntry.bind("<FocusOut>",
+                            lambda _: self.modifyLimitsEntry(_, 'xMin'))
 
         # Entry for maximum Y value
         self.xMax = tk.StringVar()
         self.xMaxEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
         self.xMaxEntry['textvariable'] = self.xMax
         self.xMaxEntry.insert(0, 'Max')
+        self.xMaxEntry.bind('<Key>', self.handle_wait)
+        self.xMaxEntry.bind("<FocusIn>",
+                            lambda _: self.modifyLimitsEntry(_, 'xMax'))
+        self.xMaxEntry.bind("<FocusOut>",
+                            lambda _: self.modifyLimitsEntry(_, 'xMax'))
 
         # - - - - - - - - - -
         # Row 3.1 - Y Min/Max
@@ -322,12 +332,22 @@ class SimpleGUI(tk.Tk):
         self.yMinEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
         self.yMinEntry['textvariable'] = self.yMin
         self.yMinEntry.insert(0, 'Min')
+        self.yMinEntry.bind('<Key>', self.handle_wait)
+        self.yMinEntry.bind("<FocusIn>",
+                            lambda _: self.modifyLimitsEntry(_, 'yMin'))
+        self.yMinEntry.bind("<FocusOut>",
+                            lambda _: self.modifyLimitsEntry(_, 'yMin'))
 
         # Entry for maximum Y value
         self.yMax = tk.StringVar()
         self.yMaxEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
         self.yMaxEntry['textvariable'] = self.yMax
         self.yMaxEntry.insert(0, 'Max')
+        self.yMaxEntry.bind('<Key>', self.handle_wait)
+        self.yMaxEntry.bind("<FocusOut>",
+                            lambda _: self.modifyLimitsEntry(_, 'yMax'))
+        self.yMaxEntry.bind("<FocusIn>",
+                            lambda _: self.modifyLimitsEntry(_, 'yMax'))
 
         # - - - - - - - - - -
         # Row 3.2 - Z Min/Max
@@ -346,12 +366,22 @@ class SimpleGUI(tk.Tk):
         self.zMinEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
         self.zMinEntry['textvariable'] = self.zMin
         self.zMinEntry.insert(0, 'Min')
+        self.zMinEntry.bind('<Key>', self.handle_wait)
+        self.zMinEntry.bind("<FocusIn>",
+                            lambda _: self.modifyLimitsEntry(_, 'zMin'))
+        self.zMinEntry.bind("<FocusOut>",
+                            lambda _: self.modifyLimitsEntry(_, 'zMin'))
 
         # Entry for maximum Z value
         self.zMax = tk.StringVar()
         self.zMaxEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
         self.zMaxEntry['textvariable'] = self.zMax
         self.zMaxEntry.insert(0, 'Max')
+        self.zMaxEntry.bind('<Key>', self.handle_wait)
+        self.zMaxEntry.bind("<FocusIn>",
+                            lambda _: self.modifyLimitsEntry(_, 'zMax'))
+        self.zMaxEntry.bind("<FocusOut>",
+                            lambda _: self.modifyLimitsEntry(_, 'zMax'))
 
         # - - - - - - - - - - - - - - - -
         # Row 4 - Custom Title
@@ -382,18 +412,20 @@ class SimpleGUI(tk.Tk):
 
         # Bold button
         boldFont = font.Font(size=10, weight="bold")
-        self.boldTitleButton = tk.Button(self.titleLF, text="B", width=3,
-                                         relief=tk.FLAT,
-                                         font=boldFont,
-                                         command=lambda: self.editTitle('b'),)
+        self.boldTitleButton = tk.Button(
+                                self.titleLF, text="B", width=3,
+                                relief=tk.FLAT,
+                                font=boldFont,
+                                command=lambda: self.editTitleOptions('b'),)
         self.boldTitleButton.grid(row=1, column=1,)
 
         # Italic button
         itFont = font.Font(size=10, slant="italic")
-        self.itTitleButton = tk.Button(self.titleLF, text="I", width=3,
-                                       relief=tk.FLAT,
-                                       font=itFont,
-                                       command=lambda: self.editTitle('i'),)
+        self.itTitleButton = tk.Button(
+                                self.titleLF, text="I", width=3,
+                                relief=tk.FLAT,
+                                font=itFont,
+                                command=lambda: self.editTitleOptions('i'),)
         self.itTitleButton.grid(row=1, column=2,)
 
         # Color Picker
@@ -414,7 +446,7 @@ class SimpleGUI(tk.Tk):
         # Row 5 - Style Options
         thisrow += 1
 
-        self.styleLF = ttk.LabelFrame(self.editPane, text="Plot Style Options",
+        self.styleLF = ttk.LabelFrame(self.editPane, text="Style",
                                       relief=tk.RIDGE)
         self.styleLF.grid(row=thisrow, column=1, sticky=tk.W,)
 
@@ -465,7 +497,80 @@ class SimpleGUI(tk.Tk):
     def todo(self):
         pass
 
-    def editTitle(self, event=None):
+    def modifyLimitsEntry(self, event, entry=None):
+        focusIn = 9
+        focusOut = 10
+        evType = int(event.type._value_)
+
+        # On focusIn events, if the value says Min or Max, delete it
+        if evType == focusIn:
+            if entry == 'xMin':
+                if self.xMinEntry.get() == 'Min':
+                    self.xMinEntry.delete(0, tk.END)
+            elif entry == 'xMax':
+                if self.xMaxEntry.get() == 'Max':
+                    self.xMaxEntry.delete(0, tk.END)
+            elif entry == 'yMin':
+                if self.yMinEntry.get() == 'Min':
+                    self.yMinEntry.delete(0, tk.END)
+            elif entry == 'yMax':
+                if self.yMaxEntry.get() == 'Max':
+                    self.yMaxEntry.delete(0, tk.END)
+            elif entry == 'zMin':
+                if self.zMinEntry.get() == 'Min':
+                    self.zMinEntry.delete(0, tk.END)
+            elif entry == 'zMax':
+                if self.zMaxEntry.get() == 'Max':
+                    self.zMaxEntry.delete(0, tk.END)
+
+        # On focusOut events, if the entry isn't a valid floating
+        # point number, then put Min/Max back in where it should be
+        elif evType == focusOut:
+            if entry == 'xMin':
+                try:
+                    float(self.xMinEntry.get())
+                except ValueError as ve:
+                    assert(ve)
+                    self.xMinEntry.delete(0, tk.END)
+                    self.xMinEntry.insert(0, 'Min')
+            elif entry == 'xMax':
+                try:
+                    float(self.xMaxEntry.get())
+                except ValueError as ve:
+                    assert(ve)
+                    self.xMaxEntry.delete(0, tk.END)
+                    self.xMaxEntry.insert(0, 'Max')
+            elif entry == 'yMin':
+                try:
+                    float(self.yMinEntry.get())
+                except ValueError as ve:
+                    assert(ve)
+                    self.yMinEntry.delete(0, tk.END)
+                    self.yMinEntry.insert(0, 'Min')
+            elif entry == 'yMax':
+                try:
+                    float(self.yMaxEntry.get())
+                except ValueError as ve:
+                    assert(ve)
+                    self.yMaxEntry.delete(0, tk.END)
+                    self.yMaxEntry.insert(0, 'Max')
+            elif entry == 'zMin':
+                try:
+                    float(self.zMinEntry.get())
+                except ValueError as ve:
+                    assert(ve)
+                    self.zMinEntry.delete(0, tk.END)
+                    self.zMinEntry.insert(0, 'Min')
+            elif entry == 'zMax':
+                try:
+                    float(self.zMaxEntry.get())
+                except ValueError as ve:
+                    assert(ve)
+                    self.zMaxEntry.delete(0, tk.END)
+                    self.zMaxEntry.insert(0, 'Max')
+        #self.showPlot(1)
+
+    def editTitleOptions(self, event=None):
         # Reading events
         if event == 'b':  # Swapping bold press state
             self.boldTitleOn = not self.boldTitleOn
@@ -484,7 +589,7 @@ class SimpleGUI(tk.Tk):
         if None not in color:
             self.titleColorHex.set(color[1])
             self.titleColorRGB = self.hex2rgb(self.titleColorHex.get())
-            self.editTitle(self.titleColorHex.get())
+            self.editTitleOptions(self.titleColorHex.get())
 
     def setVals(self):
         """ Loading x/y/z values from the DataFrame for plotting
@@ -595,6 +700,7 @@ class SimpleGUI(tk.Tk):
         else:
             self.xMinEntry.grid_remove()
             self.xMaxEntry.grid_remove()
+        self.showPlot(1)
 
     def showHideYLimits(self):
         if self.yLimits.get():  # if checked
@@ -603,6 +709,7 @@ class SimpleGUI(tk.Tk):
         else:
             self.yMinEntry.grid_remove()
             self.yMaxEntry.grid_remove()
+        self.showPlot(1)
 
     def showHideZLimits(self):
         if self.zLimits.get():  # if checked
@@ -611,6 +718,7 @@ class SimpleGUI(tk.Tk):
         else:
             self.zMinEntry.grid_remove()
             self.zMaxEntry.grid_remove()
+        self.showPlot(1)
 
     ####################################################################
     # Utility functions
@@ -691,7 +799,11 @@ class SimpleGUI(tk.Tk):
                         'style': 'italic' if self.itTitleOn else 'normal',
                         'fontweight': 'bold' if self.boldTitleOn else 'normal'}
             myplot.set_title(label, fontdict=fontdict)
-
+        (xMin, xMax, yMin, yMax, zMin, zMax) = self.getLimits(myplot)
+        myplot.set_xlim(xMin, xMax)
+        myplot.set_ylim(yMin, yMax)
+        if self.dimensions == 3:
+            myplot.set_zlim(zMin, zMax)
         self.canvas = FigureCanvasTkAgg(self.figure, self.viewPane)
         self.canvas.draw()
         self.canvas.get_tk_widget().pack(side=tk.BOTTOM,
@@ -700,6 +812,32 @@ class SimpleGUI(tk.Tk):
         self.toolbar = NavigationToolbar2Tk(self.canvas, self.viewPane)
         self.toolbar.update()
         self.canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+
+    def getLimits(self, ax):
+        xMin, xMax = ax.get_xlim()
+        if self.xLimits.get():
+            if self.xMin.get() not in ['', 'Min']:
+                xMin = float(self.xMin.get())
+            if self.xMax.get() not in ['', 'Max']:
+                xMax = float(self.xMax.get())
+
+        yMin, yMax = ax.get_ylim()
+        if self.yLimits.get():
+            if self.yMin.get() not in ['', 'Min']:
+                yMin = float(self.yMin.get())
+            if self.yMax.get() not in ['', 'Max']:
+                yMax = float(self.yMax.get())
+
+        if self.dimensions == 3:
+            zMin, zMax = ax.get_zlim()
+            if self.zLimits.get():
+                if self.zMin.get() not in ['', 'Min']:
+                    zMin = float(self.zMin.get())
+                if self.zMax.get() not in ['', 'Max']:
+                    zMax = float(self.zMax.get())
+            return (xMin, xMax, yMin, yMax, zMin, zMax)
+
+        return (xMin, xMax, yMin, yMax, 0, 0)
 
 
 app = SimpleGUI()
