@@ -8,6 +8,8 @@ import tkinter as tk
 from tkinter import messagebox as mb
 from tkinter import ttk
 from tkinter import filedialog
+import tkinter.font as font
+import tkinter.colorchooser as tkColorChooser
 import pandas as pd
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -33,9 +35,7 @@ matplotlib.use("TkAgg")  # To use with Tkinter
 # TODO: Add manual color entry
 # TODO: Add font options:
 #       -> Family
-#       -> Color
-#       -> Size
-#       -> Bold/Italic/Underline buttons
+#       -> Underline
 
 
 class SimpleGUI(tk.Tk):
@@ -60,6 +60,8 @@ class SimpleGUI(tk.Tk):
         self.toolbar = None
         self.figure = None
         self.canvas = None
+        self.titleColorRGB = (0, 0, 0)
+        self.titleColorHex = tk.StringVar(value='#000000')
 
         # Creating a Notebook seems to be the key to making tabs
         # build_tabs() compartmentalizes the code for making the tabs
@@ -132,13 +134,13 @@ class SimpleGUI(tk.Tk):
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         # Tab 2: Save Options
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        self.saveoptions_icon = tk.PhotoImage(file='images/save-disk.png')
+        self.saveOptionsIcon = tk.PhotoImage(file='images/save-disk.png')
         self.saveOptionsTab = ttk.Frame(parent,)
-        parent.add(
-                self.saveOptionsTab,
-                text='Saving Options',
-                image=self.saveoptions_icon,   # The icon feature is awesome
-                compound=tk.LEFT,)               # Places icon left of text
+        saveOptions_kwargs = {'text': 'Saving Options',
+                              'image': self.saveOptionsIcon,
+                              'compound': tk.LEFT, }
+        assert(saveOptions_kwargs)  # Remove if uncommenting below line
+        # parent.add(self.saveOptionsTab, **saveOptions_kwargs)
 
         # - - - - - - - - - - - - - - - -
         # Row 0 - Output Directory
@@ -179,13 +181,13 @@ class SimpleGUI(tk.Tk):
         # Tab 3: Graph Options
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         gs_ico = 'images/graph-settings-icon.png'
-        self.graphsettings_icon = tk.PhotoImage(file=gs_ico)
+        self.graphOptionsIcon = tk.PhotoImage(file=gs_ico)
         self.graphOptionsTab = ttk.Frame(parent,)
-        parent.add(
-                self.graphOptionsTab,
-                text='Graph Options',
-                image=self.graphsettings_icon,   # The icon feature is awesome
-                compound=tk.LEFT,)               # Places icon left of text
+        graphOpts_kwargs = {'text': 'Graph Options',
+                            'image': self.graphOptionsIcon,
+                            'compound': tk.LEFT, }
+        assert(graphOpts_kwargs)  # Remove if uncommenting below line
+        # parent.add(self.graphOptionsTab, **graphOpts_kwargs)
 
         # - - - - - - - - - - - - - - - -
         # Row 0 - Number of Plots
@@ -354,27 +356,67 @@ class SimpleGUI(tk.Tk):
         # - - - - - - - - - - - - - - - -
         # Row 4 - Custom Title
         thisrow += 1
-        self.title = tk.StringVar()
         self.titleLF = ttk.LabelFrame(self.editPane, text="Custom Title",
                                       relief=tk.RIDGE)
         self.titleLF.grid(row=thisrow, column=1, sticky=tk.W,)
-        titlekwargs = {'width': 30, 'textvariable': self.title, }
+
+        # - - - - - - - - - -
+        # Row 4.0 - Text
+        self.titleText = tk.StringVar()
+        titlekwargs = {'width': 35, 'textvariable': self.titleText, }
         self.titleEntry = ttk.Entry(self.titleLF, **titlekwargs)
         self.titleEntry.insert(0, '')
 
         # Adds a waiting period for the user to stop typing
         self.titleEntry.bind('<Key>', self.handle_wait)
-        self.titleEntry.grid(row=0, column=0, sticky=tk.W)
+        self.titleEntry.grid(row=0, column=0, sticky=tk.W, columnspan=5)
+
+        # - - - - - - - - - -
+        # Row 4.1 - Styling
+        self.titleSize = ttk.Spinbox(self.titleLF, from_=0, to=32, width=3,
+                                     command=lambda: self.showPlot(1))
+        self.titleSize.set('15')
+        self.titleSize.grid(row=1, column=0)
+
+        self.boldTitleOn, self.itTitleOn = (0, 0)
+
+        # Bold button
+        boldFont = font.Font(size=10, weight="bold")
+        self.boldTitleButton = tk.Button(self.titleLF, text="B", width=3,
+                                         relief=tk.FLAT,
+                                         font=boldFont,
+                                         command=lambda: self.editTitle('b'),)
+        self.boldTitleButton.grid(row=1, column=1,)
+
+        # Italic button
+        itFont = font.Font(size=10, slant="italic")
+        self.itTitleButton = tk.Button(self.titleLF, text="I", width=3,
+                                       relief=tk.FLAT,
+                                       font=itFont,
+                                       command=lambda: self.editTitle('i'),)
+        self.itTitleButton.grid(row=1, column=2,)
+
+        # Color Picker
+        tc_kwargs = {'width': 8, 'textvariable': self.titleColorHex, }
+        self.titleColorEntry = ttk.Entry(self.titleLF, **tc_kwargs)
+
+        # Adds a waiting period for the user to stop typing
+        self.titleColorEntry.bind('<Key>', self.handle_wait)
+        self.titleColorEntry.grid(row=1, column=3, sticky=tk.W)
+
+        # Setting up color wheel buttong
+        self.colorWheel = tk.PhotoImage(file='images/color_wheel.png')
+        self.titleColorButton = tk.Button(self.titleLF, image=self.colorWheel,
+                                          command=self.pickColor)
+        self.titleColorButton.grid(row=1, column=4,)
 
         # - - - - - - - - - - - - - - - -
         # Row 5 - Style Options
         thisrow += 1
 
-        self.styleLF = ttk.LabelFrame(self.editPane, text="Style Options",
+        self.styleLF = ttk.LabelFrame(self.editPane, text="Plot Style Options",
                                       relief=tk.RIDGE)
         self.styleLF.grid(row=thisrow, column=1, sticky=tk.W,)
-
-        # ------------------------------------------>
 
         self.plotStyle = tk.StringVar(self.styleLF, 'line')
 
@@ -415,14 +457,34 @@ class SimpleGUI(tk.Tk):
         self.lineStyleCB.bind('<<ComboboxSelected>>', self.showPlot)
         self.scatterOn.grid(row=0, column=2, padx=(10, 0))
         self.scatterStyleCB.grid(row=0, column=3)
-        self.scatterStyleCB.bind('<<ComboboxSelected>>', self.showPlot)        
-        # ------------------------------------------>
+        self.scatterStyleCB.bind('<<ComboboxSelected>>', self.showPlot)
 
     ####################################################################
     # Callback functions
     ####################################################################
     def todo(self):
         pass
+
+    def editTitle(self, event=None):
+        # Reading events
+        if event == 'b':  # Swapping bold press state
+            self.boldTitleOn = not self.boldTitleOn
+        elif event == 'i':  # Swapping italic press state
+            self.itTitleOn = not self.itTitleOn
+
+        # Updating button behavior
+        br = tk.SUNKEN if self.boldTitleOn else tk.FLAT
+        ir = tk.SUNKEN if self.itTitleOn else tk.FLAT
+        self.boldTitleButton.config(relief=br)
+        self.itTitleButton.config(relief=ir)
+        self.showPlot(1)
+
+    def pickColor(self):
+        color = tkColorChooser.askcolor(color=self.titleColorRGB)
+        if None not in color:
+            self.titleColorHex.set(color[1])
+            self.titleColorRGB = self.hex2rgb(self.titleColorHex.get())
+            self.editTitle(self.titleColorHex.get())
 
     def setVals(self):
         """ Loading x/y/z values from the DataFrame for plotting
@@ -578,6 +640,13 @@ class SimpleGUI(tk.Tk):
         self.tabs.config(height=self.winfo_height()-50,
                          width=self.winfo_width()-145)
 
+    def hex2rgb(self, hexstring):
+        rgb = []
+        for i in range(3):
+            string_ = hexstring[1 + 2 * i:1 + 2 * (i + 1)]
+            rgb.append(int(f'0x0000{string_}', 0))
+        return tuple(rgb)
+
     ####################################################################
     # Plotting function
     ####################################################################
@@ -601,13 +670,13 @@ class SimpleGUI(tk.Tk):
 
         self.figure = plt.Figure()
 
-        kwargs = {}
+        plot_kwargs = {}
         if self.dimensions == 3:
             plotlist = (self.x, self.y, self.z)
-            kwargs['projection'] = '3d'
+            plot_kwargs['projection'] = '3d'
         else:
             plotlist = (self.x, self.y)
-        myplot = self.figure.add_subplot(111, **kwargs)
+        myplot = self.figure.add_subplot(111, **plot_kwargs)
         # myplot.plot(*plotlist, color="#C41E3A", marker="o", linestyle="")
 
         if self.plotStyle.get() == 'line':
@@ -615,8 +684,13 @@ class SimpleGUI(tk.Tk):
         else:
             myplot.scatter(*plotlist, marker=self.scatterStyle.get())
 
-        if self.title.get() != '':
-            myplot.set_title(self.title.get())
+        if self.titleText.get() != '':
+            label = self.titleText.get()
+            fontdict = {'fontsize': int(self.titleSize.get()),
+                        'color': self.titleColorHex.get(),
+                        'style': 'italic' if self.itTitleOn else 'normal',
+                        'fontweight': 'bold' if self.boldTitleOn else 'normal'}
+            myplot.set_title(label, fontdict=fontdict)
 
         self.canvas = FigureCanvasTkAgg(self.figure, self.viewPane)
         self.canvas.draw()
