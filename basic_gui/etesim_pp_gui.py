@@ -81,10 +81,12 @@ class SimpleGUI(tk.Tk):
         self.tabs.bind("<Configure>", self.autosizer)
 
         self.statusBar = ttk.Frame(self, height=100)
-        self.statusBar.pack(side=tk.BOTTOM)
-        self.status = tk.Label(self.statusBar, text="on the way…", bd=1,
-                               relief=tk.SUNKEN, height=1)
-        self.status.pack(fill=tk.BOTH)
+        self.statusBar.pack(side=tk.BOTTOM, fill=tk.BOTH)
+        self.status = tk.StringVar(self.statusBar, 'No file(s) loaded')
+        self.statusLbl = tk.Label(self.statusBar, text="No file(s) loaded",
+                                  relief=tk.FLAT, height=1, bd=1,
+                                  textvariable=self.status)
+        self.statusLbl.pack(fill=tk.BOTH, side=tk.LEFT)
 
     def build_tabs(self, parent):
         """ A constructor for the tabbed layout of the UI """
@@ -453,7 +455,6 @@ class SimpleGUI(tk.Tk):
         # - - - - - - - - - - - - - - - -
         # Row 5 - Style Options
         thisrow += 1
-
         self.styleLF = ttk.LabelFrame(self.editPane, text="Style",
                                       relief=tk.RIDGE)
         self.styleLF.grid(row=thisrow, column=1, sticky=tk.W, pady=3)
@@ -706,7 +707,6 @@ class SimpleGUI(tk.Tk):
         The path can be typed in also.
         ** Only a directory can be selected
         """
-
         kwargs = {'title': 'Select Directory Containing Run(s)',
                   'initialdir': self.default_path(),
                   'mustexist': True, }
@@ -722,11 +722,14 @@ class SimpleGUI(tk.Tk):
         # If the entry is not a valid directory, display a warning
         # message to the user
         if not os.path.isdir(self.topDir):
+            self.status.set('No file(s) loaded')
             mb.showinfo('Invalid directory',                 # title
                         'Please choose a valid directory!',  # message
                         icon='warning',)
             return
-        self.setMissileFile()
+        mfile = self.setMissileFile()
+        if mfile is not None:
+            self.status.set(f'Loaded {mfile}')
 
     def setMissileFile(self):
         mfile = os.path.join(self.topDir, 'NotionalETEOutput.xlsx')
@@ -750,6 +753,7 @@ class SimpleGUI(tk.Tk):
         self.xCB['values'] = self.plotCols
         self.yCB['values'] = self.plotCols
         self.zCB['values'] = self.plotCols
+        return mfile
 
     def getOutDir(self):
         """
@@ -865,6 +869,8 @@ class SimpleGUI(tk.Tk):
             return
 
         self.figure = plt.Figure()
+        self.canvas = FigureCanvasTkAgg(self.figure, self.viewPane)
+        self.canvas.draw()
 
         plot_kwargs = {}
         if self.dimensions == 3:
@@ -910,8 +916,6 @@ class SimpleGUI(tk.Tk):
         myplot.set_ylim(yMin, yMax)
         if self.dimensions == 3:
             myplot.set_zlim(zMin, zMax)
-        self.canvas = FigureCanvasTkAgg(self.figure, self.viewPane)
-        self.canvas.draw()
         self.canvas.get_tk_widget().pack(side=tk.BOTTOM,
                                          fill=tk.BOTH,
                                          expand=True)
