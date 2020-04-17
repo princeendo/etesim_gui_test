@@ -23,20 +23,25 @@ from matplotlib.backends.backend_tkagg import NavigationToolbar2Tk
 import matplotlib
 matplotlib.use("TkAgg")  # To use with Tkinter
 
-# TODO: Split up graph styles across two lines
-# TODO: Add a series of fields for each separate graph
-# TODO: Add option for legend
-# TODO: Add grid option
-# TODO: Add option for x/y/z labels (use labelframe)
-# TODO: Add LF and put X/Y/Z dropdowns inside of it
-# TODO: Add button to render graph manually
-# TODO: Add color picker for graph options
-# TODO: Add manual color entry
-# TODO: Add font options:
-#       -> Family
-#       -> Underline
-# TODO: For X/Y/Z limits, have Min/Max be in grey, disappear if focused on,
-#       and re-appear in grey if the input is invalid
+# TODO List ---------------------------------------->
+#
+# (High)
+#   [x] Grid option
+#       -> Bug: Creates screen trash for 3D plots
+#   [x] X/Y/Z Labels (Checkbox for each)
+#   [ ] Add color options for graph lines
+#   [ ] Add option to graph assets (radars/etc.)
+#
+# (Low)
+#   [ ] Add ability to place multiple graphs at once
+#   [ ] Add CheckBox for ax.show_legend()
+#   [ ] Split up graph styles across two lines
+#   [ ] Place X/Y/Z Drop-downs in a LabelFrame
+#   [ ] Add option for legend
+#   [ ] Add button to render graph manually
+#   [ ] Add font-family option for labels/titles
+#   [ ] Add underline option for labels/titles
+# -------------------------------------------------->
 
 
 class SimpleGUI(tk.Tk):
@@ -63,6 +68,8 @@ class SimpleGUI(tk.Tk):
         self.canvas = None
         self.titleColorRGB = (0, 0, 0)
         self.titleColorHex = tk.StringVar(value='#000000')
+        self.plotColorRGB = (31, 119, 180)
+        self.plotColorHex = tk.StringVar(value='#1f77b4')
 
         # Creating a Notebook seems to be the key to making tabs
         # build_tabs() compartmentalizes the code for making the tabs
@@ -278,7 +285,7 @@ class SimpleGUI(tk.Tk):
         self.xyzMinMaxFrame = ttk.LabelFrame(self.editPane,
                                              text="Set Limits",
                                              relief=tk.RIDGE)
-        self.xyzMinMaxFrame.grid(row=thisrow, column=1, sticky=tk.W,)
+        self.xyzMinMaxFrame.grid(row=thisrow, column=1, sticky=tk.W, pady=3,)
         limitskwargs = {'width': 8, 'validate': "key"}
 
         # - - - - - - - - - -
@@ -388,7 +395,7 @@ class SimpleGUI(tk.Tk):
         thisrow += 1
         self.titleLF = ttk.LabelFrame(self.editPane, text="Custom Title",
                                       relief=tk.RIDGE)
-        self.titleLF.grid(row=thisrow, column=1, sticky=tk.W,)
+        self.titleLF.grid(row=thisrow, column=1, sticky=tk.W, pady=3)
 
         # - - - - - - - - - -
         # Row 4.0 - Text
@@ -428,7 +435,7 @@ class SimpleGUI(tk.Tk):
                                 command=lambda: self.editTitleOptions('i'),)
         self.itTitleButton.grid(row=1, column=2,)
 
-        # Color Picker
+        # Title Color Picker
         tc_kwargs = {'width': 8, 'textvariable': self.titleColorHex, }
         self.titleColorEntry = ttk.Entry(self.titleLF, **tc_kwargs)
 
@@ -437,9 +444,10 @@ class SimpleGUI(tk.Tk):
         self.titleColorEntry.grid(row=1, column=3, sticky=tk.W)
 
         # Setting up color wheel buttong
-        self.colorWheel = tk.PhotoImage(file='images/color_wheel.png')
-        self.titleColorButton = tk.Button(self.titleLF, image=self.colorWheel,
-                                          command=self.pickColor)
+        self.titleColorWheel = tk.PhotoImage(file='images/color_wheel.png')
+        self.titleColorButton = tk.Button(self.titleLF,
+                                          image=self.titleColorWheel,
+                                          command=self.pickTitleColor)
         self.titleColorButton.grid(row=1, column=4,)
 
         # - - - - - - - - - - - - - - - -
@@ -448,7 +456,7 @@ class SimpleGUI(tk.Tk):
 
         self.styleLF = ttk.LabelFrame(self.editPane, text="Style",
                                       relief=tk.RIDGE)
-        self.styleLF.grid(row=thisrow, column=1, sticky=tk.W,)
+        self.styleLF.grid(row=thisrow, column=1, sticky=tk.W, pady=3)
 
         self.plotStyle = tk.StringVar(self.styleLF, 'line')
 
@@ -491,12 +499,85 @@ class SimpleGUI(tk.Tk):
         self.scatterStyleCB.grid(row=0, column=3)
         self.scatterStyleCB.bind('<<ComboboxSelected>>', self.showPlot)
 
+        # - - - - - - - - - -
+        # Row 5.0 - Plot Color
+        self.plotColorFrame = tk.Frame(self.styleLF)
+        self.plotColorFrame.grid(row=1, column=0, columnspan=4)
+
+        self.plotColorLabel = ttk.Label(self.plotColorFrame,
+                                        text='Plot Color:')
+        self.plotColorLabel.grid(row=0, column=0, sticky=tk.W)
+
+        # Plot Color Picker
+        pc_kwargs = {'width': 20, 'textvariable': self.plotColorHex, }
+        self.plotColorEntry = ttk.Entry(self.plotColorFrame, **pc_kwargs)
+
+        # Adds a waiting period for the user to stop typing
+        self.plotColorEntry.bind('<Key>', self.handle_wait)
+        self.plotColorEntry.grid(row=0, column=1, sticky=tk.E, pady=3)
+
+        # Setting up color wheel buttong
+        self.plotColorWheel = tk.PhotoImage(file='images/color_wheel.png')
+        self.plotColorButton = tk.Button(self.plotColorFrame,
+                                         image=self.plotColorWheel,
+                                         command=self.pickPlotColor)
+        self.plotColorButton.grid(row=0, column=2, sticky=tk.E, pady=3)
+
+        # - - - - - - - - - - - - - - - -
+        # Row 6 - Additional Options
+        thisrow += 1
+        self.addOptsLF = ttk.LabelFrame(self.editPane, relief=tk.RIDGE,
+                                        text="Additional Options",)
+        self.addOptsLF.grid(row=thisrow, column=1, sticky=tk.W, pady=3,)
+
+        # - - - - - - - - - -
+        # Row 6.0 - Grid
+        self.gridLabel = ttk.Label(self.addOptsLF, text='Gridlines:',)
+        self.gridLabel.grid(row=0, column=0, sticky=tk.W, padx=(0, 2))
+
+        self.gridMajor = tk.BooleanVar(value=True)
+        self.gridMinor = tk.BooleanVar(value=False)
+
+        gmaj_kwargs = {'text': 'Major', 'variable': self.gridMajor,
+                       'command': lambda: self.showPlot(1), }
+        gmin_kwargs = {'text': 'Minor', 'variable': self.gridMinor,
+                       'command': lambda: self.showPlot(1), }
+
+        self.gridMajorCB = tk.Checkbutton(self.addOptsLF, **gmaj_kwargs)
+        self.gridMajorCB.grid(row=0, column=1, sticky=tk.W,)
+
+        self.gridMinorCB = tk.Checkbutton(self.addOptsLF, **gmin_kwargs)
+        self.gridMinorCB.grid(row=0, column=2, sticky=tk.W,)
+
+        # - - - - - - - - - -
+        # Row 6.1 - Labels
+        self.showAxLabel = ttk.Label(self.addOptsLF, text='Axis Labels:',)
+        self.showAxLabel.grid(row=1, column=0, sticky=tk.W, padx=(0, 2))
+        self.showAxFrame = tk.Frame(self.addOptsLF)
+        self.showAxFrame.grid(row=1, column=1, sticky=tk.W, columnspan=2)
+
+        # - - - - - - - - - -
+        # Row 6.1.0 - XYZ
+        self.showXLabel = tk.BooleanVar(value=True)
+        self.showYLabel = tk.BooleanVar(value=True)
+        self.showZLabel = tk.BooleanVar(value=True)
+        xlbl_kwargs = {'text': 'X', 'variable': self.showXLabel,
+                       'command': lambda: self.showPlot(1), }
+        ylbl_kwargs = {'text': 'Y', 'variable': self.showYLabel,
+                       'command': lambda: self.showPlot(1), }
+        zlbl_kwargs = {'text': 'Z', 'variable': self.showZLabel,
+                       'command': lambda: self.showPlot(1), }
+
+        self.showXLabelCB = tk.Checkbutton(self.showAxFrame, **xlbl_kwargs)
+        self.showXLabelCB.grid(row=0, column=0, sticky=tk.W)
+        self.showYLabelCB = tk.Checkbutton(self.showAxFrame, **ylbl_kwargs)
+        self.showYLabelCB.grid(row=0, column=1, sticky=tk.W)
+        self.showZLabelCB = tk.Checkbutton(self.showAxFrame, **zlbl_kwargs)
+        self.showZLabelCB.grid(row=0, column=2, sticky=tk.W)
+
     ####################################################################
     # Callback functions
     ####################################################################
-    def todo(self):
-        pass
-
     def modifyLimitsEntry(self, event, entry=None):
         focusIn = 9
         focusOut = 10
@@ -568,7 +649,6 @@ class SimpleGUI(tk.Tk):
                     assert(ve)
                     self.zMaxEntry.delete(0, tk.END)
                     self.zMaxEntry.insert(0, 'Max')
-        #self.showPlot(1)
 
     def editTitleOptions(self, event=None):
         # Reading events
@@ -584,12 +664,19 @@ class SimpleGUI(tk.Tk):
         self.itTitleButton.config(relief=ir)
         self.showPlot(1)
 
-    def pickColor(self):
+    def pickTitleColor(self):
         color = tkColorChooser.askcolor(color=self.titleColorRGB)
         if None not in color:
             self.titleColorHex.set(color[1])
             self.titleColorRGB = self.hex2rgb(self.titleColorHex.get())
             self.editTitleOptions(self.titleColorHex.get())
+
+    def pickPlotColor(self):
+        color = tkColorChooser.askcolor(color=self.plotColorRGB)
+        if None not in color:
+            self.plotColorHex.set(color[1])
+            self.plotColorRGB = self.hex2rgb(self.plotColorHex.get())
+            self.showPlot(1)
 
     def setVals(self):
         """ Loading x/y/z values from the DataFrame for plotting
@@ -652,6 +739,7 @@ class SimpleGUI(tk.Tk):
         # Saves the filename and reads the missile file into a DataFrame
         self.missileFile = os.path.abspath(mfile)
         self.missileDF = pd.read_excel(self.missileFile)
+        self.missileDF.rename(columns=dictMap(), inplace=True)
 
         # Takes the columns from the DataFrame and makes them available
         # to be plotted on any axis. The first entry will be blank
@@ -785,12 +873,13 @@ class SimpleGUI(tk.Tk):
         else:
             plotlist = (self.x, self.y)
         myplot = self.figure.add_subplot(111, **plot_kwargs)
-        # myplot.plot(*plotlist, color="#C41E3A", marker="o", linestyle="")
 
         if self.plotStyle.get() == 'line':
-            myplot.plot(*plotlist, linestyle=self.lineStyle.get())
+            myplot.plot(*plotlist, color=self.plotColorEntry.get(),
+                        linestyle=self.lineStyle.get())
         else:
-            myplot.scatter(*plotlist, marker=self.scatterStyle.get())
+            myplot.scatter(*plotlist, color=self.plotColorEntry.get(),
+                           marker=self.scatterStyle.get())
 
         if self.titleText.get() != '':
             label = self.titleText.get()
@@ -799,6 +888,23 @@ class SimpleGUI(tk.Tk):
                         'style': 'italic' if self.itTitleOn else 'normal',
                         'fontweight': 'bold' if self.boldTitleOn else 'normal'}
             myplot.set_title(label, fontdict=fontdict)
+
+        # Adding Axes Labels
+        if self.showXLabel.get():
+            myplot.set_xlabel(self.xCol.get())
+        if self.showYLabel.get():
+            myplot.set_ylabel(self.yCol.get())
+        if self.dimensions == 3 and self.showZLabel.get():
+            myplot.set_zlabel(self.zCol.get())
+
+        # Adding gridlines, if necessary
+        if self.gridMajor.get():
+            myplot.grid(which='major', alpha=0.8)
+        if self.gridMinor.get():
+            myplot.minorticks_on()
+            myplot.grid(which='minor', alpha=0.2, linestyle='--',)
+
+        # Setting the min/max values for each variable
         (xMin, xMax, yMin, yMax, zMin, zMax) = self.getLimits(myplot)
         myplot.set_xlim(xMin, xMax)
         myplot.set_ylim(yMin, yMax)
@@ -838,6 +944,31 @@ class SimpleGUI(tk.Tk):
             return (xMin, xMax, yMin, yMax, zMin, zMax)
 
         return (xMin, xMax, yMin, yMax, 0, 0)
+
+
+####################################################################
+# Mapper for DataFrame Columns
+####################################################################
+
+def dictMap():
+    dMap = {
+        'uniqueid': 'Unique ID',
+        'datatype': 'Data Type',
+        'datarec_id': 'Data Record ID',
+        'header_swmodel': 'Model',
+        'time': 'Time',
+        'mEast': 'Missile Position - East',
+        'mNorth': 'Missile Position - North',
+        'mUp': 'Missile Position - Up',
+        'tEast': 'Target Position - East',
+        'tNorth': 'Target Position - North',
+        'tUp': 'Target Position - Up',
+        }
+    return dMap
+
+
+def flipDict(inp):
+    return {key: val for (val, key) in inp.items()}
 
 
 app = SimpleGUI()
