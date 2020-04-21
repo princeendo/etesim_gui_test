@@ -109,6 +109,9 @@ class SimpleGUI(tk.Tk):
         self.plotColorRGB = (31, 119, 180)                  # matplotlib blue
         self.plotColorHex = tk.StringVar(value='#1f77b4')
 
+        # TOOD: Move this into the edit pane
+        self.showLegend = True
+
         # Creating a Notebook seems to be the key to making tabs
         # build_tabs() compartmentalizes the code for making the tabs
         self.tabs = ttk.Notebook(self,
@@ -1213,34 +1216,43 @@ class SimpleGUI(tk.Tk):
         self.canvas.draw()
 
         # Iterating through DataFrame to plot
+        for uid, df in self.missileDF.groupby(['Unique ID']):
+            # Setting up plot dimensions and values
+            subplot_kwargs = {}
+            if self.dimensions == 3:
+                plotlist = (df[self.xCol.get()].values,
+                            df[self.yCol.get()].values,
+                            df[self.zCol.get()].values,)
+                subplot_kwargs['projection'] = '3d'
+            else:
+                plotlist = (df[self.xCol.get()].values,
+                            df[self.yCol.get()].values,)
 
-        # Setting up plot dimensions and values
-        plot_kwargs = {}
-        if self.dimensions == 3:
-            plotlist = (self.x, self.y, self.z)
-            plot_kwargs['projection'] = '3d'
-        else:
-            plotlist = (self.x, self.y)
+            # Making figure to plot upon
+            myplot = self.figure.add_subplot(111, **subplot_kwargs)
 
-        # Making figure to plot upon
-        myplot = self.figure.add_subplot(111, **plot_kwargs)
+            # Making line or scatter plot
+            plotkwargs = {'color': self.plotColorEntry.get(),
+                          'label': f'Run {uid}'}
 
-        # Making line or scatter plot
-        if self.plotStyle.get() == 'line':
-            myplot.plot(*plotlist, color=self.plotColorEntry.get(),
-                        linestyle=self.lineStyle.get())
-        else:
-            myplot.scatter(*plotlist, color=self.plotColorEntry.get(),
-                           marker=self.scatterStyle.get())
+            if self.plotStyle.get() == 'line':
+                myplot.plot(*plotlist, **plotkwargs,
+                            linestyle=self.lineStyle.get())
+            else:
+                myplot.scatter(*plotlist, **plotkwargs,
+                               marker=self.scatterStyle.get())
+
+            if self.showLegend:
+                myplot.legend()
 
         # Adding title with options, if necessary
         if self.titleText.get() != '':
-            label = self.titleText.get()
+            plotTitle = self.titleText.get()
             fontdict = {'fontsize': int(self.titleSize.get()),
                         'color': self.titleColorHex.get(),
                         'style': 'italic' if self.itTitleOn else 'normal',
                         'fontweight': 'bold' if self.boldTitleOn else 'normal'}
-            myplot.set_title(label, fontdict=fontdict)
+            myplot.set_title(plotTitle, fontdict=fontdict)
 
         # Adding Axes Labels
         if self.showXLabel.get():
