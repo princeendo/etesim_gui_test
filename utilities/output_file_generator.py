@@ -1,10 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Apr 21 07:57:40 2020
-
-@author: white
-"""
-
 
 import os
 import sys
@@ -16,9 +10,6 @@ d1 = os.path.abspath(os.path.join(os.path.split(sys.argv[0])[0],
 file1 = os.path.abspath(os.path.join(os.path.split(sys.argv[0])[0],
                                      os.pardir, 'basic_gui',
                                      'NotionalETEOutput000.xlsx'))
-
-print(d1)
-assert(os.path.isdir(d1))
 
 delta = 0.05
 mtypes = ['BRAVER', 'SOMERSAULT', 'ANGERMAX', 'HIGHWIND', 'HELLMASKER']
@@ -63,6 +54,9 @@ for num in dirnums:
                            regex=True, inplace=True)
     df2.header_swmodel.replace('SAMP\d', f'{mtype}{myversion}',
                                regex=True, inplace=True)
+
+    # Adds "noise" to each output file so it is familiar with
+    # the original but will not match exactly
     for col in nottime:
         r = np.random.uniform(1 - delta, 1 + delta, N)
         df2[col] = df[col] * r
