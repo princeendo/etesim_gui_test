@@ -28,6 +28,7 @@ Todo:
 
 # Module-Level Imports
 import os
+import re
 import platform
 import numpy as np
 import tkinter as tk
@@ -806,6 +807,28 @@ class SimpleGUI(tk.Tk):
             self.plotColorRGB = self.hex2rgb(self.plotColorHex.get())
             self.showPlot(1)
 
+    def setDimensions(self) -> None:
+        """
+        Sets the dimensions for the plot based upon the columns
+        selected by the user. If the user does not select both the
+        x and y axis columns, then the dimensions are set to 0.
+        If the user selects both x and y but not z, the dimension is 2.
+        If the user selects x, y, and z, the dimension is 3
+
+        Returns
+        -------
+        None
+
+        """
+        if self.xCol.get() == '':       # x does not exist
+            self.dimensions = 0
+        elif self.yCol.get() == '':     # x exists, y does not
+            self.dimensions = 0
+        elif self.zCol.get() == '':     # x and y exist, z does not
+            self.dimensions = 2
+        else:
+            self.dimensions = 3         # x, y, and z exist
+
     def setVals(self) -> None:
         """
         Checks whether user has selected X, Y, or Z columns from the
@@ -822,21 +845,24 @@ class SimpleGUI(tk.Tk):
 
         """
 
-        # Setting graph dimensions based upon Z setting
-        # and loading values from DataFrame
-        if self.zCol.get() == '':
-            self.dimensions = 2
-            self.z = []
-        else:
-            self.dimensions = 3
-            self.z = self.missileDF[self.zCol.get()].values
+        # Guarantees dimensions are up to date
+        self.setDimensions()
 
-        # Pulling x/y values from the DataFrame
-        if (self.xCol.get() == '') or (self.yCol.get() == ''):
+        # If no dimensions, set values to nothing
+        if self.dimensions == 0:
             self.x, self.y, self.z = [], [], []
-        else:
+
+        # If only 2D plot, only set x and y
+        elif self.dimensions == 2:
             self.x = self.missileDF[self.xCol.get()].values
             self.y = self.missileDF[self.yCol.get()].values
+
+        # If 3D plot, set x, y, and z
+        elif self.dimensions == 3:
+            self.x = self.missileDF[self.xCol.get()].values
+            self.y = self.missileDF[self.yCol.get()].values
+            self.z = self.missileDF[self.zCol.get()].values
+        return
 
     def getTopDir(self) -> None:
         """
@@ -1166,22 +1192,27 @@ class SimpleGUI(tk.Tk):
             print(event, item, mode)
             return
 
-        # If a plot currently exists, we want to close it and hide
-        # the original canvas and toolbar to prevent duplication
+        # Destroy current plot if it exists
         if None not in (self.figure, self.canvas, self.toolbar):
+
+            # Closing old figure and closing toolbar
             plt.close(self.figure)
             self.canvas.get_tk_widget().pack_forget()
             self.toolbar.pack_forget()
+
+        # Loading data for plotting
         self.setVals()
 
         # If all values are empty, don't plot
-        if len(self.x) + len(self.y) + len(self.z) == 0:
+        if self.dimensions == 0:
             return
 
         # Settng up canvas to draw plot
         self.figure = plt.Figure()
         self.canvas = FigureCanvasTkAgg(self.figure, self.viewPane)
         self.canvas.draw()
+
+        # Iterating through DataFrame to plot
 
         # Setting up plot dimensions and values
         plot_kwargs = {}
@@ -1190,6 +1221,8 @@ class SimpleGUI(tk.Tk):
             plot_kwargs['projection'] = '3d'
         else:
             plotlist = (self.x, self.y)
+
+        # Making figure to plot upon
         myplot = self.figure.add_subplot(111, **plot_kwargs)
 
         # Making line or scatter plot
@@ -1325,6 +1358,91 @@ def dictMap():
         'tUp': 'Target Position - Up',
         }
     return dMap
+
+
+####################################################################
+# Directory parsing functions
+####################################################################
+
+def dirTree(root: str) -> list:
+    """
+    Generates a list containing a directory and all its subdirectories.
+
+    Parameters
+    ----------
+    root : str
+        A top-level directory to traverse.
+
+    Returns
+    -------
+    list
+        The directory and all subdirectories.
+
+    """
+    # Scan directory and keep only subdirectories
+    subdirs = [x.path for x in os.scandir(root) if x.is_dir()]
+
+    # Recursively call dirtree() on the subdirectories
+    subtree = [dirTree(x) for x in subdirs]
+
+    # Building a list of all the items in the subdirectories
+    tree = [root]
+    for list_ in subtree:    # Each element in the subtree is a list
+        for dir_ in list_:
+            tree.append(dir_)
+    return tree
+
+
+def allMissileFiles(
+        dirlist: list,
+        mfile_regex: str = 'NotionalETEOutput(\\d+).xlsx') -> list:
+    """
+    Generates a list of files from the supplied directory list
+    which match the specified pattern.
+
+    Parameters
+    ----------
+    dirlist : list
+        A list of directories to check for files
+    mfile_regex : str, optional
+        The matching criterion (regular expression).
+        The default is 'NotionalETEOutput(\\d+).xlsx'.
+
+    Returns
+    -------
+    list
+        The path for each file matching the criterion.
+
+    """
+
+    missileFiles = []
+    for dir_ in dirlist:
+        for item in os.scandir(dir_):
+            if item.is_file():
+                check = re.match(mfile_regex, item.name)
+                if check is not None:
+                    missileFiles.append(item.path)
+    return missileFiles
+
+
+def combinedMissleDF(missileFileList: list) -> pd.DataFrame:
+    """
+    Combines a list of input files into a single DataFrame by
+    generating a single DataFrame for each file and using the
+    concatenation function to generate a single object.
+
+    Parameters
+    ----------
+    missileFileList : list
+        The path to each file to be combined into the DataFrame
+
+    Returns
+    -------
+    pd.DataFrame
+        A Pandas DataFrame of the combined object
+
+    """
+    return pd.concat(map(pd.read_excel, missileFileList))
 
 
 # To prevent this running automatically if imported
