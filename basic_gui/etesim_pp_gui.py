@@ -886,7 +886,8 @@ class SimpleGUI(tk.Tk):
 
     def setMissileFile(self) -> str:
         """
-        Checks for whether 'NotionalETEOutput.xlsx' is present in topDir.
+        Checks for whether 'NotionalETEOutput###.xlsx' is present in topDir.
+        (The ### is a random number between 000 and 999, always three digits)
         If present, loads the missile file into a dataframe, updates the
         dataframe columns, and makes available for plotting only the
         dataframe columns that have floating-point data
@@ -899,7 +900,7 @@ class SimpleGUI(tk.Tk):
             The absolute path to the missile file
 
         """
-        mfile = os.path.join(self.topDir, 'NotionalETEOutput.xlsx')
+        mfile = os.path.join(self.topDir, 'NotionalETEOutput000.xlsx')
         if not os.path.isfile(mfile):
             mb.showinfo('File Not Found',                       # title
                         'No valid files found in directory!',   # message
