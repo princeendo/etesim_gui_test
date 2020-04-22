@@ -18,15 +18,7 @@ floatcols = [x for x in df.columns if df[x].dtype == 'float64']
 nottime = [x for x in floatcols if x != 'time']
 N = df.shape[0]
 
-dirnums = np.array([
-            55, 725, 939, 469, 969, 702, 584, 660, 293, 294, 380, 388, 835,
-            192, 270, 388, 417, 117, 943, 873, 817, 388, 231, 622, 748, 627,
-            341, 371, 358, 768, 328, 682, 107,  88, 403, 936, 601, 219, 626,
-            48, 131,  90, 916, 770,  10, 262, 734, 841, 922,  63, 350, 329,
-            707, 750, 871, 540, 790, 465, 710, 420, 338, 484, 814, 320, 644,
-            517, 749, 417, 507, 186, 726, 831, 101, 382, 104, 166, 697, 666,
-            480, 178, 741, 862, 516, 591, 893, 411, 152, 409, 611, 195,  65,
-            999, 206, 601, 399, 321, 325, 253, 670, 404])
+dirnums = np.array([954, 971, 708, 443, 947, 483, 390, 582, 184, 973])
 
 for num in dirnums:
     # Generating temporary file
@@ -58,21 +50,7 @@ for num in dirnums:
     # Adds "noise" to each output file so it is familiar with
     # the original but will not match exactly
     for col in nottime:
-        r = np.random.uniform(1 - delta, 1 + delta, N)
+        r = np.random.normal(loc=1, scale=0.3)
         df2[col] = df[col] * r
     df2.uniqueid = num
     df2.to_excel(newfile, index=False)
-
-
-"""
-import re
-dir1 = 'C:\\Users\\white\\Documents\\etesim_gui_test\\basic_gui'
-mfile_regex = r'NotionalETEOutput(\d+).xlsx'
-
-files = []
-for item in os.scandir(dir1):
-    if item.is_file():
-        check = re.match(mfile_regex, item.name)
-        if check is not None:
-            print(item.path)
-"""

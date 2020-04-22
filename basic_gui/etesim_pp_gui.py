@@ -166,11 +166,12 @@ class SimpleGUI(tk.Tk):
         self.topDirLabel.grid(row=0, sticky=tk.W)
 
         # TODO: Change this back to empty string
-        self.topDir = os.getcwd()
+        self.topDir = os.path.abspath(os.path.join(os.getcwd(), os.pardir,
+                                                   'runs'))
         self.topDirPath = tk.Text(self.inputTab, relief=tk.SUNKEN)
         self.topDirPath.insert(tk.INSERT, self.topDir)
-        self.topDirPath.config(width=40, height=1.45)
-        self.topDirPath.grid(row=0, column=1, columnspan=5, sticky=tk.W)
+        self.topDirPath.config(width=60, height=1.45)
+        self.topDirPath.grid(row=0, column=1, sticky=tk.W)
 
         self.topDirBrowseButton = tk.Button(self.inputTab,
                                             text='Browse',
@@ -197,7 +198,7 @@ class SimpleGUI(tk.Tk):
                                          width=20,)
 
         self.threatTypeCB.set('Infer')  # Could use .current(0)
-        self.threatTypeCB.grid(row=1, column=1, columnspan=2)
+        self.threatTypeCB.grid(row=1, column=1, sticky=tk.W)
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         # Tab 2: Save Options
@@ -832,6 +833,12 @@ class SimpleGUI(tk.Tk):
         else:
             self.dimensions = 3         # x, y, and z exist
 
+        # If any two columns match, there is no need to plot
+        if (self.xCol.get() == self.yCol.get()
+           or self.xCol.get() == self.zCol.get()
+           or self.yCol.get() == self.zCol.get()):
+            self.dimensions = 0
+
     def setVals(self) -> None:
         """
         Checks whether user has selected X, Y, or Z columns from the
@@ -881,8 +888,15 @@ class SimpleGUI(tk.Tk):
         """
 
         kwargs = {'title': 'Select Directory Containing Run(s)',
-                  'initialdir': self.default_path(),
                   'mustexist': True, }
+
+        # If you have not selected a path, set up a default path
+        # If something is already set, the file dialog should default there
+        if self.topDir == '':
+            kwargs['initialdir'] = self.default_path()
+        else:
+            kwargs['initialdir'] = self.topDir
+
         self.topDir = filedialog.askdirectory(**kwargs)
         if self.topDir != '':
             self.topDir = os.path.abspath(self.topDir)
@@ -909,11 +923,12 @@ class SimpleGUI(tk.Tk):
                         'Please choose a valid directory!',  # message
                         icon='warning',)
             return
-        mfile = self.setMissileFile()
-        if mfile is not None:
-            self.status.set(f'Loaded {mfile}')
 
-    def setMissileFile(self) -> str:
+        # This should already be true, but setting just in case
+        self.topDir = os.path.abspath(self.topDir)
+        self.loadMissileFiles()
+
+    def loadMissileFiles(self) -> str:
         """
         Checks for whether 'NotionalETEOutput###.xlsx' is present in topDir.
         (The ### is a random number between 000 and 999, always three digits)
@@ -929,17 +944,18 @@ class SimpleGUI(tk.Tk):
             The absolute path to the missile file
 
         """
-        mfile = os.path.join(self.topDir, 'NotionalETEOutput000.xlsx')
-        if not os.path.isfile(mfile):
-            mb.showinfo('File Not Found',                       # title
-                        'No valid files found in directory!',   # message
-                        icon='warning',)
-            return
+        self.status.set(f'Searching {self.topDir} for files')  # updating user
 
-        # Saves the filename and reads the missile file into a DataFrame
-        self.missileFile = os.path.abspath(mfile)
-        self.missileDF = pd.read_excel(self.missileFile)
+        # Looking for files to read in directory
+        tree = dirTree(self.topDir)
+        missileFiles = allMissileFiles(tree)
+
+        # Making massive DataFrame of all the missile files in tree
+        N = len(missileFiles)
+        self.status.set(f'Loading {N} file' + 's' * (N > 1))
+        self.missileDF = combinedMissleDF(missileFiles)
         self.missileDF.rename(columns=dictMap(), inplace=True)
+        self.status.set(f'Loaded {N} file' + 's' * (N > 1))
 
         # Takes the columns from the DataFrame and makes them available
         # to be plotted on any axis. The first entry will be blank
@@ -950,7 +966,6 @@ class SimpleGUI(tk.Tk):
         self.xCB['values'] = self.plotCols
         self.yCB['values'] = self.plotCols
         self.zCB['values'] = self.plotCols
-        return mfile
 
     def getOutDir(self) -> None:
         """
@@ -1215,25 +1230,40 @@ class SimpleGUI(tk.Tk):
         self.canvas = FigureCanvasTkAgg(self.figure, self.viewPane)
         self.canvas.draw()
 
-        # Iterating through DataFrame to plot
-        for uid, df in self.missileDF.groupby(['Unique ID']):
-            # Setting up plot dimensions and values
-            subplot_kwargs = {}
+        # Determining which columns to keep and setting up
+        # a renaming convention to make plotting easier
+        plotCols = [self.xCol.get(), self.yCol.get()]
+        xyzRenamer = {self.xCol.get(): 'x', self.yCol.get(): 'y'}
+        if self.dimensions == 3:
+            plotCols.append(self.zCol.get())
+            xyzRenamer[self.zCol.get()] = 'z'
+
+        # Downselecting DataFrame based on these columns
+        # Keeping Unique ID so we can plot each ID separately
+        plotDF = self.missileDF[['Unique ID', *plotCols]].copy()
+
+        # This will allow us to reference plotDF.x
+        # instead of having to call plotDF[self.xCol.get()], for example
+        plotDF.rename(columns=xyzRenamer, inplace=True)
+
+        # Setting up subplot for showing all the plots
+        subplot_kwargs = {}
+        if self.dimensions == 3:
+            subplot_kwargs['projection'] = '3d'
+        myplot = self.figure.add_subplot(111, **subplot_kwargs)
+
+        # This may need to be edited for multiple graph support
+        plotkwargs = {'color': self.plotColorEntry.get()}
+
+        # Looping through all possible unique IDs and adding plots
+        for (uid, df) in plotDF.groupby(['Unique ID']):
+            plotkwargs['label'] = f'Run {uid}'
+
+            # This segments the data into 2 or 3 dimensions, depending
+            # on whether we are plotting 2D or 3D data
+            plotlist = [df.x.values, df.y.values]
             if self.dimensions == 3:
-                plotlist = (df[self.xCol.get()].values,
-                            df[self.yCol.get()].values,
-                            df[self.zCol.get()].values,)
-                subplot_kwargs['projection'] = '3d'
-            else:
-                plotlist = (df[self.xCol.get()].values,
-                            df[self.yCol.get()].values,)
-
-            # Making figure to plot upon
-            myplot = self.figure.add_subplot(111, **subplot_kwargs)
-
-            # Making line or scatter plot
-            plotkwargs = {'color': self.plotColorEntry.get(),
-                          'label': f'Run {uid}'}
+                plotlist.append(df.z.values)
 
             if self.plotStyle.get() == 'line':
                 myplot.plot(*plotlist, **plotkwargs,
@@ -1242,17 +1272,8 @@ class SimpleGUI(tk.Tk):
                 myplot.scatter(*plotlist, **plotkwargs,
                                marker=self.scatterStyle.get())
 
-            if self.showLegend:
-                myplot.legend()
-
-        # Adding title with options, if necessary
-        if self.titleText.get() != '':
-            plotTitle = self.titleText.get()
-            fontdict = {'fontsize': int(self.titleSize.get()),
-                        'color': self.titleColorHex.get(),
-                        'style': 'italic' if self.itTitleOn else 'normal',
-                        'fontweight': 'bold' if self.boldTitleOn else 'normal'}
-            myplot.set_title(plotTitle, fontdict=fontdict)
+        if self.showLegend:
+            myplot.legend()
 
         # Adding Axes Labels
         if self.showXLabel.get():
@@ -1282,6 +1303,83 @@ class SimpleGUI(tk.Tk):
         myplot.set_ylim(yMin, yMax)
         if self.dimensions == 3:
             myplot.set_zlim(zMin, zMax)
+
+        """
+
+        # Making a dummy list to hold all our plots
+        myplots = [None] * self.missileDF['Unique ID'].nunique()
+
+        # Iterating through DataFrame to plot
+        for k, (uid, df) in enumerate(self.missileDF.groupby(['Unique ID'])):
+            # Setting up plot dimensions and values
+            subplot_kwargs = {'label': f'Run {uid}'}
+            if self.dimensions == 3:
+                plotlist = (df[self.xCol.get()].values,
+                            df[self.yCol.get()].values,
+                            df[self.zCol.get()].values,)
+                subplot_kwargs['projection'] = '3d'
+            else:
+                plotlist = (df[self.xCol.get()].values,
+                            df[self.yCol.get()].values,)
+
+            # Making figure to plot upon
+            myplots[k] = self.figure.add_subplot(111, **subplot_kwargs)
+
+            # Making line or scatter plot
+            plotkwargs = {'color': self.plotColorEntry.get(),
+                          'label': f'Run {uid}'}
+
+            if self.plotStyle.get() == 'line':
+                myplots[k].plot(*plotlist, **plotkwargs,
+                                linestyle=self.lineStyle.get())
+            else:
+                myplots[k].scatter(*plotlist, **plotkwargs,
+                                   marker=self.scatterStyle.get())
+
+            if self.showLegend:
+                myplots[k].legend()
+
+        
+
+            # Adding Axes Labels
+            if self.showXLabel.get():
+                myplots[k].set_xlabel(self.xCol.get())
+            if self.showYLabel.get():
+                myplots[k].set_ylabel(self.yCol.get())
+            if self.dimensions == 3 and self.showZLabel.get():
+                myplots[k].set_zlabel(self.zCol.get())
+    
+            # Adding gridlines, if necessary
+            if self.gridMajor.get():
+                myplots[k].grid(b=True, which='major', alpha=0.8)
+            if self.gridMinor.get():
+                myplots[k].grid(b=True, which='minor', alpha=0.2, linestyle='--',)
+                myplots[k].minorticks_on()
+    
+                # There is a bug which causes minor ticks to show up strangely
+                # on 3D graphs alone
+                if self.dimensions == 3:
+                    self.status.set('The minor axes ticks currently have a bug')
+            else:
+                self.status.set('')
+                
+            # Setting the min/max values for each variable
+            (xMin, xMax, yMin, yMax, zMin, zMax) = self.getLimits(myplots[k])
+            myplots[k].set_xlim(xMin, xMax)
+            myplots[k].set_ylim(yMin, yMax)
+            if self.dimensions == 3:
+                myplots[k].set_zlim(zMin, zMax)
+                
+        """                
+            
+        # Adding title with options, if necessary
+        if self.titleText.get() != '':
+            plotTitle = self.titleText.get()
+            fontdict = {'fontsize': int(self.titleSize.get()),
+                        'color': self.titleColorHex.get(),
+                        'style': 'italic' if self.itTitleOn else 'normal',
+                        'fontweight': 'bold' if self.boldTitleOn else 'normal'}
+            self.figure.set_title(plotTitle, fontdict=fontdict)
 
         # Packing plot into GUI and adding toolbar
         self.canvas.get_tk_widget().pack(side=tk.BOTTOM,
@@ -1443,6 +1541,9 @@ def combinedMissleDF(missileFileList: list) -> pd.DataFrame:
     generating a single DataFrame for each file and using the
     concatenation function to generate a single object.
 
+    Transforms Path and uniqueID into categorical variables because
+    it's going to have a lot of repeats
+
     Parameters
     ----------
     missileFileList : list
@@ -1454,7 +1555,31 @@ def combinedMissleDF(missileFileList: list) -> pd.DataFrame:
         A Pandas DataFrame of the combined object
 
     """
-    return pd.concat(map(pd.read_excel, missileFileList))
+    df = pd.concat(map(makeDataFrameAddPath, missileFileList))
+    df.Path = df.Path.astype('category')
+    df.uniqueid = df.uniqueid.astype('category')
+    return df
+
+
+def makeDataFrameAddPath(inFile: str) -> pd.DataFrame:
+    """
+    Makes a DataFrame from an Excel file and adds the path
+    of the file as a new column
+
+    Parameters
+    ----------
+    inFile : str
+        An Excel spreadsheet that has panel data
+
+    Returns
+    -------
+    df : pd.DataFrame
+        A Pandas DataFrame of the data with one additional column added
+
+    """
+    df = pd.read_excel(inFile)
+    df['Path'] = inFile
+    return df
 
 
 # To prevent this running automatically if imported
