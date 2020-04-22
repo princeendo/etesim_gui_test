@@ -15,11 +15,11 @@ Example:
 
 Todo:
     * Add option to graph assets (radars/etc.)
-    * Add ability to place multiple graphs at once
-    * Add CheckBox for ax.show_legend()
-    * Split up graph styles across two lines
+    X Add ability to place multiple graphs at once
+    X Add CheckBox for ax.show_legend()
+    X Split up graph styles across two lines
     * Place X/Y/Z Drop-downs in a LabelFrame
-    * Add option for legend
+    X Add option for legend
     * Add button to render graph manually
     * Add font-family option for labels/titles
     * Add underline option for labels/titles
@@ -108,9 +108,7 @@ class SimpleGUI(tk.Tk):
         self.titleColorHex = tk.StringVar(value='#000000')
         self.plotColorRGB = (31, 119, 180)                  # matplotlib blue
         self.plotColorHex = tk.StringVar(value='#1f77b4')
-
-        # TOOD: Move this into the edit pane
-        self.showLegend = True
+        self.availableRuns = np.array([])
 
         # Creating a Notebook seems to be the key to making tabs
         # build_tabs() compartmentalizes the code for making the tabs
@@ -201,86 +199,7 @@ class SimpleGUI(tk.Tk):
         self.threatTypeCB.grid(row=1, column=1, sticky=tk.W)
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        # Tab 2: Save Options
-        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        self.saveOptionsIcon = tk.PhotoImage(file='images/save-disk.png')
-        self.saveOptionsTab = ttk.Frame(parent,)
-        saveOptions_kwargs = {'text': 'Saving Options',
-                              'image': self.saveOptionsIcon,
-                              'compound': tk.LEFT, }
-        assert(saveOptions_kwargs)  # Remove if uncommenting below line
-        # parent.add(self.saveOptionsTab, **saveOptions_kwargs)
-
-        # - - - - - - - - - - - - - - - -
-        # Row 0 - Output Directory
-        self.outDirLabel = tk.Label(self.saveOptionsTab,
-                                    text='Output Directory: ')
-        self.outDirLabel.grid(row=0, sticky=tk.W)
-
-        self.outDirPath = tk.Text(self.saveOptionsTab, relief=tk.SUNKEN)
-        self.outDirPath.config(width=40, height=1.45)
-        self.outDirPath.grid(row=0, column=1, columnspan=5, sticky=tk.W)
-
-        self.outDirBrowseButton = tk.Button(self.saveOptionsTab,
-                                            text='Browse',
-                                            height=1,
-                                            command=self.getOutDir)
-        self.outDirBrowseButton.grid(row=0, column=6, padx=4)
-
-        # - - - - - - - - - - - - - - - -
-        # Row 1 - Image Save Type
-        self.imageTypeOptions = ('JPG', 'PDF', 'PNG', 'TIFF')
-        self.imageTypeLabel = tk.Label(self.saveOptionsTab,
-                                       text='Image Format: ')
-        self.imageTypeLabel.grid(row=1, sticky=tk.W)
-        self.imageType = tk.StringVar()
-
-        self.imageTypeCB = ttk.Combobox(self.saveOptionsTab,
-                                        textvariable=self.imageType,
-                                        values=self.imageTypeOptions,
-                                        state='disabled',
-                                        width=20,)
-
-        # Sets the default to PNG since it looks nice and is small
-        self.imageTypeCB.set('PNG')
-        self.imageTypeCB.grid(row=1, column=1, columnspan=2)
-
-        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        # Tab 3: Graph Options
-        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        gs_ico = 'images/graph-settings-icon.png'
-        self.graphOptionsIcon = tk.PhotoImage(file=gs_ico)
-        self.graphOptionsTab = ttk.Frame(parent,)
-        graphOpts_kwargs = {'text': 'Graph Options',
-                            'image': self.graphOptionsIcon,
-                            'compound': tk.LEFT, }
-        assert(graphOpts_kwargs)  # Remove if uncommenting below line
-        # parent.add(self.graphOptionsTab, **graphOpts_kwargs)
-
-        # - - - - - - - - - - - - - - - -
-        # Row 0 - Number of Plots
-        thisrow = 0
-        # Setting up a 'spinbox' where you can only select a range of values
-        self.numPlots = tk.IntVar(self.graphOptionsTab, 1)
-        self.numPlotsLabel = ttk.Label(self.graphOptionsTab,
-                                       text='Simultaneous Plots: ')
-        self.numPlotsLabel.grid(row=thisrow, column=0, padx=(0, 10))
-
-        # This can be done with tk or ttk
-        # If using tk, the default value is from_ or use the "value" keyword
-        # If using ttk, you have to set the default value with .set()
-        self.numPlotsSpinBox = ttk.Spinbox(self.graphOptionsTab,
-                                           from_=1,
-                                           to=5,
-                                           command=self.setNumPlots,
-                                           width=3,
-                                           state='readonly',)  # to limit input
-        self.numPlotsSpinBox.insert(0, '1')
-        self.numPlotsSpinBox.grid(row=thisrow, column=1)
-        self.numPlotsSpinBox.set('1')
-
-        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        # Tab 4: Viewer
+        # Tab 2: Viewer
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         self.viewer_icon = tk.PhotoImage(file='images/three-dim-graph.png')
         self.viewerTab = ttk.Frame(parent,)
@@ -295,7 +214,7 @@ class SimpleGUI(tk.Tk):
 
         # - - - - - - - - - - - - - - - -
         # Defining Edit and View Panes
-        self.editPane = ttk.Frame(self.graphPanes, width=250, relief=tk.GROOVE)
+        self.editPane = ttk.Frame(self.graphPanes, width=260, relief=tk.GROOVE)
         self.graphPanes.add(self.editPane)
 
         # We don't want the edit frame to automatically resize
@@ -366,7 +285,7 @@ class SimpleGUI(tk.Tk):
         self.xMinEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
         self.xMinEntry['textvariable'] = self.xMin
         self.xMinEntry.insert(0, 'Min')
-        self.xMinEntry.bind('<Key>', self.handle_wait)
+        self.xMinEntry.bind('<Key>', self.waitToPlot)
         self.xMinEntry.bind("<FocusIn>",
                             lambda _: self.modifyLimitsEntry(_, 'xMin'))
         self.xMinEntry.bind("<FocusOut>",
@@ -377,7 +296,7 @@ class SimpleGUI(tk.Tk):
         self.xMaxEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
         self.xMaxEntry['textvariable'] = self.xMax
         self.xMaxEntry.insert(0, 'Max')
-        self.xMaxEntry.bind('<Key>', self.handle_wait)
+        self.xMaxEntry.bind('<Key>', self.waitToPlot)
         self.xMaxEntry.bind("<FocusIn>",
                             lambda _: self.modifyLimitsEntry(_, 'xMax'))
         self.xMaxEntry.bind("<FocusOut>",
@@ -400,7 +319,7 @@ class SimpleGUI(tk.Tk):
         self.yMinEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
         self.yMinEntry['textvariable'] = self.yMin
         self.yMinEntry.insert(0, 'Min')
-        self.yMinEntry.bind('<Key>', self.handle_wait)
+        self.yMinEntry.bind('<Key>', self.waitToPlot)
         self.yMinEntry.bind("<FocusIn>",
                             lambda _: self.modifyLimitsEntry(_, 'yMin'))
         self.yMinEntry.bind("<FocusOut>",
@@ -411,7 +330,7 @@ class SimpleGUI(tk.Tk):
         self.yMaxEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
         self.yMaxEntry['textvariable'] = self.yMax
         self.yMaxEntry.insert(0, 'Max')
-        self.yMaxEntry.bind('<Key>', self.handle_wait)
+        self.yMaxEntry.bind('<Key>', self.waitToPlot)
         self.yMaxEntry.bind("<FocusOut>",
                             lambda _: self.modifyLimitsEntry(_, 'yMax'))
         self.yMaxEntry.bind("<FocusIn>",
@@ -434,7 +353,7 @@ class SimpleGUI(tk.Tk):
         self.zMinEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
         self.zMinEntry['textvariable'] = self.zMin
         self.zMinEntry.insert(0, 'Min')
-        self.zMinEntry.bind('<Key>', self.handle_wait)
+        self.zMinEntry.bind('<Key>', self.waitToPlot)
         self.zMinEntry.bind("<FocusIn>",
                             lambda _: self.modifyLimitsEntry(_, 'zMin'))
         self.zMinEntry.bind("<FocusOut>",
@@ -445,7 +364,7 @@ class SimpleGUI(tk.Tk):
         self.zMaxEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
         self.zMaxEntry['textvariable'] = self.zMax
         self.zMaxEntry.insert(0, 'Max')
-        self.zMaxEntry.bind('<Key>', self.handle_wait)
+        self.zMaxEntry.bind('<Key>', self.waitToPlot)
         self.zMaxEntry.bind("<FocusIn>",
                             lambda _: self.modifyLimitsEntry(_, 'zMax'))
         self.zMaxEntry.bind("<FocusOut>",
@@ -466,7 +385,7 @@ class SimpleGUI(tk.Tk):
         self.titleEntry.insert(0, '')
 
         # Adds a waiting period for the user to stop typing
-        self.titleEntry.bind('<Key>', self.handle_wait)
+        self.titleEntry.bind('<Key>', self.waitToPlot)
         self.titleEntry.grid(row=0, column=0, sticky=tk.W, columnspan=5)
 
         # - - - - - - - - - -
@@ -501,7 +420,7 @@ class SimpleGUI(tk.Tk):
         self.titleColorEntry = ttk.Entry(self.titleLF, **tc_kwargs)
 
         # Adds a waiting period for the user to stop typing
-        self.titleColorEntry.bind('<Key>', self.handle_wait)
+        self.titleColorEntry.bind('<Key>', self.waitToPlot)
         self.titleColorEntry.grid(row=1, column=3, sticky=tk.W)
 
         # Setting up color wheel buttong
@@ -514,10 +433,12 @@ class SimpleGUI(tk.Tk):
         # - - - - - - - - - - - - - - - -
         # Row 5 - Style Options
         thisrow += 1
-        self.styleLF = ttk.LabelFrame(self.editPane, text="Style",
+        self.styleLF = ttk.LabelFrame(self.editPane, text="Plot Style",
                                       relief=tk.RIDGE)
         self.styleLF.grid(row=thisrow, column=1, sticky=tk.W, pady=3)
 
+        # - - - - - - - - - -
+        # Row 5.0 - Plot/Scatter
         self.plotStyle = tk.StringVar(self.styleLF, 'line')
 
         linekwargs = {'text': 'Line', 'var': self.plotStyle,
@@ -542,7 +463,7 @@ class SimpleGUI(tk.Tk):
         # Setting up a CB to be placed beside Scatter Style radio button
         self.scatterStyleOptions = ('o', 'v', '^', '<', '>', '8', 's', 'p',
                                     '*', 'h', 'H', 'D', 'd', 'P', 'X')
-        self.scatterStyle = tk.StringVar(self.graphOptionsTab, 'o')
+        self.scatterStyle = tk.StringVar(self.styleLF, 'o')
 
         scatterStyle_kwargs = {'textvariable': self.scatterStyle,
                                'values': self.scatterStyleOptions,
@@ -560,28 +481,38 @@ class SimpleGUI(tk.Tk):
         self.scatterStyleCB.bind('<<ComboboxSelected>>', self.showPlot)
 
         # - - - - - - - - - -
-        # Row 5.0 - Plot Color
-        self.plotColorFrame = tk.Frame(self.styleLF)
-        self.plotColorFrame.grid(row=1, column=0, columnspan=4)
+        # Row 5.1 - Legend
+        self.showLegend = tk.BooleanVar(value=True)
+        legend_kwargs = {'text': 'Show Legend', 'variable': self.showLegend,
+                         'command': lambda: self.showPlot(1), }
+        self.legendCB = tk.Checkbutton(self.styleLF, **legend_kwargs)
+        self.legendCB.grid(row=1, column=0, columnspan=2, sticky=tk.W)
 
-        self.plotColorLabel = ttk.Label(self.plotColorFrame,
-                                        text='Plot Color:')
-        self.plotColorLabel.grid(row=0, column=0, sticky=tk.W)
+        # - - - - - - - - - -
+        # Row 5.2 - Plot Color
+
+        # Setting up whether the colors should be made automatically
+        self.autoColor = tk.BooleanVar(value=True)
+        ac_kwargs = {'text': 'Auto Color', 'variable': self.autoColor,
+                     'command': self.showHidePlotColors, }
+        self.autoColorCB = tk.Checkbutton(self.styleLF, **ac_kwargs)
+        self.autoColorCB.grid(row=2, column=0, columnspan=2, sticky=tk.W)
 
         # Plot Color Picker
-        pc_kwargs = {'width': 20, 'textvariable': self.plotColorHex, }
-        self.plotColorEntry = ttk.Entry(self.plotColorFrame, **pc_kwargs)
+        pc_kwargs = {'width': 10, 'textvariable': self.plotColorHex,
+                     'state': 'disabled', }
+        self.plotColorEntry = ttk.Entry(self.styleLF, **pc_kwargs)
 
         # Adds a waiting period for the user to stop typing
-        self.plotColorEntry.bind('<Key>', self.handle_wait)
-        self.plotColorEntry.grid(row=0, column=1, sticky=tk.E, pady=3)
+        self.plotColorEntry.bind('<Key>', self.waitToPlot)
+        self.plotColorEntry.grid(row=2, column=2, sticky=tk.E, pady=0)
 
         # Setting up color wheel buttong
         self.plotColorWheel = tk.PhotoImage(file='images/color_wheel.png')
-        self.plotColorButton = tk.Button(self.plotColorFrame,
-                                         image=self.plotColorWheel,
-                                         command=self.pickPlotColor)
-        self.plotColorButton.grid(row=0, column=2, sticky=tk.E, pady=3)
+        pcb_kwargs = {'image': self.plotColorWheel, 'state': 'disabled',
+                      'command': self.pickPlotColor, }
+        self.plotColorButton = tk.Button(self.styleLF, **pcb_kwargs)
+        self.plotColorButton.grid(row=2, column=3, sticky=tk.W, padx=(5, 0))
 
         # - - - - - - - - - - - - - - - -
         # Row 6 - Additional Options
@@ -610,14 +541,14 @@ class SimpleGUI(tk.Tk):
         self.gridMinorCB.grid(row=0, column=2, sticky=tk.W,)
 
         # - - - - - - - - - -
-        # Row 6.1 - Labels
+        # Row 6.1 - Axis Labels
         self.showAxLabel = ttk.Label(self.addOptsLF, text='Axis Labels:',)
         self.showAxLabel.grid(row=1, column=0, sticky=tk.W, padx=(0, 2))
         self.showAxFrame = tk.Frame(self.addOptsLF)
         self.showAxFrame.grid(row=1, column=1, sticky=tk.W, columnspan=2)
 
-        # - - - - - - - - - -
-        # Row 6.1.0 - XYZ
+        # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+        # Row 6.1.0 - XYZ Labels
         self.showXLabel = tk.BooleanVar(value=True)
         self.showYLabel = tk.BooleanVar(value=True)
         self.showZLabel = tk.BooleanVar(value=True)
@@ -634,6 +565,55 @@ class SimpleGUI(tk.Tk):
         self.showYLabelCB.grid(row=0, column=1, sticky=tk.W)
         self.showZLabelCB = tk.Checkbutton(self.showAxFrame, **zlbl_kwargs)
         self.showZLabelCB.grid(row=0, column=2, sticky=tk.W)
+
+        # - - - - - - - - - - - - - - - -
+        # Row 7 - Run Traversal
+        thisrow += 1
+        self.runChoiceLF = ttk.LabelFrame(self.editPane, relief=tk.RIDGE,
+                                          text="Run Viewer",)
+        self.runChoiceLF.grid(row=thisrow, column=1, sticky=tk.W, pady=3,)
+
+        # The switch for whether runs are plotted all together
+        self.showAllRuns = tk.BooleanVar(value=True)
+
+        # - - - - - - - - - -
+        # Row 7.0 - Show All Runs
+        allruns_kwargs = {'text': 'All', 'var': self.showAllRuns,
+                          'value': True, 'command': lambda: self.showPlot(1)}
+
+        self.allRunsRB = ttk.Radiobutton(self.runChoiceLF, **allruns_kwargs,)
+        self.allRunsRB.grid(row=0, column=0, columnspan=1, sticky=tk.W)
+
+        # - - - - - - - - - -
+        # Row 7.1 - Show Some Runs
+        someruns_kwargs = {'text': 'Select', 'var': self.showAllRuns,
+                           'value': False, 'command': lambda: self.showPlot(1)}
+        self.someRunsRB = ttk.Radiobutton(self.runChoiceLF, **someruns_kwargs,)
+        self.someRunsRB.grid(row=0, column=1, columnspan=1, sticky=tk.W)
+
+        # Setting up the chooser for the individual run
+        self.run = tk.IntVar()
+        run_kwargs = {'values': self.availableRuns.tolist(), 'width': 4,
+                      'command': lambda: self.showPlot(1), 'state': 'disabled',
+                      'textvariable': self.run, }
+        self.runChoice = ttk.Spinbox(self.runChoiceLF, **run_kwargs)
+        self.runChoice.grid(row=0, column=2, sticky=tk.W)
+        self.runChoice.bind('<Key>', self.waitToPlot)
+
+        # If there is an available run, set it to the first one
+        if self.availableRuns.size > 0:
+            self.runChoice.set(self.availableRuns[0])
+
+        # Setting up transparency
+        self.transparentRuns = tk.BooleanVar(value=True)
+        transRun_kwargs = {'text': 'Fade Others', 'state': 'disabled',
+                           'variable': self.transparentRuns,
+                           'command': lambda: self.showPlot(1), }
+
+        self.transRunsCB = tk.Checkbutton(self.runChoiceLF, **transRun_kwargs)
+        self.transRunsCB.grid(row=0, column=3, sticky=tk.W,)
+
+        self.setRunOptions()
 
     ####################################################################
     # Callback functions
@@ -788,6 +768,7 @@ class SimpleGUI(tk.Tk):
             self.titleColorHex.set(color[1])
             self.titleColorRGB = self.hex2rgb(self.titleColorHex.get())
             self.editTitleOptions(self.titleColorHex.get())
+        self.showPlot(1)
 
     def pickPlotColor(self) -> None:
         """
@@ -826,8 +807,10 @@ class SimpleGUI(tk.Tk):
         """
         if self.xCol.get() == '':       # x does not exist
             self.dimensions = 0
+            return
         elif self.yCol.get() == '':     # x exists, y does not
             self.dimensions = 0
+            return
         elif self.zCol.get() == '':     # x and y exist, z does not
             self.dimensions = 2
         else:
@@ -838,6 +821,62 @@ class SimpleGUI(tk.Tk):
            or self.xCol.get() == self.zCol.get()
            or self.yCol.get() == self.zCol.get()):
             self.dimensions = 0
+            self.status.set('Plot will not render if two elements match')
+
+    def setRunOptions(self, event=None) -> None:
+        """
+        Sets the run numbers specified for looking at runs.
+        Can enable/disable run number input based upon user selection.
+        Will also set default values for the run number if there is
+        an available set of run numbers to choose from
+
+        Parameters
+        ----------
+        event : tk.Event, optional
+            An event to be passed to turn this function into a handle.
+            Not currently needed.
+            The default is None.
+
+        Returns
+        -------
+        None
+
+        """
+
+        # Set the ability for the user to edit the value based on choice
+        newstate = 'disabled' if self.showAllRuns.get() else 'normal'
+        self.runChoice['state'] = newstate
+        self.transRunsCB['state'] = newstate
+
+        # Load the spinbox with the available choices if they exist
+        if self.availableRuns.size > 0:
+            self.runChoice['values'] = self.availableRuns.tolist()
+
+            # If there is no value in the box, set it
+            if self.runChoice.get() == '0':
+                self.runChoice.set(self.availableRuns[0])
+        else:
+            self.runChoice.set('')
+            return
+
+        # We need to do some value checking but will not be able to
+        # if there are no values to choose from
+        try:
+            # if there is no entry for self.run to select from, it
+            # will be assigned an empty string and then try to do
+            # type conversion. This will obviously fail.
+            run = self.run.get()
+        except tk.TclError as tkTcl:
+            assert(tkTcl)  # to shut linter up
+            return
+
+        # If the value typed in does not match any value in the
+        # list of available runs, match it to the nearest value
+        if isinstance(run, int) and run not in self.availableRuns:
+            diff_vals = np.abs(self.availableRuns - run)
+            nearest_idx = np.argmin(diff_vals)
+            newval = self.availableRuns[nearest_idx]
+            self.runChoice.set(newval)
 
     def setVals(self) -> None:
         """
@@ -957,6 +996,12 @@ class SimpleGUI(tk.Tk):
         self.missileDF.rename(columns=dictMap(), inplace=True)
         self.status.set(f'Loaded {N} file' + 's' * (N > 1))
 
+        # Determining available runs based upon unique IDs
+        if 'RunNumber' in self.missileDF.columns:
+            self.availableRuns = self.missileDF.RunNumber.unique()
+            self.setRunOptions()
+            self.run.set(self.availableRuns[0])
+
         # Takes the columns from the DataFrame and makes them available
         # to be plotted on any axis. The first entry will be blank
         # so that users must choose to plot
@@ -1020,6 +1065,26 @@ class SimpleGUI(tk.Tk):
             self.lineStyleCB.config(state='disabled')
             self.scatterStyleCB.config(state='readonly')
         self.showPlot('update')  # Need a non-None event
+
+    def showHidePlotColors(self) -> None:
+        """
+        Changes the ability to interact with the plotColor entry and button
+        elements based upon whether autoColor has been selected
+
+        Returns
+        -------
+        None
+
+        """
+
+        # Disables the ability to edit if the autocolor option is set
+        # Otherwise, restores it to normal
+        newstate = 'disabled' if self.autoColor.get() else 'normal'
+        self.plotColorEntry['state'] = newstate
+        self.plotColorButton['state'] = newstate
+
+        # Updates plot based on choice
+        self.showPlot(1)
 
     def showHideXLimits(self) -> None:
         """
@@ -1105,7 +1170,7 @@ class SimpleGUI(tk.Tk):
         thisOS = platform.system().lower()
         return defaultPaths[thisOS]
 
-    def handle_wait(self, event=None) -> None:
+    def waitToPlot(self, event=None) -> None:
         """
         Creates a queue to wait for an event to finish. This allows users
         to enter multiple keystrokes or perform other actions before the
@@ -1221,6 +1286,9 @@ class SimpleGUI(tk.Tk):
         # Loading data for plotting
         self.setVals()
 
+        # Setting the run numbers to consider
+        self.setRunOptions()
+
         # If all values are empty, don't plot
         if self.dimensions == 0:
             return
@@ -1240,7 +1308,12 @@ class SimpleGUI(tk.Tk):
 
         # Downselecting DataFrame based on these columns
         # Keeping Unique ID so we can plot each ID separately
-        plotDF = self.missileDF[['Unique ID', *plotCols]].copy()
+        plotDF = self.missileDF[['RunNumber', *plotCols]].copy()
+
+        # If we don't want to show all the runs and don't
+        # want them to be transparent, we can downselect the values now
+        if not self.showAllRuns.get() and not self.transparentRuns.get():
+            plotDF = plotDF.query(f'RunNumber=={self.run.get()}').copy()
 
         # This will allow us to reference plotDF.x
         # instead of having to call plotDF[self.xCol.get()], for example
@@ -1253,11 +1326,25 @@ class SimpleGUI(tk.Tk):
         myplot = self.figure.add_subplot(111, **subplot_kwargs)
 
         # This may need to be edited for multiple graph support
-        plotkwargs = {'color': self.plotColorEntry.get()}
+        plotkwargs = {}
+
+        # If autocoloring is turned off, set the color for the graph
+        if not self.autoColor.get():
+            plotkwargs = {'color': self.plotColorEntry.get(), }
 
         # Looping through all possible unique IDs and adding plots
-        for (uid, df) in plotDF.groupby(['Unique ID']):
-            plotkwargs['label'] = f'Run {uid}'
+        for (uid, df) in plotDF.groupby(['RunNumber']):
+            plotkwargs['label'] = f'{uid}'
+
+            # If the transparency setting is on, we want to highlight
+            # only the run of interest
+            if (
+              not self.showAllRuns.get()
+              and self.transparentRuns.get()
+              and uid != self.run.get()):
+                plotkwargs['alpha'] = 0.2
+            else:
+                plotkwargs['alpha'] = 1.0
 
             # This segments the data into 2 or 3 dimensions, depending
             # on whether we are plotting 2D or 3D data
@@ -1272,8 +1359,9 @@ class SimpleGUI(tk.Tk):
                 myplot.scatter(*plotlist, **plotkwargs,
                                marker=self.scatterStyle.get())
 
-        if self.showLegend:
-            myplot.legend()
+        # Show legend if selected
+        if self.showLegend.get():
+            myplot.legend(fancybox=True, shadow=True, title='Run Number')
 
         # Adding Axes Labels
         if self.showXLabel.get():
@@ -1304,74 +1392,6 @@ class SimpleGUI(tk.Tk):
         if self.dimensions == 3:
             myplot.set_zlim(zMin, zMax)
 
-        """
-
-        # Making a dummy list to hold all our plots
-        myplots = [None] * self.missileDF['Unique ID'].nunique()
-
-        # Iterating through DataFrame to plot
-        for k, (uid, df) in enumerate(self.missileDF.groupby(['Unique ID'])):
-            # Setting up plot dimensions and values
-            subplot_kwargs = {'label': f'Run {uid}'}
-            if self.dimensions == 3:
-                plotlist = (df[self.xCol.get()].values,
-                            df[self.yCol.get()].values,
-                            df[self.zCol.get()].values,)
-                subplot_kwargs['projection'] = '3d'
-            else:
-                plotlist = (df[self.xCol.get()].values,
-                            df[self.yCol.get()].values,)
-
-            # Making figure to plot upon
-            myplots[k] = self.figure.add_subplot(111, **subplot_kwargs)
-
-            # Making line or scatter plot
-            plotkwargs = {'color': self.plotColorEntry.get(),
-                          'label': f'Run {uid}'}
-
-            if self.plotStyle.get() == 'line':
-                myplots[k].plot(*plotlist, **plotkwargs,
-                                linestyle=self.lineStyle.get())
-            else:
-                myplots[k].scatter(*plotlist, **plotkwargs,
-                                   marker=self.scatterStyle.get())
-
-            if self.showLegend:
-                myplots[k].legend()
-
-        
-
-            # Adding Axes Labels
-            if self.showXLabel.get():
-                myplots[k].set_xlabel(self.xCol.get())
-            if self.showYLabel.get():
-                myplots[k].set_ylabel(self.yCol.get())
-            if self.dimensions == 3 and self.showZLabel.get():
-                myplots[k].set_zlabel(self.zCol.get())
-    
-            # Adding gridlines, if necessary
-            if self.gridMajor.get():
-                myplots[k].grid(b=True, which='major', alpha=0.8)
-            if self.gridMinor.get():
-                myplots[k].grid(b=True, which='minor', alpha=0.2, linestyle='--',)
-                myplots[k].minorticks_on()
-    
-                # There is a bug which causes minor ticks to show up strangely
-                # on 3D graphs alone
-                if self.dimensions == 3:
-                    self.status.set('The minor axes ticks currently have a bug')
-            else:
-                self.status.set('')
-                
-            # Setting the min/max values for each variable
-            (xMin, xMax, yMin, yMax, zMin, zMax) = self.getLimits(myplots[k])
-            myplots[k].set_xlim(xMin, xMax)
-            myplots[k].set_ylim(yMin, yMax)
-            if self.dimensions == 3:
-                myplots[k].set_zlim(zMin, zMax)
-                
-        """                
-            
         # Adding title with options, if necessary
         if self.titleText.get() != '':
             plotTitle = self.titleText.get()
@@ -1379,7 +1399,7 @@ class SimpleGUI(tk.Tk):
                         'color': self.titleColorHex.get(),
                         'style': 'italic' if self.itTitleOn else 'normal',
                         'fontweight': 'bold' if self.boldTitleOn else 'normal'}
-            self.figure.set_title(plotTitle, fontdict=fontdict)
+            myplot.set_title(plotTitle, fontdict=fontdict)
 
         # Packing plot into GUI and adding toolbar
         self.canvas.get_tk_widget().pack(side=tk.BOTTOM,
@@ -1455,7 +1475,7 @@ def dictMap():
 
     """
     dMap = {
-        'uniqueid': 'Unique ID',
+        'uniqueid': 'RunNumber',
         'datatype': 'Data Type',
         'datarec_id': 'Data Record ID',
         'header_swmodel': 'Model',
@@ -1556,8 +1576,8 @@ def combinedMissleDF(missileFileList: list) -> pd.DataFrame:
 
     """
     df = pd.concat(map(makeDataFrameAddPath, missileFileList))
-    df.Path = df.Path.astype('category')
-    df.uniqueid = df.uniqueid.astype('category')
+    # df.Path = df.Path.astype('category')
+    # df.uniqueid = df.uniqueid.astype('category')
     return df
 
 
