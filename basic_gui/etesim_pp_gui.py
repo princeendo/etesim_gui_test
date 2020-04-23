@@ -483,10 +483,21 @@ class SimpleGUI(tk.Tk):
         # - - - - - - - - - -
         # Row 5.1 - Legend
         self.showLegend = tk.BooleanVar(value=True)
-        legend_kwargs = {'text': 'Show Legend', 'variable': self.showLegend,
-                         'command': lambda: self.showPlot(1), }
-        self.legendCB = tk.Checkbutton(self.styleLF, **legend_kwargs)
+        self.legendLoc = tk.StringVar(self.styleLF, value='Best')
+
+        legendCB_kwargs = {'text': 'Show Legend', 'variable': self.showLegend,
+                           'command': self.setLegendOptions, }
+        self.legendCB = tk.Checkbutton(self.styleLF, **legendCB_kwargs)
         self.legendCB.grid(row=1, column=0, columnspan=2, sticky=tk.W)
+
+        self.legendLocations = ('Best', 'Outside Right')
+        legendLoc_kwargs = {'textvariable': self.legendLoc,
+                            'values': self.legendLocations,
+                            'state': 'readonly',
+                            'width': 14}
+        self.legendLocCB = ttk.Combobox(self.styleLF, **legendLoc_kwargs)
+        self.legendLocCB.grid(row=1, column=2, columnspan=2, sticky=tk.E)
+        self.legendLocCB.bind('<<ComboboxSelected>>', self.showPlot)
 
         # - - - - - - - - - -
         # Row 5.2 - Plot Color
@@ -532,7 +543,8 @@ class SimpleGUI(tk.Tk):
         gmaj_kwargs = {'text': 'Major', 'variable': self.gridMajor,
                        'command': lambda: self.showPlot(1), }
         gmin_kwargs = {'text': 'Minor', 'variable': self.gridMinor,
-                       'command': lambda: self.showPlot(1), }
+                       'command': lambda: self.showPlot(1),
+                       'state': 'disabled', }
 
         self.gridMajorCB = tk.Checkbutton(self.addOptsLF, **gmaj_kwargs)
         self.gridMajorCB.grid(row=0, column=1, sticky=tk.W,)
@@ -792,6 +804,24 @@ class SimpleGUI(tk.Tk):
             self.plotColorRGB = self.hex2rgb(self.plotColorHex.get())
             self.showPlot(1)
 
+    def setLegendOptions(self) -> None:
+        """
+        Enables or disables the combobox for legend locations based
+        on whether the box is checked
+
+        Returns
+        -------
+        None
+            DESCRIPTION.
+
+        """
+        if self.showLegend.get():
+            self.legendLocCB['state'] = 'readonly'
+        else:
+            self.legendLocCB['state'] = 'disabled'
+
+        self.showPlot(1)
+
     def setDimensions(self) -> None:
         """
         Sets the dimensions for the plot based upon the columns
@@ -813,8 +843,16 @@ class SimpleGUI(tk.Tk):
             return
         elif self.zCol.get() == '':     # x and y exist, z does not
             self.dimensions = 2
+
+            # Minor grid option exists on 2D graphs
+            self.gridMinorCB['state'] = 'normal'
         else:
             self.dimensions = 3         # x, y, and z exist
+
+            # The option for minor grid will be disabled for 3D graphs
+            # It's ugly, doesn't add any extra detail, and has a visual bug
+            self.gridMinorCB['state'] = 'disabled'
+            self.gridMinor.set(False)
 
         # If any two columns match, there is no need to plot
         if (self.xCol.get() == self.yCol.get()
@@ -1361,7 +1399,17 @@ class SimpleGUI(tk.Tk):
 
         # Show legend if selected
         if self.showLegend.get():
-            myplot.legend(fancybox=True, shadow=True, title='Run Number')
+            legend_kwargs = {'title': 'Run Number',
+                             'fancybox': True, 'shadow': True, }
+
+            # Setting the location for the legend based on user input
+            if self.legendLoc.get() == 'Best':
+                pass
+            elif self.legendLoc.get() == 'Outside Right':
+                print('hey')
+                legend_kwargs['bbox_to_anchor'] = (1.1, 1.0)
+
+            myplot.legend(**legend_kwargs)
 
         # Adding Axes Labels
         if self.showXLabel.get():
