@@ -1406,7 +1406,6 @@ class SimpleGUI(tk.Tk):
             if self.legendLoc.get() == 'Best':
                 pass
             elif self.legendLoc.get() == 'Outside Right':
-                print('hey')
                 legend_kwargs['bbox_to_anchor'] = (1.1, 1.0)
 
             myplot.legend(**legend_kwargs)
