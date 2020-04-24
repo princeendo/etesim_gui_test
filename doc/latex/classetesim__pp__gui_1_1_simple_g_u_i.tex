@@ -37,7 +37,7 @@ str \mbox{\hyperlink{classetesim__pp__gui_1_1_simple_g_u_i_a1b7fa572961311d4f00b
 \item 
 None \mbox{\hyperlink{classetesim__pp__gui_1_1_simple_g_u_i_a6c9f589ea3fa12b9d236f5f66f328238}{get\+Out\+Dir}} (self)
 \item 
-None \mbox{\hyperlink{classetesim__pp__gui_1_1_simple_g_u_i_af781203ae4a69348ef0daca73db82ce6}{set\+Num\+Plots}} (self)
+None \mbox{\hyperlink{classetesim__pp__gui_1_1_simple_g_u_i_a2e4ecc475e94e4f96c6d26ebfd5cca05}{set\+Status\+Bar\+Options}} (self, event=None)
 \item 
 None \mbox{\hyperlink{classetesim__pp__gui_1_1_simple_g_u_i_abfca19b594e81f5b25082ae5e8d680a2}{set\+Plot\+Style\+Options}} (self)
 \item 
@@ -57,8 +57,12 @@ None \mbox{\hyperlink{classetesim__pp__gui_1_1_simple_g_u_i_a1c54b72eca79fa03bd8
 \item 
 tuple \mbox{\hyperlink{classetesim__pp__gui_1_1_simple_g_u_i_a098c1de306c0f972858faafc58351f5a}{hex2rgb}} (self, str hexstring)
 \item 
-None \mbox{\hyperlink{classetesim__pp__gui_1_1_simple_g_u_i_a205613ad045c9ae1d59dec0e5e7367ef}{show\+Plot}} (self, event=None, item=None, mode=None)
-\begin{DoxyCompactList}\small\item\em Plotting function. \end{DoxyCompactList}\item 
+pd.\+Data\+Frame \mbox{\hyperlink{classetesim__pp__gui_1_1_simple_g_u_i_ab61bc2edc48512e0b454f0fdf317dc51}{plot\+DF}} (self)
+\begin{DoxyCompactList}\small\item\em Plotting functions. \end{DoxyCompactList}\item 
+None \mbox{\hyperlink{classetesim__pp__gui_1_1_simple_g_u_i_a59ed9eb32a3503a50d6269a3a89497f6}{start\+Plot}} (self, event=None, item=None, mode=None)
+\item 
+None \mbox{\hyperlink{classetesim__pp__gui_1_1_simple_g_u_i_a120929836e0419ebacbead5fab597ff1}{finish\+Plot}} (self)
+\item 
 tuple \mbox{\hyperlink{classetesim__pp__gui_1_1_simple_g_u_i_a8c7f19fd27d138eae292bbf3dfddfc05}{get\+Limits}} (self, ax)
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
@@ -117,6 +121,12 @@ tuple \mbox{\hyperlink{classetesim__pp__gui_1_1_simple_g_u_i_a8c7f19fd27d138eae2
 \item 
 \mbox{\Hypertarget{classetesim__pp__gui_1_1_simple_g_u_i_a8d0bfa1c74faf848b46a5a7207179cd8}\label{classetesim__pp__gui_1_1_simple_g_u_i_a8d0bfa1c74faf848b46a5a7207179cd8}} 
 {\bfseries status\+Lbl}
+\item 
+\mbox{\Hypertarget{classetesim__pp__gui_1_1_simple_g_u_i_a00ed9fb3522161a745e16be1a9a67c77}\label{classetesim__pp__gui_1_1_simple_g_u_i_a00ed9fb3522161a745e16be1a9a67c77}} 
+{\bfseries xkcd\+Mode}
+\item 
+\mbox{\Hypertarget{classetesim__pp__gui_1_1_simple_g_u_i_a7ea591dc08ac3aef2a312ee33f26c0dd}\label{classetesim__pp__gui_1_1_simple_g_u_i_a7ea591dc08ac3aef2a312ee33f26c0dd}} 
+{\bfseries xkcd\+Mode\+CB}
 \item 
 \mbox{\Hypertarget{classetesim__pp__gui_1_1_simple_g_u_i_a77558d73efc3ab2f7d771a60af33d8dd}\label{classetesim__pp__gui_1_1_simple_g_u_i_a77558d73efc3ab2f7d771a60af33d8dd}} 
 {\bfseries input\+Tab}
@@ -420,9 +430,6 @@ tuple \mbox{\hyperlink{classetesim__pp__gui_1_1_simple_g_u_i_a8c7f19fd27d138eae2
 \item 
 \mbox{\Hypertarget{classetesim__pp__gui_1_1_simple_g_u_i_ab953d93a6f409fb527f7fb4b39c7ea72}\label{classetesim__pp__gui_1_1_simple_g_u_i_ab953d93a6f409fb527f7fb4b39c7ea72}} 
 {\bfseries out\+Dir}
-\item 
-\mbox{\Hypertarget{classetesim__pp__gui_1_1_simple_g_u_i_a3da9982e2ea44c643f7f55c5f3af6ba9}\label{classetesim__pp__gui_1_1_simple_g_u_i_a3da9982e2ea44c643f7f55c5f3af6ba9}} 
-{\bfseries num\+Plots}
 \end{DoxyCompactItemize}
 
 
@@ -528,6 +535,17 @@ Parameters
 style : str, optional
     A modifier parameter to indicate whether the bold or italic
     button has been pressed. The default is '' (for neither).
+
+Returns
+-------
+None\end{DoxyVerb}
+ \mbox{\Hypertarget{classetesim__pp__gui_1_1_simple_g_u_i_a120929836e0419ebacbead5fab597ff1}\label{classetesim__pp__gui_1_1_simple_g_u_i_a120929836e0419ebacbead5fab597ff1}} 
+\index{etesim\_pp\_gui.SimpleGUI@{etesim\_pp\_gui.SimpleGUI}!finishPlot@{finishPlot}}
+\index{finishPlot@{finishPlot}!etesim\_pp\_gui.SimpleGUI@{etesim\_pp\_gui.SimpleGUI}}
+\doxysubsubsection{\texorpdfstring{finishPlot()}{finishPlot()}}
+{\footnotesize\ttfamily  None etesim\+\_\+pp\+\_\+gui.\+Simple\+G\+U\+I.\+finish\+Plot (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Generates a new plot on the figure set up in startPlot.
 
 Returns
 -------
@@ -688,6 +706,24 @@ and renders the title with that color.
 Returns
 -------
 None\end{DoxyVerb}
+ \mbox{\Hypertarget{classetesim__pp__gui_1_1_simple_g_u_i_ab61bc2edc48512e0b454f0fdf317dc51}\label{classetesim__pp__gui_1_1_simple_g_u_i_ab61bc2edc48512e0b454f0fdf317dc51}} 
+\index{etesim\_pp\_gui.SimpleGUI@{etesim\_pp\_gui.SimpleGUI}!plotDF@{plotDF}}
+\index{plotDF@{plotDF}!etesim\_pp\_gui.SimpleGUI@{etesim\_pp\_gui.SimpleGUI}}
+\doxysubsubsection{\texorpdfstring{plotDF()}{plotDF()}}
+{\footnotesize\ttfamily  pd.\+Data\+Frame etesim\+\_\+pp\+\_\+gui.\+Simple\+G\+U\+I.\+plot\+DF (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Plotting functions. 
+
+\begin{DoxyVerb}Generates a smaller dataframe for plotting from the massive
+one stored in memory
+
+Returns
+-------
+plotDF : pd.DataFrame
+    A 2 or 3 column Pandas DataFrame containing the x, y, and
+    sometimes z data for plotting\end{DoxyVerb}
  \mbox{\Hypertarget{classetesim__pp__gui_1_1_simple_g_u_i_a732d8ceb83b9f01f466fbf4a7baccfe2}\label{classetesim__pp__gui_1_1_simple_g_u_i_a732d8ceb83b9f01f466fbf4a7baccfe2}} 
 \index{etesim\_pp\_gui.SimpleGUI@{etesim\_pp\_gui.SimpleGUI}!setDimensions@{setDimensions}}
 \index{setDimensions@{setDimensions}!etesim\_pp\_gui.SimpleGUI@{etesim\_pp\_gui.SimpleGUI}}
@@ -716,18 +752,6 @@ Returns
 -------
 None
     DESCRIPTION.\end{DoxyVerb}
- \mbox{\Hypertarget{classetesim__pp__gui_1_1_simple_g_u_i_af781203ae4a69348ef0daca73db82ce6}\label{classetesim__pp__gui_1_1_simple_g_u_i_af781203ae4a69348ef0daca73db82ce6}} 
-\index{etesim\_pp\_gui.SimpleGUI@{etesim\_pp\_gui.SimpleGUI}!setNumPlots@{setNumPlots}}
-\index{setNumPlots@{setNumPlots}!etesim\_pp\_gui.SimpleGUI@{etesim\_pp\_gui.SimpleGUI}}
-\doxysubsubsection{\texorpdfstring{setNumPlots()}{setNumPlots()}}
-{\footnotesize\ttfamily  None etesim\+\_\+pp\+\_\+gui.\+Simple\+G\+U\+I.\+set\+Num\+Plots (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
-
-\begin{DoxyVerb}Updates the number of plots based upon the value of the
-spinbox. Not currently active in this program.
-
-Returns
--------
-None\end{DoxyVerb}
  \mbox{\Hypertarget{classetesim__pp__gui_1_1_simple_g_u_i_abfca19b594e81f5b25082ae5e8d680a2}\label{classetesim__pp__gui_1_1_simple_g_u_i_abfca19b594e81f5b25082ae5e8d680a2}} 
 \index{etesim\_pp\_gui.SimpleGUI@{etesim\_pp\_gui.SimpleGUI}!setPlotStyleOptions@{setPlotStyleOptions}}
 \index{setPlotStyleOptions@{setPlotStyleOptions}!etesim\_pp\_gui.SimpleGUI@{etesim\_pp\_gui.SimpleGUI}}
@@ -758,6 +782,22 @@ event : tk.Event, optional
     An event to be passed to turn this function into a handle.
     Not currently needed.
     The default is None.
+
+Returns
+-------
+None\end{DoxyVerb}
+ \mbox{\Hypertarget{classetesim__pp__gui_1_1_simple_g_u_i_a2e4ecc475e94e4f96c6d26ebfd5cca05}\label{classetesim__pp__gui_1_1_simple_g_u_i_a2e4ecc475e94e4f96c6d26ebfd5cca05}} 
+\index{etesim\_pp\_gui.SimpleGUI@{etesim\_pp\_gui.SimpleGUI}!setStatusBarOptions@{setStatusBarOptions}}
+\index{setStatusBarOptions@{setStatusBarOptions}!etesim\_pp\_gui.SimpleGUI@{etesim\_pp\_gui.SimpleGUI}}
+\doxysubsubsection{\texorpdfstring{setStatusBarOptions()}{setStatusBarOptions()}}
+{\footnotesize\ttfamily  None etesim\+\_\+pp\+\_\+gui.\+Simple\+G\+U\+I.\+set\+Status\+Bar\+Options (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{event = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Updates the the elements displayed in the status bar.
+
+Parameters
+----------
+event : tk.Event, optional
+    An event that can drive the call. The default is None.
 
 Returns
 -------
@@ -833,17 +873,14 @@ behavior
 Returns
 -------
 None\end{DoxyVerb}
- \mbox{\Hypertarget{classetesim__pp__gui_1_1_simple_g_u_i_a205613ad045c9ae1d59dec0e5e7367ef}\label{classetesim__pp__gui_1_1_simple_g_u_i_a205613ad045c9ae1d59dec0e5e7367ef}} 
-\index{etesim\_pp\_gui.SimpleGUI@{etesim\_pp\_gui.SimpleGUI}!showPlot@{showPlot}}
-\index{showPlot@{showPlot}!etesim\_pp\_gui.SimpleGUI@{etesim\_pp\_gui.SimpleGUI}}
-\doxysubsubsection{\texorpdfstring{showPlot()}{showPlot()}}
-{\footnotesize\ttfamily  None etesim\+\_\+pp\+\_\+gui.\+Simple\+G\+U\+I.\+show\+Plot (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{event = {\ttfamily None},  }\item[{}]{item = {\ttfamily None},  }\item[{}]{mode = {\ttfamily None} }\end{DoxyParamCaption})}
+ \mbox{\Hypertarget{classetesim__pp__gui_1_1_simple_g_u_i_a59ed9eb32a3503a50d6269a3a89497f6}\label{classetesim__pp__gui_1_1_simple_g_u_i_a59ed9eb32a3503a50d6269a3a89497f6}} 
+\index{etesim\_pp\_gui.SimpleGUI@{etesim\_pp\_gui.SimpleGUI}!startPlot@{startPlot}}
+\index{startPlot@{startPlot}!etesim\_pp\_gui.SimpleGUI@{etesim\_pp\_gui.SimpleGUI}}
+\doxysubsubsection{\texorpdfstring{startPlot()}{startPlot()}}
+{\footnotesize\ttfamily  None etesim\+\_\+pp\+\_\+gui.\+Simple\+G\+U\+I.\+start\+Plot (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{event = {\ttfamily None},  }\item[{}]{item = {\ttfamily None},  }\item[{}]{mode = {\ttfamily None} }\end{DoxyParamCaption})}
 
-
-
-Plotting function. 
-
-\begin{DoxyVerb}Generates a plot in the right-hand portion of the viewer tab.
+\begin{DoxyVerb}Sets up all the variables and options necessary to generate
+a plot in the viewer pane.
 
 Parameters
 ----------
@@ -888,4 +925,4 @@ None\end{DoxyVerb}
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-etesim\+\_\+pp\+\_\+gui.\+py\end{DoxyCompactItemize}
+C\+:/\+Users/white/\+Documents/etesim\+\_\+gui\+\_\+test/basic\+\_\+gui/etesim\+\_\+pp\+\_\+gui.\+py\end{DoxyCompactItemize}

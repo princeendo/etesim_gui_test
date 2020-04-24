@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['pickplotcolor_12',['pickPlotColor',['../classetesim__pp__gui_1_1_simple_g_u_i.html#ad5469b5b5c0faf32e518a985988c1c54',1,'etesim_pp_gui::SimpleGUI']]],
-  ['picktitlecolor_13',['pickTitleColor',['../classetesim__pp__gui_1_1_simple_g_u_i.html#a8da9889996115467690ffb8be87b21d2',1,'etesim_pp_gui::SimpleGUI']]]
+  ['modifylimitsentry_12',['modifyLimitsEntry',['../classetesim__pp__gui_1_1_simple_g_u_i.html#a2f8efe89f16f6476cb6995d23128eccc',1,'etesim_pp_gui::SimpleGUI']]]
 ];

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="dir_80bbec55cfc5eb0243706b04b7cdcc9f" kind="dir">
+    <compoundname>C:/Users/white/Documents/etesim_gui_test/basic_gui</compoundname>
+    <innerfile refid="etesim__pp__gui_8py">etesim_pp_gui.py</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/"/>
+  </compounddef>
+</doxygen>

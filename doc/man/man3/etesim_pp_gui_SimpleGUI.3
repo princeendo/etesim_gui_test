@@ -55,7 +55,7 @@ Inherits Tk\&.
 .RI "None \fBgetOutDir\fP (self)"
 .br
 .ti -1c
-.RI "None \fBsetNumPlots\fP (self)"
+.RI "None \fBsetStatusBarOptions\fP (self, event=None)"
 .br
 .ti -1c
 .RI "None \fBsetPlotStyleOptions\fP (self)"
@@ -86,9 +86,15 @@ Inherits Tk\&.
 .RI "tuple \fBhex2rgb\fP (self, str hexstring)"
 .br
 .ti -1c
-.RI "None \fBshowPlot\fP (self, event=None, item=None, mode=None)"
+.RI "pd\&.DataFrame \fBplotDF\fP (self)"
 .br
-.RI "Plotting function\&. "
+.RI "Plotting functions\&. "
+.ti -1c
+.RI "None \fBstartPlot\fP (self, event=None, item=None, mode=None)"
+.br
+.ti -1c
+.RI "None \fBfinishPlot\fP (self)"
+.br
 .ti -1c
 .RI "tuple \fBgetLimits\fP (self, ax)"
 .br
@@ -149,6 +155,12 @@ Inherits Tk\&.
 .br
 .ti -1c
 .RI "\fBstatusLbl\fP"
+.br
+.ti -1c
+.RI "\fBxkcdMode\fP"
+.br
+.ti -1c
+.RI "\fBxkcdModeCB\fP"
 .br
 .ti -1c
 .RI "\fBinputTab\fP"
@@ -453,9 +465,6 @@ Inherits Tk\&.
 .ti -1c
 .RI "\fBoutDir\fP"
 .br
-.ti -1c
-.RI "\fBnumPlots\fP"
-.br
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -564,6 +573,18 @@ Parameters
 style : str, optional
     A modifier parameter to indicate whether the bold or italic
     button has been pressed. The default is '' (for neither).
+
+Returns
+-------
+None
+.fi
+.PP
+ 
+.SS " None etesim_pp_gui\&.SimpleGUI\&.finishPlot ( self)"
+
+.PP
+.nf
+Generates a new plot on the figure set up in startPlot.
 
 Returns
 -------
@@ -734,6 +755,23 @@ None
 .fi
 .PP
  
+.SS " pd\&.DataFrame etesim_pp_gui\&.SimpleGUI\&.plotDF ( self)"
+
+.PP
+Plotting functions\&. 
+.PP
+.nf
+Generates a smaller dataframe for plotting from the massive
+one stored in memory
+
+Returns
+-------
+plotDF : pd.DataFrame
+    A 2 or 3 column Pandas DataFrame containing the x, y, and
+    sometimes z data for plotting
+.fi
+.PP
+ 
 .SS " None etesim_pp_gui\&.SimpleGUI\&.setDimensions ( self)"
 
 .PP
@@ -761,19 +799,6 @@ Returns
 -------
 None
     DESCRIPTION.
-.fi
-.PP
- 
-.SS " None etesim_pp_gui\&.SimpleGUI\&.setNumPlots ( self)"
-
-.PP
-.nf
-Updates the number of plots based upon the value of the
-spinbox. Not currently active in this program.
-
-Returns
--------
-None
 .fi
 .PP
  
@@ -806,6 +831,23 @@ event : tk.Event, optional
     An event to be passed to turn this function into a handle.
     Not currently needed.
     The default is None.
+
+Returns
+-------
+None
+.fi
+.PP
+ 
+.SS " None etesim_pp_gui\&.SimpleGUI\&.setStatusBarOptions ( self,  event = \fCNone\fP)"
+
+.PP
+.nf
+Updates the the elements displayed in the status bar.
+
+Parameters
+----------
+event : tk.Event, optional
+    An event that can drive the call. The default is None.
 
 Returns
 -------
@@ -889,13 +931,12 @@ None
 .fi
 .PP
  
-.SS " None etesim_pp_gui\&.SimpleGUI\&.showPlot ( self,  event = \fCNone\fP,  item = \fCNone\fP,  mode = \fCNone\fP)"
+.SS " None etesim_pp_gui\&.SimpleGUI\&.startPlot ( self,  event = \fCNone\fP,  item = \fCNone\fP,  mode = \fCNone\fP)"
 
 .PP
-Plotting function\&. 
-.PP
 .nf
-Generates a plot in the right-hand portion of the viewer tab.
+Sets up all the variables and options necessary to generate
+a plot in the viewer pane.
 
 Parameters
 ----------
