@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespaceetesim__pp__gui" kind="namespace" language="Python">
+    <compoundname>etesim_pp_gui</compoundname>
+    <innerclass refid="classetesim__pp__gui_1_1_simple_g_u_i" prot="public">etesim_pp_gui::SimpleGUI</innerclass>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="etesim__pp__gui_8py_1a5d0b629fd5656f13d67a98a7b356770d" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>etesim_pp_gui.app</definition>
+        <argsstring></argsstring>
+        <name>app</name>
+        <initializer>=  <ref refid="classetesim__pp__gui_1_1_simple_g_u_i" kindref="compound">SimpleGUI</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="etesim_pp_gui.py" line="1650" column="1" bodyfile="etesim_pp_gui.py" bodystart="1650" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="etesim__pp__gui_8py_1ae41520948569e1fb2a8ed6eb19457cf3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def etesim_pp_gui.dictMap</definition>
+        <argsstring>()</argsstring>
+        <name>dictMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>A mapper to take columns from the input file and generate
+meaningful, human-readable columns. Intended to be used
+with the .rename() function for a dataframe.
+
+Returns
+-------
+dMap : dict
+    A mapping str-&gt;str intended to be used for dataframes</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="etesim_pp_gui.py" line="1508" column="1" bodyfile="etesim_pp_gui.py" bodystart="1508" bodyend="1535"/>
+      </memberdef>
+      <memberdef kind="function" id="etesim__pp__gui_8py_1a45ad8e5be3ccde5104607bda2d09a334" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>list</type>
+        <definition> list etesim_pp_gui.dirTree</definition>
+        <argsstring>(str root)</argsstring>
+        <name>dirTree</name>
+        <param>
+          <type>str</type>
+          <declname>root</declname>
+        </param>
+        <briefdescription>
+<para>Directory parsing functions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generates a list containing a directory and all its subdirectories.
+
+Parameters
+----------
+root : str
+    A top-level directory to traverse.
+
+Returns
+-------
+list
+    The directory and all subdirectories.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="etesim_pp_gui.py" line="1540" column="1" bodyfile="etesim_pp_gui.py" bodystart="1540" bodyend="1568"/>
+      </memberdef>
+      <memberdef kind="function" id="etesim__pp__gui_8py_1aee7722339c87a1c8fb9fa836e989842f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>list</type>
+        <definition> list etesim_pp_gui.allMissileFiles</definition>
+        <argsstring>(list dirlist, str mfile_regex=&apos;NotionalETEOutput(\\d+).xlsx&apos;)</argsstring>
+        <name>allMissileFiles</name>
+        <param>
+          <type>list</type>
+          <declname>dirlist</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>mfile_regex</declname>
+          <defval>&apos;NotionalETEOutput(\\d+).xlsx&apos;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generates a list of files from the supplied directory list
+which match the specified pattern.
+
+Parameters
+----------
+dirlist : list
+    A list of directories to check for files
+mfile_regex : str, optional
+    The matching criterion (regular expression).
+    The default is &apos;NotionalETEOutput(\\d+).xlsx&apos;.
+
+Returns
+-------
+list
+    The path for each file matching the criterion.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="etesim_pp_gui.py" line="1569" column="1" bodyfile="etesim_pp_gui.py" bodystart="1569" bodyend="1600"/>
+      </memberdef>
+      <memberdef kind="function" id="etesim__pp__gui_8py_1a5fcaa592e0ccec4849009fbb71c1e0a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>pd.DataFrame</type>
+        <definition> pd.DataFrame etesim_pp_gui.combinedMissleDF</definition>
+        <argsstring>(list missileFileList)</argsstring>
+        <name>combinedMissleDF</name>
+        <param>
+          <type>list</type>
+          <declname>missileFileList</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Combines a list of input files into a single DataFrame by
+generating a single DataFrame for each file and using the
+concatenation function to generate a single object.
+
+Transforms Path and uniqueID into categorical variables because
+it&apos;s going to have a lot of repeats
+
+Parameters
+----------
+missileFileList : list
+    The path to each file to be combined into the DataFrame
+
+Returns
+-------
+pd.DataFrame
+    A Pandas DataFrame of the combined object</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="etesim_pp_gui.py" line="1601" column="1" bodyfile="etesim_pp_gui.py" bodystart="1601" bodyend="1626"/>
+      </memberdef>
+      <memberdef kind="function" id="etesim__pp__gui_8py_1ab3d5d91917dbdcdbad50e449c75374f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>pd.DataFrame</type>
+        <definition> pd.DataFrame etesim_pp_gui.makeDataFrameAddPath</definition>
+        <argsstring>(str inFile)</argsstring>
+        <name>makeDataFrameAddPath</name>
+        <param>
+          <type>str</type>
+          <declname>inFile</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Makes a DataFrame from an Excel file and adds the path
+of the file as a new column
+
+Parameters
+----------
+inFile : str
+    An Excel spreadsheet that has panel data
+
+Returns
+-------
+df : pd.DataFrame
+    A Pandas DataFrame of the data with one additional column added</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="etesim_pp_gui.py" line="1627" column="1" bodyfile="etesim_pp_gui.py" bodystart="1627" bodyend="1648"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="etesim_pp_gui.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

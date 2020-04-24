@@ -849,10 +849,10 @@ class SimpleGUI(tk.Tk):
         else:
             self.dimensions = 3         # x, y, and z exist
 
-            # The option for minor grid will be disabled for 3D graphs
-            # It's ugly, doesn't add any extra detail, and has a visual bug
+            # 3D plots include a major grid by default
+            # Minor grids in 3D introduce a bug
             self.gridMinorCB['state'] = 'disabled'
-            self.gridMinor.set(False)
+            self.gridMajorCB['state'] = 'disabled'
 
         # If any two columns match, there is no need to plot
         if (self.xCol.get() == self.yCol.get()
@@ -974,9 +974,9 @@ class SimpleGUI(tk.Tk):
         else:
             kwargs['initialdir'] = self.topDir
 
-        self.topDir = filedialog.askdirectory(**kwargs)
-        if self.topDir != '':
-            self.topDir = os.path.abspath(self.topDir)
+        selection = filedialog.askdirectory(**kwargs)
+        if selection != '':
+            self.topDir = os.path.abspath(selection)
 
         # Updates text widget with path (deletes old path)
         self.topDirPath.delete('1.0', tk.END)
@@ -1423,12 +1423,8 @@ class SimpleGUI(tk.Tk):
             myplot.grid(b=True, which='major', alpha=0.8)
         if self.gridMinor.get():
             myplot.grid(b=True, which='minor', alpha=0.2, linestyle='--',)
-            myplot.minorticks_on()
+            # myplot.minorticks_on()
 
-            # There is a bug which causes minor ticks to show up strangely
-            # on 3D graphs alone
-            if self.dimensions == 3:
-                self.status.set('The minor axes ticks currently have a bug')
         else:
             self.status.set('')
 
