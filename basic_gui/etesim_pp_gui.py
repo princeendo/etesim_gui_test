@@ -31,13 +31,17 @@ import os
 import re
 import platform
 import numpy as np
+import pandas as pd
+
+# Tkinter imports
 import tkinter as tk
 from tkinter import messagebox as mb
 from tkinter import ttk
 from tkinter import filedialog
 import tkinter.font as font
 import tkinter.colorchooser as tkColorChooser
-import pandas as pd
+
+# matplotlib imports
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
