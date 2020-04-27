@@ -2,18 +2,21 @@
 
 """
 
-This module contains a postprocessing GUI intended to generate 2D/3D
-plots for various output of simulation data. Currently, it is being
-designed to support ETESim output data, but will hopefully support
-more datatypes in the future.
+A postprocessing GUI to generate 2D/3D plots for simulation data.
 
-Example:
+The interface is designed to support ETESim output data, but will hopefully
+support more datatypes in the future.
+
+
+Example
+-------
     Upon loading the the GUI with the command below, you can press the
     "Load" button on the default path and it will pull in relevant data.
 
         $ python etesim_pp_gui.py
 
-Todo:
+Todo
+----
     * Add option to graph assets (radars/etc.)
     X Add ability to place multiple graphs at once
     X Add CheckBox for ax.show_legend()
