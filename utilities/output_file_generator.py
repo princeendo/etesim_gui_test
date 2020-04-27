@@ -5,52 +5,68 @@ import sys
 import numpy as np
 import pandas as pd
 
-d1 = os.path.abspath(os.path.join(os.path.split(sys.argv[0])[0],
-                                  os.pardir, 'runs'))
-file1 = os.path.abspath(os.path.join(os.path.split(sys.argv[0])[0],
-                                     os.pardir, 'basic_gui',
-                                     'NotionalETEOutput000.xlsx'))
 
-delta = 0.05
-mtypes = ['BRAVER', 'SOMERSAULT', 'ANGERMAX', 'HIGHWIND', 'HELLMASKER']
-df = pd.read_excel(file1)
-floatcols = [x for x in df.columns if df[x].dtype == 'float64']
-nottime = [x for x in floatcols if x != 'time']
-N = df.shape[0]
+def main():
+    d1 = os.path.abspath(os.path.join(os.path.split(sys.argv[0])[0],
+                                      os.pardir, 'runs'))
+    file1 = os.path.abspath(os.path.join(os.path.split(sys.argv[0])[0],
+                                         os.pardir, 'basic_gui',
+                                         'NotionalETEOutput000.xlsx'))
+    generateOutput(d1, file1)
 
-dirnums = np.array([954, 971, 708, 443, 947, 483, 390, 582, 184, 973])
 
-for num in dirnums:
-    # Generating temporary file
+def generateOutput(outDir, file1):
+    mtypes = ['BRAVER', 'SOMERSAULT', 'HIGHWIND', 'HELLMASKER']
+    df = pd.read_excel(file1)
+    floatcols = [x for x in df.columns if df[x].dtype == 'float64']
+    notTime = [x for x in floatcols if x != 'time']
+
+    dirnums = np.array([954, 971, 708, 443, 947])
+    numShots = np.random.randint(1, 5, len(dirnums))
+
+    for k, dirNum in enumerate(dirnums):
+
+        # Making directory for files and filename for new file
+        newdir = os.path.join(outDir, f'run{dirNum:03}')
+        newfile = os.path.join(newdir, f'NotionalETEOutput{dirNum:03}.xlsx')
+        rcspath = os.path.join(newdir, 'rcs')
+        os.makedirs(rcspath, exist_ok=True)
+
+        df2 = pd.concat((dummyDF(df, mtypes, dirNum, notTime)
+                         for _ in range(numShots[k])))
+
+        df2.to_excel(newfile, index=False)
+
+
+def dummyDF(df, mtypes, dirNum, notTime):
+    # Generating temporary DataFrame
     df2 = df.copy(deep=True)
-
-    # Making directory for files and filename for new file
-    newdir = os.path.join(d1, f'run{num:03}')
-    newfile = os.path.join(newdir, f'NotionalETEOutput{num:03}.xlsx')
-    rcspath = os.path.join(newdir, 'rcs')
-    os.makedirs(rcspath, exist_ok=True)
-
-    # Making some numbers for substitution
-    myversion = np.random.randint(0, 4)
-    myID = np.random.randint(0, 500)
 
     # Missile type to substitute
     mtype = np.random.choice(mtypes)
 
+    # Instance for mtype
+    myID = np.random.randint(0, 500)
+
     # Replacing missile metadata in the columns
-    df2.datatype.replace('SAMP\d',f'{mtype}{myversion}',
+    df2.datatype.replace('SAMP\d',f'{mtype}',
                          regex=True, inplace=True)
-    df2.datarec_id.replace('SAMP\d_\d',f'{mtype}{myversion}_{myID}',
+    df2.datarec_id.replace('SAMP\d_\d',f'{mtype}_{myID}',
                            regex=True, inplace=True)
-    df2.datarec_id.replace('SAMP\d\.\d',f'{mtype}{myversion}_{myID}',
+    df2.datarec_id.replace('SAMP\d\.\d',f'{mtype}_{myID}',
                            regex=True, inplace=True)
-    df2.header_swmodel.replace('SAMP\d', f'{mtype}{myversion}',
+    df2.header_swmodel.replace('SAMP\d', f'{mtype}',
                                regex=True, inplace=True)
 
     # Adds "noise" to each output file so it is familiar with
     # the original but will not match exactly
-    for col in nottime:
+    for col in notTime:
         r = np.random.normal(loc=1, scale=0.3)
         df2[col] = df[col] * r
-    df2.uniqueid = num
-    df2.to_excel(newfile, index=False)
+    df2.uniqueid = dirNum
+
+    return df2
+
+
+if __name__ == "__main__":
+    main()

@@ -623,7 +623,7 @@ class SimpleGUI(tk.Tk):
         # Setting up the chooser for the individual run
         self.run = tk.IntVar()
         run_kwargs = {'values': self.availableRuns.tolist(), 'width': 4,
-                      'command': lambda: self.startPlot(1),
+                      'command': lambda: self.startPlot(1), 'wrap': True,
                       'state': 'disabled', 'textvariable': self.run, }
         self.runChoice = ttk.Spinbox(self.runChoiceLF, **run_kwargs)
         self.runChoice.grid(row=0, column=2, sticky=tk.W)
@@ -1049,6 +1049,7 @@ class SimpleGUI(tk.Tk):
         self.status.set(f'Loading {N} file' + 's' * (N > 1))
         self.missileDF = combinedMissleDF(missileFiles)
         self.missileDF.rename(columns=dictMap(), inplace=True)
+        self.missileDF.sort_values(by=['Time', 'RunNumber'], inplace=True)
         self.status.set(f'Loaded {N} file' + 's' * (N > 1))
 
         # Determining available runs based upon unique IDs
@@ -1336,7 +1337,8 @@ class SimpleGUI(tk.Tk):
 
         # Downselecting DataFrame based on these columns
         # Keeping Unique ID so we can plot each ID separately
-        plotDF = self.missileDF[['RunNumber', *plotCols]].copy()
+        plotDF = self.missileDF[['RunNumber', 'Data Record ID',
+                                 *plotCols]].copy()
 
         # If we don't want to show all the runs and don't
         # want them to be transparent, we can downselect the values now
@@ -1413,7 +1415,7 @@ class SimpleGUI(tk.Tk):
 
         """
 
-        self.canvas = FigureCanvasTkAgg(self.figure, self.viewPane)
+        self.canvas = FigureCanvasTkAgg(self.figure, master=self.viewPane)
         self.canvas.draw()
 
         # Setting up subplot for showing all the plots
@@ -1427,16 +1429,20 @@ class SimpleGUI(tk.Tk):
         if not self.autoColor.get():
             plot_kwargs = {'color': self.plotColorEntry.get(), }
 
-        # Looping through all possible unique IDs and adding plots
-        for (uid, df) in self.plotDF().groupby(['RunNumber']):
-            plot_kwargs['label'] = f'{uid}'
+        # Looping through all possible unique IDs and model numbers
+        # and plotting each individual DataFrame
+        groups = ['RunNumber', 'Data Record ID']
+        for (run, datarecID), df in self.plotDF().groupby(groups):
+            rID = recordExtractor(datarecID, sim='ETESim')
+
+            plot_kwargs['label'] = f'{run}: {rID}'
 
             # If the transparency setting is on, we want to highlight
             # only the run of interest
             if (
               not self.showAllRuns.get()
               and self.transparentRuns.get()
-              and uid != self.run.get()):
+              and run != self.run.get()):
                 plot_kwargs['alpha'] = 0.2
             else:
                 plot_kwargs['alpha'] = 1.0
@@ -1457,7 +1463,7 @@ class SimpleGUI(tk.Tk):
 
         # Show legend if selected
         if self.showLegend.get():
-            legend_kwargs = {'title': 'Run Number',
+            legend_kwargs = {'title': 'Run Number: Element - Instance',
                              'fancybox': True, 'shadow': True, }
 
             # Setting the location for the legend based on user input
@@ -1558,7 +1564,7 @@ class SimpleGUI(tk.Tk):
 
 
 ####################################################################
-# Mapper for DataFrame Columns
+# Item Renamers
 ####################################################################
 
 def dictMap():
@@ -1587,6 +1593,47 @@ def dictMap():
         'tUp': 'Target Position - Up',
         }
     return dMap
+
+
+def recordExtractor(datarecID: str, sim: str = 'ETESim') -> str:
+    """
+    Extracts metadata from sim data records to get meaningful strings.
+
+    The user will be able to get a record of the form "<Model> <ID>".
+
+    Parameters
+    ----------
+    datarecID: str
+        A string for which metadata will be extracted
+
+    sim : str, optional
+        The simulation from which data extraction will occur
+        The default is 'ETESim'.
+
+    Returns
+    -------
+    str
+        The formatted string
+
+    """
+
+    # Hopefully this will grow over time
+    available_sims = ('ETESim')
+
+    # If the sim is not supported, do nothing to the string
+    if sim not in available_sims:
+        return datarecID
+
+    # Elements of the form
+    # <Object>_<Type>_<Instance>.<Object>_<Type>.<Instance>
+    # Example: MISSILE_SAMP7_1.MISSILE_SAMP7.1
+    if sim == 'ETESim':
+        regex = r'[A-Z]+_([A-Z]+\d*)_(\d+)\..*'
+        q = re.compile(regex)
+        mo = q.match(datarecID)
+
+        # Returns "<Type> - <Instance>"
+        return ' - '.join(mo.groups())
 
 
 ####################################################################
@@ -1675,8 +1722,6 @@ def combinedMissleDF(missileFileList: list) -> pd.DataFrame:
 
     """
     df = pd.concat(map(makeDataFrameAddPath, missileFileList))
-    # df.Path = df.Path.astype('category')
-    # df.uniqueid = df.uniqueid.astype('category')
     return df
 
 
