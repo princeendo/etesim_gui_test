@@ -861,7 +861,8 @@ class SimpleGUI(tk.Tk):
         elif self.zCol.get() == '':     # x and y exist, z does not
             self.dimensions = 2
 
-            # Minor grid option exists on 2D graphs
+            # Grid options exists on 2D graphs
+            self.gridMajorCB['state'] = 'normal'
             self.gridMinorCB['state'] = 'normal'
         else:
             self.dimensions = 3         # x, y, and z exist
@@ -1399,7 +1400,7 @@ class SimpleGUI(tk.Tk):
         # Settng up canvas to draw plot
         if self.xkcdMode.get():             # Easter Egg Mode
             with plt.xkcd():
-                self.figure = plt.Figure()
+                self.figure = plt.Figure(figsize=(6, 4))
                 self.finishPlot()
         else:
             self.figure = plt.Figure()
@@ -1483,9 +1484,10 @@ class SimpleGUI(tk.Tk):
             myplot.set_zlabel(self.zCol.get())
 
         # Adding gridlines, if necessary
-        if self.gridMajor.get():
+        if self.gridMajor.get() and self.dimensions == 2:
             myplot.grid(b=True, which='major', alpha=0.8)
-        if self.gridMinor.get():
+        if self.gridMinor.get() and self.dimensions == 2:
+            myplot.minorticks_on()
             myplot.grid(b=True, which='minor', alpha=0.2, linestyle='--',)
         else:
             self.status.set('')
