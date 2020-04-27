@@ -51,7 +51,6 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 # The original function was deprecated so we're importing the new one
 # to match tutorials more closely
 from matplotlib.backends.backend_tkagg import NavigationToolbar2Tk
-# from matplotlib.figure import Figure
 
 # Imports and settings for Tkinter
 import matplotlib
