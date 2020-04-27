@@ -33,6 +33,7 @@ Todo
 import os
 import re
 import platform
+import time
 import numpy as np
 import pandas as pd
 
@@ -1045,13 +1046,20 @@ class SimpleGUI(tk.Tk):
         tree = dirTree(self.topDir)
         missileFiles = allMissileFiles(tree)
 
+        # Counting time for process to occur
+        startTime = time.time()
+
         # Making massive DataFrame of all the missile files in tree
         N = len(missileFiles)
         self.status.set(f'Loading {N} file' + 's' * (N > 1))
         self.missileDF = combinedMissleDF(missileFiles)
         self.missileDF.rename(columns=dictMap(), inplace=True)
         self.missileDF.sort_values(by=['Time', 'RunNumber'], inplace=True)
-        self.status.set(f'Loaded {N} file' + 's' * (N > 1))
+
+        # Updating user on the operation and its total time
+        totalTime = int(time.time() - startTime)
+        newStatus = f'Loaded {N} file' + 's' * (N > 1) + f' in {totalTime}s'
+        self.status.set(newStatus)
 
         # Determining available runs based upon unique IDs
         if 'RunNumber' in self.missileDF.columns:
@@ -1375,6 +1383,7 @@ class SimpleGUI(tk.Tk):
         None
 
         """
+        startTime = time.time()
 
         # If there's no reason to update, don't update
         if event is None:
@@ -1401,14 +1410,20 @@ class SimpleGUI(tk.Tk):
         if self.xkcdMode.get():             # Easter Egg Mode
             with plt.xkcd():
                 self.figure = plt.Figure(figsize=(6, 4))
-                self.finishPlot()
+                self.finishPlot(startTime)
         else:
-            self.figure = plt.Figure()
-            self.finishPlot()
+            self.figure = plt.Figure(figsize=(3, 2))
+            self.finishPlot(startTime)
 
-    def finishPlot(self) -> None:
+    def finishPlot(self, startTime: float) -> None:
         """
         Generates a new plot on the figure set up in startPlot.
+
+        Parameters
+        ----------
+        startTime : float
+            The time plotting began. Used to update the user on total
+            rendering time.
 
         Returns
         -------
@@ -1515,6 +1530,10 @@ class SimpleGUI(tk.Tk):
         self.toolbar = NavigationToolbar2Tk(self.canvas, self.viewPane)
         self.toolbar.update()
         self.canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+
+        # Updating the user on the time it took to plot
+        totalTime = time.time() - startTime
+        self.status.set(f'Plot rendered in {totalTime:.1f}s')
 
     def getLimits(self, ax) -> tuple:
         """

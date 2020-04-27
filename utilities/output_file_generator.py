@@ -22,6 +22,7 @@ def generateOutput(outDir, file1):
     notTime = [x for x in floatcols if x != 'time']
 
     dirnums = np.array([954, 971, 708, 443, 947])
+    # dirnums = np.arange(1000)
     numShots = np.random.randint(1, 5, len(dirnums))
 
     for k, dirNum in enumerate(dirnums):
