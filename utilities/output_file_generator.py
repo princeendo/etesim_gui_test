@@ -8,7 +8,7 @@ import pandas as pd
 
 def main():
     d1 = os.path.abspath(os.path.join(os.path.split(sys.argv[0])[0],
-                                      os.pardir, 'runs'))
+                                      os.pardir, '100runs'))
     file1 = os.path.abspath(os.path.join(os.path.split(sys.argv[0])[0],
                                          os.pardir, 'basic_gui',
                                          'NotionalETEOutput000.xlsx'))
@@ -21,8 +21,8 @@ def generateOutput(outDir, file1):
     floatcols = [x for x in df.columns if df[x].dtype == 'float64']
     notTime = [x for x in floatcols if x != 'time']
 
-    dirnums = np.array([954, 971, 708, 443, 947])
-    # dirnums = np.arange(1000)
+    # dirnums = np.array([954, 971, 708, 443, 947])
+    dirnums = np.arange(100)
     numShots = np.random.randint(1, 5, len(dirnums))
 
     for k, dirNum in enumerate(dirnums):

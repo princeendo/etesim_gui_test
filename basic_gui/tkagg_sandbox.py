@@ -1,122 +1,60 @@
-# -*- coding: utf-8 -*-
+# seaborn in matplotlib - tkinter doesn't need it
+#import matplotlib
+#matplotlib.use('TkAgg')
 
-# Module-Level Imports
-import os
-import re
-import platform
+# embed matplotlib in tkinter 
+import tkinter
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+
+# seaborn example
+from string import ascii_letters
 import numpy as np
 import pandas as pd
-
-# Tkinter imports
-import tkinter as tk
-from tkinter import messagebox as mb
-from tkinter import ttk
-from tkinter import filedialog
-import tkinter.font as font
-import tkinter.colorchooser as tkColorChooser
-
-# matplotlib imports
+import seaborn as sns
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-# The original function was deprecated so we're importing the new one
-# to match tutorials more closely
-from matplotlib.backends.backend_tkagg import NavigationToolbar2Tk
 
-# Imports and settings for Tkinter
-import matplotlib
-matplotlib.use("TkAgg")  # To use with Tkinter
+def create_plot():
+    sns.set(style="white")
 
-# Trying stuff out with plotly
-import plotly.graph_objs as go
-import random
+    # Generate a large random dataset
+    rs = np.random.RandomState(33)
+    d = pd.DataFrame(data=rs.normal(size=(100, 26)),
+                     columns=list(ascii_letters[26:]))
 
-import mplcursors
+    # Compute the correlation matrix
+    corr = d.corr()
 
+    # Generate a mask for the upper triangle
+    mask = np.zeros_like(corr, dtype=np.bool)
+    mask[np.triu_indices_from(mask)] = True
 
-class mplSandbox(tk.Tk):
-    def __init__(self, *args, **kwargs):
-        tk.Tk.__init__(self, *args, **kwargs)
-        tk.Tk.iconbitmap(self, default="images/window_icon_radar.ico")
-        tk.Tk.wm_title(self, "Matplotlib Sandbox")
-        self.geometry("960x540+350+250")
+    # Set up the matplotlib figure
+    f, ax = plt.subplots(figsize=(11, 9))
 
-        self.dimensions = 2
+    # Generate a custom diverging colormap
+    cmap = sns.diverging_palette(220, 10, as_cmap=True)
 
-        self.whole = tk.Frame(self,)
-        self.whole.pack(fill=tk.BOTH, expand=True)
+    # Draw the heatmap with the mask and correct aspect ratio
+    sns.heatmap(corr, mask=mask, cmap=cmap, vmax=.3, center=0,
+                square=True, linewidths=.5, cbar_kws={"shrink": .5})
 
-        self.figure = plt.Figure()
-        self.canvas = FigureCanvasTkAgg(self.figure, master=self.whole)
-        self.canvas.draw()
-        
-        x = np.linspace(-np.pi, np.pi, 100)
-        y = np.sin(x)
+    return f
 
-        self.mplPlot()
-        # self.stdPlot(x, y)     
-        # self.plotlyPlot()
-        
-        self.canvas.get_tk_widget().pack(side=tk.BOTTOM,
-                                         fill=tk.BOTH,
-                                         expand=True)
-        
-    def mplPlot(self, ):
-        myplot = self.figure.add_subplot(111, )
-        harmonics = np.linspace(1, 3, 5)
-        x = np.linspace(-np.pi, np.pi, 100)
-        for h in harmonics:
-            myplot.plot(x, np.sin(h * x))
-            myplot.grid(which='both')
-        mplcursors.cursor(myplot)
-            
-        
+# --- main ---
 
-    def stdPlot(self, x, y):
-        # Setting up subplot for showing all the plots
-        subplot_kwargs = {'projection': '3d' if self.dimensions == 3 else None}
-        myplot = self.figure.add_subplot(111, **subplot_kwargs)
-        myplot.plot(x, y)
-        myplot.grid(which='both')
-        
-    def plotlyPlot(self, ):
-        f = go.FigureWidget()
-        f.layout.hovermode = 'closest'
-        f.layout.hoverdistance = -1 # ensures no "gaps" for selecting sparse data
-        default_linewidth = 2
-        highlighted_linewidth_delta = 2
-        
-        # just some traces with random data points  
-        num_of_traces = 5
-        random.seed = 42
-        for i in range(num_of_traces):
-            y = [random.random() + i / 2 for _ in range(100)]
-            trace = go.Scatter(y=y, mode='lines', line={ 'width': default_linewidth })
-            f.add_trace(trace)
-        
-        # our custom event handler
-        def update_trace(trace, points, selector):
-            # this list stores the points which were clicked on
-            # in all but one event they it be empty
-            if len(points.point_inds) > 0:
-                for i in range( len(f.data) ):
-                    f.data[i]['line']['width'] = default_linewidth + highlighted_linewidth_delta * (i == points.trace_index)
-        
-        
-        # we need to add the on_click event to each trace separately       
-        for i in range( len(f.data) ):
-            f.data[i].on_click(update_trace)
-        
-        # let's show the figure 
-        f.show()
+root = tkinter.Tk()
+root.wm_title("Embedding in Tk")
 
+label = tkinter.Label(root, text="Matplotlib with Seaborn in Tkinter")
+label.pack()
 
+fig = create_plot()
 
-if __name__ == "__main__":
-    app = mplSandbox()
-    try:
-        assert Axes3D  # to silence the linter
-        app.mainloop()
-    except KeyboardInterrupt:
-        app.destroy()
-        print('Terminated')
+canvas = FigureCanvasTkAgg(fig, master=root)  # A tk.DrawingArea.
+canvas.draw()
+canvas.get_tk_widget().pack()
+
+button = tkinter.Button(root, text="Quit", command=root.destroy)
+button.pack()
+
+tkinter.mainloop()

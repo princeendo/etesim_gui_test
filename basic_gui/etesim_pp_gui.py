@@ -32,6 +32,7 @@ Todo
 # Module-Level Imports
 import os
 import re
+import mplcursors
 import platform
 import time
 import numpy as np
@@ -47,11 +48,15 @@ import tkinter.colorchooser as tkColorChooser
 
 # matplotlib imports
 import matplotlib.pyplot as plt
+import matplotlib.cm as cm
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 # The original function was deprecated so we're importing the new one
 # to match tutorials more closely
 from matplotlib.backends.backend_tkagg import NavigationToolbar2Tk
+
+# mplcursors imports
+# from mpldatacursor import datacursor
 
 # Imports and settings for Tkinter
 import matplotlib
@@ -111,6 +116,7 @@ class SimpleGUI(tk.Tk):
         self.toolbar = None
         self.figure = None
         self.canvas = None
+        self.cursor = None
         self.titleColorRGB = (0, 0, 0)
         self.titleColorHex = tk.StringVar(value='#000000')
         self.plotColorRGB = (31, 119, 180)                  # matplotlib blue
@@ -1448,9 +1454,19 @@ class SimpleGUI(tk.Tk):
         # Looping through all possible unique IDs and model numbers
         # and plotting each individual DataFrame
         groups = ['RunNumber', 'Data Record ID']
-        for (run, datarecID), df in self.plotDF().groupby(groups):
-            rID = recordExtractor(datarecID, sim='ETESim')
 
+        # Constructing dataframe that contains data for plotting
+        pDF = self.plotDF()
+
+        # Setting all possible permutations for plotting data
+        numDFs = sum([pDF[pDF['Data Record ID'] == d].RunNumber.nunique()
+                      for d in pDF['Data Record ID'].unique()])
+
+        colors = cm.rainbow(np.linspace(0, 1, numDFs))
+
+        for k, ((run, datarecID), df) in enumerate(pDF.groupby(groups)):
+            rID = recordExtractor(datarecID, sim='ETESim')
+            dfKwargs = {'kind': self.plotStyle.get(), 'ax': myplot}
             plot_kwargs['label'] = f'{run}: {rID}'
 
             # If the transparency setting is on, we want to highlight
@@ -1462,6 +1478,27 @@ class SimpleGUI(tk.Tk):
                 plot_kwargs['alpha'] = 0.2
             else:
                 plot_kwargs['alpha'] = 1.0
+                
+            if self.autoColor.get():
+                plot_kwargs['color'] = [colors[k]] * df.shape[0]
+            else:
+                plot_kwargs['color'] = self.plotColorEntry.get()
+                
+            
+                
+            dfKwargs.update(plot_kwargs)
+            
+            
+#            if self.plotStyle.get() == 'scatter' and self.autoColor.get():
+#                if self.autoColor.get():
+#                    dfKwargs['color'] = [colors[k]] * df.shape[0]
+#                else:
+#                    pass
+#                    #dfKwargs['c'] = self.plotColorEntry.get()                  
+
+            df.plot(x='x', y='y', **dfKwargs,)
+                
+            """
 
             # This segments the data into 2 or 3 dimensions, depending
             # on whether we are plotting 2D or 3D data
@@ -1476,6 +1513,9 @@ class SimpleGUI(tk.Tk):
             else:
                 myplot.scatter(*plotlist, **plot_kwargs,
                                marker=self.scatterStyle.get())
+            """
+
+        self.cursor = mplcursors.cursor(myplot, hover=True)
 
         # Show legend if selected
         if self.showLegend.get():
