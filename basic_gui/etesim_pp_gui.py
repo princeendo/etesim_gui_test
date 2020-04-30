@@ -147,12 +147,11 @@ class SimpleGUI(tk.Tk):
         # Sets up the GUI to have a status bar along the bottom
         self.statusBar = ttk.Frame(self, height=100)
         self.statusBar.pack(side=tk.BOTTOM, fill=tk.BOTH)
-        
-        self.status = tk.StringVar(self.statusBar, 'No file(s) loaded')
-        self.statusLbl = tk.Label(self.statusBar, text="No file(s) loaded",
-                                  relief=tk.FLAT, height=1, bd=1,
-                                  textvariable=self.status)
-        self.statusLbl.pack(fill=tk.BOTH, side=tk.LEFT)
+        statusKwargs = {'fill': tk.BOTH, 'side': tk.LEFT,
+                        'text': 'No file(s) loaded', 'relief': tk.FLAT,
+                        'height': 1, 'bd': 1, }
+        self.status = eb.guiTextLabel(self.statusBar, 'pack', **statusKwargs)
+        self.status.show()
 
         # Adding the progress bar for updating the user on completion
         self.plotProgress = tk.DoubleVar()
@@ -272,46 +271,19 @@ class SimpleGUI(tk.Tk):
         self.editPane.grid_propagate(0)
         self.viewPane = ttk.Frame(self.graphPanes,)
         self.graphPanes.add(self.viewPane)
-
+        
         # - - - - - - - - - - - - - - - -
-        # Row 0 - X Plot Column
+        # Row 0 - XYZ Plot Columns
         thisrow = 0
-        self.xCol = tk.StringVar()
-        self.xLabel = tk.Label(self.editPane, text='X=')
-        self.xLabel.grid(row=thisrow, column=0, sticky=tk.W,
-                         padx=(2, 0), pady=(2, 0))
-        self.xCB = ttk.Combobox(self.editPane, textvariable=self.xCol,
-                                values=self.plotCols, state='readonly',
-                                width=30)
-        self.xCB.grid(row=thisrow, column=1)
-        self.xCB.bind('<<ComboboxSelected>>', self.startPlot)
+        self.fieldsFrame = ttk.LabelFrame(self.editPane, relief=tk.RIDGE,
+                                          text="Fields to Plot",)
+        self.fieldsFrame.grid(row=thisrow, column=1, sticky=tk.W, pady=(1, 0))
+        
+        eb.buildXYZFieldSelector(self, self.fieldsFrame, self.plotCols,
+                                 self.startPlot)
 
         # - - - - - - - - - - - - - - - -
-        # Row 1 - Y Plot Column
-        thisrow += 1
-        self.yCol = tk.StringVar()
-        self.yLabel = tk.Label(self.editPane, text='Y=')
-        self.yLabel.grid(row=thisrow, column=0, sticky=tk.W, padx=(2, 0),)
-        self.yCB = ttk.Combobox(self.editPane, textvariable=self.yCol,
-                                values=self.plotCols, state='readonly',
-                                width=30)
-        self.yCB.grid(row=thisrow, column=1)
-        self.yCB.bind('<<ComboboxSelected>>', self.startPlot)
-
-        # - - - - - - - - - - - - - - - -
-        # Row 2 - Z Plot Column
-        thisrow += 1
-        self.zCol = tk.StringVar()
-        self.zLabel = tk.Label(self.editPane, text='Z=')
-        self.zLabel.grid(row=thisrow, column=0, sticky=tk.W, padx=(2, 0),)
-        self.zCB = ttk.Combobox(self.editPane, textvariable=self.zCol,
-                                values=self.plotCols, state='readonly',
-                                width=30)
-        self.zCB.grid(row=thisrow, column=1)
-        self.zCB.bind('<<ComboboxSelected>>', self.startPlot)
-
-        # - - - - - - - - - - - - - - - -
-        # Row 3 - XYZ Min/Max Fields
+        # Row 1 - XYZ Min/Max Fields
         thisrow += 1
         self.xyzMinMaxFrame = ttk.LabelFrame(self.editPane,
                                              text="Set Limits",
@@ -320,7 +292,7 @@ class SimpleGUI(tk.Tk):
         limitskwargs = {'width': 8, 'validate': "key"}
 
         # - - - - - - - - - -
-        # Row 3.0 - X Min/Max
+        # Row 1.0 - X Min/Max
         self.xLimitsRow = 0
         self.xLimits = tk.BooleanVar(value=False)
 
@@ -354,7 +326,7 @@ class SimpleGUI(tk.Tk):
                             lambda _: self.modifyLimitsEntry(_, 'xMax'))
 
         # - - - - - - - - - -
-        # Row 3.1 - Y Min/Max
+        # Row 1.1 - Y Min/Max
         self.yLimitsRow = 1
         self.yLimits = tk.BooleanVar(value=False)
 
@@ -388,7 +360,7 @@ class SimpleGUI(tk.Tk):
                             lambda _: self.modifyLimitsEntry(_, 'yMax'))
 
         # - - - - - - - - - -
-        # Row 3.2 - Z Min/Max
+        # Row 1.2 - Z Min/Max
         self.zLimitsRow = 2
         self.zLimits = tk.BooleanVar(value=False)
 
@@ -422,14 +394,14 @@ class SimpleGUI(tk.Tk):
                             lambda _: self.modifyLimitsEntry(_, 'zMax'))
 
         # - - - - - - - - - - - - - - - -
-        # Row 4 - Custom Title
+        # Row 2 - Custom Title
         thisrow += 1
         self.titleLF = ttk.LabelFrame(self.editPane, text="Custom Title",
                                       relief=tk.RIDGE)
         self.titleLF.grid(row=thisrow, column=1, sticky=tk.W, pady=3)
 
         # - - - - - - - - - -
-        # Row 4.0 - Text
+        # Row 2.0 - Text
         self.titleText = tk.StringVar()
         titlekwargs = {'width': 35, 'textvariable': self.titleText, }
         self.titleEntry = ttk.Entry(self.titleLF, **titlekwargs)
@@ -440,7 +412,7 @@ class SimpleGUI(tk.Tk):
         self.titleEntry.grid(row=0, column=0, sticky=tk.W, columnspan=5)
 
         # - - - - - - - - - -
-        # Row 4.1 - Styling
+        # Row 2.1 - Styling
         self.titleSize = ttk.Spinbox(self.titleLF, from_=0, to=32, width=3,
                                      command=lambda: self.startPlot(1))
         self.titleSize.set('15')
@@ -482,14 +454,14 @@ class SimpleGUI(tk.Tk):
         self.titleColorButton.grid(row=1, column=4,)
 
         # - - - - - - - - - - - - - - - -
-        # Row 5 - Style Options
+        # Row 3 - Style Options
         thisrow += 1
         self.styleLF = ttk.LabelFrame(self.editPane, text="Plot Style",
                                       relief=tk.RIDGE)
         self.styleLF.grid(row=thisrow, column=1, sticky=tk.W, pady=3)
 
         # - - - - - - - - - -
-        # Row 5.0 - Plot/Scatter
+        # Row 3.0 - Plot/Scatter
         self.plotStyle = tk.StringVar(self.styleLF, 'line')
 
         linekwargs = {'text': 'Line', 'var': self.plotStyle,
@@ -532,7 +504,7 @@ class SimpleGUI(tk.Tk):
         self.scatterStyleCB.bind('<<ComboboxSelected>>', self.startPlot)
 
         # - - - - - - - - - -
-        # Row 5.1 - Legend
+        # Row 3.1 - Legend
         self.showLegend = tk.BooleanVar(value=True)
         self.legendLoc = tk.StringVar(self.styleLF, value='Best')
 
@@ -551,7 +523,7 @@ class SimpleGUI(tk.Tk):
         self.legendLocCB.bind('<<ComboboxSelected>>', self.startPlot)
 
         # - - - - - - - - - -
-        # Row 5.2 - Plot Color
+        # Row 3.2 - Plot Color
 
         # Setting up whether the colors should be made automatically
         self.autoColor = tk.BooleanVar(value=True)
@@ -577,14 +549,14 @@ class SimpleGUI(tk.Tk):
         self.plotColorButton.grid(row=2, column=3, sticky=tk.W, padx=(5, 0))
 
         # - - - - - - - - - - - - - - - -
-        # Row 6 - Additional Options
+        # Row 4 - Additional Options
         thisrow += 1
         self.addOptsLF = ttk.LabelFrame(self.editPane, relief=tk.RIDGE,
                                         text="Additional Options",)
         self.addOptsLF.grid(row=thisrow, column=1, sticky=tk.W, pady=3,)
 
         # - - - - - - - - - -
-        # Row 6.0 - Grid
+        # Row 4.0 - Grid
         self.gridLabel = ttk.Label(self.addOptsLF, text='Gridlines:',)
         self.gridLabel.grid(row=0, column=0, sticky=tk.W, padx=(0, 2))
 
@@ -604,14 +576,14 @@ class SimpleGUI(tk.Tk):
         self.gridMinorCB.grid(row=0, column=2, sticky=tk.W,)
 
         # - - - - - - - - - -
-        # Row 6.1 - Axis Labels
+        # Row 4.1 - Axis Labels
         self.showAxLabel = ttk.Label(self.addOptsLF, text='Axis Labels:',)
         self.showAxLabel.grid(row=1, column=0, sticky=tk.W, padx=(0, 2))
         self.showAxFrame = tk.Frame(self.addOptsLF)
         self.showAxFrame.grid(row=1, column=1, sticky=tk.W, columnspan=2)
 
         # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-        # Row 6.1.0 - XYZ Labels
+        # Row 4.1.0 - XYZ Labels
         self.showXLabel = tk.BooleanVar(value=True)
         self.showYLabel = tk.BooleanVar(value=True)
         self.showZLabel = tk.BooleanVar(value=True)
@@ -630,7 +602,7 @@ class SimpleGUI(tk.Tk):
         self.showZLabelCB.grid(row=0, column=2, sticky=tk.W)
 
         # - - - - - - - - - - - - - - - -
-        # Row 7 - Run Traversal
+        # Row 5 - Run Traversal
         thisrow += 1
         self.runChoiceLF = ttk.LabelFrame(self.editPane, relief=tk.RIDGE,
                                           text="Run Viewer",)
@@ -640,7 +612,7 @@ class SimpleGUI(tk.Tk):
         self.showAllRuns = tk.BooleanVar(value=True)
 
         # - - - - - - - - - -
-        # Row 7.0 - Show All Runs
+        # Row 5.0 - Show All Runs
         allruns_kwargs = {'text': 'All', 'var': self.showAllRuns,
                           'value': True, 'command': lambda: self.startPlot(1)}
 
@@ -648,7 +620,7 @@ class SimpleGUI(tk.Tk):
         self.allRunsRB.grid(row=0, column=0, columnspan=1, sticky=tk.W)
 
         # - - - - - - - - - -
-        # Row 7.1 - Show Some Runs
+        # Row 5.1 - Show Some Runs
         someruns_kwargs = {'text': 'Select', 'var': self.showAllRuns,
                            'value': False,
                            'command': lambda: self.startPlot(1)}
@@ -830,7 +802,7 @@ class SimpleGUI(tk.Tk):
             # The RGB value is used as the default in the colorchooser,
             # so that is why it needs to get set
             self.titleColorHex.set(color[1])
-            self.titleColorRGB = self.hex2rgb(self.titleColorHex.get())
+            self.titleColorRGB = ef.hex2rgb(self.titleColorHex.get())
             self.editTitleOptions(self.titleColorHex.get())
         self.startPlot(1)
 
@@ -853,7 +825,7 @@ class SimpleGUI(tk.Tk):
             # The RGB value is used as the default in the colorchooser,
             # so that is why it needs to get set
             self.plotColorHex.set(color[1])
-            self.plotColorRGB = self.hex2rgb(self.plotColorHex.get())
+            self.plotColorRGB = ef.hex2rgb(self.plotColorHex.get())
             self.startPlot(1)
 
     def setLegendOptions(self) -> None:
@@ -1304,33 +1276,6 @@ class SimpleGUI(tk.Tk):
         self.tabs.config(height=self.winfo_height()-50,
                          width=self.winfo_width()-145)
 
-    def hex2rgb(self, hexstring: str) -> tuple:
-        """
-        A method to convert 6-digit hexadecimal values to a triplet
-        of values in the range (0-255)
-
-        Parameters
-        ----------
-        hexstring : str
-            A hex color string in the form #XXXXXX, where each X is
-            a hexadecimal number
-
-        Returns
-        -------
-        tuple
-            A triplet of the form (A, B, C) where A, B, and C are integers
-            between 0 and 255 (inclusive)
-
-        """
-        rgb = []
-        for i in range(3):
-            # The first element of the string is '#'
-            # Each section of two digits is sliced off
-            string_ = hexstring[1 + 2 * i:1 + 2 * (i + 1)]
-
-            # Converts the hex value to an integer in [0, 255]
-            rgb.append(int(f'0x0000{string_}', 0))
-        return tuple(rgb)
 
     ####################################################################
     # Plotting functions
@@ -1376,46 +1321,8 @@ class SimpleGUI(tk.Tk):
 
         if self.plotEngine == 'mpl':   # No need for extra work here
             return pDF
-
-        # To do seaborn plots, we will need to interpolate each item to get
-        # a common x-axis between plots. If we do not do this, the banding
-        # part of the line plot won't be helpful
-
-        # Editing the status bar to present new information
-        self.statusLbl.pack_forget()
-        self.plotProgressFrame.pack(fill=tk.BOTH, side=tk.LEFT)
-        numDFs = sum([1 for (_, df) in pDF.groupby(keepCols)])
-
-        self.downsampleRate = 10
-
-        newDFs = []
-        n = len(pDF.x.values)
-        # xVals = pDF.x.values[0:n:self.downsampleRate]
-        xVals = pDF.x.values[0:n:(numDFs * n)//(pDF.shape[0])]
-        for k, (meta, subdf) in enumerate(pDF.groupby(keepCols)):
-            yVals = np.interp(xVals, subdf.x, subdf.y)
-            d = {'x': xVals, 'y': yVals}
-            if self.dimensions == 3:
-                zVals = np.interp(xVals, subdf.x, subdf.z)
-                d['z'] = zVals
-            for idx, item in enumerate(keepCols):
-                d[item] = [meta[idx]] * len(yVals)
-            newDFs.append(pd.DataFrame(d))
-
-            # This keeps the matplotlib process from blocking updates
-            self.canvas.draw()
-            self.plotProgress.set(100*(k+1)/(numDFs))
-            self.plotProgressLbl.set(f'{k+1}/{numDFs} complete')
-
-        newDF = pd.concat(newDFs)
-
-        # Removing the counter and setting status back to normal
-        self.plotProgressFrame.pack_forget()
-        self.statusLbl.pack(fill=tk.BOTH, side=tk.LEFT)
-        self.status.set(f'Size grew from {pDF.shape[0]} to {newDF.shape[0]}')
-        self.canvas.draw()
-
-        return newDF
+        else:
+            return ef.seabornDF(self, pDF)
 
     def startPlot(self, event=None, item=None, mode=None) -> None:
         """
@@ -1557,7 +1464,7 @@ class SimpleGUI(tk.Tk):
         colors = cm.rainbow(np.linspace(0, 1, numDFs))
 
         # Switching out status label for a plot progress bar
-        self.statusLbl.pack_forget()
+        self.status.hide()
         self.plotProgressFrame.pack(fill=tk.BOTH, side=tk.LEFT)
 
         for k, ((run, model, instance), df) in enumerate(pDF.groupby(groups)):
@@ -1602,7 +1509,7 @@ class SimpleGUI(tk.Tk):
 
         # Removing the counter and setting status back to normal
         self.plotProgressFrame.pack_forget()
-        self.statusLbl.pack(fill=tk.BOTH, side=tk.LEFT)
+        self.status.show()
 
         self.cursor = mplcursors.cursor(myplot, hover=True)
 
@@ -1690,7 +1597,7 @@ class SimpleGUI(tk.Tk):
         pDF = self.plotDF()
 
         # Switching out status label for a plot progress bar
-        self.statusLbl.pack_forget()
+        self.status.hide()
         self.plotProgressFrame.pack(fill=tk.BOTH, side=tk.LEFT)
 
         pStyle = self.plotStyle.get()
@@ -1702,7 +1609,7 @@ class SimpleGUI(tk.Tk):
 
         # Removing the counter and setting status back to normal
         self.plotProgressFrame.pack_forget()
-        self.statusLbl.pack(fill=tk.BOTH, side=tk.LEFT)
+        self.status.show()
 
         # Show legend if selected
         if self.showLegend.get():
@@ -1734,7 +1641,7 @@ class SimpleGUI(tk.Tk):
             self.status.set('')
 
         # Setting the min/max values for each variable
-        (xMin, xMax, yMin, yMax, zMin, zMax) = self.getLimits(myplot)
+        (xMin, xMax, yMin, yMax, zMin, zMax) = pof.getLimits(myplot)
         myplot.set_xlim(xMin, xMax)
         myplot.set_ylim(yMin, yMax)
         if self.dimensions == 3:

@@ -7,11 +7,40 @@ import re
 
 # Aliased Module-Level Imports
 import pandas as pd
+import tkinter as tk
 
 
 ####################################################################
 # Utility functions
 ####################################################################
+def hex2rgb(hexstring: str) -> tuple:
+    """
+    A method to convert 6-digit hexadecimal values to a triplet
+    of values in the range (0-255)
+
+    Parameters
+    ----------
+    hexstring : str
+        A hex color string in the form #XXXXXX, where each X is
+        a hexadecimal number
+
+    Returns
+    -------
+    tuple
+        A triplet of the form (A, B, C) where A, B, and C are integers
+        between 0 and 255 (inclusive)
+
+    """
+    rgb = []
+    for i in range(3):
+        # The first element of the string is '#'
+        # Each section of two digits is sliced off
+        string_ = hexstring[1 + 2 * i:1 + 2 * (i + 1)]
+
+        # Converts the hex value to an integer in [0, 255]
+        rgb.append(int(f'0x0000{string_}', 0))
+    return tuple(rgb)
+
 def default_path() -> str:
     """
     Gives an OS-specific default path to display in filedialog windows.
@@ -223,3 +252,42 @@ def makeDF(inFile: str) -> pd.DataFrame:
     df['Instance'] = instance
     df['Path'] = inFile
     return df
+
+
+def seabornDF(gui, plotDF):
+    
+    # To do seaborn plots, we will need to interpolate each item to get
+    # a common x-axis between plots. If we do not do this, the banding
+    # part of the line plot won't be helpful
+
+    # Editing the status bar to present new information
+    # self.statusLbl.pack_forget()
+    gui.status.hide()
+    gui.plotProgressFrame.pack(fill=tk.BOTH, side=tk.LEFT)
+    numDFs = sum([1 for (_, df) in plotDF.groupby(keepCols)])
+    newDFs = []
+
+    xVals = plotDF.x.values[0:plotDF.shape[0]:numDFs]
+    for k, (meta, subdf) in enumerate(plotDF.groupby(keepCols)):
+        yVals = np.interp(xVals, subdf.x, subdf.y)
+        d = {'x': xVals, 'y': yVals}
+        if gui.dimensions == 3:
+            zVals = np.interp(xVals, subdf.x, subdf.z)
+            d['z'] = zVals
+        for idx, item in enumerate(keepCols):
+            d[item] = [meta[idx]] * len(yVals)
+        newDFs.append(pd.DataFrame(d))
+
+        # This keeps the matplotlib process from blocking updates
+        gui.canvas.draw()
+        gui.plotProgress.set(100*(k+1)/(numDFs))
+        gui.plotProgressLbl.set(f'{k+1}/{numDFs} complete')
+
+    newDF = pd.concat(newDFs)
+
+    # Removing the counter and setting status back to normal
+    gui.plotProgressFrame.pack_forget()
+    gui.status.show(f'Size grew from {plotDF.shape[0]} to {newDF.shape[0]}')
+    gui.canvas.draw()
+
+    return newDF
