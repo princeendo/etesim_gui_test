@@ -29,14 +29,19 @@ Todo
 
 """
 
+# File Imports
+import element_builder as eb
+import extra_functions as ef
+import plot_options_functions as pof
+
 # Module-Level Imports
+import itertools
 import os
-import re
 import mplcursors
-import platform
 import time
 import numpy as np
 import pandas as pd
+import seaborn as sns
 
 # Tkinter imports
 import tkinter as tk
@@ -123,12 +128,15 @@ class SimpleGUI(tk.Tk):
         self.plotColorHex = tk.StringVar(value='#1f77b4')
         self.availableRuns = np.array([])
 
+        # Determines whether to use Matplotlib/Seaborn/etc.
+        self.plotEngine = 'mpl'
+
         # Creating a Notebook seems to be the key to making tabs
-        # build_tabs() compartmentalizes the code for making the tabs
+        # buildTabs() compartmentalizes the code for making the tabs
         self.tabs = ttk.Notebook(self,
                                  height=self.winfo_reqheight(),
                                  width=self.winfo_reqwidth())
-        self.build_tabs(self.tabs)
+        self.buildTabs(self.tabs)
 
         # Fills the entire GUI with the notebook and lets the GUI
         # resize the notebook as needed
@@ -139,11 +147,31 @@ class SimpleGUI(tk.Tk):
         # Sets up the GUI to have a status bar along the bottom
         self.statusBar = ttk.Frame(self, height=100)
         self.statusBar.pack(side=tk.BOTTOM, fill=tk.BOTH)
+        
         self.status = tk.StringVar(self.statusBar, 'No file(s) loaded')
         self.statusLbl = tk.Label(self.statusBar, text="No file(s) loaded",
                                   relief=tk.FLAT, height=1, bd=1,
                                   textvariable=self.status)
         self.statusLbl.pack(fill=tk.BOTH, side=tk.LEFT)
+
+        # Adding the progress bar for updating the user on completion
+        self.plotProgress = tk.DoubleVar()
+        self.plotProgressFrame = ttk.Frame(self.statusBar,)
+        self.plotProgressLbl = tk.StringVar(self.plotProgressFrame, '')
+        self.plotProgressText = tk.Label(self.plotProgressFrame, text='',
+                                         relief=tk.FLAT, height=1, bd=1,
+                                         textvariable=self.plotProgressLbl)
+        self.plotProgressBar = ttk.Progressbar(self.plotProgressFrame,
+                                               length=200,
+                                               orient=tk.HORIZONTAL,
+                                               mode='determinate',
+                                               maximum=100.0,
+                                               value=0.0,
+                                               variable=self.plotProgress,)
+        self.plotProgressBar.grid(row=0, column=0)
+        self.plotProgressText.grid(row=0, column=1)
+        self.plotProgressFrame.pack(fill=tk.BOTH, side=tk.LEFT)
+        self.plotProgressFrame.pack_forget()
 
         # Adds an xkcd-style Easter-Egg
         self.xkcdMode = tk.BooleanVar(value=False)
@@ -154,7 +182,7 @@ class SimpleGUI(tk.Tk):
         # By default, this should not be seen on the data input tab
         self.xkcdModeCB.pack_forget()
 
-    def build_tabs(self, parent: ttk.Notebook) -> None:
+    def buildTabs(self, parent: ttk.Notebook) -> None:
         """
         An obscenely large and not very well-organized layout
         for the tabs inside a tkinter Notebook. Is essentially a giant main().
@@ -995,7 +1023,7 @@ class SimpleGUI(tk.Tk):
         # If you have not selected a path, set up a default path
         # If something is already set, the file dialog should default there
         if self.topDir == '':
-            kwargs['initialdir'] = self.default_path()
+            kwargs['initialdir'] = ef.default_path()
         else:
             kwargs['initialdir'] = self.topDir
 
@@ -1049,8 +1077,8 @@ class SimpleGUI(tk.Tk):
         self.status.set(f'Searching {self.topDir} for files')  # updating user
 
         # Looking for files to read in directory
-        tree = dirTree(self.topDir)
-        missileFiles = allMissileFiles(tree)
+        tree = ef.dirTree(self.topDir)
+        missileFiles = ef.allMissileFiles(tree)
 
         # Counting time for process to occur
         startTime = time.time()
@@ -1058,8 +1086,8 @@ class SimpleGUI(tk.Tk):
         # Making massive DataFrame of all the missile files in tree
         N = len(missileFiles)
         self.status.set(f'Loading {N} file' + 's' * (N > 1))
-        self.missileDF = combinedMissleDF(missileFiles)
-        self.missileDF.rename(columns=dictMap(), inplace=True)
+        self.missileDF = ef.combinedMissleDF(missileFiles)
+        self.missileDF.rename(columns=ef.dictMap(), inplace=True)
         self.missileDF.sort_values(by=['Time', 'RunNumber'], inplace=True)
 
         # Updating user on the operation and its total time
@@ -1097,7 +1125,7 @@ class SimpleGUI(tk.Tk):
         """
 
         kwargs = {'title': 'Select Ouput Directory',
-                  'initialdir': self.default_path(), }
+                  'initialdir': ef.default_path(), }
         self.outDir = filedialog.askdirectory(**kwargs)
         self.outDir = os.path.abspath(self.outDir)
 
@@ -1232,27 +1260,6 @@ class SimpleGUI(tk.Tk):
     ####################################################################
     # Utility functions
     ####################################################################
-    def default_path(self) -> str:
-        """
-        Gives an OS-specific default path to display in filedialog
-        windows
-
-        Returns
-        -------
-        str
-            'C:' for Windows, '/' for Unix, '//' for Linux
-            Not currently defined for other operating systems
-
-        """
-        defaultPaths = {'windows': 'C:\\',
-                        'unix': '/',
-                        'linux': '//',
-                        'macos': None,
-                        'sunos': None,
-                        }
-        thisOS = platform.system().lower()
-        return defaultPaths[thisOS]
-
     def waitToPlot(self, event=None) -> None:
         """
         Creates a queue to wait for an event to finish. This allows users
@@ -1341,6 +1348,10 @@ class SimpleGUI(tk.Tk):
             sometimes z data for plotting
 
         """
+
+        # The columns we need in addition to the x/y/z data
+        keepCols = ['RunNumber', 'Model', 'Instance']
+
         # Setting up a renaming convention to make plotting easier
         xyzRenamer = {self.xCol.get(): 'x', self.yCol.get(): 'y',
                       self.zCol.get(): 'z'}
@@ -1352,17 +1363,59 @@ class SimpleGUI(tk.Tk):
 
         # Downselecting DataFrame based on these columns
         # Keeping Unique ID so we can plot each ID separately
-        plotDF = self.missileDF[['RunNumber', 'Data Record ID',
-                                 *plotCols]].copy()
+        pDF = self.missileDF[keepCols + plotCols].copy()
 
         # If we don't want to show all the runs and don't
         # want them to be transparent, we can downselect the values now
         if not self.showAllRuns.get() and not self.transparentRuns.get():
-            plotDF = plotDF.query(f'RunNumber=={self.run.get()}').copy()
+            pDF = pDF.query(f'RunNumber=={self.run.get()}').copy()
 
         # This will allow us to reference plotDF.x
         # instead of having to call plotDF[self.xCol.get()], for example
-        return plotDF.rename(columns=xyzRenamer, inplace=False)
+        pDF.rename(columns=xyzRenamer, inplace=True)
+
+        if self.plotEngine == 'mpl':   # No need for extra work here
+            return pDF
+
+        # To do seaborn plots, we will need to interpolate each item to get
+        # a common x-axis between plots. If we do not do this, the banding
+        # part of the line plot won't be helpful
+
+        # Editing the status bar to present new information
+        self.statusLbl.pack_forget()
+        self.plotProgressFrame.pack(fill=tk.BOTH, side=tk.LEFT)
+        numDFs = sum([1 for (_, df) in pDF.groupby(keepCols)])
+
+        self.downsampleRate = 10
+
+        newDFs = []
+        n = len(pDF.x.values)
+        # xVals = pDF.x.values[0:n:self.downsampleRate]
+        xVals = pDF.x.values[0:n:(numDFs * n)//(pDF.shape[0])]
+        for k, (meta, subdf) in enumerate(pDF.groupby(keepCols)):
+            yVals = np.interp(xVals, subdf.x, subdf.y)
+            d = {'x': xVals, 'y': yVals}
+            if self.dimensions == 3:
+                zVals = np.interp(xVals, subdf.x, subdf.z)
+                d['z'] = zVals
+            for idx, item in enumerate(keepCols):
+                d[item] = [meta[idx]] * len(yVals)
+            newDFs.append(pd.DataFrame(d))
+
+            # This keeps the matplotlib process from blocking updates
+            self.canvas.draw()
+            self.plotProgress.set(100*(k+1)/(numDFs))
+            self.plotProgressLbl.set(f'{k+1}/{numDFs} complete')
+
+        newDF = pd.concat(newDFs)
+
+        # Removing the counter and setting status back to normal
+        self.plotProgressFrame.pack_forget()
+        self.statusLbl.pack(fill=tk.BOTH, side=tk.LEFT)
+        self.status.set(f'Size grew from {pDF.shape[0]} to {newDF.shape[0]}')
+        self.canvas.draw()
+
+        return newDF
 
     def startPlot(self, event=None, item=None, mode=None) -> None:
         """
@@ -1396,6 +1449,14 @@ class SimpleGUI(tk.Tk):
             print(event, item, mode)    # This is mostly for debugging
             return
 
+        if self.plotEngine == 'mpl':
+            self.startMatPlot(startTime, event, item, mode)
+        elif self.plotEngine == 'sns':
+            self.startSNSPlot(startTime, event, item, mode)
+
+    def startSNSPlot(self, startTime, event=None,
+                     item=None, mode=None) -> None:
+
         # Close old figure and toolbar if they already exist
         if None not in (self.figure, self.canvas, self.toolbar):
             plt.close(self.figure)
@@ -1416,12 +1477,40 @@ class SimpleGUI(tk.Tk):
         if self.xkcdMode.get():             # Easter Egg Mode
             with plt.xkcd():
                 self.figure = plt.Figure(figsize=(6, 4))
-                self.finishPlot(startTime)
+                self.finishSNSPlot(startTime)
         else:
             self.figure = plt.Figure(figsize=(3, 2))
-            self.finishPlot(startTime)
+            self.finishSNSPlot(startTime)
 
-    def finishPlot(self, startTime: float) -> None:
+    def startMatPlot(self, startTime, event=None,
+                     item=None, mode=None) -> None:
+
+        # Close old figure and toolbar if they already exist
+        if None not in (self.figure, self.canvas, self.toolbar):
+            plt.close(self.figure)
+            self.canvas.get_tk_widget().pack_forget()
+            self.toolbar.pack_forget()
+
+        # Loading data for plotting
+        self.setVals()
+
+        # Setting the run numbers to consider
+        self.setRunOptions()
+
+        # If there is nothing to plot, leave canvas blank
+        if self.dimensions == 0:
+            return
+
+        # Settng up canvas to draw plot
+        if self.xkcdMode.get():             # Easter Egg Mode
+            with plt.xkcd():
+                self.figure = plt.Figure(figsize=(6, 4))
+                self.finishMatPlot(startTime)
+        else:
+            self.figure = plt.Figure(figsize=(3, 2))
+            self.finishMatPlot(startTime)
+
+    def finishMatPlot(self, startTime: float) -> None:
         """
         Generates a new plot on the figure set up in startPlot.
 
@@ -1453,21 +1542,27 @@ class SimpleGUI(tk.Tk):
 
         # Looping through all possible unique IDs and model numbers
         # and plotting each individual DataFrame
-        groups = ['RunNumber', 'Data Record ID']
+        groups = ['RunNumber', 'Model', 'Instance']
 
         # Constructing dataframe that contains data for plotting
         pDF = self.plotDF()
 
         # Setting all possible permutations for plotting data
-        numDFs = sum([pDF[pDF['Data Record ID'] == d].RunNumber.nunique()
-                      for d in pDF['Data Record ID'].unique()])
+        numDFs = sum([x.RunNumber.nunique() for x in
+                      [pDF.query(f'Model=="{m}" and Instance=="{i}"')
+                       for (m, i)
+                       in itertools.product(pDF.Model.unique(),
+                                            pDF.Instance.unique())]])
 
         colors = cm.rainbow(np.linspace(0, 1, numDFs))
 
-        for k, ((run, datarecID), df) in enumerate(pDF.groupby(groups)):
-            rID = recordExtractor(datarecID, sim='ETESim')
+        # Switching out status label for a plot progress bar
+        self.statusLbl.pack_forget()
+        self.plotProgressFrame.pack(fill=tk.BOTH, side=tk.LEFT)
+
+        for k, ((run, model, instance), df) in enumerate(pDF.groupby(groups)):
             dfKwargs = {'kind': self.plotStyle.get(), 'ax': myplot}
-            plot_kwargs['label'] = f'{run}: {rID}'
+            plot_kwargs['label'] = f'{run}: {model} - {instance}'
 
             # If the transparency setting is on, we want to highlight
             # only the run of interest
@@ -1478,27 +1573,13 @@ class SimpleGUI(tk.Tk):
                 plot_kwargs['alpha'] = 0.2
             else:
                 plot_kwargs['alpha'] = 1.0
-                
+
+            dfKwargs.update(plot_kwargs)
             if self.autoColor.get():
-                plot_kwargs['color'] = [colors[k]] * df.shape[0]
+                plot_kwargs['color'] = colors[k]
+                dfKwargs['color'] = [colors[k]] * df.shape[0]
             else:
                 plot_kwargs['color'] = self.plotColorEntry.get()
-                
-            
-                
-            dfKwargs.update(plot_kwargs)
-            
-            
-#            if self.plotStyle.get() == 'scatter' and self.autoColor.get():
-#                if self.autoColor.get():
-#                    dfKwargs['color'] = [colors[k]] * df.shape[0]
-#                else:
-#                    pass
-#                    #dfKwargs['c'] = self.plotColorEntry.get()                  
-
-            df.plot(x='x', y='y', **dfKwargs,)
-                
-            """
 
             # This segments the data into 2 or 3 dimensions, depending
             # on whether we are plotting 2D or 3D data
@@ -1513,7 +1594,15 @@ class SimpleGUI(tk.Tk):
             else:
                 myplot.scatter(*plotlist, **plot_kwargs,
                                marker=self.scatterStyle.get())
-            """
+
+            # Updating the user on progress
+            self.canvas.draw()
+            self.plotProgress.set(100*(k+1)/(numDFs))
+            self.plotProgressLbl.set(f'{k+1}/{numDFs} complete')
+
+        # Removing the counter and setting status back to normal
+        self.plotProgressFrame.pack_forget()
+        self.statusLbl.pack(fill=tk.BOTH, side=tk.LEFT)
 
         self.cursor = mplcursors.cursor(myplot, hover=True)
 
@@ -1521,6 +1610,103 @@ class SimpleGUI(tk.Tk):
         if self.showLegend.get():
             legend_kwargs = {'title': 'Run Number: Element - Instance',
                              'fancybox': True, 'shadow': True, }
+
+            # Setting the location for the legend based on user input
+            if self.legendLoc.get() == 'Best':
+                pass
+            elif self.legendLoc.get() == 'Outside Right':
+                legend_kwargs['bbox_to_anchor'] = (1.1, 1.0)
+
+            myplot.legend(**legend_kwargs)
+
+        # Adding Axes Labels
+        if self.showXLabel.get():
+            myplot.set_xlabel(self.xCol.get())
+        if self.showYLabel.get():
+            myplot.set_ylabel(self.yCol.get())
+        if self.dimensions == 3 and self.showZLabel.get():
+            myplot.set_zlabel(self.zCol.get())
+
+        # Adding gridlines, if necessary
+        if self.gridMajor.get() and self.dimensions == 2:
+            myplot.grid(b=True, which='major', alpha=0.8)
+        if self.gridMinor.get() and self.dimensions == 2:
+            myplot.minorticks_on()
+            myplot.grid(b=True, which='minor', alpha=0.2, linestyle='--',)
+        else:
+            self.status.set('')
+
+        # Setting the min/max values for each variable
+        (xMin, xMax, yMin, yMax, zMin, zMax) = pof.getLimits(self, myplot)
+        myplot.set_xlim(xMin, xMax)
+        myplot.set_ylim(yMin, yMax)
+        if self.dimensions == 3:
+            myplot.set_zlim(zMin, zMax)
+
+        # Adding title with options, if necessary
+        if self.titleText.get() != '':
+            plotTitle = self.titleText.get()
+            fontdict = {'fontsize': int(self.titleSize.get()),
+                        'color': self.titleColorHex.get(),
+                        'style': 'italic' if self.itTitleOn else 'normal',
+                        'fontweight': 'bold' if self.boldTitleOn else 'normal'}
+            myplot.set_title(plotTitle, fontdict=fontdict)
+
+        # Packing plot into GUI and adding toolbar
+        self.canvas.get_tk_widget().pack(side=tk.BOTTOM,
+                                         fill=tk.BOTH,
+                                         expand=True)
+        self.toolbar = NavigationToolbar2Tk(self.canvas, self.viewPane)
+        self.toolbar.update()
+        self.canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+
+        # Updating the user on the time it took to plot
+        totalTime = time.time() - startTime
+        self.status.set(f'Plot rendered in {totalTime:.1f}s')
+
+    def finishSNSPlot(self, startTime: float) -> None:
+        """
+        Generates a new plot on the figure set up in startPlot.
+
+        Parameters
+        ----------
+        startTime : float
+            The time plotting began. Used to update the user on total
+            rendering time.
+
+        Returns
+        -------
+        None
+
+        """
+        self.cursor = None
+
+        self.canvas = FigureCanvasTkAgg(self.figure, master=self.viewPane)
+        self.canvas.draw()
+
+        myplot = self.figure.add_subplot(111,)
+
+        # Constructing dataframe that contains data for plotting
+        pDF = self.plotDF()
+
+        # Switching out status label for a plot progress bar
+        self.statusLbl.pack_forget()
+        self.plotProgressFrame.pack(fill=tk.BOTH, side=tk.LEFT)
+
+        pStyle = self.plotStyle.get()
+
+        if pStyle == 'line':
+            sns.lineplot(x='x', y='y', hue='Model', data=pDF, ax=myplot)
+        elif pStyle == 'scatter':
+            sns.lmplot(x="x", y="y", hue="Model",  data=pDF, ax=myplot)
+
+        # Removing the counter and setting status back to normal
+        self.plotProgressFrame.pack_forget()
+        self.statusLbl.pack(fill=tk.BOTH, side=tk.LEFT)
+
+        # Show legend if selected
+        if self.showLegend.get():
+            legend_kwargs = {'fancybox': True, 'shadow': True, }
 
             # Setting the location for the legend based on user input
             if self.legendLoc.get() == 'Best':
@@ -1574,237 +1760,6 @@ class SimpleGUI(tk.Tk):
         # Updating the user on the time it took to plot
         totalTime = time.time() - startTime
         self.status.set(f'Plot rendered in {totalTime:.1f}s')
-
-    def getLimits(self, ax) -> tuple:
-        """
-        Returns the limits to be used in a plot based upon the default
-        limits given by pyplot and the limits (potentially) specified
-        by the user in the GUI
-
-        Parameters
-        ----------
-        ax : matplotlib.axes._subplots.AxesSubplot
-            A handle to the subplot which will have new limits
-            This cannot be type hinted because the type is created
-            on the fly
-
-        Returns
-        -------
-        tuple
-            A six-element tuple of the minimum and maximum values for
-            x, y, and z, respectively
-
-        """
-        xMin, xMax = ax.get_xlim()
-        if self.xLimits.get():
-            if self.xMin.get() not in ['', 'Min']:
-                xMin = float(self.xMin.get())
-            if self.xMax.get() not in ['', 'Max']:
-                xMax = float(self.xMax.get())
-
-        yMin, yMax = ax.get_ylim()
-        if self.yLimits.get():
-            if self.yMin.get() not in ['', 'Min']:
-                yMin = float(self.yMin.get())
-            if self.yMax.get() not in ['', 'Max']:
-                yMax = float(self.yMax.get())
-
-        if self.dimensions == 3:
-            zMin, zMax = ax.get_zlim()
-            if self.zLimits.get():
-                if self.zMin.get() not in ['', 'Min']:
-                    zMin = float(self.zMin.get())
-                if self.zMax.get() not in ['', 'Max']:
-                    zMax = float(self.zMax.get())
-        else:
-            # This guarantees a six-element return tuple each time
-            zMin, zMax = (0, 0)
-
-        xyzLimits = (xMin, xMax, yMin, yMax, zMin, zMax)
-        return xyzLimits
-
-
-####################################################################
-# Item Renamers
-####################################################################
-
-def dictMap():
-    """
-    A mapper to take columns from the input file and generate
-    meaningful, human-readable columns. Intended to be used
-    with the .rename() function for a dataframe.
-
-    Returns
-    -------
-    dMap : dict
-        A mapping str->str intended to be used for dataframes
-
-    """
-    dMap = {
-        'uniqueid': 'RunNumber',
-        'datatype': 'Data Type',
-        'datarec_id': 'Data Record ID',
-        'header_swmodel': 'Model',
-        'time': 'Time',
-        'mEast': 'Missile Position - East',
-        'mNorth': 'Missile Position - North',
-        'mUp': 'Missile Position - Up',
-        'tEast': 'Target Position - East',
-        'tNorth': 'Target Position - North',
-        'tUp': 'Target Position - Up',
-        }
-    return dMap
-
-
-def recordExtractor(datarecID: str, sim: str = 'ETESim') -> str:
-    """
-    Extracts metadata from sim data records to get meaningful strings.
-
-    The user will be able to get a record of the form "<Model> <ID>".
-
-    Parameters
-    ----------
-    datarecID: str
-        A string for which metadata will be extracted
-
-    sim : str, optional
-        The simulation from which data extraction will occur
-        The default is 'ETESim'.
-
-    Returns
-    -------
-    str
-        The formatted string
-
-    """
-
-    # Hopefully this will grow over time
-    available_sims = ('ETESim')
-
-    # If the sim is not supported, do nothing to the string
-    if sim not in available_sims:
-        return datarecID
-
-    # Elements of the form
-    # <Object>_<Type>_<Instance>.<Object>_<Type>.<Instance>
-    # Example: MISSILE_SAMP7_1.MISSILE_SAMP7.1
-    if sim == 'ETESim':
-        regex = r'[A-Z]+_([A-Z]+\d*)_(\d+)\..*'
-        q = re.compile(regex)
-        mo = q.match(datarecID)
-
-        # Returns "<Type> - <Instance>"
-        return ' - '.join(mo.groups())
-
-
-####################################################################
-# Directory parsing functions
-####################################################################
-
-def dirTree(root: str) -> list:
-    """
-    Generates a list containing a directory and all its subdirectories.
-
-    Parameters
-    ----------
-    root : str
-        A top-level directory to traverse.
-
-    Returns
-    -------
-    list
-        The directory and all subdirectories.
-
-    """
-    # Scan directory and keep only subdirectories
-    subdirs = [x.path for x in os.scandir(root) if x.is_dir()]
-
-    # Recursively call dirtree() on the subdirectories
-    subtree = [dirTree(x) for x in subdirs]
-
-    # Building a list of all the items in the subdirectories
-    tree = [root]
-    for list_ in subtree:    # Each element in the subtree is a list
-        for dir_ in list_:
-            tree.append(dir_)
-    return tree
-
-
-def allMissileFiles(
-        dirlist: list,
-        mfile_regex: str = 'NotionalETEOutput(\\d+).xlsx') -> list:
-    """
-    Generates a list of files from the supplied directory list
-    which match the specified pattern.
-
-    Parameters
-    ----------
-    dirlist : list
-        A list of directories to check for files
-    mfile_regex : str, optional
-        The matching criterion (regular expression).
-        The default is 'NotionalETEOutput(\\d+).xlsx'.
-
-    Returns
-    -------
-    list
-        The path for each file matching the criterion.
-
-    """
-
-    missileFiles = []
-    for dir_ in dirlist:
-        for item in os.scandir(dir_):
-            if item.is_file():
-                check = re.match(mfile_regex, item.name)
-                if check is not None:
-                    missileFiles.append(item.path)
-    return missileFiles
-
-
-def combinedMissleDF(missileFileList: list) -> pd.DataFrame:
-    """
-    Combines a list of input files into a single DataFrame by
-    generating a single DataFrame for each file and using the
-    concatenation function to generate a single object.
-
-    Transforms Path and uniqueID into categorical variables because
-    it's going to have a lot of repeats
-
-    Parameters
-    ----------
-    missileFileList : list
-        The path to each file to be combined into the DataFrame
-
-    Returns
-    -------
-    pd.DataFrame
-        A Pandas DataFrame of the combined object
-
-    """
-    df = pd.concat(map(makeDataFrameAddPath, missileFileList))
-    return df
-
-
-def makeDataFrameAddPath(inFile: str) -> pd.DataFrame:
-    """
-    Makes a DataFrame from an Excel file and adds the path
-    of the file as a new column
-
-    Parameters
-    ----------
-    inFile : str
-        An Excel spreadsheet that has panel data
-
-    Returns
-    -------
-    df : pd.DataFrame
-        A Pandas DataFrame of the data with one additional column added
-
-    """
-    df = pd.read_excel(inFile)
-    df['Path'] = inFile
-    return df
 
 
 # To prevent this running automatically if imported
