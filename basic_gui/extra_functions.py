@@ -41,6 +41,7 @@ def hex2rgb(hexstring: str) -> tuple:
         rgb.append(int(f'0x0000{string_}', 0))
     return tuple(rgb)
 
+
 def default_path() -> str:
     """
     Gives an OS-specific default path to display in filedialog windows.

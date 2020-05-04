@@ -30,6 +30,7 @@ Todo
 """
 
 # File Imports
+import callback_functions as cf
 import element_builder as eb
 import extra_functions as ef
 import plot_options_functions as pof
@@ -142,7 +143,8 @@ class SimpleGUI(tk.Tk):
         # resize the notebook as needed
         self.tabs.pack(fill=tk.BOTH)
         self.tabs.bind("<Configure>", self.autosizer)
-        self.tabs.bind("<<NotebookTabChanged>>", self.setStatusBarOptions)
+        self.tabs.bind("<<NotebookTabChanged>>",
+                       lambda _: cf.setStatusBarOptions(self))
 
         # Sets up the GUI to have a status bar along the bottom
         self.statusBar = ttk.Frame(self, height=100)
@@ -224,13 +226,14 @@ class SimpleGUI(tk.Tk):
         self.topDirBrowseButton = tk.Button(self.inputTab,
                                             text='Browse',
                                             height=1,
-                                            command=self.getTopDir)
+                                            command=lambda: cf.getTopDir(self))
         self.topDirBrowseButton.grid(row=0, column=6, padx=4)
 
-        self.topDirLoadButton = tk.Button(self.inputTab,
-                                          text='Load',
-                                          height=1,
-                                          command=self.loadFromTopDir)
+        self.topDirLoadButton = tk.Button(
+                                    self.inputTab,
+                                    text='Load',
+                                    height=1,
+                                    command=lambda: cf.loadFromTopDir(self))
         self.topDirLoadButton.grid(row=0, column=7, padx=4)
 
         # - - - - - - - - - - - - - - - -
@@ -271,14 +274,14 @@ class SimpleGUI(tk.Tk):
         self.editPane.grid_propagate(0)
         self.viewPane = ttk.Frame(self.graphPanes,)
         self.graphPanes.add(self.viewPane)
-        
+
         # - - - - - - - - - - - - - - - -
         # Row 0 - XYZ Plot Columns
         thisrow = 0
         self.fieldsFrame = ttk.LabelFrame(self.editPane, relief=tk.RIDGE,
                                           text="Fields to Plot",)
         self.fieldsFrame.grid(row=thisrow, column=1, sticky=tk.W, pady=(1, 0))
-        
+
         eb.buildXYZFieldSelector(self, self.fieldsFrame, self.plotCols,
                                  self.startPlot)
 
@@ -289,109 +292,10 @@ class SimpleGUI(tk.Tk):
                                              text="Set Limits",
                                              relief=tk.RIDGE)
         self.xyzMinMaxFrame.grid(row=thisrow, column=1, sticky=tk.W, pady=3,)
-        limitskwargs = {'width': 8, 'validate': "key"}
-
-        # - - - - - - - - - -
-        # Row 1.0 - X Min/Max
-        self.xLimitsRow = 0
-        self.xLimits = tk.BooleanVar(value=False)
-
-        # Checkbox for turning on limit setting
-        self.xLimitsBox = tk.Checkbutton(self.xyzMinMaxFrame,
-                                         text='X ',
-                                         variable=self.xLimits,
-                                         command=self.showHideXLimits)
-        self.xLimitsBox.grid(row=self.xLimitsRow, column=0, sticky=tk.W)
-
-        # Entry for minimum Y value
-        self.xMin = tk.StringVar()
-        self.xMinEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
-        self.xMinEntry['textvariable'] = self.xMin
-        self.xMinEntry.insert(0, 'Min')
-        self.xMinEntry.bind('<Key>', self.waitToPlot)
-        self.xMinEntry.bind("<FocusIn>",
-                            lambda _: self.modifyLimitsEntry(_, 'xMin'))
-        self.xMinEntry.bind("<FocusOut>",
-                            lambda _: self.modifyLimitsEntry(_, 'xMin'))
-
-        # Entry for maximum Y value
-        self.xMax = tk.StringVar()
-        self.xMaxEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
-        self.xMaxEntry['textvariable'] = self.xMax
-        self.xMaxEntry.insert(0, 'Max')
-        self.xMaxEntry.bind('<Key>', self.waitToPlot)
-        self.xMaxEntry.bind("<FocusIn>",
-                            lambda _: self.modifyLimitsEntry(_, 'xMax'))
-        self.xMaxEntry.bind("<FocusOut>",
-                            lambda _: self.modifyLimitsEntry(_, 'xMax'))
-
-        # - - - - - - - - - -
-        # Row 1.1 - Y Min/Max
-        self.yLimitsRow = 1
-        self.yLimits = tk.BooleanVar(value=False)
-
-        # Checkbox for turning on limit setting
-        self.yLimitsBox = tk.Checkbutton(self.xyzMinMaxFrame,
-                                         text='Y ',
-                                         variable=self.yLimits,
-                                         command=self.showHideYLimits)
-        self.yLimitsBox.grid(row=self.yLimitsRow, column=0, sticky=tk.W)
-
-        # Entry for minimum Y value
-        self.yMin = tk.StringVar()
-        self.yMinEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
-        self.yMinEntry['textvariable'] = self.yMin
-        self.yMinEntry.insert(0, 'Min')
-        self.yMinEntry.bind('<Key>', self.waitToPlot)
-        self.yMinEntry.bind("<FocusIn>",
-                            lambda _: self.modifyLimitsEntry(_, 'yMin'))
-        self.yMinEntry.bind("<FocusOut>",
-                            lambda _: self.modifyLimitsEntry(_, 'yMin'))
-
-        # Entry for maximum Y value
-        self.yMax = tk.StringVar()
-        self.yMaxEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
-        self.yMaxEntry['textvariable'] = self.yMax
-        self.yMaxEntry.insert(0, 'Max')
-        self.yMaxEntry.bind('<Key>', self.waitToPlot)
-        self.yMaxEntry.bind("<FocusOut>",
-                            lambda _: self.modifyLimitsEntry(_, 'yMax'))
-        self.yMaxEntry.bind("<FocusIn>",
-                            lambda _: self.modifyLimitsEntry(_, 'yMax'))
-
-        # - - - - - - - - - -
-        # Row 1.2 - Z Min/Max
-        self.zLimitsRow = 2
-        self.zLimits = tk.BooleanVar(value=False)
-
-        # Checkbox for turning on limit setting
-        self.zLimitsBox = tk.Checkbutton(self.xyzMinMaxFrame,
-                                         text='Z ',
-                                         variable=self.zLimits,
-                                         command=self.showHideZLimits)
-        self.zLimitsBox.grid(row=self.zLimitsRow, column=0, sticky=tk.W)
-
-        # Entry for minimum Z value
-        self.zMin = tk.StringVar()
-        self.zMinEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
-        self.zMinEntry['textvariable'] = self.zMin
-        self.zMinEntry.insert(0, 'Min')
-        self.zMinEntry.bind('<Key>', self.waitToPlot)
-        self.zMinEntry.bind("<FocusIn>",
-                            lambda _: self.modifyLimitsEntry(_, 'zMin'))
-        self.zMinEntry.bind("<FocusOut>",
-                            lambda _: self.modifyLimitsEntry(_, 'zMin'))
-
-        # Entry for maximum Z value
-        self.zMax = tk.StringVar()
-        self.zMaxEntry = tk.Entry(self.xyzMinMaxFrame, **limitskwargs)
-        self.zMaxEntry['textvariable'] = self.zMax
-        self.zMaxEntry.insert(0, 'Max')
-        self.zMaxEntry.bind('<Key>', self.waitToPlot)
-        self.zMaxEntry.bind("<FocusIn>",
-                            lambda _: self.modifyLimitsEntry(_, 'zMax'))
-        self.zMaxEntry.bind("<FocusOut>",
-                            lambda _: self.modifyLimitsEntry(_, 'zMax'))
+        
+        
+        eb.buildXYZMinMaxModifiers(self, self.xyzMinMaxFrame)
+        
 
         # - - - - - - - - - - - - - - - -
         # Row 2 - Custom Title
@@ -426,7 +330,7 @@ class SimpleGUI(tk.Tk):
                                 self.titleLF, text="B", width=3,
                                 relief=tk.FLAT,
                                 font=boldFont,
-                                command=lambda: self.editTitleOptions('b'),)
+                                command=lambda: cf.editTitleOptions(self, 'b'))
         self.boldTitleButton.grid(row=1, column=1,)
 
         # Italic button
@@ -435,7 +339,7 @@ class SimpleGUI(tk.Tk):
                                 self.titleLF, text="I", width=3,
                                 relief=tk.FLAT,
                                 font=itFont,
-                                command=lambda: self.editTitleOptions('i'),)
+                                command=lambda: cf.editTitleOptions(self, 'i'))
         self.itTitleButton.grid(row=1, column=2,)
 
         # Title Color Picker
@@ -448,9 +352,10 @@ class SimpleGUI(tk.Tk):
 
         # Setting up color wheel buttong
         self.titleColorWheel = tk.PhotoImage(file='images/color_wheel.png')
-        self.titleColorButton = tk.Button(self.titleLF,
-                                          image=self.titleColorWheel,
-                                          command=self.pickTitleColor)
+        self.titleColorButton = tk.Button(
+                                    self.titleLF,
+                                    image=self.titleColorWheel,
+                                    command=lambda: cf.pickTitleColor(self))
         self.titleColorButton.grid(row=1, column=4,)
 
         # - - - - - - - - - - - - - - - -
@@ -464,12 +369,12 @@ class SimpleGUI(tk.Tk):
         # Row 3.0 - Plot/Scatter
         self.plotStyle = tk.StringVar(self.styleLF, 'line')
 
-        linekwargs = {'text': 'Line', 'var': self.plotStyle,
-                      'value': 'line', 'command': self.setPlotStyleOptions, }
+        linekwargs = {'text': 'Line', 'var': self.plotStyle, 'value': 'line',
+                      'command': lambda: cf.setPlotStyleOptions(self, ), }
 
         scatterkwargs = {'text': 'Scatter', 'var': self.plotStyle,
                          'value': 'scatter',
-                         'command': self.setPlotStyleOptions, }
+                         'command': lambda: cf.setPlotStyleOptions(self, ), }
 
         self.lineOn = ttk.Radiobutton(self.styleLF, **linekwargs,)
         self.scatterOn = ttk.Radiobutton(self.styleLF, **scatterkwargs)
@@ -509,7 +414,7 @@ class SimpleGUI(tk.Tk):
         self.legendLoc = tk.StringVar(self.styleLF, value='Best')
 
         legendCB_kwargs = {'text': 'Show Legend', 'variable': self.showLegend,
-                           'command': self.setLegendOptions, }
+                           'command': lambda: cf.setLegendOptions(self,), }
         self.legendCB = tk.Checkbutton(self.styleLF, **legendCB_kwargs)
         self.legendCB.grid(row=1, column=0, columnspan=2, sticky=tk.W)
 
@@ -528,7 +433,7 @@ class SimpleGUI(tk.Tk):
         # Setting up whether the colors should be made automatically
         self.autoColor = tk.BooleanVar(value=True)
         ac_kwargs = {'text': 'Auto Color', 'variable': self.autoColor,
-                     'command': self.showHidePlotColors, }
+                     'command': lambda: cf.showHidePlotColors(self, ), }
         self.autoColorCB = tk.Checkbutton(self.styleLF, **ac_kwargs)
         self.autoColorCB.grid(row=2, column=0, columnspan=2, sticky=tk.W)
 
@@ -544,7 +449,7 @@ class SimpleGUI(tk.Tk):
         # Setting up color wheel buttong
         self.plotColorWheel = tk.PhotoImage(file='images/color_wheel.png')
         pcb_kwargs = {'image': self.plotColorWheel, 'state': 'disabled',
-                      'command': self.pickPlotColor, }
+                      'command': lambda: cf.pickPlotColor(self), }
         self.plotColorButton = tk.Button(self.styleLF, **pcb_kwargs)
         self.plotColorButton.grid(row=2, column=3, sticky=tk.W, padx=(5, 0))
 
@@ -649,585 +554,11 @@ class SimpleGUI(tk.Tk):
         self.transRunsCB = tk.Checkbutton(self.runChoiceLF, **transRun_kwargs)
         self.transRunsCB.grid(row=0, column=3, sticky=tk.W,)
 
-        self.setRunOptions()
+        cf.setRunOptions(self, )
 
-    ####################################################################
-    # Callback functions
-    ####################################################################
-    def modifyLimitsEntry(self, event: tk.Event, entry: str = None) -> None:
-        """
-        Modifies the Min/Max options for each variable (X/Y/Z) when the
-        user clicks into or out of the field.
+    
 
-        If the field has Min (or Max) already in there, remove the
-        text when the user enters the field.
-
-        If the field has a non-float entry when the user leaves the field,
-        restore Min (or Max) back to the field.
-
-        Parameters
-        ----------
-        event : tk.Event
-            Usually a focusIn or focusOut event which details whether
-            the user has entered or left the field of interest
-        entry : str, optional
-            A metadescriptor which describes the location of where
-            the user is or came from. The default is None.
-
-        Returns
-        -------
-        None
-
-        """
-        focusIn = 9
-        focusOut = 10
-        evType = int(event.type._value_)
-
-        # On focusIn events, if the value says Min or Max, delete it
-        if evType == focusIn:
-            if entry == 'xMin':
-                if self.xMinEntry.get() == 'Min':
-                    self.xMinEntry.delete(0, tk.END)
-            elif entry == 'xMax':
-                if self.xMaxEntry.get() == 'Max':
-                    self.xMaxEntry.delete(0, tk.END)
-            elif entry == 'yMin':
-                if self.yMinEntry.get() == 'Min':
-                    self.yMinEntry.delete(0, tk.END)
-            elif entry == 'yMax':
-                if self.yMaxEntry.get() == 'Max':
-                    self.yMaxEntry.delete(0, tk.END)
-            elif entry == 'zMin':
-                if self.zMinEntry.get() == 'Min':
-                    self.zMinEntry.delete(0, tk.END)
-            elif entry == 'zMax':
-                if self.zMaxEntry.get() == 'Max':
-                    self.zMaxEntry.delete(0, tk.END)
-
-        # On focusOut events, if the entry isn't a valid floating
-        # point number, then put Min/Max back in where it should be
-        elif evType == focusOut:
-            if entry == 'xMin':
-                try:
-                    float(self.xMinEntry.get())
-                except ValueError as ve:
-                    assert(ve)
-                    self.xMinEntry.delete(0, tk.END)
-                    self.xMinEntry.insert(0, 'Min')
-            elif entry == 'xMax':
-                try:
-                    float(self.xMaxEntry.get())
-                except ValueError as ve:
-                    assert(ve)
-                    self.xMaxEntry.delete(0, tk.END)
-                    self.xMaxEntry.insert(0, 'Max')
-            elif entry == 'yMin':
-                try:
-                    float(self.yMinEntry.get())
-                except ValueError as ve:
-                    assert(ve)
-                    self.yMinEntry.delete(0, tk.END)
-                    self.yMinEntry.insert(0, 'Min')
-            elif entry == 'yMax':
-                try:
-                    float(self.yMaxEntry.get())
-                except ValueError as ve:
-                    assert(ve)
-                    self.yMaxEntry.delete(0, tk.END)
-                    self.yMaxEntry.insert(0, 'Max')
-            elif entry == 'zMin':
-                try:
-                    float(self.zMinEntry.get())
-                except ValueError as ve:
-                    assert(ve)
-                    self.zMinEntry.delete(0, tk.END)
-                    self.zMinEntry.insert(0, 'Min')
-            elif entry == 'zMax':
-                try:
-                    float(self.zMaxEntry.get())
-                except ValueError as ve:
-                    assert(ve)
-                    self.zMaxEntry.delete(0, tk.END)
-                    self.zMaxEntry.insert(0, 'Max')
-
-    def editTitleOptions(self, style: str = '') -> None:
-        """
-        Updates UI on whether user has pressed/unpressed the Bold Or Iatlic
-        button and then has the plot title reflect that change.
-
-        Parameters
-        ----------
-        style : str, optional
-            A modifier parameter to indicate whether the bold or italic
-            button has been pressed. The default is '' (for neither).
-
-        Returns
-        -------
-        None
-
-        """
-        # Reading events
-        if style == 'b':        # Swapping bold press state
-            self.boldTitleOn = not self.boldTitleOn
-        elif style == 'i':      # Swapping italic press state
-            self.itTitleOn = not self.itTitleOn
-        else:
-            return              # Nothing to do
-
-        # Swapping button behavior (pressed down or not)
-        br = tk.SUNKEN if self.boldTitleOn else tk.FLAT
-        ir = tk.SUNKEN if self.itTitleOn else tk.FLAT
-        self.boldTitleButton.config(relief=br)
-        self.itTitleButton.config(relief=ir)
-
-        # Updating plot with new title style
-        self.startPlot(1)
-
-    def pickTitleColor(self) -> None:
-        """
-        Takes the color chosen by the user from the colorwheel button
-        and renders the title with that color.
-
-        Returns
-        -------
-        None
-
-        """
-        # Takes color from user (None if exited without choosing color)
-        # Returns a tuple of ((R, G, B), Hex)
-        # R, G, B are floating point!
-        color = tkColorChooser.askcolor(color=self.titleColorRGB)
-        if None not in color:
-            # Sets the Hex value and updates the RGB value
-            # The RGB value is used as the default in the colorchooser,
-            # so that is why it needs to get set
-            self.titleColorHex.set(color[1])
-            self.titleColorRGB = ef.hex2rgb(self.titleColorHex.get())
-            self.editTitleOptions(self.titleColorHex.get())
-        self.startPlot(1)
-
-    def pickPlotColor(self) -> None:
-        """
-        Takes the color chosen by the user from the colorwheel button
-        and renders the plot with that color.
-
-        Returns
-        -------
-        None
-
-        """
-        # Takes color from user (None if exited without choosing color)
-        # Returns a tuple of ((R, G, B), Hex)
-        # R, G, B are floating point!
-        color = tkColorChooser.askcolor(color=self.plotColorRGB)
-        if None not in color:
-            # Sets the Hex value and updates the RGB value
-            # The RGB value is used as the default in the colorchooser,
-            # so that is why it needs to get set
-            self.plotColorHex.set(color[1])
-            self.plotColorRGB = ef.hex2rgb(self.plotColorHex.get())
-            self.startPlot(1)
-
-    def setLegendOptions(self) -> None:
-        """
-        Enables or disables the combobox for legend locations based
-        on whether the box is checked
-
-        Returns
-        -------
-        None
-            DESCRIPTION.
-
-        """
-        if self.showLegend.get():
-            self.legendLocCB['state'] = 'readonly'
-        else:
-            self.legendLocCB['state'] = 'disabled'
-
-        self.startPlot(1)
-
-    def setDimensions(self) -> None:
-        """
-        Sets the dimensions for the plot based upon the columns
-        selected by the user. If the user does not select both the
-        x and y axis columns, then the dimensions are set to 0.
-        If the user selects both x and y but not z, the dimension is 2.
-        If the user selects x, y, and z, the dimension is 3
-
-        Returns
-        -------
-        None
-
-        """
-        if self.xCol.get() == '':       # x does not exist
-            self.dimensions = 0
-            return
-        elif self.yCol.get() == '':     # x exists, y does not
-            self.dimensions = 0
-            return
-        elif self.zCol.get() == '':     # x and y exist, z does not
-            self.dimensions = 2
-
-            # Grid options exists on 2D graphs
-            self.gridMajorCB['state'] = 'normal'
-            self.gridMinorCB['state'] = 'normal'
-        else:
-            self.dimensions = 3         # x, y, and z exist
-
-            # 3D plots include a major grid by default
-            # Minor grids in 3D introduce a bug
-            self.gridMinorCB['state'] = 'disabled'
-            self.gridMajorCB['state'] = 'disabled'
-
-        # If any two columns match, there is no need to plot
-        if (self.xCol.get() == self.yCol.get()
-           or self.xCol.get() == self.zCol.get()
-           or self.yCol.get() == self.zCol.get()):
-            self.dimensions = 0
-            self.status.set('Plot will not render if two elements match')
-
-    def setRunOptions(self, event=None) -> None:
-        """
-        Sets the run numbers specified for looking at runs.
-        Can enable/disable run number input based upon user selection.
-        Will also set default values for the run number if there is
-        an available set of run numbers to choose from
-
-        Parameters
-        ----------
-        event : tk.Event, optional
-            An event to be passed to turn this function into a handle.
-            Not currently needed.
-            The default is None.
-
-        Returns
-        -------
-        None
-
-        """
-
-        # Set the ability for the user to edit the value based on choice
-        newstate = 'disabled' if self.showAllRuns.get() else 'normal'
-        self.runChoice['state'] = newstate
-        self.transRunsCB['state'] = newstate
-
-        # Load the spinbox with the available choices if they exist
-        if self.availableRuns.size > 0:
-            self.runChoice['values'] = self.availableRuns.tolist()
-
-            # If there is no value in the box, set it
-            if self.runChoice.get() == '0':
-                self.runChoice.set(self.availableRuns[0])
-        else:
-            self.runChoice.set('')
-            return
-
-        # We need to do some value checking but will not be able to
-        # if there are no values to choose from
-        try:
-            # if there is no entry for self.run to select from, it
-            # will be assigned an empty string and then try to do
-            # type conversion. This will obviously fail.
-            run = self.run.get()
-        except tk.TclError as tkTcl:
-            assert(tkTcl)  # to shut linter up
-            return
-
-        # If the value typed in does not match any value in the
-        # list of available runs, match it to the nearest value
-        if isinstance(run, int) and run not in self.availableRuns:
-            diff_vals = np.abs(self.availableRuns - run)
-            nearest_idx = np.argmin(diff_vals)
-            newval = self.availableRuns[nearest_idx]
-            self.runChoice.set(newval)
-
-    def setVals(self) -> None:
-        """
-        Checks whether user has selected X, Y, or Z columns from the
-        ComboBox (drop-down) and sets the x, y, and z vectors from
-        those choices.
-
-        If both X and Y are not selected, nothing happens.
-        If X and Y are selected but not Z, then a 2D plot will be rendered.
-        If X, Y, and Z are selected, a 3D plot will be rendered.
-
-        Returns
-        -------
-        None
-
-        """
-
-        # Guarantees dimensions are up to date
-        self.setDimensions()
-
-        # If no dimensions, set values to nothing
-        if self.dimensions == 0:
-            self.x, self.y, self.z = [], [], []
-
-        # If only 2D plot, only set x and y
-        elif self.dimensions == 2:
-            self.x = self.missileDF[self.xCol.get()].values
-            self.y = self.missileDF[self.yCol.get()].values
-
-        # If 3D plot, set x, y, and z
-        elif self.dimensions == 3:
-            self.x = self.missileDF[self.xCol.get()].values
-            self.y = self.missileDF[self.yCol.get()].values
-            self.z = self.missileDF[self.zCol.get()].values
-        return
-
-    def getTopDir(self) -> None:
-        """
-        Opens a file browswer for the run files. Once selected,
-        the chosen file path will show in the text field.
-        The path can be typed in also.
-        ** Only a directory can be selected
-
-        Returns
-        -------
-        None
-
-        """
-
-        kwargs = {'title': 'Select Directory Containing Run(s)',
-                  'mustexist': True, }
-
-        # If you have not selected a path, set up a default path
-        # If something is already set, the file dialog should default there
-        if self.topDir == '':
-            kwargs['initialdir'] = ef.default_path()
-        else:
-            kwargs['initialdir'] = self.topDir
-
-        selection = filedialog.askdirectory(**kwargs)
-        if selection != '':
-            self.topDir = os.path.abspath(selection)
-
-        # Updates text widget with path (deletes old path)
-        self.topDirPath.delete('1.0', tk.END)
-        self.topDirPath.insert(1.0, self.topDir)
-
-    def loadFromTopDir(self) -> None:
-        """
-        Loads missile file from topDir, if possible.
-        If directory is invalid, display a warning message.
-        If missile file loads successfully, update status.
-
-        Returns
-        -------
-        None
-
-        """
-        # If the entry is not a valid directory, display a warning message
-        if not os.path.isdir(self.topDir):
-            self.status.set('No file(s) loaded')
-            mb.showinfo('Invalid directory',                 # title
-                        'Please choose a valid directory!',  # message
-                        icon='warning',)
-            return
-
-        # This should already be true, but setting just in case
-        self.topDir = os.path.abspath(self.topDir)
-        self.loadMissileFiles()
-
-    def loadMissileFiles(self) -> str:
-        """
-        Checks for whether 'NotionalETEOutput###.xlsx' is present in topDir.
-        (The ### is a random number between 000 and 999, always three digits)
-        If present, loads the missile file into a dataframe, updates the
-        dataframe columns, and makes available for plotting only the
-        dataframe columns that have floating-point data
-
-        ** Will definitely need to be updated upon porting
-
-        Returns
-        -------
-        str
-            The absolute path to the missile file
-
-        """
-        self.status.set(f'Searching {self.topDir} for files')  # updating user
-
-        # Looking for files to read in directory
-        tree = ef.dirTree(self.topDir)
-        missileFiles = ef.allMissileFiles(tree)
-
-        # Counting time for process to occur
-        startTime = time.time()
-
-        # Making massive DataFrame of all the missile files in tree
-        N = len(missileFiles)
-        self.status.set(f'Loading {N} file' + 's' * (N > 1))
-        self.missileDF = ef.combinedMissleDF(missileFiles)
-        self.missileDF.rename(columns=ef.dictMap(), inplace=True)
-        self.missileDF.sort_values(by=['Time', 'RunNumber'], inplace=True)
-
-        # Updating user on the operation and its total time
-        totalTime = int(time.time() - startTime)
-        newStatus = f'Loaded {N} file' + 's' * (N > 1) + f' in {totalTime}s'
-        self.status.set(newStatus)
-
-        # Determining available runs based upon unique IDs
-        if 'RunNumber' in self.missileDF.columns:
-            self.availableRuns = self.missileDF.RunNumber.unique()
-            self.setRunOptions()
-            self.run.set(self.availableRuns[0])
-
-        # Takes the columns from the DataFrame and makes them available
-        # to be plotted on any axis. The first entry will be blank
-        # so that users must choose to plot
-        self.plotCols = [''] + sorted([col for col, val
-                                       in self.missileDF.dtypes.items()
-                                       if val == np.dtype('float64')])
-        self.xCB['values'] = self.plotCols
-        self.yCB['values'] = self.plotCols
-        self.zCB['values'] = self.plotCols
-
-    def getOutDir(self) -> None:
-        """
-        Opens a file browswer for the output files.
-        Once selected, the chosen file path will show in the text field.
-        (The path can be typed in also.)
-        ** Only a directory (not a file) can be selected
-
-        Returns
-        -------
-        None
-
-        """
-
-        kwargs = {'title': 'Select Ouput Directory',
-                  'initialdir': ef.default_path(), }
-        self.outDir = filedialog.askdirectory(**kwargs)
-        self.outDir = os.path.abspath(self.outDir)
-
-        # Updates text widget with path (deletes old path)
-        self.outDirPath.delete('1.0', tk.END)
-        self.outDirPath.insert(1.0, self.outDir)
-
-    def setStatusBarOptions(self, event=None) -> None:
-        """
-        Updates the the elements displayed in the status bar.
-
-        Parameters
-        ----------
-        event : tk.Event, optional
-            An event that can drive the call. The default is None.
-
-        Returns
-        -------
-        None
-
-        """
-
-        # Capturing current tab
-        tab = self.tabs.index(self.tabs.select())
-
-        if tab == 0:  # Data Input Tab
-            self.xkcdModeCB.pack_forget()
-        elif tab == 1:  # Viewer Tab
-            self.xkcdModeCB.pack(fill=tk.BOTH, side=tk.RIGHT)
-        else:
-            self.status.set(f'You are on tab {tab} which must be new')
-
-    def setPlotStyleOptions(self) -> None:
-        """
-        Checks whether the radio button for 'line' or 'scatter' is selected.
-        For the selected option, it makes the ComboBox (drop-down)
-        active and selectable by the user
-
-        Returns
-        -------
-        None
-
-        """
-        if self.plotStyle.get() == 'line':
-            self.lineStyleCB.config(state='readonly')
-            self.scatterStyleCB.config(state='disabled')
-        if self.plotStyle.get() == 'scatter':
-            self.lineStyleCB.config(state='disabled')
-            self.scatterStyleCB.config(state='readonly')
-        self.startPlot('update')  # Need a non-None event
-
-    def showHidePlotColors(self) -> None:
-        """
-        Changes the ability to interact with the plotColor entry and button
-        elements based upon whether autoColor has been selected
-
-        Returns
-        -------
-        None
-
-        """
-
-        # Disables the ability to edit if the autocolor option is set
-        # Otherwise, restores it to normal
-        newstate = 'disabled' if self.autoColor.get() else 'normal'
-        self.plotColorEntry['state'] = newstate
-        self.plotColorButton['state'] = newstate
-
-        # Updates plot based on choice
-        self.startPlot(1)
-
-    def showHideXLimits(self) -> None:
-        """
-        Determines whether or not to display the boxes for setting
-        the minimum and maximum limits for the X variable.
-        Checks the status of the tk.CheckBox in the GUI to determine
-        behavior
-
-        Returns
-        -------
-        None
-
-        """
-        if self.xLimits.get():  # if checked, show entry fields
-            self.xMinEntry.grid(row=self.xLimitsRow, column=2)
-            self.xMaxEntry.grid(row=self.xLimitsRow, column=3)
-        else:                   # hide fields
-            self.xMinEntry.grid_remove()
-            self.xMaxEntry.grid_remove()
-        self.startPlot(1)
-
-    def showHideYLimits(self) -> None:
-        """
-        Determines whether or not to display the boxes for setting
-        the minimum and maximum limits for the Y variable.
-        Checks the status of the tk.CheckBox in the GUI to determine
-        behavior
-
-        Returns
-        -------
-        None
-
-        """
-        if self.yLimits.get():  # if checked, show entry fields
-            self.yMinEntry.grid(row=self.yLimitsRow, column=2)
-            self.yMaxEntry.grid(row=self.yLimitsRow, column=3)
-        else:                   # hide fields
-            self.yMinEntry.grid_remove()
-            self.yMaxEntry.grid_remove()
-        self.startPlot(1)
-
-    def showHideZLimits(self) -> None:
-        """
-        Determines whether or not to display the boxes for setting
-        the minimum and maximum limits for the Z variable.
-        Checks the status of the tk.CheckBox in the GUI to determine
-        behavior
-
-        Returns
-        -------
-        None
-
-        """
-        if self.zLimits.get():  # if checked, show entry fields
-            self.zMinEntry.grid(row=self.zLimitsRow, column=2)
-            self.zMaxEntry.grid(row=self.zLimitsRow, column=3)
-        else:                   # hide fields
-            self.zMinEntry.grid_remove()
-            self.zMaxEntry.grid_remove()
-        self.startPlot(1)
+    
 
     ####################################################################
     # Utility functions
@@ -1371,10 +702,10 @@ class SimpleGUI(tk.Tk):
             self.toolbar.pack_forget()
 
         # Loading data for plotting
-        self.setVals()
+        cf.setVals(self, )
 
         # Setting the run numbers to consider
-        self.setRunOptions()
+        cf.setRunOptions(self, )
 
         # If there is nothing to plot, leave canvas blank
         if self.dimensions == 0:
@@ -1399,10 +730,10 @@ class SimpleGUI(tk.Tk):
             self.toolbar.pack_forget()
 
         # Loading data for plotting
-        self.setVals()
+        cf.setVals(self, )
 
         # Setting the run numbers to consider
-        self.setRunOptions()
+        cf.setRunOptions(self, )
 
         # If there is nothing to plot, leave canvas blank
         if self.dimensions == 0:
