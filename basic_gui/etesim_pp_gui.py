@@ -133,10 +133,10 @@ class SimpleGUI(tk.Tk):
         self.plotEngine = 'mpl'
 
         # Creating a Notebook seems to be the key to making tabs
-        # buildTabs() compartmentalizes the code for making the tabs
-        self.tabs = ttk.Notebook(self,
-                                 height=self.winfo_reqheight(),
-                                 width=self.winfo_reqwidth())
+        # Requesting the current setup guarantees the notebook is built
+        # to fill the space allotted
+        height, width = self.winfo_reqheight(), self.winfo_reqwidth()
+        self.tabs = ttk.Notebook(self, height=height, width=width)
         self.buildTabs(self.tabs)
 
         # Fills the entire GUI with the notebook and lets the GUI
@@ -203,82 +203,27 @@ class SimpleGUI(tk.Tk):
         # Tab 1: Data Input
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         self.inputTab = ttk.Frame(parent,)
-        self.datainput_icon = tk.PhotoImage(file='images/input-data-1.png')
-        parent.add(self.inputTab,
-                   text='Data Input',
-                   image=self.datainput_icon,
-                   compound=tk.LEFT,)
-
-        # - - - - - - - - - - - - - - - -
-        # Row 0 - Browsing for Directory
-        self.topDirLabel = tk.Label(self.inputTab,
-                                    text='Directory with Run(s): ')
-        self.topDirLabel.grid(row=0, sticky=tk.W)
-
-        # TODO: Change this back to empty string
-        self.topDir = os.path.abspath(os.path.join(os.getcwd(), os.pardir,
-                                                   'runs'))
-        self.topDirPath = tk.Text(self.inputTab, relief=tk.SUNKEN)
-        self.topDirPath.insert(tk.INSERT, self.topDir)
-        self.topDirPath.config(width=60, height=1.45)
-        self.topDirPath.grid(row=0, column=1, sticky=tk.W)
-
-        self.topDirBrowseButton = tk.Button(self.inputTab,
-                                            text='Browse',
-                                            height=1,
-                                            command=lambda: cf.getTopDir(self))
-        self.topDirBrowseButton.grid(row=0, column=6, padx=4)
-
-        self.topDirLoadButton = tk.Button(
-                                    self.inputTab,
-                                    text='Load',
-                                    height=1,
-                                    command=lambda: cf.loadFromTopDir(self))
-        self.topDirLoadButton.grid(row=0, column=7, padx=4)
-
-        # - - - - - - - - - - - - - - - -
-        # Row 1 - Threat Type(s)
-        self.threatTypeOptions = ('Infer', 'ABT', 'TBM')
-        self.threatTypeLabel = tk.Label(self.inputTab, text='Threat: ')
-        self.threatTypeLabel.grid(row=1, sticky=tk.W)
-        self.threatType = tk.StringVar()
-        self.threatTypeCB = ttk.Combobox(self.inputTab,
-                                         textvariable=self.threatType,
-                                         values=self.threatTypeOptions,
-                                         state='readonly',
-                                         width=20,)
-
-        self.threatTypeCB.set('Infer')  # Could use .current(0)
-        self.threatTypeCB.grid(row=1, column=1, sticky=tk.W)
+        self.inpIcon = tk.PhotoImage(file='images/input-data-1.png')
+        iK = {'text': 'Data Input', 'image': self.inpIcon, 'compound': tk.LEFT}
+        parent.add(self.inputTab, **iK)
+        eb.buildInputElements(self, self.inputTab, )
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        # Tab 2: Viewer
+        # Tab 2: Visualizer
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        self.viewer_icon = tk.PhotoImage(file='images/three-dim-graph.png')
-        self.viewerTab = ttk.Frame(parent,)
-        parent.add(
-                self.viewerTab,
-                text='Viewer',
-                image=self.viewer_icon,   # The icon feature is awesome
-                compound=tk.LEFT,)        # Places icon left of text
+        self.viewIcon = tk.PhotoImage(file='images/three-dim-graph.png')
+        self.viewTab = ttk.Frame(parent,)
+        vK = {'text': 'Viewer', 'image': self.viewIcon, 'compound': tk.LEFT}
+        parent.add(self.viewTab, **vK)
 
-        self.graphPanes = ttk.Panedwindow(self.viewerTab, orient=tk.HORIZONTAL)
+        # - - - - - - - - - - - - - - - -
+        # Holder for editor/viewer
+        self.graphPanes = ttk.Panedwindow(self.viewTab, orient=tk.HORIZONTAL)
         self.graphPanes.pack(fill=tk.BOTH, expand=True)
 
-        # - - - - - - - - - - - - - - - -
-        # Defining Edit and View Panes
-        self.editPane = ttk.Frame(self.graphPanes, width=260, relief=tk.GROOVE)
-        self.graphPanes.add(self.editPane)
-
-        # We don't want the edit frame to automatically resize
-        self.editPane.grid_propagate(0)
-        eb.buildEditorElements(self, self.editPane, self.plotCols,
-                               self.availableRuns, self.waitToPlot,
-                               self.startPlot)     
-
-        # Adds the piece to actually view the plot        
-        self.viewPane = ttk.Frame(self.graphPanes,)
-        self.graphPanes.add(self.viewPane)
+        eb.addEditorAndViewPanes(self, self.graphPanes, self.plotCols,
+                                 self.availableRuns, self.waitToPlot,
+                                 self.startPlot)
 
         # Setting the starting run options
         cf.setRunOptions(self, )

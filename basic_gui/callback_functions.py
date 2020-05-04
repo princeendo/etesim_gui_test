@@ -397,7 +397,7 @@ def loadFromTopDir(gui) -> None:
     loadMissileFiles(gui)
 
 
-def loadMissileFiles(gui) -> str:
+def loadMissileFiles(gui, write_csv=True) -> str:
     """
     Checks for whether 'NotionalETEOutput###.xlsx' is present in topDir.
     (The ### is a random number between 000 and 999, always three digits)
@@ -451,7 +451,8 @@ def loadMissileFiles(gui) -> str:
     gui.zCB['values'] = gui.plotCols
 
     outFile = os.path.join(gui.topDir, 'out.csv')
-    gui.missileDF.to_csv(outFile, index=False)
+    if write_csv:
+        gui.missileDF.to_csv(outFile, index=False)
     return outFile
 
 

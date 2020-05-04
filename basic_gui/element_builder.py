@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import callback_functions as cf
+import extra_functions as ef
+
+# Module-level imports
+import os
 
 # Tkinter imports
 import tkinter as tk
@@ -513,3 +517,61 @@ def buildEditorElements(gui, parent, plotColumns, availableRuns,
     gui.runChoiceLF.grid(row=thisrow, column=1, sticky=tk.W, pady=3,)
     buildRunSelector(gui, gui.runChoiceLF, waitFunc, startPlotFunc,
                      availableRuns)
+
+
+def addEditorAndViewPanes(gui, parent, plotCols, availableRuns,
+                          waitFunc, startPlotFunc):
+    # Defining Edit Pane
+    gui.editPane = ttk.Frame(parent, width=260, relief=tk.GROOVE)
+    parent.add(gui.editPane)
+
+    # We don't want the edit frame to automatically resize
+    gui.editPane.grid_propagate(0)
+    buildEditorElements(gui, gui.editPane, plotCols, availableRuns,
+                        waitFunc, startPlotFunc)  
+
+    # Adds the plot viewer pane      
+    gui.viewPane = ttk.Frame(parent,)
+    parent.add(gui.viewPane)
+
+
+def buildInputElements(gui, parent, ):
+    # - - - - - - - - - - - - - - - -
+    # Row 0 - Browsing for Directory
+    gui.topDirLabel = tk.Label(parent, text='Directory with Run(s): ')
+    gui.topDirLabel.grid(row=0, sticky=tk.W)
+
+    # TODO: Change this back to empty string
+    gui.topDir = ef.absjoin(os.getcwd(), os.pardir, 'runs')
+    gui.topDirPath = tk.Text(parent, relief=tk.SUNKEN)
+    gui.topDirPath.insert(tk.INSERT, gui.topDir)
+    gui.topDirPath.config(width=60, height=1.45)
+    gui.topDirPath.grid(row=0, column=1, sticky=tk.W)
+
+    gui.topDirBrowseButton = tk.Button(parent,
+                                        text='Browse',
+                                        height=1,
+                                        command=lambda: cf.getTopDir(gui))
+    gui.topDirBrowseButton.grid(row=0, column=6, padx=4)
+
+    gui.topDirLoadButton = tk.Button(
+                                parent,
+                                text='Load',
+                                height=1,
+                                command=lambda: cf.loadFromTopDir(gui))
+    gui.topDirLoadButton.grid(row=0, column=7, padx=4)
+
+    # - - - - - - - - - - - - - - - -
+    # Row 1 - Threat Type(s)
+    gui.threatTypeOptions = ('Infer', 'ABT', 'TBM')
+    gui.threatTypeLabel = tk.Label(parent, text='Threat: ')
+    gui.threatTypeLabel.grid(row=1, sticky=tk.W)
+    gui.threatType = tk.StringVar()
+    gui.threatTypeCB = ttk.Combobox(parent,
+                                     textvariable=gui.threatType,
+                                     values=gui.threatTypeOptions,
+                                     state='readonly',
+                                     width=20,)
+
+    gui.threatTypeCB.set('Infer')  # Could use .current(0)
+    gui.threatTypeCB.grid(row=1, column=1, sticky=tk.W)

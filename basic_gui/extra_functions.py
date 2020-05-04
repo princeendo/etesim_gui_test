@@ -13,6 +13,10 @@ import tkinter as tk
 ####################################################################
 # Utility functions
 ####################################################################
+def absjoin(*args):
+    return os.path.abspath(os.path.join(*args))
+
+
 def hex2rgb(hexstring: str) -> tuple:
     """
     A method to convert 6-digit hexadecimal values to a triplet
