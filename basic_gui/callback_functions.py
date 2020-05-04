@@ -296,7 +296,7 @@ def setRunOptions(gui, event=None) -> None:
         assert(tkTcl)  # to shut linter up
         return
 
-    # If the value typed in does not match any value in the
+    # If a user-entered run number does not match any value in the
     # list of available runs, match it to the nearest value
     if isinstance(run, int) and run not in gui.availableRuns:
         diff_vals = np.abs(gui.availableRuns - run)
