@@ -380,6 +380,9 @@ class SimpleGUI(tk.Tk):
         # Settng up canvas to draw plot
         if self.xkcdMode.get():             # Easter Egg Mode
             with plt.xkcd():
+                if self.gridMinor.get():
+                    self.gridMinor.set(False)
+                    self.status.set('Minor grid not allowed in XKCD Mode')
                 self.figure = plt.Figure(figsize=(6, 4))
                 self.finishSNSPlot(startTime)
         else:
@@ -408,6 +411,9 @@ class SimpleGUI(tk.Tk):
         # Settng up canvas to draw plot
         if self.xkcdMode.get():             # Easter Egg Mode
             with plt.xkcd():
+                if self.gridMinor.get():
+                    self.gridMinor.set(False)
+                    self.status.set('Minor grid not allowed in XKCD Mode')
                 self.figure = plt.Figure(figsize=(6, 4))
                 self.finishMatPlot(startTime)
         else:
