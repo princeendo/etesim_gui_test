@@ -10,6 +10,7 @@ from tkinter import messagebox as mb
 from tkinter import filedialog
 import tkinter.colorchooser as tkColorChooser
 
+
 def modifyLimitsEntry(gui, event: tk.Event, entry: str = None) -> None:
     """
     Modifies the Min/Max options for each variable (X/Y/Z) when the
@@ -106,6 +107,7 @@ def modifyLimitsEntry(gui, event: tk.Event, entry: str = None) -> None:
                 gui.zMaxEntry.delete(0, tk.END)
                 gui.zMaxEntry.insert(0, 'Max')
 
+
 def editTitleOptions(gui, style: str = '') -> None:
     """
     Updates UI on whether user has pressed/unpressed the Bold Or Iatlic
@@ -139,6 +141,7 @@ def editTitleOptions(gui, style: str = '') -> None:
     # Updating plot with new title style
     gui.startPlot(1)
 
+
 def pickTitleColor(gui) -> None:
     """
     Takes the color chosen by the user from the colorwheel button
@@ -159,8 +162,9 @@ def pickTitleColor(gui) -> None:
         # so that is why it needs to get set
         gui.titleColorHex.set(color[1])
         gui.titleColorRGB = ef.hex2rgb(gui.titleColorHex.get())
-        gui.editTitleOptions(gui.titleColorHex.get())
+        editTitleOptions(gui, gui.titleColorHex.get())
     gui.startPlot(1)
+
 
 def pickPlotColor(gui) -> None:
     """
@@ -184,6 +188,7 @@ def pickPlotColor(gui) -> None:
         gui.plotColorRGB = ef.hex2rgb(gui.plotColorHex.get())
         gui.startPlot(1)
 
+
 def setLegendOptions(gui) -> None:
     """
     Enables or disables the combobox for legend locations based
@@ -201,6 +206,7 @@ def setLegendOptions(gui) -> None:
         gui.legendLocCB['state'] = 'disabled'
 
     gui.startPlot(1)
+
 
 def setDimensions(gui) -> None:
     """
@@ -241,6 +247,7 @@ def setDimensions(gui) -> None:
        or gui.yCol.get() == gui.zCol.get()):
         gui.dimensions = 0
         gui.status.set('Plot will not render if two elements match')
+
 
 def setRunOptions(gui, event=None) -> None:
     """
@@ -297,6 +304,7 @@ def setRunOptions(gui, event=None) -> None:
         newval = gui.availableRuns[nearest_idx]
         gui.runChoice.set(newval)
 
+
 def setVals(gui) -> None:
     """
     Checks whether user has selected X, Y, or Z columns from the
@@ -332,6 +340,7 @@ def setVals(gui) -> None:
         gui.z = gui.missileDF[gui.zCol.get()].values
     return
 
+
 def getTopDir(gui) -> None:
     """
     Opens a file browswer for the run files. Once selected,
@@ -363,6 +372,7 @@ def getTopDir(gui) -> None:
     gui.topDirPath.delete('1.0', tk.END)
     gui.topDirPath.insert(1.0, gui.topDir)
 
+
 def loadFromTopDir(gui) -> None:
     """
     Loads missile file from topDir, if possible.
@@ -385,6 +395,7 @@ def loadFromTopDir(gui) -> None:
     # This should already be true, but setting just in case
     gui.topDir = os.path.abspath(gui.topDir)
     loadMissileFiles(gui)
+
 
 def loadMissileFiles(gui) -> str:
     """
@@ -433,12 +444,12 @@ def loadMissileFiles(gui) -> str:
     # to be plotted on any axis. The first entry will be blank
     # so that users must choose to plot
     gui.plotCols = [''] + sorted([col for col, val
-                                   in gui.missileDF.dtypes.items()
-                                   if val == np.dtype('float64')])
+                                  in gui.missileDF.dtypes.items()
+                                  if val == np.dtype('float64')])
     gui.xCB['values'] = gui.plotCols
     gui.yCB['values'] = gui.plotCols
     gui.zCB['values'] = gui.plotCols
-    
+
     outFile = os.path.join(gui.topDir, 'out.csv')
     gui.missileDF.to_csv(outFile, index=False)
     return outFile
@@ -469,6 +480,7 @@ def setStatusBarOptions(gui, event=None) -> None:
     else:
         gui.status.set(f'You are on tab {tab} which must be new')
 
+
 def setPlotStyleOptions(gui) -> None:
     """
     Checks whether the radio button for 'line' or 'scatter' is selected.
@@ -487,6 +499,7 @@ def setPlotStyleOptions(gui) -> None:
         gui.lineStyleCB.config(state='disabled')
         gui.scatterStyleCB.config(state='readonly')
     gui.startPlot('update')  # Need a non-None event
+
 
 def showHidePlotColors(gui) -> None:
     """
@@ -508,6 +521,7 @@ def showHidePlotColors(gui) -> None:
     # Updates plot based on choice
     gui.startPlot(1)
 
+
 def showHideXLimits(gui) -> None:
     """
     Determines whether or not to display the boxes for setting
@@ -528,6 +542,7 @@ def showHideXLimits(gui) -> None:
         gui.xMaxEntry.grid_remove()
     gui.startPlot(1)
 
+
 def showHideYLimits(gui) -> None:
     """
     Determines whether or not to display the boxes for setting
@@ -547,6 +562,7 @@ def showHideYLimits(gui) -> None:
         gui.yMinEntry.grid_remove()
         gui.yMaxEntry.grid_remove()
     gui.startPlot(1)
+
 
 def showHideZLimits(gui) -> None:
     """
