@@ -5,6 +5,9 @@ import sys
 import platform
 import logging as _logging
 
+from tkinter import ttk
+
+
 # Fix for PyCharm hints warnings
 WindowUtils = cef.WindowUtils()
 
@@ -16,6 +19,69 @@ MAC = (platform.system() == "Darwin")
 # Globals
 logger = _logging.getLogger("tkinter_.py")
 
+
+class SubFrame(tk.Frame):
+    def __init__(self, root):
+        self.browser_frame = None
+        self.navigation_bar = None
+
+        # MainFrame
+        tk.Frame.__init__(self, root)
+        self.bind("<Configure>", self.on_configure)
+        self.bind("<FocusIn>", self.on_focus_in)
+        self.bind("<FocusOut>", self.on_focus_out)
+
+        # NavigationBar
+        self.navigation_bar = NavigationBar(self)
+        self.navigation_bar.grid(row=0, column=0,
+                                 sticky=(tk.N + tk.S + tk.E + tk.W))
+        # BrowserFrame
+        self.browser_frame = BrowserFrame(self, self.navigation_bar)
+        self.browser_frame.grid(row=1, column=0,
+                                sticky=(tk.N + tk.S + tk.E + tk.W))
+        
+        tk.Grid.rowconfigure(self, 1, weight=1)
+        tk.Grid.columnconfigure(self, 0, weight=1)
+        
+        # Pack MainFrame
+        self.pack(fill=tk.BOTH, expand=tk.YES)
+
+    def on_root_configure(self, _):
+        logger.debug("MainFrame.on_root_configure")
+        if self.browser_frame:
+            self.browser_frame.on_root_configure()
+
+    def on_configure(self, event):
+        logger.debug("MainFrame.on_configure")
+        if self.browser_frame:
+            width = event.width
+            height = event.height
+            if self.navigation_bar:
+                height = height - self.navigation_bar.winfo_height()
+            self.browser_frame.on_mainframe_configure(width, height)
+
+    def on_focus_in(self, _):
+        logger.debug("MainFrame.on_focus_in")
+
+    def on_focus_out(self, _):
+        logger.debug("MainFrame.on_focus_out")
+
+    def on_close(self):
+        if self.browser_frame:
+            self.browser_frame.on_root_close()
+        self.master.destroy()
+
+    def get_browser(self):
+        if self.browser_frame:
+            return self.browser_frame.browser
+        return None
+
+    def get_browser_frame(self):
+        if self.browser_frame:
+            return self.browser_frame
+        return None
+
+
 class MainFrame(tk.Frame):
 
     def __init__(self, root):
@@ -24,8 +90,8 @@ class MainFrame(tk.Frame):
 
         # Root
         root.geometry("900x640")
-        tk.Grid.rowconfigure(root, 0, weight=1)
-        tk.Grid.columnconfigure(root, 0, weight=1)
+#        tk.Grid.rowconfigure(root, 0, weight=1)
+#        tk.Grid.columnconfigure(root, 0, weight=1)
 
         # MainFrame
         tk.Frame.__init__(self, root)
@@ -40,8 +106,8 @@ class MainFrame(tk.Frame):
         self.navigation_bar = NavigationBar(self)
         self.navigation_bar.grid(row=0, column=0,
                                  sticky=(tk.N + tk.S + tk.E + tk.W))
-        tk.Grid.rowconfigure(self, 0, weight=0)
-        tk.Grid.columnconfigure(self, 0, weight=0)
+#        tk.Grid.rowconfigure(self, 0, weight=0)
+#        tk.Grid.columnconfigure(self, 0, weight=0)
 
         # BrowserFrame
         self.browser_frame = BrowserFrame(self, self.navigation_bar)
@@ -88,6 +154,7 @@ class MainFrame(tk.Frame):
             return self.browser_frame
         return None
 
+
 class BrowserFrame(tk.Frame):
 
     def __init__(self, master, navigation_bar=None):
@@ -105,7 +172,7 @@ class BrowserFrame(tk.Frame):
         rect = [0, 0, self.winfo_width(), self.winfo_height()]
         window_info.SetAsChild(self.get_window_handle(), rect)
         self.browser = cef.CreateBrowserSync(window_info,
-                                             url="http://www.google.com") #todo
+                                             url="http://www.google.com")
         assert self.browser
         self.browser.SetClientHandler(LoadHandler(self))
         self.browser.SetClientHandler(FocusHandler(self))
@@ -192,8 +259,8 @@ class FocusHandler(object):
         logger.debug("FocusHandler.OnGotFocus")
         self.browser_frame.focus_set()
 
-class NavigationBar(tk.Frame):
-    def __init__(self, master):
+class NavigationBar(ttk.Frame):
+    def __init__(self, master):       
         self.back_state = tk.NONE
         self.forward_state = tk.NONE
         self.back_image = None
@@ -262,7 +329,7 @@ class NavigationBar(tk.Frame):
         logger.debug("NavigationBar.on_button1")
         self.master.master.focus_force()
 
-    def update_state(self):
+    def update_state(self):        
         browser = self.master.get_browser()
         if not browser:
             if self.back_state != tk.DISABLED:

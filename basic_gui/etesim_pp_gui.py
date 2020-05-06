@@ -37,8 +37,8 @@ import plot_options_functions as pof
 
 # Module-Level Imports
 import itertools
-import os
 import mplcursors
+import os
 import time
 import numpy as np
 import pandas as pd
@@ -46,23 +46,14 @@ import seaborn as sns
 
 # Tkinter imports
 import tkinter as tk
-from tkinter import messagebox as mb
 from tkinter import ttk
-from tkinter import filedialog
-import tkinter.font as font
-import tkinter.colorchooser as tkColorChooser
 
 # matplotlib imports
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-# The original function was deprecated so we're importing the new one
-# to match tutorials more closely
 from matplotlib.backends.backend_tkagg import NavigationToolbar2Tk
-
-# mplcursors imports
-# from mpldatacursor import datacursor
 
 # Imports and settings for Tkinter
 import matplotlib
@@ -199,31 +190,35 @@ class SimpleGUI(tk.Tk):
 
         """
 
+        # For some reason, icons need to be member variables to display
+        self.inpIcon = tk.PhotoImage(file='images/input-data-1.png')
+        self.viewIcon = tk.PhotoImage(file='images/three-dim-graph.png')
+
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         # Tab 1: Data Input
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        self.inputTab = ttk.Frame(parent,)
-        self.inpIcon = tk.PhotoImage(file='images/input-data-1.png')
+        inputTab = ttk.Frame(parent,)
         iK = {'text': 'Data Input', 'image': self.inpIcon, 'compound': tk.LEFT}
-        parent.add(self.inputTab, **iK)
-        eb.buildInputElements(self, self.inputTab, )
+        parent.add(inputTab, **iK)
+        eb.buildInputElements(self, inputTab, )
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         # Tab 2: Visualizer
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        self.viewIcon = tk.PhotoImage(file='images/three-dim-graph.png')
-        self.viewTab = ttk.Frame(parent,)
+        viewTab = ttk.Frame(parent,)
         vK = {'text': 'Viewer', 'image': self.viewIcon, 'compound': tk.LEFT}
-        parent.add(self.viewTab, **vK)
+        parent.add(viewTab, **vK)
 
         # - - - - - - - - - - - - - - - -
         # Holder for editor/viewer
-        self.graphPanes = ttk.Panedwindow(self.viewTab, orient=tk.HORIZONTAL)
-        self.graphPanes.pack(fill=tk.BOTH, expand=True)
+        graphPanes = ttk.Panedwindow(viewTab, orient=tk.HORIZONTAL)
+        graphPanes.pack(fill=tk.BOTH, expand=True)
 
-        eb.addEditorAndViewPanes(self, self.graphPanes, self.plotCols,
-                                 self.availableRuns, self.waitToPlot,
-                                 self.startPlot)
+        editPane, viewPane = eb.buildEditAndViewPanes(graphPanes)
+
+        eb.buildEditorElements(self, editPane, self.plotCols,
+                               self.availableRuns, self.waitToPlot,
+                               self.startPlot)
 
         # Setting the starting run options
         cf.setRunOptions(self, )
@@ -258,7 +253,7 @@ class SimpleGUI(tk.Tk):
         # create a new job
         self._after_id = self.after(1500, lambda: self.startPlot(event=event))
 
-    def autosizer(self, event=None) -> None:
+    def autosizer(self, tabs, event=None) -> None:
         """
         Adjusts the tkinter Notebook (tabbed) section size automatically.
 
@@ -272,8 +267,8 @@ class SimpleGUI(tk.Tk):
         None
 
         """
-        self.tabs.config(height=self.winfo_height()-50,
-                         width=self.winfo_width()-145)
+        h, w = (self.winfo_height() - 50, self.winfo_width() - 145)
+        self.tabs.config(height=h, width=w)
 
     ####################################################################
     # Plotting functions

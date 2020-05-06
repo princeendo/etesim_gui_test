@@ -1,0 +1,195 @@
+
+[2020-05-06 14:52:53] Traceback (most recent call last):
+  File "cef_test.py", line 61, in <module>
+    app = BrowserTest()
+  File "cef_test.py", line 44, in __init__
+    self.navigation_bar = csc.NavigationBar(self.viewPane)
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 231, in __init__
+    self.update_state()
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 266, in update_state
+    browser = self.master.get_browser()
+AttributeError: 'Frame' object has no attribute 'get_browser'
+
+
+[2020-05-06 14:53:48] Traceback (most recent call last):
+  File "cef_test.py", line 97, in <module>
+    app = BrowserTest()
+  File "cef_test.py", line 44, in __init__
+    self.navigation_bar = csc.NavigationBar(self.viewPane)
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 231, in __init__
+    self.update_state()
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 266, in update_state
+    browser = self.master.get_browser()
+AttributeError: 'Frame' object has no attribute 'get_browser'
+
+
+[2020-05-06 14:55:08] Traceback (most recent call last):
+  File "cef_test.py", line 94, in <module>
+    app = BrowserTest()
+  File "cef_test.py", line 43, in __init__
+    self.navigation_bar = csc.NavigationBar(self.viewPane)
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 231, in __init__
+    self.update_state()
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 266, in update_state
+    browser = self.master.get_browser()
+AttributeError: 'Frame' object has no attribute 'get_browser'
+
+
+[2020-05-06 14:57:25] Traceback (most recent call last):
+  File "cef_test.py", line 94, in <module>
+    app = BrowserTest()
+  File "cef_test.py", line 43, in __init__
+    self.navigation_bar = csc.NavigationBar(self.viewPane)
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 260, in __init__
+    self.update_state()
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 197, in update_state
+    browser = self.master.get_browser()
+AttributeError: 'Frame' object has no attribute 'get_browser'
+
+
+[2020-05-06 14:58:33] Traceback (most recent call last):
+  File "cef_test.py", line 94, in <module>
+    app = BrowserTest()
+  File "cef_test.py", line 43, in __init__
+    self.navigation_bar = csc.NavigationBar(self.viewPane)
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 261, in __init__
+    self.update_state()
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 198, in update_state
+    browser = self.master.get_browser()
+AttributeError: 'Frame' object has no attribute 'get_browser'
+
+
+[2020-05-06 15:01:05] Traceback (most recent call last):
+  File "cef_test.py", line 94, in <module>
+    app = BrowserTest()
+  File "cef_test.py", line 43, in __init__
+    self.navigation_bar = csc.NavigationBar(self.viewPane)
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 231, in __init__
+    self.update_state()
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 266, in update_state
+    browser = self.master.get_browser()
+AttributeError: 'Frame' object has no attribute 'get_browser'
+
+
+[2020-05-06 15:04:22] Traceback (most recent call last):
+  File "cef_test.py", line 94, in <module>
+    app = BrowserTest()
+  File "cef_test.py", line 43, in __init__
+    self.navigation_bar = csc.NavigationBar(self.viewPane)
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 231, in __init__
+    self.update_state()
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 266, in update_state
+    browser = self.master.get_browser()
+AttributeError: 'Frame' object has no attribute 'get_browser'
+
+
+[2020-05-06 15:10:02] Traceback (most recent call last):
+  File "cef_test.py", line 88, in <module>
+    app = BrowserTest()
+  File "cef_test.py", line 43, in __init__
+    self.navigation_bar = csc.NavigationBar(self.viewPane)
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 231, in __init__
+    self.update_state()
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 266, in update_state
+    browser = self.master.get_browser()
+AttributeError: 'Frame' object has no attribute 'get_browser'
+
+
+[2020-05-06 15:12:04] Traceback (most recent call last):
+  File "cef_test.py", line 88, in <module>
+    app = BrowserTest()
+  File "cef_test.py", line 43, in __init__
+    self.navigation_bar = csc.NavigationBar(self.viewPane)
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 234, in __init__
+    self.update_state()
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 269, in update_state
+    browser = self.master.get_browser()
+AttributeError: 'Frame' object has no attribute 'get_browser'
+
+
+[2020-05-06 15:12:47] Traceback (most recent call last):
+  File "cef_test.py", line 88, in <module>
+    app = BrowserTest()
+  File "cef_test.py", line 43, in __init__
+    self.navigation_bar = csc.NavigationBar(self.viewPane)
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 234, in __init__
+    self.update_state()
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 271, in update_state
+    browser = self.master.get_browser()
+AttributeError: 'Frame' object has no attribute 'get_browser'
+
+
+[2020-05-06 15:39:59] Traceback (most recent call last):
+  File "cef_test.py", line 92, in <module>
+    app = BrowserTest()
+  File "cef_test.py", line 47, in __init__
+    self.browser_frame = BrowserFrame(self, self.navigation_bar)
+NameError: name 'BrowserFrame' is not defined
+
+
+[2020-05-06 15:40:07] Traceback (most recent call last):
+  File "cef_test.py", line 92, in <module>
+    app = BrowserTest()
+  File "cef_test.py", line 47, in __init__
+    self.browser_frame = BrowserFrame(self, self.navigation_bar)
+NameError: name 'BrowserFrame' is not defined
+
+
+[2020-05-06 15:40:15] Traceback (most recent call last):
+  File "cef_test.py", line 92, in <module>
+    app = BrowserTest()
+  File "cef_test.py", line 49, in __init__
+    sticky=(tk.N + tk.S + tk.E + tk.W))
+  File "C:\ProgramData\Anaconda3\lib\tkinter\__init__.py", line 2226, in grid_configure
+    + self._options(cnf, kw))
+_tkinter.TclError: cannot use geometry manager grid inside . which already has slaves managed by pack
+
+
+[2020-05-06 15:41:38] Traceback (most recent call last):
+  File "load_handler.pyx", line 40, in cefpython_py37.LoadHandler_OnLoadStart
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 235, in OnLoadStart
+    if self.browser_frame.master.navigation_bar:
+AttributeError: 'Frame' object has no attribute 'navigation_bar'
+
+
+[2020-05-06 15:44:23] Traceback (most recent call last):
+  File "cef_test.py", line 94, in <module>
+    app = BrowserTest()
+  File "cef_test.py", line 47, in __init__
+    print(self.viewPane.navigation_bar)
+AttributeError: 'Frame' object has no attribute 'navigation_bar'
+
+
+[2020-05-06 15:45:43] Traceback (most recent call last):
+  File "cef_test.py", line 95, in <module>
+    app = BrowserTest()
+  File "cef_test.py", line 43, in __init__
+    self.navigation_bar = csc.NavigationBar(self.viewPane)
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 294, in __init__
+    self.update_state()
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 329, in update_state
+    browser = self.master.get_browser()
+AttributeError: 'Frame' object has no attribute 'get_browser'
+
+
+[2020-05-06 15:46:21] Traceback (most recent call last):
+  File "cef_test.py", line 95, in <module>
+    app = BrowserTest()
+  File "cef_test.py", line 43, in __init__
+    self.navigation_bar = csc.NavigationBar(self.viewPane)
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 296, in __init__
+    self.update_state()
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 331, in update_state
+    browser = self.master.get_browser()
+AttributeError: 'Frame' object has no attribute 'get_browser'
+
+
+[2020-05-06 15:46:38] Traceback (most recent call last):
+  File "cef_test.py", line 95, in <module>
+    app = BrowserTest()
+  File "cef_test.py", line 43, in __init__
+    self.navigation_bar = csc.NavigationBar(self.viewPane)
+  File "C:\Users\cwhite\OneDrive - Torch Technologies, Inc\etesim_gui_test\basic_gui\cef_sample_code.py", line 260, in __init__
+    print(master.navigation_bar)
+AttributeError: 'Frame' object has no attribute 'navigation_bar'
+

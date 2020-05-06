@@ -76,46 +76,68 @@ def splitKwargs(**kwargs):
     return labelArgs, showArgs
 
 
-def buildXYZFieldSelector(gui, parent, values, plotFunc):
+def buildXYZFieldSelectors2(gui, parent, values, plotFunc):
+
+    # Setting identical data for XYZ ComboBoxes
+    comboKwargs = {'values': values, 'state': 'readonly', 'width': 30}
 
     # - - - - - - - - - - - - - - - -
     # Row 0 - X
     fieldRow = 0
-    gui.xCol = tk.StringVar()
-    gui.xLabel = tk.Label(parent, text='X=')
-    gui.xLabel.grid(row=fieldRow, column=0, sticky=tk.W,
-                    padx=(2, 0), pady=(2, 0))
-    gui.xCB = ttk.Combobox(parent, textvariable=gui.xCol,
-                           values=values, state='readonly',
-                           width=30)
-    gui.xCB.grid(row=fieldRow, column=1)
-    gui.xCB.bind('<<ComboboxSelected>>', plotFunc)
+    xCol = tk.StringVar()
+    xLabel = tk.Label(parent, text='X=')
+    xLabel.grid(row=fieldRow, column=0, sticky=tk.W, padx=(2, 0), pady=(2, 0))
+    xCB = ttk.Combobox(parent, textvariable=xCol, **comboKwargs)
+    xCB.grid(row=fieldRow, column=1)
+    xCB.bind('<<ComboboxSelected>>', plotFunc)
 
     # - - - - - - - - - - - - - - - -
     # Row 1 - Y
     fieldRow += 1
-    gui.yCol = tk.StringVar()
-    gui.yLabel = tk.Label(parent, text='Y=')
-    gui.yLabel.grid(row=fieldRow, column=0, sticky=tk.W, padx=(2, 0),)
-    gui.yCB = ttk.Combobox(parent, textvariable=gui.yCol,
-                           values=values, state='readonly',
-                           width=30)
-    gui.yCB.grid(row=fieldRow, column=1)
-    gui.yCB.bind('<<ComboboxSelected>>', plotFunc)
+    yCol = tk.StringVar()
+    yLabel = tk.Label(parent, text='Y=')
+    yLabel.grid(row=fieldRow, column=0, sticky=tk.W, padx=(2, 0),)
+    yCB = ttk.Combobox(parent, textvariable=yCol, **comboKwargs)
+    yCB.grid(row=fieldRow, column=1)
+    yCB.bind('<<ComboboxSelected>>', plotFunc)
 
     # - - - - - - - - - - - - - - - -
     # Row 2 - Z
     fieldRow += 1
-    gui.zCol = tk.StringVar()
-    gui.zLabel = tk.Label(parent, text='Z=')
-    gui.zLabel.grid(row=fieldRow, column=0, sticky=tk.W, padx=(2, 0),)
-    gui.zCB = ttk.Combobox(parent, textvariable=gui.zCol,
-                           values=values, state='readonly',
-                           width=30)
-    gui.zCB.grid(row=fieldRow, column=1)
-    gui.zCB.bind('<<ComboboxSelected>>', plotFunc)
-    
-    #return xCB, yCB, zCB
+    zCol = tk.StringVar()
+    zLabel = tk.Label(parent, text='Z=')
+    zLabel.grid(row=fieldRow, column=0, sticky=tk.W, padx=(2, 0),)
+    zCB = ttk.Combobox(parent, textvariable=zCol, **comboKwargs)
+    zCB.grid(row=fieldRow, column=1)
+    zCB.bind('<<ComboboxSelected>>', plotFunc)
+
+    return ((xCol, xCB), (yCol, yCB), (zCol, zCB))
+
+
+def buildXYZFieldSelectors(parent, values, plotFunc):
+    # Setting identical data for XYZ ComboBoxes
+    comboKwargs = {'values': values, 'state': 'readonly', 'width': 30}
+
+    # Builds three label/combobox combinations where the layout is
+    # X= [                       |v|]
+    # Y= [                       |v|]
+    # Z= [                       |v|]
+    # Each of the above is a dropdown menu
+    axData = [buildFieldSelector(parent, row, ax, plotFunc, **comboKwargs)
+              for row, ax in enumerate(['X', 'Y', 'Z'])]
+    return axData
+
+
+def buildFieldSelector(parent, row, axis, plotFunc, **comboKwargs):
+    labelKwargs = {'row': row, 'column': 0, 'sticky': tk.W, 'padx': (2, 0), }
+
+    axCol = tk.StringVar()
+    label = tk.Label(parent, text=f'{axis}=')
+    label.grid(**labelKwargs)
+    cb = ttk.Combobox(parent, textvariable=axCol, **comboKwargs)
+    cb.grid(row=row, column=1)
+    cb.bind('<<ComboboxSelected>>', plotFunc)
+    return (axCol, cb)
 
 
 def buildXYZMinMaxModifiers(gui, parent, waitFunc):
@@ -474,66 +496,71 @@ def buildEditorElements(gui, parent, plotColumns, availableRuns,
     # - - - - - - - - - - - - - - - -
     # Row 0 - XYZ Plot Columns
     thisrow = 0
-    gui.fieldsFrame = ttk.LabelFrame(parent, relief=tk.RIDGE,
-                                     text="Fields to Plot",)
-    gui.fieldsFrame.grid(row=thisrow, column=1, sticky=tk.W, pady=(1, 0))
+    fieldsKwargs = {'relief': tk.RIDGE, 'text': "Fields to Plot", }
+    fieldsFrame = ttk.LabelFrame(parent, **fieldsKwargs)
+    fieldsFrame.grid(row=thisrow, column=1, sticky=tk.W, pady=(1, 0))
 
-    buildXYZFieldSelector(gui, gui.fieldsFrame, gui.plotCols, startPlotFunc)
+    xyz = buildXYZFieldSelectors(fieldsFrame, gui.plotCols, startPlotFunc)
+
+    gui.xCol, gui.xCB = xyz[0]
+    gui.yCol, gui.yCB = xyz[1]
+    gui.zCol, gui.zCB = xyz[2]
 
     # - - - - - - - - - - - - - - - -
     # Row 1 - XYZ Min/Max Fields
     thisrow += 1
-    gui.xyzMinMaxFrame = ttk.LabelFrame(parent, text="Set Limits",
-                                        relief=tk.RIDGE)
-    gui.xyzMinMaxFrame.grid(row=thisrow, column=1, sticky=tk.W, pady=3,)
-    buildXYZMinMaxModifiers(gui, gui.xyzMinMaxFrame, waitFunc)
+    xyzMinMaxFrame = ttk.LabelFrame(parent, text="Set Limits", relief=tk.RIDGE)
+    xyzMinMaxFrame.grid(row=thisrow, column=1, sticky=tk.W, pady=3,)
+    buildXYZMinMaxModifiers(gui, xyzMinMaxFrame, waitFunc)
 
     # - - - - - - - - - - - - - - - -
     # Row 2 - Custom Title
     thisrow += 1
-    gui.titleLF = ttk.LabelFrame(parent, text="Custom Title", relief=tk.RIDGE)
-    gui.titleLF.grid(row=thisrow, column=1, sticky=tk.W, pady=3)
-    buildCustomTitleOptions(gui, gui.titleLF, waitFunc, startPlotFunc)
+    titleLF = ttk.LabelFrame(parent, text="Custom Title", relief=tk.RIDGE)
+    titleLF.grid(row=thisrow, column=1, sticky=tk.W, pady=3)
+    buildCustomTitleOptions(gui, titleLF, waitFunc, startPlotFunc)
 
     # - - - - - - - - - - - - - - - -
     # Row 3 - Style Options
     thisrow += 1
-    gui.styleLF = ttk.LabelFrame(parent, text="Plot Style", relief=tk.RIDGE)
-    gui.styleLF.grid(row=thisrow, column=1, sticky=tk.W, pady=3)
-    buildStyleOptions(gui, gui.styleLF, waitFunc, startPlotFunc)
+    styleLF = ttk.LabelFrame(parent, text="Plot Style", relief=tk.RIDGE)
+    styleLF.grid(row=thisrow, column=1, sticky=tk.W, pady=3)
+    buildStyleOptions(gui, styleLF, waitFunc, startPlotFunc)
 
     # - - - - - - - - - - - - - - - -
     # Row 4 - Additional Options
     thisrow += 1
-    gui.addOptsLF = ttk.LabelFrame(parent, relief=tk.RIDGE,
-                                   text="Additional Options",)
-    gui.addOptsLF.grid(row=thisrow, column=1, sticky=tk.W, pady=3,)
-    buildAdditionalOptions(gui, gui.addOptsLF, waitFunc, startPlotFunc,)
+    addOptsLF = ttk.LabelFrame(parent, relief=tk.RIDGE,
+                               text="Additional Options",)
+    addOptsLF.grid(row=thisrow, column=1, sticky=tk.W, pady=3,)
+    buildAdditionalOptions(gui, addOptsLF, waitFunc, startPlotFunc,)
 
     # - - - - - - - - - - - - - - - -
     # Row 5 - Run Traversal
     thisrow += 1
-    gui.runChoiceLF = ttk.LabelFrame(parent, relief=tk.RIDGE,
-                                     text="Run Viewer",)
-    gui.runChoiceLF.grid(row=thisrow, column=1, sticky=tk.W, pady=3,)
-    buildRunSelector(gui, gui.runChoiceLF, waitFunc, startPlotFunc,
-                     availableRuns)
+    runChoiceLF = ttk.LabelFrame(parent, relief=tk.RIDGE, text="Run Viewer",)
+    runChoiceLF.grid(row=thisrow, column=1, sticky=tk.W, pady=3,)
+    buildRunSelector(gui, runChoiceLF, waitFunc, startPlotFunc, availableRuns)
 
 
-def addEditorAndViewPanes(gui, parent, plotCols, availableRuns,
-                          waitFunc, startPlotFunc):
+def buildEditAndViewPanes(parent, use_weird=False):
+
     # Defining Edit Pane
-    gui.editPane = ttk.Frame(parent, width=260, relief=tk.GROOVE)
-    parent.add(gui.editPane)
+    editPane = ttk.Frame(parent, width=260, relief=tk.GROOVE)
+    parent.add(editPane)
 
     # We don't want the edit frame to automatically resize
-    gui.editPane.grid_propagate(0)
-    buildEditorElements(gui, gui.editPane, plotCols, availableRuns,
-                        waitFunc, startPlotFunc)
+    editPane.grid_propagate(0)
 
     # Adds the plot viewer pane
-    gui.viewPane = ttk.Frame(parent,)
-    parent.add(gui.viewPane)
+    if use_weird:
+        import cef_sample_code as csc
+        viewPane = csc.SubFrame(parent, )
+    else:
+        viewPane = ttk.Frame(parent,)
+    parent.add(viewPane)
+
+    return (editPane, viewPane)
 
 
 def buildInputElements(gui, parent, ):
