@@ -114,6 +114,8 @@ def buildXYZFieldSelector(gui, parent, values, plotFunc):
                            width=30)
     gui.zCB.grid(row=fieldRow, column=1)
     gui.zCB.bind('<<ComboboxSelected>>', plotFunc)
+    
+    #return xCB, yCB, zCB
 
 
 def buildXYZMinMaxModifiers(gui, parent, waitFunc):
@@ -242,7 +244,7 @@ def buildCustomTitleOptions(gui, parent, waitFunc, startPlotFunc):
     # - - - - - - - - - -
     # Row 1 - Styling
     gui.titleSize = ttk.Spinbox(parent, from_=0, to=32, width=3,
-                                 command=lambda: startPlotFunc(1))
+                                command=lambda: startPlotFunc(1))
     gui.titleSize.set('15')
     gui.titleSize.grid(row=1, column=0)
 
@@ -309,7 +311,7 @@ def buildStyleOptions(gui, parent, waitFunc, startPlotFunc):
 
     # Setting up a CB to be placed beside Scatter Style radio button
     gui.scatterStyleOptions = ('o', 'v', '^', '<', '>', '8', 's', 'p',
-                                '*', 'h', 'H', 'D', 'd', 'P', 'X')
+                               '*', 'h', 'H', 'D', 'd', 'P', 'X')
     gui.scatterStyle = tk.StringVar(parent, 'o')
 
     scatterStyle_kwargs = {'textvariable': gui.scatterStyle,
@@ -317,8 +319,7 @@ def buildStyleOptions(gui, parent, waitFunc, startPlotFunc):
                            'state': 'disabled',
                            'width': 4}
 
-    gui.scatterStyleCB = ttk.Combobox(parent,
-                                       **scatterStyle_kwargs)
+    gui.scatterStyleCB = ttk.Combobox(parent, **scatterStyle_kwargs)
 
     gui.lineOn.grid(row=0, column=0, padx=(0, 0))
     gui.lineStyleCB.grid(row=0, column=1)
@@ -425,12 +426,12 @@ def buildXYZGridLabels(gui, parent, startPlotFunc):
 
 
 def buildRunSelector(gui, parent, waitFunc, startPlotFunc, availableRuns):
-    
+
     # The switch for whether runs are plotted all together
     gui.showAllRuns = tk.BooleanVar(value=True)
-    
+
     # - - - - - - - - - -
-    # Row 5.0 - Show All Runs
+    # Row 0 - Show All Runs
     allruns_kwargs = {'text': 'All', 'var': gui.showAllRuns,
                       'value': True, 'command': lambda: startPlotFunc(1)}
 
@@ -438,7 +439,7 @@ def buildRunSelector(gui, parent, waitFunc, startPlotFunc, availableRuns):
     gui.allRunsRB.grid(row=0, column=0, columnspan=1, sticky=tk.W)
 
     # - - - - - - - - - -
-    # Row 5.1 - Show Some Runs
+    # Row 1 - Show Some Runs
     someruns_kwargs = {'text': 'Select', 'var': gui.showAllRuns,
                        'value': False,
                        'command': lambda: startPlotFunc(1)}
@@ -500,7 +501,7 @@ def buildEditorElements(gui, parent, plotColumns, availableRuns,
     gui.styleLF = ttk.LabelFrame(parent, text="Plot Style", relief=tk.RIDGE)
     gui.styleLF.grid(row=thisrow, column=1, sticky=tk.W, pady=3)
     buildStyleOptions(gui, gui.styleLF, waitFunc, startPlotFunc)
-    
+
     # - - - - - - - - - - - - - - - -
     # Row 4 - Additional Options
     thisrow += 1
@@ -528,9 +529,9 @@ def addEditorAndViewPanes(gui, parent, plotCols, availableRuns,
     # We don't want the edit frame to automatically resize
     gui.editPane.grid_propagate(0)
     buildEditorElements(gui, gui.editPane, plotCols, availableRuns,
-                        waitFunc, startPlotFunc)  
+                        waitFunc, startPlotFunc)
 
-    # Adds the plot viewer pane      
+    # Adds the plot viewer pane
     gui.viewPane = ttk.Frame(parent,)
     parent.add(gui.viewPane)
 
@@ -548,10 +549,8 @@ def buildInputElements(gui, parent, ):
     gui.topDirPath.config(width=60, height=1.45)
     gui.topDirPath.grid(row=0, column=1, sticky=tk.W)
 
-    gui.topDirBrowseButton = tk.Button(parent,
-                                        text='Browse',
-                                        height=1,
-                                        command=lambda: cf.getTopDir(gui))
+    gui.topDirBrowseButton = tk.Button(parent, text='Browse', height=1,
+                                       command=lambda: cf.getTopDir(gui))
     gui.topDirBrowseButton.grid(row=0, column=6, padx=4)
 
     gui.topDirLoadButton = tk.Button(
@@ -567,11 +566,9 @@ def buildInputElements(gui, parent, ):
     gui.threatTypeLabel = tk.Label(parent, text='Threat: ')
     gui.threatTypeLabel.grid(row=1, sticky=tk.W)
     gui.threatType = tk.StringVar()
-    gui.threatTypeCB = ttk.Combobox(parent,
-                                     textvariable=gui.threatType,
-                                     values=gui.threatTypeOptions,
-                                     state='readonly',
-                                     width=20,)
+    gui.threatTypeCB = ttk.Combobox(parent, textvariable=gui.threatType,
+                                    values=gui.threatTypeOptions, width=20,
+                                    state='readonly',)
 
     gui.threatTypeCB.set('Infer')  # Could use .current(0)
     gui.threatTypeCB.grid(row=1, column=1, sticky=tk.W)
