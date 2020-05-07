@@ -38,8 +38,8 @@ import plot_options_functions as pof
 # Module-Level Imports
 import itertools
 import mplcursors
-import os
 import time
+import multiprocessing as mp
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -59,6 +59,7 @@ from matplotlib.backends.backend_tkagg import NavigationToolbar2Tk
 import matplotlib
 matplotlib.use("TkAgg")  # To use with Tkinter
 
+mp.freeze_support()
 
 class SimpleGUI(tk.Tk):
     """
@@ -119,6 +120,9 @@ class SimpleGUI(tk.Tk):
         self.plotColorRGB = (31, 119, 180)                  # matplotlib blue
         self.plotColorHex = tk.StringVar(value='#1f77b4')
         self.availableRuns = np.array([])
+
+        # This will allow us to have the hovering cursor over lines
+        self.showCursor = False
 
         # Determines whether to use Matplotlib/Seaborn/etc.
         self.plotEngine = 'mpl'
@@ -214,9 +218,9 @@ class SimpleGUI(tk.Tk):
         graphPanes = ttk.Panedwindow(viewTab, orient=tk.HORIZONTAL)
         graphPanes.pack(fill=tk.BOTH, expand=True)
 
-        editPane, viewPane = eb.buildEditAndViewPanes(graphPanes)
+        self.editPane, self.viewPane = eb.buildEditAndViewPanes(graphPanes)
 
-        eb.buildEditorElements(self, editPane, self.plotCols,
+        eb.buildEditorElements(self, self.editPane, self.plotCols,
                                self.availableRuns, self.waitToPlot,
                                self.startPlot)
 
@@ -438,78 +442,43 @@ class SimpleGUI(tk.Tk):
         subplot_kwargs = {'projection': '3d' if self.dimensions == 3 else None}
         myplot = self.figure.add_subplot(111, **subplot_kwargs)
 
-        # This may need to be edited for multiple graph support
-        plot_kwargs = {}
-
-        # If autocoloring is turned off, set the color for the graph
-        if not self.autoColor.get():
-            plot_kwargs = {'color': self.plotColorEntry.get(), }
-
-        # Looping through all possible unique IDs and model numbers
-        # and plotting each individual DataFrame
-        groups = ['RunNumber', 'Model', 'Instance']
-
         # Constructing dataframe that contains data for plotting
         pDF = self.plotDF()
 
         # Setting all possible permutations for plotting data
+        # TODO: Figure out a less janky way to do this
         numDFs = sum([x.RunNumber.nunique() for x in
                       [pDF.query(f'Model=="{m}" and Instance=="{i}"')
                        for (m, i)
                        in itertools.product(pDF.Model.unique(),
                                             pDF.Instance.unique())]])
 
-        colors = cm.rainbow(np.linspace(0, 1, numDFs))
+        self.autoColors = cm.rainbow(np.linspace(0, 1, numDFs))
 
         # Switching out status label for a plot progress bar
         self.status.hide()
         self.plotProgressFrame.pack(fill=tk.BOTH, side=tk.LEFT)
 
-        for k, ((run, model, instance), df) in enumerate(pDF.groupby(groups)):
-            dfKwargs = {'kind': self.plotStyle.get(), 'ax': myplot}
-            plot_kwargs['label'] = f'{run}: {model} - {instance}'
+        # All the random options needed to plot
+        plotOptions = self.plotOptions()
 
-            # If the transparency setting is on, we want to highlight
-            # only the run of interest
-            if (
-              not self.showAllRuns.get()
-              and self.transparentRuns.get()
-              and run != self.run.get()):
-                plot_kwargs['alpha'] = 0.2
-            else:
-                plot_kwargs['alpha'] = 1.0
-
-            dfKwargs.update(plot_kwargs)
-            if self.autoColor.get():
-                plot_kwargs['color'] = colors[k]
-                dfKwargs['color'] = [colors[k]] * df.shape[0]
-            else:
-                plot_kwargs['color'] = self.plotColorEntry.get()
-
-            # This segments the data into 2 or 3 dimensions, depending
-            # on whether we are plotting 2D or 3D data
-            plotlist = [df.x.values, df.y.values]
-            if self.dimensions == 3:
-                plotlist.append(df.z.values)
-
-            # Plotting line or scatter based on user input
-            if self.plotStyle.get() == 'line':
-                myplot.plot(*plotlist, **plot_kwargs,
-                            linestyle=self.lineStyle.get())
-            else:
-                myplot.scatter(*plotlist, **plot_kwargs,
-                               marker=self.scatterStyle.get())
-
-            # Updating the user on progress
-            self.canvas.draw()
-            self.plotProgress.set(100*(k+1)/(numDFs))
-            self.plotProgressLbl.set(f'{k+1}/{numDFs} complete')
+        # Looping through all possible unique IDs and model numbers
+        # and plotting each individual DataFrame
+        groups = ['RunNumber', 'Model', 'Instance']
+        for dataPack in enumerate(pDF.groupby(groups)):
+            k = dataPack[0]
+            if k % 20 == 0:
+                self.canvas.draw()
+                self.plotProgress.set(100*(k+1)/(numDFs))
+                self.plotProgressLbl.set(f'{k+1}/{numDFs} complete')
+            makePlot(myplot, dataPack, plotOptions)
 
         # Removing the counter and setting status back to normal
         self.plotProgressFrame.pack_forget()
         self.status.show()
 
-        self.cursor = mplcursors.cursor(myplot, hover=True)
+        if self.showCursor:
+            self.cursor = mplcursors.cursor(myplot, hover=True)
 
         # Show legend if selected
         if self.showLegend.get():
@@ -524,6 +493,7 @@ class SimpleGUI(tk.Tk):
 
             myplot.legend(**legend_kwargs)
 
+        
         # Adding Axes Labels
         if self.showXLabel.get():
             myplot.set_xlabel(self.xCol.get())
@@ -556,6 +526,7 @@ class SimpleGUI(tk.Tk):
                         'style': 'italic' if self.itTitleOn else 'normal',
                         'fontweight': 'bold' if self.boldTitleOn else 'normal'}
             myplot.set_title(plotTitle, fontdict=fontdict)
+        
 
         # Packing plot into GUI and adding toolbar
         self.canvas.get_tk_widget().pack(side=tk.BOTTOM,
@@ -567,7 +538,7 @@ class SimpleGUI(tk.Tk):
 
         # Updating the user on the time it took to plot
         totalTime = time.time() - startTime
-        self.status.set(f'Plot rendered in {totalTime:.1f}s')
+        self.status.set(f'Plot rendered in {totalTime:.1f}s')        
 
     def finishSNSPlot(self, startTime: float) -> None:
         """
@@ -665,6 +636,44 @@ class SimpleGUI(tk.Tk):
         # Updating the user on the time it took to plot
         totalTime = time.time() - startTime
         self.status.set(f'Plot rendered in {totalTime:.1f}s')
+        
+    def plotOptions(self):
+        plotStyle = self.plotStyle.get()
+        showAllRuns = self.showAllRuns.get()
+        transparentRuns = self.transparentRuns.get()
+        specialRun = self.run.get()
+        autoColor = self.autoColor.get()
+        plotColor = self.plotColorEntry.get()
+        dimensions = self.dimensions
+        lineStyle = self.lineStyle.get()
+        scatterStyle = self.scatterStyle.get()
+        colors = self.autoColors
+        
+        return (plotStyle, showAllRuns, transparentRuns,
+                specialRun, autoColor, plotColor,
+                dimensions, lineStyle, scatterStyle, colors)
+    
+def makePlot(ax, itPack, options):
+    k, ((run, model, instance), df) = itPack
+    
+    plotStyle, showAllRuns, transparentRuns = options[0:3]
+    specialRun, autoColor, plotColor = options[3:6]
+    dimensions, lineStyle, scatterStyle, colors = options[6:10]
+
+    shouldFade = not showAllRuns and transparentRuns and run != specialRun
+    
+    plot_kwargs = {'label': f'{run}: {model} - {instance}',
+                   'alpha': 1.0 - (0.8 * shouldFade),
+                   'color': colors[k] if autoColor else plotColor,
+                   }
+
+    plotlist = [df.x, df.y] + ([df.z] if dimensions == 3 else [])
+
+    if plotStyle == 'line':
+        ax.plot(*plotlist, **plot_kwargs, linestyle=lineStyle)
+    else:
+        ax.scatter(*plotlist, **plot_kwargs, marker=scatterStyle)
+    return options
 
 
 # To prevent this running automatically if imported

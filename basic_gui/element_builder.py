@@ -543,7 +543,7 @@ def buildEditorElements(gui, parent, plotColumns, availableRuns,
     buildRunSelector(gui, runChoiceLF, waitFunc, startPlotFunc, availableRuns)
 
 
-def buildEditAndViewPanes(parent, use_weird=False):
+def buildEditAndViewPanes(parent, browser=False, url=None):
 
     # Defining Edit Pane
     editPane = ttk.Frame(parent, width=260, relief=tk.GROOVE)
@@ -553,9 +553,9 @@ def buildEditAndViewPanes(parent, use_weird=False):
     editPane.grid_propagate(0)
 
     # Adds the plot viewer pane
-    if use_weird:
+    if browser:
         import cef_sample_code as csc
-        viewPane = csc.SubFrame(parent, )
+        viewPane = csc.SubFrame(parent, url=url)
     else:
         viewPane = ttk.Frame(parent,)
     parent.add(viewPane)
