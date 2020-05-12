@@ -61,6 +61,7 @@ matplotlib.use("TkAgg")  # To use with Tkinter
 
 mp.freeze_support()
 
+
 class SimpleGUI(tk.Tk):
     """
     A subclass of tk.Tk which will serve as the main driver for the GUI.
