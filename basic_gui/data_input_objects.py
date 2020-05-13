@@ -19,12 +19,13 @@ class ETESim_Input():
 
 
 class FixedAsset():
-    def __init__(self, simulation, category, unique_id, *,
+    def __init__(self, simulation, name, category, unique_id, *,
                  ecef=None, lla=None, enu=None):
         if all((x is None for x in (ecef, lla, enu))):
             raise ValueError('Must enter a valid coordinate!')
 
         self.sim = simulation
+        self.name = name
         self.type = category
         self.id = unique_id
         self.x, self.y, self.z = [None] * 3
@@ -69,6 +70,34 @@ class FixedAsset():
             self.lat, self.lon, self.alt = ecef2lla(self.x, self.y, self.z)
         else:
             raise ValueError('No valid input to generate!')
+
+    def __eq__(self, asset):
+        if self.simulation != asset.simulation:
+            return False
+        if self.name != asset.name:
+            return False
+        if self.type != asset.type:
+            return False
+
+        pairs = [(self.x, asset.x),
+                 (self.y, asset.y),
+                 (self.z, asset.z),
+                 (self.lat, asset.lat),
+                 (self.lon, asset.lon),
+                 (self.alt, asset.alt),
+                 (self.east, asset.east),
+                 (self.north, asset.north),
+                 (self.up, asset.up)]
+
+        for (a, b) in pairs:
+            if a is None and b is not None:
+                return False
+            if b is None and a is not None:
+                return False
+            if a != b:
+                return False
+
+        return True
 
 
 class ENU():

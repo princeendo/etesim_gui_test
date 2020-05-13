@@ -1,0 +1,5 @@
+# Asset
+Category:	Launcher
+Name:		Launcher_1
+UniqueID:	13224
+ECEF XYZ:	217.4372234 -100 858.8798664
