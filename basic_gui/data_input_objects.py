@@ -6,6 +6,7 @@ Created on Fri May  8 13:26:29 2020
 """
 
 import numpy as np
+import pandas as pd
 from collections import namedtuple
 
 EastNorthUp = namedtuple('EastNorthUp', ['east', 'north', 'up'])
@@ -72,7 +73,7 @@ class FixedAsset():
             raise ValueError('No valid input to generate!')
 
     def __eq__(self, asset):
-        if self.simulation != asset.simulation:
+        if self.sim != asset.sim:
             return False
         if self.name != asset.name:
             return False
@@ -98,6 +99,23 @@ class FixedAsset():
                 return False
 
         return True
+
+    def df(self, index=0):
+        dict_ = {'sim': self.sim,
+                 'name': self.name,
+                 'category': self.type,
+                 'id': self.id,
+                 'x': self.x,
+                 'y': self.y,
+                 'z': self.z,
+                 'lat': self.lat,
+                 'lon': self.lon,
+                 'alt': self.alt,
+                 'east': self.east,
+                 'north': self.north,
+                 'up': self.up, }
+
+        return pd.DataFrame(dict_, index=[index])
 
 
 class ENU():

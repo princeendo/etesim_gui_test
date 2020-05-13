@@ -418,6 +418,10 @@ def loadMissileFiles(gui, write_csv=True) -> str:
     # Looking for files to read in directory
     tree = ef.dirTree(gui.topDir)
     missileFiles = ef.allMissileFiles(tree)
+    assetDirs = [os.path.abspath(os.path.join(x, os.pardir))
+                 for x in missileFiles]
+    allAssets = ef.allAssets(assetDirs,)
+    gui.assets = ef.assetsDF(ef.uniqueAssets(allAssets,))
 
     # Counting time for process to occur
     startTime = time.time()

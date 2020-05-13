@@ -112,6 +112,7 @@ class SimpleGUI(tk.Tk):
         self.y = []
         self.z = []
         self.missileDF = pd.DataFrame({' ': []})
+        self.assets = []
         self.toolbar = None
         self.figure = None
         self.canvas = None
@@ -278,7 +279,25 @@ class SimpleGUI(tk.Tk):
     ####################################################################
     # Plotting functions
     ####################################################################
-    def plotDF(self) -> pd.DataFrame:
+    def assetPlotDF(self) -> pd.DataFrame:
+        xCol, yCol, zCol = list(map(ef.assetColMap,
+                                    [self.xCol, self.yCol, self.zCol]))
+
+        if xCol is None or yCol is None:
+            return None
+        elif self.dimensions == 3 and zCol is None:
+            return None
+        else:
+            dict_ = {'x': self.assets[xCol].values,
+                     'y': self.assets[yCol].values,
+                     'name': self.assets.name.values,
+                     'id': self.assets.id.values, }
+            if self.dimensions == 3:
+                dict_['z'] = self.assets[zCol].values
+
+        return pd.DataFrame(dict_)
+
+    def missilePlotDF(self) -> pd.DataFrame:
         """
         Generates a smaller dataframe for plotting from the massive
         one stored in memory
@@ -444,7 +463,8 @@ class SimpleGUI(tk.Tk):
         myplot = self.figure.add_subplot(111, **subplot_kwargs)
 
         # Constructing dataframe that contains data for plotting
-        pDF = self.plotDF()
+        pDF = self.missilePlotDF()
+        aDF = self.assetPlotDF()
 
         # Setting all possible permutations for plotting data
         # TODO: Figure out a less janky way to do this
@@ -474,6 +494,16 @@ class SimpleGUI(tk.Tk):
                 self.plotProgressLbl.set(f'{k+1}/{numDFs} complete')
             makePlot(myplot, dataPack, plotOptions)
 
+        if aDF is not None:
+            print(aDF)
+            for asset in aDF.itertuples():
+                assetArgs = [[asset.x], [asset.y], ]
+                if self.dimensions == 3:
+                    assetArgs += [[asset.z]]
+                label = f'{asset.name} - {asset.id}'
+                myplot.scatter(*assetArgs, marker='*', color='green',
+                               s=400, label=label)
+
         # Removing the counter and setting status back to normal
         self.plotProgressFrame.pack_forget()
         self.status.show()
@@ -494,7 +524,6 @@ class SimpleGUI(tk.Tk):
 
             myplot.legend(**legend_kwargs)
 
-        
         # Adding Axes Labels
         if self.showXLabel.get():
             myplot.set_xlabel(self.xCol.get())
@@ -527,7 +556,6 @@ class SimpleGUI(tk.Tk):
                         'style': 'italic' if self.itTitleOn else 'normal',
                         'fontweight': 'bold' if self.boldTitleOn else 'normal'}
             myplot.set_title(plotTitle, fontdict=fontdict)
-        
 
         # Packing plot into GUI and adding toolbar
         self.canvas.get_tk_widget().pack(side=tk.BOTTOM,
@@ -539,7 +567,7 @@ class SimpleGUI(tk.Tk):
 
         # Updating the user on the time it took to plot
         totalTime = time.time() - startTime
-        self.status.set(f'Plot rendered in {totalTime:.1f}s')        
+        self.status.set(f'Plot rendered in {totalTime:.1f}s')
 
     def finishSNSPlot(self, startTime: float) -> None:
         """
@@ -564,7 +592,7 @@ class SimpleGUI(tk.Tk):
         myplot = self.figure.add_subplot(111,)
 
         # Constructing dataframe that contains data for plotting
-        pDF = self.plotDF()
+        pDF = self.missilePlotDF()
 
         # Switching out status label for a plot progress bar
         self.status.hide()
@@ -637,7 +665,7 @@ class SimpleGUI(tk.Tk):
         # Updating the user on the time it took to plot
         totalTime = time.time() - startTime
         self.status.set(f'Plot rendered in {totalTime:.1f}s')
-        
+
     def plotOptions(self):
         plotStyle = self.plotStyle.get()
         showAllRuns = self.showAllRuns.get()
@@ -649,20 +677,21 @@ class SimpleGUI(tk.Tk):
         lineStyle = self.lineStyle.get()
         scatterStyle = self.scatterStyle.get()
         colors = self.autoColors
-        
+
         return (plotStyle, showAllRuns, transparentRuns,
                 specialRun, autoColor, plotColor,
                 dimensions, lineStyle, scatterStyle, colors)
-    
+
+
 def makePlot(ax, itPack, options):
     k, ((run, model, instance), df) = itPack
-    
+
     plotStyle, showAllRuns, transparentRuns = options[0:3]
     specialRun, autoColor, plotColor = options[3:6]
     dimensions, lineStyle, scatterStyle, colors = options[6:10]
 
     shouldFade = not showAllRuns and transparentRuns and run != specialRun
-    
+
     plot_kwargs = {'label': f'{run}: {model} - {instance}',
                    'alpha': 1.0 - (0.8 * shouldFade),
                    'color': colors[k] if autoColor else plotColor,

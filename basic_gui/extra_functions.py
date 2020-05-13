@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
 
+# AICET Imports
+import data_input_objects as dio
+
 # Module-Level Imports
 import os
 import platform
 import re
 
 # Aliased Module-Level Imports
+import itertools as it
 import pandas as pd
 import tkinter as tk
 
@@ -169,6 +173,105 @@ def dirTree(root: str) -> list:
         for dir_ in list_:
             tree.append(dir_)
     return tree
+
+
+def assetGroups(assetTextList):
+    groups = []
+    k = 0
+    n = len(assetTextList)
+    while k < n:
+        if assetTextList[k].lower() == '# asset':
+            subGroup = {}
+            j = k + 1
+            while j < n and assetTextList[j].lower() != '# asset':
+                _type, data = assetTextList[j].split(':')
+                data = data.split()
+                if len(data) == 1:
+                    subGroup[_type] = data[0]
+                else:
+                    subGroup[_type] = data
+                j += 1
+            groups.append(subGroup)
+            k = j
+    return groups
+
+
+def assetData(assetFile, simulation='etesim'):
+    with open(assetFile, 'r') as inFile:
+        items = [x.strip() for x in inFile.readlines() if len(x.strip()) > 0]
+
+    objs = []
+    for asset in assetGroups(items):
+        category = asset['Category']
+        name = asset['Name']
+        ID = asset['UniqueID']
+        kwargs = {}
+        if 'ECEF XYZ' in asset:
+            kwargs['ecef'] = [float(x) for x in asset['ECEF XYZ']]
+        if 'LatLonAlt' in asset:
+            kwargs['lla'] = [float(x) for x in asset['LatLonAlt']]
+        if 'ENU' in asset:
+            kwargs['enu'] = [float(x) for x in asset['ENU']]
+        objs.append(dio.FixedAsset(simulation, name, category, ID, **kwargs))
+    return objs
+
+
+def allAssets(dirlist, assetfileRegex='assets.txt', simulation='etesim'):
+    assetFiles = []
+    matcher = re.compile(assetfileRegex)
+    for dir_ in dirlist:
+        for item in [x for x in os.scandir(dir_) if x.is_file()]:
+            match = matcher.match(item.name)
+            if match:
+                assetFiles.append(item.path)
+
+    assetLists = [assetData(f, simulation=simulation) for f in assetFiles]
+
+    # Guarantees one long asset list
+    return list(it.chain.from_iterable(assetLists))
+
+
+def uniqueAssets(assetList):
+    assets = list(assetList)
+    n = len(assets)
+    k = n - 1
+    while k >= 0 and n >= 0:
+        asset = assets[k]
+        j = k - 1
+        while j >= 0:
+            if assets[j] == asset:
+                assets = assets[:k] + assets[k+1:]
+                j = -1
+                n = n - 1
+            j = j - 1
+        k = k - 1
+    return assets
+
+
+def assetsDF(assetList, unique=True):
+    df = pd.concat([x.df(k) for k, x in enumerate(assetList)])
+    if unique:
+        return df.drop_duplicates()
+    else:
+        return df
+
+
+def assetColMap(colVal,):
+    val = colVal.get()
+    if val is None or val == '':
+        return None
+    splitData = val.lower().split()
+    # assetType = splitData[0]
+    loc = splitData[-1]
+
+    if loc == 'east':
+        return 'x'
+    elif loc == 'north':
+        return 'y'
+    elif loc == 'up':
+        return 'z'
+
+    return None
 
 
 def allMissileFiles(

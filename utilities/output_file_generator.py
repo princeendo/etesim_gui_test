@@ -24,7 +24,7 @@ def main():
 
 def generateAssetOutput(outDir, assetFile,
                         dirnums=np.array([954, 971, 708, 443, 947])):
-    
+
     for k, dirNum in enumerate(dirnums):
 
         # Making directory for files and filename for new file
@@ -34,7 +34,7 @@ def generateAssetOutput(outDir, assetFile,
             os.remove(newfile)
         shutil.copy2(assetFile, newfile)
     return
-    
+
 
 def generateMissileOutput(outDir, missileFile,
                           dirnums=np.array([954, 971, 708, 443, 947])):
