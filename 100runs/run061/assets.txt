@@ -1,0 +1,12 @@
+# Asset
+Category:   Radar
+Name:       Patriot
+UniqueID:   4964
+Run:        61
+LatLonAlt:  38.91360893006516 77.0121658 -652.68192316
+# Asset
+Category:   Launcher
+Name:       Launcher
+UniqueID:   8115
+Run:        61
+LatLonAlt:  38.91360893006516 77.0121658 -652.68192316

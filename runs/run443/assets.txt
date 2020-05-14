@@ -1,5 +1,12 @@
 # Asset
-Category:	Launcher
-Name:		Launcher_1
-UniqueID:	13224
-ECEF XYZ:	1116578.706	4841123.275	3985227.184
+Category:   Radar
+Name:       Patriot
+UniqueID:   1489
+Run:        443
+LatLonAlt:  38.92261772 77.0121658 -652.68192316
+# Asset
+Category:   Radar
+Name:       Patriot
+UniqueID:   3249
+Run:        443
+LatLonAlt:  38.92261772 77.02369825326969 -652.68192316

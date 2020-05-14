@@ -1,0 +1,24 @@
+# Asset
+Category:   Launcher
+Name:       Launcher
+UniqueID:   2431
+Run:        71
+LatLonAlt:  38.92261772 77.00063334673033 -652.68192316
+# Asset
+Category:   Radar
+Name:       NICK
+UniqueID:   8372
+Run:        71
+LatLonAlt:  38.92261772 77.00063334673033 -652.68192316
+# Asset
+Category:   Launcher
+Name:       Launcher
+UniqueID:   5224
+Run:        71
+LatLonAlt:  38.92261772 77.00063334673033 -652.68192316
+# Asset
+Category:   Launcher
+Name:       Launcher
+UniqueID:   8628
+Run:        71
+LatLonAlt:  38.91360893006516 77.0121658 -652.68192316

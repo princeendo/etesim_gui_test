@@ -1,0 +1,12 @@
+# Asset
+Category:   Radar
+Name:       NICK
+UniqueID:   6312
+Run:        32
+LatLonAlt:  38.92261772 77.00063334673033 -652.68192316
+# Asset
+Category:   Radar
+Name:       Sentinel
+UniqueID:   6428
+Run:        32
+LatLonAlt:  38.92261772 77.02369825326969 -652.68192316

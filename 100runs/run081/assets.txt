@@ -1,0 +1,12 @@
+# Asset
+Category:   Radar
+Name:       NICK
+UniqueID:   4457
+Run:        81
+LatLonAlt:  38.92261772 77.02369825326969 -652.68192316
+# Asset
+Category:   Radar
+Name:       NICK
+UniqueID:   1611
+Run:        81
+LatLonAlt:  38.92261772 77.0121658 -652.68192316

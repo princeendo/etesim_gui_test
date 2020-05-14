@@ -1,0 +1,18 @@
+# Asset
+Category:   Launcher
+Name:       Launcher
+UniqueID:   6623
+Run:        45
+LatLonAlt:  38.92261772 77.0121658 -652.68192316
+# Asset
+Category:   Launcher
+Name:       Launcher
+UniqueID:   8407
+Run:        45
+LatLonAlt:  38.92261772 77.00063334673033 -652.68192316
+# Asset
+Category:   Radar
+Name:       Sentinel
+UniqueID:   2625
+Run:        45
+LatLonAlt:  38.92261772 77.00063334673033 -652.68192316

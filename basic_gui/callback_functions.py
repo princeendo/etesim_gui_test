@@ -421,7 +421,7 @@ def loadMissileFiles(gui, write_csv=True) -> str:
     assetDirs = [os.path.abspath(os.path.join(x, os.pardir))
                  for x in missileFiles]
     allAssets = ef.allAssets(assetDirs,)
-    gui.assets = ef.assetsDF(ef.uniqueAssets(allAssets,))
+    gui.assets = ef.assetsDF(allAssets, unique=False)
 
     # Counting time for process to occur
     startTime = time.time()

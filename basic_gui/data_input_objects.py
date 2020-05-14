@@ -20,7 +20,7 @@ class ETESim_Input():
 
 
 class FixedAsset():
-    def __init__(self, simulation, name, category, unique_id, *,
+    def __init__(self, simulation, name, category, unique_id, run_number, *,
                  ecef=None, lla=None, enu=None):
         if all((x is None for x in (ecef, lla, enu))):
             raise ValueError('Must enter a valid coordinate!')
@@ -29,6 +29,7 @@ class FixedAsset():
         self.name = name
         self.type = category
         self.id = unique_id
+        self.runnum = run_number
         self.x, self.y, self.z = [None] * 3
         self.lat, self.lon, self.alt = [None] * 3
         self.east, self.north, self.up = [None] * 3
@@ -102,6 +103,7 @@ class FixedAsset():
 
     def df(self, index=0):
         dict_ = {'sim': self.sim,
+                 'run': self.runnum,
                  'name': self.name,
                  'category': self.type,
                  'id': self.id,

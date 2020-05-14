@@ -279,21 +279,26 @@ class SimpleGUI(tk.Tk):
     ####################################################################
     # Plotting functions
     ####################################################################
-    def assetPlotDF(self) -> pd.DataFrame:
+    def assetPlotDF(self, showAllRuns, specialRun) -> pd.DataFrame:
         xCol, yCol, zCol = list(map(ef.assetColMap,
                                     [self.xCol, self.yCol, self.zCol]))
+
+        if not showAllRuns:
+            assets = self.assets.query(f'run == {specialRun}')
+        else:
+            assets = self.assets
 
         if xCol is None or yCol is None:
             return None
         elif self.dimensions == 3 and zCol is None:
             return None
         else:
-            dict_ = {'x': self.assets[xCol].values,
-                     'y': self.assets[yCol].values,
-                     'name': self.assets.name.values,
-                     'id': self.assets.id.values, }
+            dict_ = {'x': assets[xCol].values,
+                     'y': assets[yCol].values,
+                     'name': assets.name.values,
+                     'id': assets.id.values, }
             if self.dimensions == 3:
-                dict_['z'] = self.assets[zCol].values
+                dict_['z'] = assets[zCol].values
 
         return pd.DataFrame(dict_)
 
@@ -464,7 +469,7 @@ class SimpleGUI(tk.Tk):
 
         # Constructing dataframe that contains data for plotting
         pDF = self.missilePlotDF()
-        aDF = self.assetPlotDF()
+        aDF = self.assetPlotDF(self.showAllRuns.get(), self.run.get())
 
         # Setting all possible permutations for plotting data
         # TODO: Figure out a less janky way to do this
@@ -495,8 +500,7 @@ class SimpleGUI(tk.Tk):
             makePlot(myplot, dataPack, plotOptions)
 
         if aDF is not None:
-            print(aDF)
-            for asset in aDF.itertuples():
+            for asset in aDF.drop_duplicates().itertuples():
                 assetArgs = [[asset.x], [asset.y], ]
                 if self.dimensions == 3:
                     assetArgs += [[asset.z]]

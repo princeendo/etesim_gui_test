@@ -1,0 +1,6 @@
+# Asset
+Category:   Launcher
+Name:       Launcher
+UniqueID:   5373
+Run:        31
+LatLonAlt:  38.91360893006516 77.0121658 -652.68192316

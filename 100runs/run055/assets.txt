@@ -1,0 +1,6 @@
+# Asset
+Category:   Radar
+Name:       NICK
+UniqueID:   5459
+Run:        55
+LatLonAlt:  38.92261772 77.0121658 -652.68192316

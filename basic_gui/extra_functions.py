@@ -202,6 +202,7 @@ def assetData(assetFile, simulation='etesim'):
 
     objs = []
     for asset in assetGroups(items):
+        run_number = asset['Run']
         category = asset['Category']
         name = asset['Name']
         ID = asset['UniqueID']
@@ -212,7 +213,8 @@ def assetData(assetFile, simulation='etesim'):
             kwargs['lla'] = [float(x) for x in asset['LatLonAlt']]
         if 'ENU' in asset:
             kwargs['enu'] = [float(x) for x in asset['ENU']]
-        objs.append(dio.FixedAsset(simulation, name, category, ID, **kwargs))
+        objs.append(dio.FixedAsset(simulation, name, category, ID,
+                                   run_number, **kwargs))
     return objs
 
 
@@ -248,8 +250,9 @@ def uniqueAssets(assetList):
     return assets
 
 
-def assetsDF(assetList, unique=True):
+def assetsDF(assetList, unique=False):
     df = pd.concat([x.df(k) for k, x in enumerate(assetList)])
+    df.run = df.run.values.astype('int64')
     if unique:
         return df.drop_duplicates()
     else:

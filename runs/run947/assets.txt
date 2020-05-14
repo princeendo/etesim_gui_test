@@ -1,5 +1,18 @@
 # Asset
-Category:	Launcher
-Name:		Launcher_1
-UniqueID:	13224
-ECEF XYZ:	1116578.706	4841123.275	3985227.184
+Category:   Radar
+Name:       NICK
+UniqueID:   1685
+Run:        947
+LatLonAlt:  38.91360893006516 77.0121658 -652.68192316
+# Asset
+Category:   Launcher
+Name:       Launcher
+UniqueID:   4063
+Run:        947
+LatLonAlt:  38.92261772 77.00063334673033 -652.68192316
+# Asset
+Category:   Launcher
+Name:       Launcher
+UniqueID:   7035
+Run:        947
+LatLonAlt:  38.91360893006516 77.0121658 -652.68192316
