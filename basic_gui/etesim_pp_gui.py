@@ -42,7 +42,6 @@ import time
 import multiprocessing as mp
 import numpy as np
 import pandas as pd
-import seaborn as sns
 
 # Tkinter imports
 import tkinter as tk
@@ -377,41 +376,10 @@ class SimpleGUI(tk.Tk):
             print(event, item, mode)    # This is mostly for debugging
             return
 
+        # This originally had options for other types of graphs
+        # It is left here in case that option decides to come back
         if self.plotEngine == 'mpl':
             self.startMatPlot(startTime, event, item, mode)
-        elif self.plotEngine == 'sns':
-            self.startSNSPlot(startTime, event, item, mode)
-
-    def startSNSPlot(self, startTime, event=None,
-                     item=None, mode=None) -> None:
-
-        # Close old figure and toolbar if they already exist
-        if None not in (self.figure, self.canvas, self.toolbar):
-            plt.close(self.figure)
-            self.canvas.get_tk_widget().pack_forget()
-            self.toolbar.pack_forget()
-
-        # Loading data for plotting
-        cf.setVals(self, )
-
-        # Setting the run numbers to consider
-        cf.setRunOptions(self, )
-
-        # If there is nothing to plot, leave canvas blank
-        if self.dimensions == 0:
-            return
-
-        # Settng up canvas to draw plot
-        if self.xkcdMode.get():             # Easter Egg Mode
-            with plt.xkcd():
-                if self.gridMinor.get():
-                    self.gridMinor.set(False)
-                    self.status.set('Minor grid not allowed in XKCD Mode')
-                self.figure = plt.Figure(figsize=(6, 4))
-                self.finishSNSPlot(startTime)
-        else:
-            self.figure = plt.Figure(figsize=(3, 2))
-            self.finishSNSPlot(startTime)
 
     def startMatPlot(self, startTime, event=None,
                      item=None, mode=None) -> None:
@@ -547,103 +515,6 @@ class SimpleGUI(tk.Tk):
 
         # Setting the min/max values for each variable
         (xMin, xMax, yMin, yMax, zMin, zMax) = pof.getLimits(self, myplot)
-        myplot.set_xlim(xMin, xMax)
-        myplot.set_ylim(yMin, yMax)
-        if self.dimensions == 3:
-            myplot.set_zlim(zMin, zMax)
-
-        # Adding title with options, if necessary
-        if self.titleText.get() != '':
-            plotTitle = self.titleText.get()
-            fontdict = {'fontsize': int(self.titleSize.get()),
-                        'color': self.titleColorHex.get(),
-                        'style': 'italic' if self.itTitleOn else 'normal',
-                        'fontweight': 'bold' if self.boldTitleOn else 'normal'}
-            myplot.set_title(plotTitle, fontdict=fontdict)
-
-        # Packing plot into GUI and adding toolbar
-        self.canvas.get_tk_widget().pack(side=tk.BOTTOM,
-                                         fill=tk.BOTH,
-                                         expand=True)
-        self.toolbar = NavigationToolbar2Tk(self.canvas, self.viewPane)
-        self.toolbar.update()
-        self.canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
-
-        # Updating the user on the time it took to plot
-        totalTime = time.time() - startTime
-        self.status.set(f'Plot rendered in {totalTime:.1f}s')
-
-    def finishSNSPlot(self, startTime: float) -> None:
-        """
-        Generates a new plot on the figure set up in startPlot.
-
-        Parameters
-        ----------
-        startTime : float
-            The time plotting began. Used to update the user on total
-            rendering time.
-
-        Returns
-        -------
-        None
-
-        """
-        self.cursor = None
-
-        self.canvas = FigureCanvasTkAgg(self.figure, master=self.viewPane)
-        self.canvas.draw()
-
-        myplot = self.figure.add_subplot(111,)
-
-        # Constructing dataframe that contains data for plotting
-        pDF = self.missilePlotDF()
-
-        # Switching out status label for a plot progress bar
-        self.status.hide()
-        self.plotProgressFrame.pack(fill=tk.BOTH, side=tk.LEFT)
-
-        pStyle = self.plotStyle.get()
-
-        if pStyle == 'line':
-            sns.lineplot(x='x', y='y', hue='Model', data=pDF, ax=myplot)
-        elif pStyle == 'scatter':
-            sns.lmplot(x="x", y="y", hue="Model",  data=pDF, ax=myplot)
-
-        # Removing the counter and setting status back to normal
-        self.plotProgressFrame.pack_forget()
-        self.status.show()
-
-        # Show legend if selected
-        if self.showLegend.get():
-            legend_kwargs = {'fancybox': True, 'shadow': True, }
-
-            # Setting the location for the legend based on user input
-            if self.legendLoc.get() == 'Best':
-                pass
-            elif self.legendLoc.get() == 'Outside Right':
-                legend_kwargs['bbox_to_anchor'] = (1.1, 1.0)
-
-            myplot.legend(**legend_kwargs)
-
-        # Adding Axes Labels
-        if self.showXLabel.get():
-            myplot.set_xlabel(self.xCol.get())
-        if self.showYLabel.get():
-            myplot.set_ylabel(self.yCol.get())
-        if self.dimensions == 3 and self.showZLabel.get():
-            myplot.set_zlabel(self.zCol.get())
-
-        # Adding gridlines, if necessary
-        if self.gridMajor.get() and self.dimensions == 2:
-            myplot.grid(b=True, which='major', alpha=0.8)
-        if self.gridMinor.get() and self.dimensions == 2:
-            myplot.minorticks_on()
-            myplot.grid(b=True, which='minor', alpha=0.2, linestyle='--',)
-        else:
-            self.status.set('')
-
-        # Setting the min/max values for each variable
-        (xMin, xMax, yMin, yMax, zMin, zMax) = pof.getLimits(myplot)
         myplot.set_xlim(xMin, xMax)
         myplot.set_ylim(yMin, yMax)
         if self.dimensions == 3:

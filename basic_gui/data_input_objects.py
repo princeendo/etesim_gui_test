@@ -208,14 +208,25 @@ class ENU():
         return f'{_val}'
 
 
-def lla2enu(objLat, objLon, objAlt, refLat, refLon, refAlt):
-    refECEF = lla2ecef(refLat, refLon, refAlt)
-    objECEF = lla2ecef(objLat, objLon, objAlt)
+def ecef2enu(objECEF, refECEF):
+    refLat, refLon, _ = ecef2lla(refECEF)
     v = objECEF - refECEF
 
     T = ecef2enuMatrix(refLat, refLon)
 
-    east, north, up = T @ v
+    east, north, up = np.squeeze(np.asarray(T @ v))
+
+    return np.array([east, north, up])
+
+
+def lla2enu(objLat, objLon, objAlt, refLat, refLon, refAlt):
+    refECEF = lla2ecef(refLat, refLon, refAlt)
+    objECEF = lla2ecef(objLat, objLon, objAlt)
+    v = (objECEF - refECEF)
+
+    T = ecef2enuMatrix(refLat, refLon)
+
+    east, north, up = np.squeeze(np.asarray(T @ v))
 
     return np.array([east, north, up])
 
