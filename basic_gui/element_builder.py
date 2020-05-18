@@ -140,7 +140,24 @@ def buildFieldSelector(parent, row, axis, plotFunc, **comboKwargs):
     return (axCol, cb)
 
 
-def buildXYZMinMaxModifiers(gui, parent, waitFunc):
+def buildXYZMinMaxModifiers(gui: tk.Tk, parent: tk.Frame, waitFunc) -> None:
+    """
+    Adds elements for modifying the limits for X, Y, and Z values
+
+    Parameters
+    ----------
+    gui : tk.Tk
+        A tkinter GUI
+    parent : tk.Frame
+        A placeholder for all of these elements
+    waitFunc : function
+        A function pointer for having the GUI wait before acting
+
+    Returns
+    -------
+    None
+
+    """
 
     limitskwargs = {'width': 8, 'validate': "key"}
 
@@ -250,7 +267,27 @@ def buildXYZMinMaxModifiers(gui, parent, waitFunc):
                        lambda _: cf.modifyLimitsEntry(gui, _, 'zMax'))
 
 
-def buildCustomTitleOptions(gui, parent, waitFunc, startPlotFunc):
+def buildCustomTitleOptions(gui: tk.Tk, parent: tk.Frame,
+                            waitFunc, startPlotFunc, ) -> None:
+    """
+    Adds elements for creating a custom title
+
+    Parameters
+    ----------
+    gui : tk.Tk
+        A tkinter GUI
+    parent : tk.Frame
+        A placeholder for all of these elements
+    waitFunc : function
+        A function pointer for having the GUI wait before acting
+    startPlotFunc : function
+        Kicks off the plot in the viewer pane
+
+    Returns
+    -------
+    None
+
+    """
 
     # - - - - - - - - - -
     # Row 0 - Text
@@ -307,7 +344,34 @@ def buildCustomTitleOptions(gui, parent, waitFunc, startPlotFunc):
     gui.titleColorButton.grid(row=1, column=4,)
 
 
-def buildStyleOptions(gui, parent, waitFunc, startPlotFunc):
+def buildStyleOptions(gui: tk.Tk, parent: tk.Frame,
+                      waitFunc, startPlotFunc, ) -> None:
+    """
+    Adds style options for the graph
+        Line/Scatter plot selector
+        Line/Scatter plot options
+        Legend display
+        Legend location
+        Autocoloring of line/scatter plots
+        Selective coloring of line/scatter plots
+
+    Parameters
+    ----------
+    gui : tk.Tk
+        A tkinter GUI
+    parent : tk.Frame
+        A placeholder for all of these elements
+    waitFunc : function
+        A function pointer for having the GUI wait before acting
+    startPlotFunc : function
+        Kicks off the plot in the viewer pane
+
+    Returns
+    -------
+    None
+
+    """
+
     # - - - - - - - - - -
     # Row 0 - Plot/Scatter
     gui.plotStyle = tk.StringVar(parent, 'line')
@@ -396,7 +460,30 @@ def buildStyleOptions(gui, parent, waitFunc, startPlotFunc):
     gui.plotColorButton.grid(row=2, column=3, sticky=tk.W, padx=(5, 0))
 
 
-def buildAdditionalOptions(gui, parent, waitFunc, startPlotFunc, ):
+def buildAdditionalOptions(gui: tk.Tk, parent: tk.Frame,
+                           waitFunc, startPlotFunc, ) -> None:
+    """
+    Adds elements for additional plot options:
+        Grid lines (major/minor)
+        Axis labels
+
+    Parameters
+    ----------
+    gui : tk.Tk
+        A tkinter GUI
+    parent : tk.Frame
+        A placeholder for all of these elements
+    waitFunc : function
+        A function pointer for having the GUI wait before acting
+    startPlotFunc : function
+        Kicks off the plot in the viewer pane
+
+    Returns
+    -------
+    None
+
+    """
+
     # - - - - - - - - - -
     # Row 0 - Grid
     gui.gridLabel = ttk.Label(parent, text='Gridlines:',)
@@ -426,8 +513,26 @@ def buildAdditionalOptions(gui, parent, waitFunc, startPlotFunc, ):
     buildXYZGridLabels(gui, gui.showAxFrame, startPlotFunc)
 
 
-def buildXYZGridLabels(gui, parent, startPlotFunc):
-    # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+def buildXYZGridLabels(gui: tk.Tk, parent: tk.Frame, startPlotFunc) -> None:
+    """
+    Builds the elements necessary for a user to decide whether grid labels
+    are needed for X, Y, or Z
+
+    Parameters
+    ----------
+    gui : tk.Tk
+        A tkinter GUI
+    parent : tk.Frame
+        A placeholder for all of these elements
+    startPlotFunc : TYPE
+        Kicks off the plot in the viewer pane
+
+    Returns
+    -------
+    None
+
+    """
+
     # Row 0 - XYZ Labels
     gui.showXLabel = tk.BooleanVar(value=True)
     gui.showYLabel = tk.BooleanVar(value=True)
@@ -447,7 +552,30 @@ def buildXYZGridLabels(gui, parent, startPlotFunc):
     gui.showZLabelCB.grid(row=0, column=2, sticky=tk.W)
 
 
-def buildRunSelector(gui, parent, waitFunc, startPlotFunc, availableRuns):
+def buildRunSelector(gui: tk.Tk, parent: tk.Frame,
+                     waitFunc, startPlotFunc, availableRuns) -> None:
+    """
+    Builds the elements necessary to downselect runs for viewing
+
+    Parameters
+    ----------
+    gui : tk.Tk
+        A tkinter GUI
+    parent : tk.Frame
+        A placeholder for all of these elements
+    waitFunc : function
+        A function pointer for having the GUI wait before acting
+    startPlotFunc : function
+        Kicks off the plot in the viewer pane
+    availableRuns : list (str)
+        The available runs for plotting to be displayed in the SpinBox
+
+    Returns
+    -------
+    None
+        DESCRIPTION.
+
+    """
 
     # The switch for whether runs are plotted all together
     gui.showAllRuns = tk.BooleanVar(value=True)
@@ -491,8 +619,33 @@ def buildRunSelector(gui, parent, waitFunc, startPlotFunc, availableRuns):
     gui.transRunsCB.grid(row=0, column=3, sticky=tk.W,)
 
 
-def buildEditorElements(gui, parent, plotColumns, availableRuns,
-                        waitFunc, startPlotFunc):
+def buildEditorElements(gui: tk.Tk, parent: tk.Frame,
+                        plotColumns, availableRuns,
+                        waitFunc, startPlotFunc) -> None:
+    """
+    Builds the components to add to the editor frame and calls
+    functions to build their subcomponents
+
+    Parameters
+    ----------
+    gui : tk.Tk
+        A tkinter GUI
+    parent : tk.Frame
+        A placeholder for all of these elements
+    plotColumns : list (str)
+        The available options for plotting to be displayed in the ComboBox
+    availableRuns : list (str)
+        The available runs for plotting to be displayed in the SpinBox
+    waitFunc : function
+        A function pointer for having the GUI wait before acting
+    startPlotFunc : function
+        Kicks off the plot in the viewer pane
+
+    Returns
+    -------
+    None
+
+    """
     # - - - - - - - - - - - - - - - -
     # Row 0 - XYZ Plot Columns
     thisrow = 0
@@ -543,7 +696,23 @@ def buildEditorElements(gui, parent, plotColumns, availableRuns,
     buildRunSelector(gui, runChoiceLF, waitFunc, startPlotFunc, availableRuns)
 
 
-def buildEditAndViewPanes(parent, browser=False, url=None):
+def buildEditAndViewPanes(parent,) -> tuple:
+    """
+    Creates the frames to hold the editing options and the viewer
+    The width is set to 260 for the editPane and the viewPane will
+    take up the rest of the available real estate.
+
+    Parameters
+    ----------
+    parent : tkinter object
+        Could be any type of tkinter object capable of holding frames
+
+    Returns
+    -------
+    tuple
+        Handles to the edit and view panes
+
+    """
 
     # Defining Edit Pane
     editPane = ttk.Frame(parent, width=260, relief=tk.GROOVE)
@@ -553,17 +722,28 @@ def buildEditAndViewPanes(parent, browser=False, url=None):
     editPane.grid_propagate(0)
 
     # Adds the plot viewer pane
-    if browser:
-        import cef_sample_code as csc
-        viewPane = csc.SubFrame(parent, url=url)
-    else:
-        viewPane = ttk.Frame(parent,)
+    viewPane = ttk.Frame(parent,)
     parent.add(viewPane)
 
     return (editPane, viewPane)
 
 
-def buildInputElements(gui, parent, ):
+def buildInputElements(gui: tk.Tk, parent, ) -> None:
+    """
+    Adds the elements needed to perform a data load.
+
+    Parameters
+    ----------
+    gui : tk.Tk
+        The top-level GUI instance
+    parent : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    None
+
+    """
     # - - - - - - - - - - - - - - - -
     # Row 0 - Browsing for Directory
     gui.topDirLabel = tk.Label(parent, text='Directory with Run(s): ')
