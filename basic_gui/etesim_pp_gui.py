@@ -278,7 +278,25 @@ class SimpleGUI(tk.Tk):
     ####################################################################
     # Plotting functions
     ####################################################################
-    def assetPlotDF(self, showAllRuns, specialRun) -> pd.DataFrame:
+    def assetPlotDF(self, showAllRuns: bool, specialRun: int,) -> pd.DataFrame:
+        """
+        The DataFrame used to plot fixed assets on top of trajectories.
+
+        Parameters
+        ----------
+        showAllRuns : bool
+            A flag for whether only select trajectories are being displayed
+        specialRun : int
+            The run of interest in case showAllRuns is false
+
+        Returns
+        -------
+        Pandas DataFrame
+            An index of information containing metadata and location data for
+            the assets we intend to plot.
+
+        """
+
         xCol, yCol, zCol = list(map(ef.assetColMap,
                                     [self.xCol, self.yCol, self.zCol]))
 
@@ -381,8 +399,33 @@ class SimpleGUI(tk.Tk):
         if self.plotEngine == 'mpl':
             self.startMatPlot(startTime, event, item, mode)
 
-    def startMatPlot(self, startTime, event=None,
+    def startMatPlot(self, startTime: float, event=None,
                      item=None, mode=None) -> None:
+        """
+        Sets up initial pieces for plotting with matplotlib.
+
+        Parameters
+        ----------
+        startTime : float
+            The time (in seconds) before the plot process beings
+        event : int or tkinter.Event, optional
+            Often called as a 1 instead of tk.Event.
+            If not None, indicates that the plot should update
+            The default is None.
+        item : tkinter.Event, optional
+            Only passed when using a trace.
+            (tkinter Events are passed as triples.)
+            The default is None.
+        mode : tkinter.Event, optional
+            Only passed when using a trace.
+            (tkinter Events are passed as triples.)
+            The default is None.
+
+        Returns
+        -------
+        None
+
+        """
 
         # Close old figure and toolbar if they already exist
         if None not in (self.figure, self.canvas, self.toolbar):
@@ -467,6 +510,8 @@ class SimpleGUI(tk.Tk):
                 self.plotProgressLbl.set(f'{k+1}/{numDFs} complete')
             makePlot(myplot, dataPack, plotOptions)
 
+        # Plotting each asset alongside the trajectories
+        # unless downselection is specified by the user
         if aDF is not None:
             for asset in aDF.drop_duplicates().itertuples():
                 assetArgs = [[asset.x], [asset.y], ]
@@ -541,7 +586,37 @@ class SimpleGUI(tk.Tk):
         totalTime = time.time() - startTime
         self.status.set(f'Plot rendered in {totalTime:.1f}s')
 
-    def plotOptions(self):
+    def plotOptions(self) -> tuple:
+        """
+        A shorthand for aggregating all the different plot options
+        the user can specify
+
+        Returns
+        -------
+        plotStyle : str
+            Choices are "line" or "scatter"
+        showAllRuns : bool
+            Whether to display all runs at once or only certain ones
+        transparentRuns : bool
+            Whether, when showAllRuns is False, to display the other runs
+            faded out
+        specialRun : int
+            The user-specified run to analyze
+        autoColor : bool
+            Whether the trajectories should be colored automatically
+        plotColor : str
+            A user-specified color for trajectories
+        dimensions : int
+            Choices are 2 or 3
+        lineStyle : str
+            Options for different line styles. (Full, dashed, etc.)
+        scatterStyle : str
+            Options for different scatter plot markers.
+        colors : str
+            The colors to use if autoColor is set to True
+
+        """
+
         plotStyle = self.plotStyle.get()
         showAllRuns = self.showAllRuns.get()
         transparentRuns = self.transparentRuns.get()
@@ -558,7 +633,52 @@ class SimpleGUI(tk.Tk):
                 dimensions, lineStyle, scatterStyle, colors)
 
 
-def makePlot(ax, itPack, options):
+def makePlot(ax: plt.Figure, itPack: tuple, options: tuple) -> None:
+    """
+    Generates a plot for the specified packed data with given options on
+    the supplied plot handle
+
+    Parameters
+    ----------
+    ax : plt.Figure
+        A handle for the figure to plot upon
+    itPack : tuple
+        A pack containing the following:
+            k:          An index for keeping track of colors/progress
+            run:        The run number of the trajectory
+            model:      The model of the object whose trajectory is plotted
+            instance:   The simulation instance of the object
+            df:         A DataFrame containing the trajectory data
+    options : tuple
+        A pack containing the following:
+            plotStyle : str
+                Choices are "line" or "scatter"
+            showAllRuns : bool
+                Whether to display all runs at once or only certain ones
+            transparentRuns : bool
+                Whether, when showAllRuns is False, to display the other runs
+                faded out
+            specialRun : int
+                The user-specified run to analyze
+            autoColor : bool
+                Whether the trajectories should be colored automatically
+            plotColor : str
+                A user-specified color for trajectories
+            dimensions : int
+                Choices are 2 or 3
+            lineStyle : str
+                Options for different line styles. (Full, dashed, etc.)
+            scatterStyle : str
+                Options for different scatter plot markers.
+            colors : str
+                The colors to use if autoColor is set to True
+
+    Returns
+    -------
+    None
+
+    """
+
     k, ((run, model, instance), df) = itPack
 
     plotStyle, showAllRuns, transparentRuns = options[0:3]
@@ -578,7 +698,7 @@ def makePlot(ax, itPack, options):
         ax.plot(*plotlist, **plot_kwargs, linestyle=lineStyle)
     else:
         ax.scatter(*plotlist, **plot_kwargs, marker=scatterStyle)
-    return options
+    return
 
 
 # To prevent this running automatically if imported
