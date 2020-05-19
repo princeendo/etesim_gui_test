@@ -17,7 +17,22 @@ import tkinter as tk
 ####################################################################
 # Utility functions
 ####################################################################
-def absjoin(*args):
+def absjoin(*args) -> str:
+    """
+    Performs os.path.join() on the arguments and then returns
+    its absolute path
+
+    Parameters
+    ----------
+    *args : iterable
+        An iterable type of strings to be joined
+
+    Returns
+    -------
+    str
+        An os-specific path
+
+    """
     return os.path.abspath(os.path.join(*args))
 
 
@@ -176,6 +191,23 @@ def dirTree(root: str) -> list:
 
 
 def assetGroups(assetTextList):
+    """
+    Reads a text list containing assets and separates them into
+    a list of dictionaries where each dictionary contains the appropriate
+    metadata for each asset.
+
+    Parameters
+    ----------
+    assetTextList : list
+        A list of strings where each element is a sequential line
+        from a text file.
+
+    Returns
+    -------
+    groups : list
+        A list of dictionaries, each containing metadata for an asset.
+
+    """
     groups = []
     k = 0
     n = len(assetTextList)
@@ -196,7 +228,26 @@ def assetGroups(assetTextList):
     return groups
 
 
-def assetData(assetFile, simulation='etesim'):
+def assetData(assetFile: str, simulation: str = 'etesim'):
+    """
+    A parser that performs the following:
+        (1) Strips out all empty lines
+        (2) Strips out leading/trailing whitespace and newline characters
+        (3) Converts each remaining line to an element in a list
+
+    Parameters
+    ----------
+    assetFile : str
+        A file to parse
+    simulation : str, optional
+        A simulation specifier for "smart" splitting. The default is 'etesim'.
+
+    Returns
+    -------
+    objs : TYPE
+        DESCRIPTION.
+
+    """
     with open(assetFile, 'r') as inFile:
         items = [x.strip() for x in inFile.readlines() if len(x.strip()) > 0]
 
@@ -218,7 +269,28 @@ def assetData(assetFile, simulation='etesim'):
     return objs
 
 
-def allAssets(dirlist, assetfileRegex='assets.txt', simulation='etesim'):
+def allAssets(dirlist, assetfileRegex: str = 'assets.txt',
+              simulation: str = 'etesim'):
+    """
+    Finds files that represent assets in a given list of directories to search
+
+    Parameters
+    ----------
+    dirlist : list
+        A list of strings, each one representing a valid directory
+    assetfileRegex : str, optional
+        If any file in the dirlist matches this pattern, it is held.
+        The default is 'assets.txt'.
+    simulation : str, optional
+        A simulation specifier for "smart" searching. The default is 'etesim'.
+
+    Returns
+    -------
+    list
+        A list of strings, each one a path to a file containing asset metadata
+
+    """
+
     assetFiles = []
     matcher = re.compile(assetfileRegex)
     for dir_ in dirlist:
@@ -234,6 +306,20 @@ def allAssets(dirlist, assetfileRegex='assets.txt', simulation='etesim'):
 
 
 def uniqueAssets(assetList):
+    """
+    Removes any duplicate assets from a list
+
+    Parameters
+    ----------
+    assetList : list
+        A list of assets.
+
+    Returns
+    -------
+    assets : list
+        A list of assets with duplicates removed.
+
+    """
     assets = list(assetList)
     n = len(assets)
     k = n - 1
@@ -250,20 +336,62 @@ def uniqueAssets(assetList):
     return assets
 
 
-def assetsDF(assetList, unique=False):
+def assetsDF(assetList, unique: bool = False) -> pd.DataFrame:
+    """
+    Converts a list of FixedAsset type into a single DataFrame
+    containing the relevant metadata
+
+    Parameters
+    ----------
+    assetList : list
+        A list of assets
+    unique : bool, optional
+        A flag for removing duplicate assets. The default is False.
+
+    Returns
+    -------
+    Pandas DataFrame
+        An indexed list of fixed assets.
+
+    """
+
+    # Converts the assets into DataFrames and indexes them in
+    # the current order in the list
     df = pd.concat([x.df(k) for k, x in enumerate(assetList)])
     df.run = df.run.values.astype('int64')
     if unique:
+        # This will not re-index to allow you to easily see what was dropped
         return df.drop_duplicates()
     else:
         return df
 
 
-def assetColMap(colVal,):
+def assetColMap(colVal: tk.StringVar):
+    """
+    For a given user selection, lists the location the values of that
+    selection should go in a DataFrame.
+
+    Example: User selects 'Target Position - North' as a plotting region.
+            That will map to being in the 'y' direction.
+
+    Parameters
+    ----------
+    colVal : tk.StringVar
+        A GUI variable that holds a string or a None.
+
+    Returns
+    -------
+    str
+        This is meant to be passed to a DataFrame. This lists the column
+        in the DataFrame that the value will be mapped to for consistent
+        plotting. Returns None if the value is invalid.
+
+    """
     val = colVal.get()
     if val is None or val == '':
         return None
     splitData = val.lower().split()
+
     # assetType = splitData[0]
     loc = splitData[-1]
 
@@ -355,6 +483,21 @@ def makeDataFrameAddPath(inFile: str) -> pd.DataFrame:
 
 
 def makeDF(inFile: str) -> pd.DataFrame:
+    """
+    Generates a DataFrame from an ETESim input and does some data
+    extraction to add additional metadata columns.
+
+    Parameters
+    ----------
+    inFile : str
+        A path to the ETESim input file
+
+    Returns
+    -------
+    df : Pandas DataFrame
+        An indexed record of each time step of the output data
+
+    """
 
     df = pd.read_excel(inFile).rename(columns=dictMap())
     model, instance = list(zip(*[recordExtractor(r, 'ETESim') for
@@ -363,42 +506,3 @@ def makeDF(inFile: str) -> pd.DataFrame:
     df['Instance'] = instance
     df['Path'] = inFile
     return df
-
-
-def seabornDF(gui, plotDF):
-    
-    # To do seaborn plots, we will need to interpolate each item to get
-    # a common x-axis between plots. If we do not do this, the banding
-    # part of the line plot won't be helpful
-
-    # Editing the status bar to present new information
-    # self.statusLbl.pack_forget()
-    gui.status.hide()
-    gui.plotProgressFrame.pack(fill=tk.BOTH, side=tk.LEFT)
-    numDFs = sum([1 for (_, df) in plotDF.groupby(keepCols)])
-    newDFs = []
-
-    xVals = plotDF.x.values[0:plotDF.shape[0]:numDFs]
-    for k, (meta, subdf) in enumerate(plotDF.groupby(keepCols)):
-        yVals = np.interp(xVals, subdf.x, subdf.y)
-        d = {'x': xVals, 'y': yVals}
-        if gui.dimensions == 3:
-            zVals = np.interp(xVals, subdf.x, subdf.z)
-            d['z'] = zVals
-        for idx, item in enumerate(keepCols):
-            d[item] = [meta[idx]] * len(yVals)
-        newDFs.append(pd.DataFrame(d))
-
-        # This keeps the matplotlib process from blocking updates
-        gui.canvas.draw()
-        gui.plotProgress.set(100*(k+1)/(numDFs))
-        gui.plotProgressLbl.set(f'{k+1}/{numDFs} complete')
-
-    newDF = pd.concat(newDFs)
-
-    # Removing the counter and setting status back to normal
-    gui.plotProgressFrame.pack_forget()
-    gui.status.show(f'Size grew from {plotDF.shape[0]} to {newDF.shape[0]}')
-    gui.canvas.draw()
-
-    return newDF

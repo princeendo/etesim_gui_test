@@ -13,9 +13,33 @@ from tkinter import ttk
 
 
 class guiTextLabel():
-    def __init__(gui, parent, style, **kwargs):
+    def __init__(gui: tk.Tk, parent: tk.Frame, style: str, **kwargs) -> None:
+        """
+        An all-in-one class designed to create a label and place it in the
+        GUI without having to write a large portion of commands.
+
+        Parameters
+        ----------
+        gui : tk.Tk
+            A tkinter GUI
+        parent : tk.Frame
+            The parent for the label
+        style : str
+            Options are 'pack' or 'grid' to specify tkinter method for display
+        **kwargs : dict
+            Keyword arguments for the label options and the display options
+
+        Returns
+        -------
+        None
+
+        """
+
         gui.text = tk.StringVar(parent, '')
 
+        # Takes the keyword arguments passed and splits them into
+        # the ones related to the label and the ones related to
+        # packing/gridding the label
         gui.labelKwargs, gui.showKwargs = splitKwargs(**kwargs)
 
         gui.label = tk.Label(parent, **gui.labelKwargs,
@@ -27,34 +51,137 @@ class guiTextLabel():
         gui.show = gui._pack if style == 'pack' else gui._grid
         gui.hide = gui._pack_forget if style == 'pack' else gui._grid_forget
 
-    def _pack(gui, text=None):
-        noText = {k: v for (k, v) in gui.showKwargs.items() if k != 'text'}
+    def _pack(gui: tk.Tk, text: str = None) -> None:
+        """
+        Places the label in the GUI using the pack() method.
 
-        gui.label.pack(**noText)
+        Parameters
+        ----------
+        gui : tk.Tk
+            A tkinter GUI
+        text : str, optional
+            The text to display in the label. The default is None.
+
+        Returns
+        -------
+        None
+
+        """
+        notText = {k: v for (k, v) in gui.showKwargs.items() if k != 'text'}
+
+        gui.label.pack(**notText)
         if text is not None:
             gui.set(text)
         elif 'text' in gui.labelKwargs:
             gui.set(gui.labelKwargs['text'])
 
-    def _pack_forget(gui,):
+    def _pack_forget(gui: tk.Tk) -> None:
+        """
+        Hides the label in the GUI.
+
+        Parameters
+        ----------
+        gui : tk.Tk
+            A tkinter GUI
+
+        Returns
+        -------
+        None
+
+        """
         gui.label.pack_forget()
 
-    def _grid(gui, text=None):
+    def _grid(gui: tk.Tk, text: str = None) -> None:
+        """
+        Places the label in the GUI using the grid() method.
+
+        Parameters
+        ----------
+        gui : tk.Tk
+            A tkinter GUI
+        text : str, optional
+            The text to display in the label. The default is None.
+
+        Returns
+        -------
+        None
+
+        """
         gui.label.grid(**gui.showKwargs)
         if text is not None:
             gui.set(text)
 
-    def _grid_forgt(gui):
+    def _grid_forgt(gui: tk.Tk) -> None:
+        """
+        Hides the label in the GUI.
+
+        Parameters
+        ----------
+        gui : tk.Tk
+            A tkinter GUI
+
+        Returns
+        -------
+        None
+
+        """
         gui.label.grid_forget()
 
-    def set(gui, newText):
+    def set(gui: tk.Tk, newText: str) -> None:
+        """
+        Sets the text value for the label
+
+        Parameters
+        ----------
+        gui : tk.Tk
+            A tkinter GUI
+        newText : str
+            The new value for the label
+
+        Returns
+        -------
+        None
+
+        """
         gui.text.set(newText)
 
-    def get(gui,):
-        gui.text.get()
+    def get(gui,) -> str:
+        """
+        Gets the current value of the label
+
+        Parameters
+        ----------
+        gui : tk.Tk
+            A tkinter GUI
+
+        Returns
+        -------
+        str
+            The value of the label.
+
+        """
+        return gui.text.get()
 
 
 def splitKwargs(**kwargs):
+    """
+    Allows a user to pass a single keyword argument dictionary when creating
+    a label and "smartly" splits the keywords into the keywords needed
+    for creating labels and for packing or gridding the label.
+
+    Parameters
+    ----------
+    **kwargs : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    labelArgs : TYPE
+        DESCRIPTION.
+    showArgs : TYPE
+        DESCRIPTION.
+
+    """
     labelOpts = {'anchor', 'bg', 'bitmap', 'bd', 'cursor', 'font', 'fg',
                  'height', 'image', 'justify', 'relief', 'text',
                  'textvariable', 'underline', 'width', 'wraplength'}
@@ -76,45 +203,25 @@ def splitKwargs(**kwargs):
     return labelArgs, showArgs
 
 
-def buildXYZFieldSelectors2(gui, parent, values, plotFunc):
-
-    # Setting identical data for XYZ ComboBoxes
-    comboKwargs = {'values': values, 'state': 'readonly', 'width': 30}
-
-    # - - - - - - - - - - - - - - - -
-    # Row 0 - X
-    fieldRow = 0
-    xCol = tk.StringVar()
-    xLabel = tk.Label(parent, text='X=')
-    xLabel.grid(row=fieldRow, column=0, sticky=tk.W, padx=(2, 0), pady=(2, 0))
-    xCB = ttk.Combobox(parent, textvariable=xCol, **comboKwargs)
-    xCB.grid(row=fieldRow, column=1)
-    xCB.bind('<<ComboboxSelected>>', plotFunc)
-
-    # - - - - - - - - - - - - - - - -
-    # Row 1 - Y
-    fieldRow += 1
-    yCol = tk.StringVar()
-    yLabel = tk.Label(parent, text='Y=')
-    yLabel.grid(row=fieldRow, column=0, sticky=tk.W, padx=(2, 0),)
-    yCB = ttk.Combobox(parent, textvariable=yCol, **comboKwargs)
-    yCB.grid(row=fieldRow, column=1)
-    yCB.bind('<<ComboboxSelected>>', plotFunc)
-
-    # - - - - - - - - - - - - - - - -
-    # Row 2 - Z
-    fieldRow += 1
-    zCol = tk.StringVar()
-    zLabel = tk.Label(parent, text='Z=')
-    zLabel.grid(row=fieldRow, column=0, sticky=tk.W, padx=(2, 0),)
-    zCB = ttk.Combobox(parent, textvariable=zCol, **comboKwargs)
-    zCB.grid(row=fieldRow, column=1)
-    zCB.bind('<<ComboboxSelected>>', plotFunc)
-
-    return ((xCol, xCB), (yCol, yCB), (zCol, zCB))
-
-
 def buildXYZFieldSelectors(parent, values, plotFunc):
+    """
+    Builds the elements for selecting which columns to plot from input data
+
+    Parameters
+    ----------
+    parent : tk.Frame
+        The holder of these field selectors
+    values : list
+        The options that will be placed in each ComboBox
+    plotFunc : function pointer
+        The plotting function for the GUI
+
+    Returns
+    -------
+    axData : list
+        The handles to each of the field selectors made in this function
+
+    """
     # Setting identical data for XYZ ComboBoxes
     comboKwargs = {'values': values, 'state': 'readonly', 'width': 30}
 
@@ -129,6 +236,35 @@ def buildXYZFieldSelectors(parent, values, plotFunc):
 
 
 def buildFieldSelector(parent, row, axis, plotFunc, **comboKwargs):
+    """
+    Builds the elements needed to select a parameter for plotting along
+    a specified axis.
+
+    Examples might be on row 0 for axis 'X'.
+    The keyword arguments are passed instead of specified here
+
+    Parameters
+    ----------
+    parent : tk.Frame
+        The holder of this field selector
+    row : int
+        The row to place the field selector upon inside the parent.
+        Intended for stacking vertically.
+    axis : str
+        Can be anything, but intended for "X", "Y", or "Z"
+    plotFunc : function pointer
+        The plotting function for the GUI
+    **comboKwargs : dict
+        Keyword arguments for the ComboBox
+
+    Returns
+    -------
+    axCol : tk.StringVar
+        The handle to the value selected in the ComboBox that is built
+    cb : TYPE
+        The handle to the ComboBox that is built
+
+    """
     labelKwargs = {'row': row, 'column': 0, 'sticky': tk.W, 'padx': (2, 0), }
 
     axCol = tk.StringVar()
