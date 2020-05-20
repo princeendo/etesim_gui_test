@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Apr 30 09:54:00 2020
-
-@author: white
-"""
 
 
 def getLimits(gui, ax) -> tuple:
