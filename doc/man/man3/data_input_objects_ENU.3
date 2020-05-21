@@ -1,0 +1,374 @@
+.TH "data_input_objects.ENU" 3 "Thu May 21 2020" "ETESim Plotting GUI" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+data_input_objects.ENU
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "None \fB__init__\fP (self, float east, float north, float up)"
+.br
+.ti -1c
+.RI "Vector \fBarray\fP (self)"
+.br
+.ti -1c
+.RI "float \fBnorm\fP (self)"
+.br
+.ti -1c
+.RI "Vector \fBto_ecef\fP (self, float refLat, float refLon, float refAlt)"
+.br
+.ti -1c
+.RI "Vector \fBto_lla\fP (self, float refLat, float refLon, float refAlt)"
+.br
+.ti -1c
+.RI "def \fB__sub__\fP (self, other_enu)"
+.br
+.ti -1c
+.RI "def \fB__add__\fP (self, other_enu)"
+.br
+.ti -1c
+.RI "int \fB__hash__\fP (self)"
+.br
+.ti -1c
+.RI "bool \fB__eq__\fP (self, otherENU)"
+.br
+.ti -1c
+.RI "bool \fB__lt__\fP (self, other)"
+.br
+.ti -1c
+.RI "bool \fB__le__\fP (self, otherENU)"
+.br
+.ti -1c
+.RI "bool \fB__gt__\fP (self, otherENU)"
+.br
+.ti -1c
+.RI "bool \fB__ge__\fP (self, otherENU)"
+.br
+.ti -1c
+.RI "def \fB__neg__\fP (self)"
+.br
+.ti -1c
+.RI "def \fB__abs__\fP (self)"
+.br
+.ti -1c
+.RI "str \fB__repr__\fP (self)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBeast\fP"
+.br
+.ti -1c
+.RI "\fBnorth\fP"
+.br
+.ti -1c
+.RI "\fBup\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS " None data_input_objects\&.ENU\&.__init__ ( self, float east, float north, float up)"
+
+.PP
+.nf
+A class for handling ENU coordinates
+
+Parameters
+----------
+east : float
+    The east location in meters
+north : float
+    The north location in meters
+up : float
+    The up location in meters
+
+Returns
+-------
+None
+.fi
+.PP
+ 
+.SH "Member Function Documentation"
+.PP 
+.SS "def data_input_objects\&.ENU\&.__abs__ ( self)"
+
+.PP
+.nf
+An instance where each element's magnitude is present instead
+of its value.
+
+Returns
+-------
+ENU
+    A class instance with nonnegative values
+.fi
+.PP
+ 
+.SS "def data_input_objects\&.ENU\&.__add__ ( self,  other_enu)"
+
+.PP
+.nf
+Overloads the "+" operator to define addition.
+
+In this case, O = A + B has the property:
+    O.east = A.east + B.east
+    O.north = A.north + B.north
+    O.up = A.up + B.up
+
+Parameters
+----------
+other_enu : ENU
+    An instance of ENU
+
+Returns
+-------
+ENU
+    An instance of ENU
+.fi
+.PP
+ 
+.SS " bool data_input_objects\&.ENU\&.__ge__ ( self,  otherENU)"
+
+.PP
+.nf
+Determines if the other class instance is greater than or equal to
+this instance
+
+Parameters
+----------
+otherENU : ENU
+    An instance of the ENU class
+
+Returns
+-------
+bool
+    Whether the other class instance is greater than or equal to
+    this class instance
+.fi
+.PP
+ 
+.SS " bool data_input_objects\&.ENU\&.__gt__ ( self,  otherENU)"
+
+.PP
+.nf
+Determines if the other class instance is greater than this instance
+
+Parameters
+----------
+otherENU : ENU
+    An instance of the ENU class
+
+Returns
+-------
+bool
+    Whether the other class instance is greater than this instance
+.fi
+.PP
+ 
+.SS " int data_input_objects\&.ENU\&.__hash__ ( self)"
+
+.PP
+.nf
+Generates a hash from the member variables of this class.
+Class instances containing the same values for each variable
+will be considered identical. This would create a naive sorting
+algorithm.
+
+Currently, this is unused.
+
+Returns
+-------
+int
+    The resulting hash
+.fi
+.PP
+ 
+.SS " bool data_input_objects\&.ENU\&.__le__ ( self,  otherENU)"
+
+.PP
+.nf
+Determines if the other class instance is less than or equal to
+this instance
+
+Parameters
+----------
+otherENU : ENU
+    An instance of the ENU class
+
+Returns
+-------
+bool
+    Whether the other class instance is less than or equal to
+    this instance
+.fi
+.PP
+ 
+.SS " bool data_input_objects\&.ENU\&.__lt__ ( self,  other)"
+
+.PP
+.nf
+Overloads the '<' operator and provides a way to order instances
+of the ENU class.
+
+This could have been accomplished by converting them to tuples
+and then calling the sort command on an array containing them both
+but, because of the likelihood of similar but not identical values
+due to rounding error, it made sense to leverage the .isclose()
+numpy method to check for equality.
+
+An instance A of ENU is "less than" an instance B of ENU if and only
+if one of the following holds:
+(1) A.east < B.east
+(2) A.east == B.east and A.north < B.north
+(3) A.east == B.east, A.north == B.north, and A.up < B.up
+
+In this case, comments use "~=" to imply approximate equality.
+
+Parameters
+----------
+other : ENU
+    An instance of the ENU class
+
+Returns
+-------
+bool
+    Whether the other class is "less than" this class instance
+.fi
+.PP
+ 
+.SS "def data_input_objects\&.ENU\&.__neg__ ( self)"
+
+.PP
+.nf
+Generates a class instance that is the negation of each
+element in this instance
+
+Returns
+-------
+ENU
+    A class instance whose elements are the additive inverses
+    of the elements in this instance
+.fi
+.PP
+ 
+.SS " str data_input_objects\&.ENU\&.__repr__ ( self)"
+
+.PP
+.nf
+Displays instances of these class in a formatted way.
+
+Returns
+-------
+str
+    The default display for namedtuples, in this case
+    one of type EastNorthUp
+.fi
+.PP
+ 
+.SS "def data_input_objects\&.ENU\&.__sub__ ( self,  other_enu)"
+
+.PP
+.nf
+Overloads the "-" operator to define addition.
+
+In this case, O = A - B has the property:
+    O.east = A.east - B.east
+    O.north = A.north - B.north
+    O.up = A.up - B.up
+
+Parameters
+----------
+other_enu : ENU
+    An instance of ENU
+
+Returns
+-------
+ENU
+    An instance of ENU
+.fi
+.PP
+ 
+.SS " Vector data_input_objects\&.ENU\&.array ( self)"
+
+.PP
+.nf
+Represents the elements as an array for easier interfacing with
+existing methods in other packages and classes.
+
+Returns
+-------
+Vector
+    Elements are (east, north, up)
+.fi
+.PP
+ 
+.SS " float data_input_objects\&.ENU\&.norm ( self)"
+
+.PP
+.nf
+Generates the magnitude of the ENU vector.
+
+Returns
+-------
+float
+    The 2-Norm of the vector
+.fi
+.PP
+ 
+.SS " Vector data_input_objects\&.ENU\&.to_ecef ( self, float refLat, float refLon, float refAlt)"
+
+.PP
+.nf
+Generates ECEF XYZ coordinates when the ENU origin is given as
+Latitude (deg), Longitude (deg), Altitude (m).
+
+Parameters
+----------
+refLat : float
+    The reference latitude in degrees.
+refLon : float
+    The reference longitude in degrees.
+refAlt : float
+    The reference altitude in meters.
+
+Returns
+-------
+Vector
+    Elements are (latitude, longitude, altitude)
+.fi
+.PP
+ 
+.SS " Vector data_input_objects\&.ENU\&.to_lla ( self, float refLat, float refLon, float refAlt)"
+
+.PP
+.nf
+Generates a Latitude (deg), Longitude (deg), Altitude (m)
+representation of the coordinates when the ENU origin is given as
+Latitude (deg), Longitude (deg), Altitude (m).
+
+Parameters
+----------
+refLat : float
+    The reference latitude in degrees.
+refLon : float
+    The reference longitude in degrees.
+refAlt : float
+    The reference altitude in meters.
+
+Returns
+-------
+Vector
+    Elements are (latitude, longitude, altitude)
+.fi
+.PP
+ 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ETESim Plotting GUI from the source code\&.

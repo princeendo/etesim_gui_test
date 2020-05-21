@@ -1,0 +1,599 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classdata__input__objects_1_1_e_n_u" kind="class" language="Python" prot="public">
+    <compoundname>data_input_objects::ENU</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classdata__input__objects_1_1_e_n_u_1a12da4f4e54a6f5d6384301f393e77bba" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>data_input_objects.ENU::east</definition>
+        <argsstring></argsstring>
+        <name>east</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="306" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="306" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdata__input__objects_1_1_e_n_u_1a92a064bad3e7b6ae6e4ef466d08a0dd4" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>data_input_objects.ENU::north</definition>
+        <argsstring></argsstring>
+        <name>north</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="307" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="307" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdata__input__objects_1_1_e_n_u_1aaaa7fbe6e33800cda816f6a7f9f8653c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>data_input_objects.ENU::up</definition>
+        <argsstring></argsstring>
+        <name>up</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="308" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="308" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classdata__input__objects_1_1_e_n_u_1ae48d3ec4765bafbafc050bae3f307fc9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None data_input_objects.ENU.__init__</definition>
+        <argsstring>(self, float east, float north, float up)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>east</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>north</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>up</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>A class for handling ENU coordinates
+
+Parameters
+----------
+east : float
+    The east location in meters
+north : float
+    The north location in meters
+up : float
+    The up location in meters
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="288" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="288" bodyend="309"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_e_n_u_1a13f8a1036b0646c58302f91fc528cd91" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Vector</type>
+        <definition> Vector data_input_objects.ENU.array</definition>
+        <argsstring>(self)</argsstring>
+        <name>array</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Represents the elements as an array for easier interfacing with
+existing methods in other packages and classes.
+
+Returns
+-------
+Vector
+    Elements are (east, north, up)</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="310" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="310" bodyend="322"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_e_n_u_1aa7c8c2dbeae8317101d4d078ebf29ba2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition> float data_input_objects.ENU.norm</definition>
+        <argsstring>(self)</argsstring>
+        <name>norm</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generates the magnitude of the ENU vector.
+
+Returns
+-------
+float
+    The 2-Norm of the vector</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="323" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="323" bodyend="334"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_e_n_u_1a8b0f852df879c05fd17cddd73f8b9937" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Vector</type>
+        <definition> Vector data_input_objects.ENU.to_ecef</definition>
+        <argsstring>(self, float refLat, float refLon, float refAlt)</argsstring>
+        <name>to_ecef</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>refLat</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>refLon</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>refAlt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generates ECEF XYZ coordinates when the ENU origin is given as
+Latitude (deg), Longitude (deg), Altitude (m).
+
+Parameters
+----------
+refLat : float
+    The reference latitude in degrees.
+refLon : float
+    The reference longitude in degrees.
+refAlt : float
+    The reference altitude in meters.
+
+Returns
+-------
+Vector
+    Elements are (latitude, longitude, altitude)</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="335" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="335" bodyend="356"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_e_n_u_1ada399714362d228c1411ab88ac084db0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Vector</type>
+        <definition> Vector data_input_objects.ENU.to_lla</definition>
+        <argsstring>(self, float refLat, float refLon, float refAlt)</argsstring>
+        <name>to_lla</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>refLat</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>refLon</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>refAlt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generates a Latitude (deg), Longitude (deg), Altitude (m)
+representation of the coordinates when the ENU origin is given as
+Latitude (deg), Longitude (deg), Altitude (m).
+
+Parameters
+----------
+refLat : float
+    The reference latitude in degrees.
+refLon : float
+    The reference longitude in degrees.
+refAlt : float
+    The reference altitude in meters.
+
+Returns
+-------
+Vector
+    Elements are (latitude, longitude, altitude)</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="357" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="357" bodyend="380"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_e_n_u_1af13babac0a3eb35a2a37ebb8aadd2dec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def data_input_objects.ENU.__sub__</definition>
+        <argsstring>(self, other_enu)</argsstring>
+        <name>__sub__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>other_enu</type>
+          <defname>other_enu</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Overloads the &quot;-&quot; operator to define addition.
+
+In this case, O = A - B has the property:
+    O.east = A.east - B.east
+    O.north = A.north - B.north
+    O.up = A.up - B.up
+
+Parameters
+----------
+other_enu : ENU
+    An instance of ENU
+
+Returns
+-------
+ENU
+    An instance of ENU</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="381" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="381" bodyend="402"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_e_n_u_1a6ae9d05af8e795c103ed0dad6d9c845d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def data_input_objects.ENU.__add__</definition>
+        <argsstring>(self, other_enu)</argsstring>
+        <name>__add__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>other_enu</type>
+          <defname>other_enu</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Overloads the &quot;+&quot; operator to define addition.
+
+In this case, O = A + B has the property:
+    O.east = A.east + B.east
+    O.north = A.north + B.north
+    O.up = A.up + B.up
+
+Parameters
+----------
+other_enu : ENU
+    An instance of ENU
+
+Returns
+-------
+ENU
+    An instance of ENU</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="403" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="403" bodyend="428"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_e_n_u_1a6ab204ee7910b1dd4822e5aec9479f68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition> int data_input_objects.ENU.__hash__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__hash__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generates a hash from the member variables of this class.
+Class instances containing the same values for each variable
+will be considered identical. This would create a naive sorting
+algorithm.
+
+Currently, this is unused.
+
+Returns
+-------
+int
+    The resulting hash</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="429" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="429" bodyend="445"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_e_n_u_1aa95b918fa217d21ecc2700470655ee8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool data_input_objects.ENU.__eq__</definition>
+        <argsstring>(self, otherENU)</argsstring>
+        <name>__eq__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>otherENU</type>
+          <defname>otherENU</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="446" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="446" bodyend="448"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_e_n_u_1a8fd1c31f1118b4cac00a03b5d095c421" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool data_input_objects.ENU.__lt__</definition>
+        <argsstring>(self, other)</argsstring>
+        <name>__lt__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>other</type>
+          <defname>other</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Overloads the &apos;&lt;&apos; operator and provides a way to order instances
+of the ENU class.
+
+This could have been accomplished by converting them to tuples
+and then calling the sort command on an array containing them both
+but, because of the likelihood of similar but not identical values
+due to rounding error, it made sense to leverage the .isclose()
+numpy method to check for equality.
+
+An instance A of ENU is &quot;less than&quot; an instance B of ENU if and only
+if one of the following holds:
+(1) A.east &lt; B.east
+(2) A.east == B.east and A.north &lt; B.north
+(3) A.east == B.east, A.north == B.north, and A.up &lt; B.up
+
+In this case, comments use &quot;~=&quot; to imply approximate equality.
+
+Parameters
+----------
+other : ENU
+    An instance of the ENU class
+
+Returns
+-------
+bool
+    Whether the other class is &quot;less than&quot; this class instance</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="449" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="449" bodyend="506"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_e_n_u_1a092b745b4b00cbe7e2eef4248f7e7822" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool data_input_objects.ENU.__le__</definition>
+        <argsstring>(self, otherENU)</argsstring>
+        <name>__le__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>otherENU</type>
+          <defname>otherENU</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Determines if the other class instance is less than or equal to
+this instance
+
+Parameters
+----------
+otherENU : ENU
+    An instance of the ENU class
+
+Returns
+-------
+bool
+    Whether the other class instance is less than or equal to
+    this instance</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="507" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="507" bodyend="525"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_e_n_u_1af78b979a5ac087bebb2e23025ea5caa7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool data_input_objects.ENU.__gt__</definition>
+        <argsstring>(self, otherENU)</argsstring>
+        <name>__gt__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>otherENU</type>
+          <defname>otherENU</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Determines if the other class instance is greater than this instance
+
+Parameters
+----------
+otherENU : ENU
+    An instance of the ENU class
+
+Returns
+-------
+bool
+    Whether the other class instance is greater than this instance</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="526" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="526" bodyend="543"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_e_n_u_1aae46b682bd707ea2fcf1b38f443ded18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool data_input_objects.ENU.__ge__</definition>
+        <argsstring>(self, otherENU)</argsstring>
+        <name>__ge__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>otherENU</type>
+          <defname>otherENU</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Determines if the other class instance is greater than or equal to
+this instance
+
+Parameters
+----------
+otherENU : ENU
+    An instance of the ENU class
+
+Returns
+-------
+bool
+    Whether the other class instance is greater than or equal to
+    this class instance</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="544" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="544" bodyend="562"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_e_n_u_1ac8ab6a456a5171c5e7d8267d0da30478" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def data_input_objects.ENU.__neg__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__neg__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generates a class instance that is the negation of each
+element in this instance
+
+Returns
+-------
+ENU
+    A class instance whose elements are the additive inverses
+    of the elements in this instance</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="563" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="563" bodyend="576"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_e_n_u_1a9878bbfaa86cfa9aebbcb78b76cdfa18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def data_input_objects.ENU.__abs__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__abs__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>An instance where each element&apos;s magnitude is present instead
+of its value.
+
+Returns
+-------
+ENU
+    A class instance with nonnegative values</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="577" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="577" bodyend="589"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_e_n_u_1a3c58013b5a21d59120f96843c407c5e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str data_input_objects.ENU.__repr__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__repr__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Displays instances of these class in a formatted way.
+
+Returns
+-------
+str
+    The default display for namedtuples, in this case
+    one of type EastNorthUp</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="590" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="590" bodyend="604"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="287" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="287" bodyend="605"/>
+    <listofallmembers>
+      <member refid="classdata__input__objects_1_1_e_n_u_1a9878bbfaa86cfa9aebbcb78b76cdfa18" prot="public" virt="non-virtual"><scope>data_input_objects::ENU</scope><name>__abs__</name></member>
+      <member refid="classdata__input__objects_1_1_e_n_u_1a6ae9d05af8e795c103ed0dad6d9c845d" prot="public" virt="non-virtual"><scope>data_input_objects::ENU</scope><name>__add__</name></member>
+      <member refid="classdata__input__objects_1_1_e_n_u_1aa95b918fa217d21ecc2700470655ee8b" prot="public" virt="non-virtual"><scope>data_input_objects::ENU</scope><name>__eq__</name></member>
+      <member refid="classdata__input__objects_1_1_e_n_u_1aae46b682bd707ea2fcf1b38f443ded18" prot="public" virt="non-virtual"><scope>data_input_objects::ENU</scope><name>__ge__</name></member>
+      <member refid="classdata__input__objects_1_1_e_n_u_1af78b979a5ac087bebb2e23025ea5caa7" prot="public" virt="non-virtual"><scope>data_input_objects::ENU</scope><name>__gt__</name></member>
+      <member refid="classdata__input__objects_1_1_e_n_u_1a6ab204ee7910b1dd4822e5aec9479f68" prot="public" virt="non-virtual"><scope>data_input_objects::ENU</scope><name>__hash__</name></member>
+      <member refid="classdata__input__objects_1_1_e_n_u_1ae48d3ec4765bafbafc050bae3f307fc9" prot="public" virt="non-virtual"><scope>data_input_objects::ENU</scope><name>__init__</name></member>
+      <member refid="classdata__input__objects_1_1_e_n_u_1a092b745b4b00cbe7e2eef4248f7e7822" prot="public" virt="non-virtual"><scope>data_input_objects::ENU</scope><name>__le__</name></member>
+      <member refid="classdata__input__objects_1_1_e_n_u_1a8fd1c31f1118b4cac00a03b5d095c421" prot="public" virt="non-virtual"><scope>data_input_objects::ENU</scope><name>__lt__</name></member>
+      <member refid="classdata__input__objects_1_1_e_n_u_1ac8ab6a456a5171c5e7d8267d0da30478" prot="public" virt="non-virtual"><scope>data_input_objects::ENU</scope><name>__neg__</name></member>
+      <member refid="classdata__input__objects_1_1_e_n_u_1a3c58013b5a21d59120f96843c407c5e9" prot="public" virt="non-virtual"><scope>data_input_objects::ENU</scope><name>__repr__</name></member>
+      <member refid="classdata__input__objects_1_1_e_n_u_1af13babac0a3eb35a2a37ebb8aadd2dec" prot="public" virt="non-virtual"><scope>data_input_objects::ENU</scope><name>__sub__</name></member>
+      <member refid="classdata__input__objects_1_1_e_n_u_1a13f8a1036b0646c58302f91fc528cd91" prot="public" virt="non-virtual"><scope>data_input_objects::ENU</scope><name>array</name></member>
+      <member refid="classdata__input__objects_1_1_e_n_u_1a12da4f4e54a6f5d6384301f393e77bba" prot="public" virt="non-virtual"><scope>data_input_objects::ENU</scope><name>east</name></member>
+      <member refid="classdata__input__objects_1_1_e_n_u_1aa7c8c2dbeae8317101d4d078ebf29ba2" prot="public" virt="non-virtual"><scope>data_input_objects::ENU</scope><name>norm</name></member>
+      <member refid="classdata__input__objects_1_1_e_n_u_1a92a064bad3e7b6ae6e4ef466d08a0dd4" prot="public" virt="non-virtual"><scope>data_input_objects::ENU</scope><name>north</name></member>
+      <member refid="classdata__input__objects_1_1_e_n_u_1a8b0f852df879c05fd17cddd73f8b9937" prot="public" virt="non-virtual"><scope>data_input_objects::ENU</scope><name>to_ecef</name></member>
+      <member refid="classdata__input__objects_1_1_e_n_u_1ada399714362d228c1411ab88ac084db0" prot="public" virt="non-virtual"><scope>data_input_objects::ENU</scope><name>to_lla</name></member>
+      <member refid="classdata__input__objects_1_1_e_n_u_1aaaa7fbe6e33800cda816f6a7f9f8653c" prot="public" virt="non-virtual"><scope>data_input_objects::ENU</scope><name>up</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

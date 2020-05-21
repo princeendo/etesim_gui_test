@@ -1,0 +1,253 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classelement__builder_1_1gui_text_label" kind="class" language="Python" prot="public">
+    <compoundname>element_builder::guiTextLabel</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classelement__builder_1_1gui_text_label_1add49074c221dd135e9b4ba11d9b79bac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None element_builder.guiTextLabel.__init__</definition>
+        <argsstring>(tk.Tk gui, tk.Frame parent, str style, **kwargs)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>tk.Tk</type>
+          <declname>gui</declname>
+        </param>
+        <param>
+          <type>tk.Frame</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>style</declname>
+        </param>
+        <param>
+          <type>**</type>
+          <declname>kwargs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>An all-in-one class designed to create a label and place it in the
+GUI without having to write a large portion of commands.
+
+Parameters
+----------
+gui : tk.Tk
+    A tkinter GUI
+parent : tk.Frame
+    The parent for the label
+style : str
+    Options are &apos;pack&apos; or &apos;grid&apos; to specify tkinter method for display
+**kwargs : dict
+    Keyword arguments for the label options and the display options
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" line="16" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" bodystart="16" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classelement__builder_1_1gui_text_label_1ab34f955a426c0243567e9cd0ab953469" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None element_builder.guiTextLabel.set</definition>
+        <argsstring>(tk.Tk gui, str newText)</argsstring>
+        <name>set</name>
+        <param>
+          <type>tk.Tk</type>
+          <declname>gui</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>newText</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Sets the text value for the label
+
+Parameters
+----------
+gui : tk.Tk
+    A tkinter GUI
+newText : str
+    The new value for the label
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" line="130" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" bodystart="130" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="function" id="classelement__builder_1_1gui_text_label_1ac031baaa386a8c231aa488884fbfa470" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str element_builder.guiTextLabel.get</definition>
+        <argsstring>(gui)</argsstring>
+        <name>get</name>
+        <param>
+          <type>gui</type>
+          <defname>gui</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Gets the current value of the label
+
+Parameters
+----------
+gui : tk.Tk
+    A tkinter GUI
+
+Returns
+-------
+str
+    The value of the label.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" line="148" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" bodystart="148" bodyend="165"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classelement__builder_1_1gui_text_label_1af4a378097103ce0ea430769b26f6eb3a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None element_builder.guiTextLabel._pack</definition>
+        <argsstring>(tk.Tk gui, str text=None)</argsstring>
+        <name>_pack</name>
+        <param>
+          <type>tk.Tk</type>
+          <declname>gui</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>text</declname>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Places the label in the GUI using the pack() method.
+
+Parameters
+----------
+gui : tk.Tk
+    A tkinter GUI
+text : str, optional
+    The text to display in the label. The default is None.
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" line="54" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" bodystart="54" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="classelement__builder_1_1gui_text_label_1a32daafae03601629ca1d65e094b475e1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None element_builder.guiTextLabel._pack_forget</definition>
+        <argsstring>(tk.Tk gui)</argsstring>
+        <name>_pack_forget</name>
+        <param>
+          <type>tk.Tk</type>
+          <declname>gui</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Hides the label in the GUI.
+
+Parameters
+----------
+gui : tk.Tk
+    A tkinter GUI
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" line="78" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" bodystart="78" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="classelement__builder_1_1gui_text_label_1a95707c21b21a73b1538b7a2a7bbd3e81" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None element_builder.guiTextLabel._grid</definition>
+        <argsstring>(tk.Tk gui, str text=None)</argsstring>
+        <name>_grid</name>
+        <param>
+          <type>tk.Tk</type>
+          <declname>gui</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>text</declname>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Places the label in the GUI using the grid() method.
+
+Parameters
+----------
+gui : tk.Tk
+    A tkinter GUI
+text : str, optional
+    The text to display in the label. The default is None.
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" line="94" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" bodystart="94" bodyend="113"/>
+      </memberdef>
+      <memberdef kind="function" id="classelement__builder_1_1gui_text_label_1a4e4c0a5f795be1666eddeb1b3517377f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None element_builder.guiTextLabel._grid_forgt</definition>
+        <argsstring>(tk.Tk gui)</argsstring>
+        <name>_grid_forgt</name>
+        <param>
+          <type>tk.Tk</type>
+          <declname>gui</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Hides the label in the GUI.
+
+Parameters
+----------
+gui : tk.Tk
+    A tkinter GUI
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" line="114" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" bodystart="114" bodyend="129"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" line="15" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" bodystart="15" bodyend="166"/>
+    <listofallmembers>
+      <member refid="classelement__builder_1_1gui_text_label_1add49074c221dd135e9b4ba11d9b79bac" prot="public" virt="non-virtual"><scope>element_builder::guiTextLabel</scope><name>__init__</name></member>
+      <member refid="classelement__builder_1_1gui_text_label_1a95707c21b21a73b1538b7a2a7bbd3e81" prot="private" virt="non-virtual"><scope>element_builder::guiTextLabel</scope><name>_grid</name></member>
+      <member refid="classelement__builder_1_1gui_text_label_1a4e4c0a5f795be1666eddeb1b3517377f" prot="private" virt="non-virtual"><scope>element_builder::guiTextLabel</scope><name>_grid_forgt</name></member>
+      <member refid="classelement__builder_1_1gui_text_label_1af4a378097103ce0ea430769b26f6eb3a" prot="private" virt="non-virtual"><scope>element_builder::guiTextLabel</scope><name>_pack</name></member>
+      <member refid="classelement__builder_1_1gui_text_label_1a32daafae03601629ca1d65e094b475e1" prot="private" virt="non-virtual"><scope>element_builder::guiTextLabel</scope><name>_pack_forget</name></member>
+      <member refid="classelement__builder_1_1gui_text_label_1ac031baaa386a8c231aa488884fbfa470" prot="public" virt="non-virtual"><scope>element_builder::guiTextLabel</scope><name>get</name></member>
+      <member refid="classelement__builder_1_1gui_text_label_1ab34f955a426c0243567e9cd0ab953469" prot="public" virt="non-virtual"><scope>element_builder::guiTextLabel</scope><name>set</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

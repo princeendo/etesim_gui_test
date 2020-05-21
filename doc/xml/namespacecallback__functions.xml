@@ -1,0 +1,492 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespacecallback__functions" kind="namespace" language="Python">
+    <compoundname>callback_functions</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="callback__functions_8py_1accb988b7603c94710f6a05df4c64e268" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None callback_functions.modifyLimitsEntry</definition>
+        <argsstring>(gui, tk.Event event, str entry=None)</argsstring>
+        <name>modifyLimitsEntry</name>
+        <param>
+          <type>gui</type>
+          <defname>gui</defname>
+        </param>
+        <param>
+          <type>tk.Event</type>
+          <declname>event</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>entry</declname>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Modifies the Min/Max options for each variable (X/Y/Z) when the
+user clicks into or out of the field.
+
+If the field has Min (or Max) already in there, remove the
+text when the user enters the field.
+
+If the field has a non-float entry when the user leaves the field,
+restore Min (or Max) back to the field.
+
+Parameters
+----------
+event : tk.Event
+    Usually a focusIn or focusOut event which details whether
+    the user has entered or left the field of interest
+entry : str, optional
+    A metadescriptor which describes the location of where
+    the user is or came from. The default is None.
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" line="14" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" bodystart="14" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="callback__functions_8py_1a54759338ea13ed46c77c912b0b548336" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None callback_functions.editTitleOptions</definition>
+        <argsstring>(gui, str style=&apos;&apos;)</argsstring>
+        <name>editTitleOptions</name>
+        <param>
+          <type>gui</type>
+          <defname>gui</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>style</declname>
+          <defval>&apos;&apos;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Updates UI on whether user has pressed/unpressed the Bold Or Iatlic
+button and then has the plot title reflect that change.
+
+Parameters
+----------
+style : str, optional
+    A modifier parameter to indicate whether the bold or italic
+    button has been pressed. The default is &apos;&apos; (for neither).
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" line="111" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" bodystart="111" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="callback__functions_8py_1a77f082d2a2e42a311ec328e5bada6389" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None callback_functions.pickTitleColor</definition>
+        <argsstring>(gui)</argsstring>
+        <name>pickTitleColor</name>
+        <param>
+          <type>gui</type>
+          <defname>gui</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Takes the color chosen by the user from the colorwheel button
+and renders the title with that color.
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" line="145" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" bodystart="145" bodyend="168"/>
+      </memberdef>
+      <memberdef kind="function" id="callback__functions_8py_1a48b809f8bde2dde21e2db128d2e02ddf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None callback_functions.pickPlotColor</definition>
+        <argsstring>(gui)</argsstring>
+        <name>pickPlotColor</name>
+        <param>
+          <type>gui</type>
+          <defname>gui</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Takes the color chosen by the user from the colorwheel button
+and renders the plot with that color.
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" line="169" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" bodystart="169" bodyend="191"/>
+      </memberdef>
+      <memberdef kind="function" id="callback__functions_8py_1ab9a95542ff303fc440d19c4889225b4c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None callback_functions.setLegendOptions</definition>
+        <argsstring>(gui)</argsstring>
+        <name>setLegendOptions</name>
+        <param>
+          <type>gui</type>
+          <defname>gui</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Enables or disables the combobox for legend locations based
+on whether the box is checked
+
+Returns
+-------
+None
+    DESCRIPTION.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" line="192" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" bodystart="192" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="function" id="callback__functions_8py_1ae961ca4ac1d87659e7462a75e6c7bd49" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None callback_functions.setDimensions</definition>
+        <argsstring>(gui)</argsstring>
+        <name>setDimensions</name>
+        <param>
+          <type>gui</type>
+          <defname>gui</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Sets the dimensions for the plot based upon the columns
+selected by the user. If the user does not select both the
+x and y axis columns, then the dimensions are set to 0.
+If the user selects both x and y but not z, the dimension is 2.
+If the user selects x, y, and z, the dimension is 3
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" line="211" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" bodystart="211" bodyend="251"/>
+      </memberdef>
+      <memberdef kind="function" id="callback__functions_8py_1a26f37c753bbdca3095f5edc2add12c31" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None callback_functions.setRunOptions</definition>
+        <argsstring>(gui, event=None)</argsstring>
+        <name>setRunOptions</name>
+        <param>
+          <type>gui</type>
+          <defname>gui</defname>
+        </param>
+        <param>
+          <type>event</type>
+          <defname>event</defname>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Sets the run numbers specified for looking at runs.
+Can enable/disable run number input based upon user selection.
+Will also set default values for the run number if there is
+an available set of run numbers to choose from
+
+Parameters
+----------
+event : tk.Event, optional
+    An event to be passed to turn this function into a handle.
+    Not currently needed.
+    The default is None.
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" line="252" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" bodystart="252" bodyend="307"/>
+      </memberdef>
+      <memberdef kind="function" id="callback__functions_8py_1aaa8ac1d6e839e83e4182512ad0a0700b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None callback_functions.setVals</definition>
+        <argsstring>(gui)</argsstring>
+        <name>setVals</name>
+        <param>
+          <type>gui</type>
+          <defname>gui</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Checks whether user has selected X, Y, or Z columns from the
+ComboBox (drop-down) and sets the x, y, and z vectors from
+those choices.
+
+If both X and Y are not selected, nothing happens.
+If X and Y are selected but not Z, then a 2D plot will be rendered.
+If X, Y, and Z are selected, a 3D plot will be rendered.
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" line="308" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" bodystart="308" bodyend="343"/>
+      </memberdef>
+      <memberdef kind="function" id="callback__functions_8py_1adb8879f9f7144df4f7c6eac7f8310c95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None callback_functions.getTopDir</definition>
+        <argsstring>(gui)</argsstring>
+        <name>getTopDir</name>
+        <param>
+          <type>gui</type>
+          <defname>gui</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Opens a file browswer for the run files. Once selected,
+the chosen file path will show in the text field.
+The path can be typed in also.
+** Only a directory can be selected
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" line="344" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" bodystart="344" bodyend="375"/>
+      </memberdef>
+      <memberdef kind="function" id="callback__functions_8py_1a36a72f6911fecfa545d2ca517e0616de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None callback_functions.loadFromTopDir</definition>
+        <argsstring>(gui)</argsstring>
+        <name>loadFromTopDir</name>
+        <param>
+          <type>gui</type>
+          <defname>gui</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Loads missile file from topDir, if possible.
+If directory is invalid, display a warning message.
+If missile file loads successfully, update status.
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" line="376" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" bodystart="376" bodyend="399"/>
+      </memberdef>
+      <memberdef kind="function" id="callback__functions_8py_1ade4fcd76f22b2e9064369e1c54aba497" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str callback_functions.loadMissileFiles</definition>
+        <argsstring>(gui, write_csv=True)</argsstring>
+        <name>loadMissileFiles</name>
+        <param>
+          <type>gui</type>
+          <defname>gui</defname>
+        </param>
+        <param>
+          <type>write_csv</type>
+          <defname>write_csv</defname>
+          <defval>True</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Checks for whether &apos;NotionalETEOutput###.xlsx&apos; is present in topDir.
+(The ### is a random number between 000 and 999, always three digits)
+If present, loads the missile file into a dataframe, updates the
+dataframe columns, and makes available for plotting only the
+dataframe columns that have floating-point data
+
+** Will definitely need to be updated upon porting
+
+Returns
+-------
+str
+    The absolute path to the missile file</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" line="400" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" bodystart="400" bodyend="462"/>
+      </memberdef>
+      <memberdef kind="function" id="callback__functions_8py_1af33d7e3c6f4feca91356c5c601071895" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None callback_functions.setStatusBarOptions</definition>
+        <argsstring>(gui, event=None)</argsstring>
+        <name>setStatusBarOptions</name>
+        <param>
+          <type>gui</type>
+          <defname>gui</defname>
+        </param>
+        <param>
+          <type>event</type>
+          <defname>event</defname>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Updates the the elements displayed in the status bar.
+
+Parameters
+----------
+event : tk.Event, optional
+    An event that can drive the call. The default is None.
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" line="463" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" bodystart="463" bodyend="488"/>
+      </memberdef>
+      <memberdef kind="function" id="callback__functions_8py_1a191f5dae4e43fe7b79d92261815afaad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None callback_functions.setPlotStyleOptions</definition>
+        <argsstring>(gui)</argsstring>
+        <name>setPlotStyleOptions</name>
+        <param>
+          <type>gui</type>
+          <defname>gui</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Checks whether the radio button for &apos;line&apos; or &apos;scatter&apos; is selected.
+For the selected option, it makes the ComboBox (drop-down)
+active and selectable by the user
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" line="489" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" bodystart="489" bodyend="508"/>
+      </memberdef>
+      <memberdef kind="function" id="callback__functions_8py_1a9fff17d513ae78f48340d42212a8e735" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None callback_functions.showHidePlotColors</definition>
+        <argsstring>(gui)</argsstring>
+        <name>showHidePlotColors</name>
+        <param>
+          <type>gui</type>
+          <defname>gui</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Changes the ability to interact with the plotColor entry and button
+elements based upon whether autoColor has been selected
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" line="509" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" bodystart="509" bodyend="529"/>
+      </memberdef>
+      <memberdef kind="function" id="callback__functions_8py_1af6638300d5745255c7638c1a40e632c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None callback_functions.showHideXLimits</definition>
+        <argsstring>(gui)</argsstring>
+        <name>showHideXLimits</name>
+        <param>
+          <type>gui</type>
+          <defname>gui</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Determines whether or not to display the boxes for setting
+the minimum and maximum limits for the X variable.
+Checks the status of the tk.CheckBox in the GUI to determine
+behavior
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" line="530" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" bodystart="530" bodyend="550"/>
+      </memberdef>
+      <memberdef kind="function" id="callback__functions_8py_1adf2687b15da7b0501b5f52494d0e7536" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None callback_functions.showHideYLimits</definition>
+        <argsstring>(gui)</argsstring>
+        <name>showHideYLimits</name>
+        <param>
+          <type>gui</type>
+          <defname>gui</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Determines whether or not to display the boxes for setting
+the minimum and maximum limits for the Y variable.
+Checks the status of the tk.CheckBox in the GUI to determine
+behavior
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" line="551" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" bodystart="551" bodyend="571"/>
+      </memberdef>
+      <memberdef kind="function" id="callback__functions_8py_1ab252436928abaa1ac8578b26e1c8f420" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None callback_functions.showHideZLimits</definition>
+        <argsstring>(gui)</argsstring>
+        <name>showHideZLimits</name>
+        <param>
+          <type>gui</type>
+          <defname>gui</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Determines whether or not to display the boxes for setting
+the minimum and maximum limits for the Z variable.
+Checks the status of the tk.CheckBox in the GUI to determine
+behavior
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" line="572" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" bodystart="572" bodyend="591"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/callback_functions.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

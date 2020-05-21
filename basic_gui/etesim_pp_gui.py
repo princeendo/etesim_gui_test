@@ -17,16 +17,14 @@ Example
 
 Todo
 ----
-    * Add option to graph assets (radars/etc.)
-    X Add ability to place multiple graphs at once
-    X Add CheckBox for ax.show_legend()
-    X Split up graph styles across two lines
-    * Place X/Y/Z Drop-downs in a LabelFrame
-    X Add option for legend
-    * Add button to render graph manually
-    * Add font-family option for labels/titles
-    * Add underline option for labels/titles
-
+    * Incorporate high side datatypes
+    * Use ETESim folder class as driver for input data
+    * Subtype ETESim Radars and Launchers as FixedAsset datatypes
+    * Create AssetList which takes anything of type FixedAsset
+    * Guarantee that ETESim Radars and Launchers use similar members
+    * Add options for size/color of asset markers in GUI
+    * Add option to display assets or not in GUI
+    * Remove default directory in path text box
 """
 
 # File Imports
@@ -37,7 +35,6 @@ import plot_options_functions as pof
 
 # Module-Level Imports
 import itertools
-import mplcursors
 import time
 import multiprocessing as mp
 import numpy as np
@@ -69,9 +66,11 @@ class SimpleGUI(tk.Tk):
 
     Parameters
     ----------
-    *args : standard argument list for a tk.Tk instance
+    *args : iterable
+        standard argument list for a tk.Tk instance
 
-    **kwargs : keyword argument list for tk.Tk instance
+    **kwargs : dict
+        keyword argument list for tk.Tk instance
 
     Returns
     -------
@@ -85,9 +84,11 @@ class SimpleGUI(tk.Tk):
 
         Parameters
         ----------
-        *args : standard argument list for a tk.Tk instance
+        *args : iterable
+            standard argument list for a tk.Tk instance
 
-        **kwargs : keyword argument list for tk.Tk instance
+        **kwargs : dict
+            keyword argument list for tk.Tk instance
 
         Returns
         -------
@@ -121,9 +122,6 @@ class SimpleGUI(tk.Tk):
         self.plotColorRGB = (31, 119, 180)                  # matplotlib blue
         self.plotColorHex = tk.StringVar(value='#1f77b4')
         self.availableRuns = np.array([])
-
-        # This will allow us to have the hovering cursor over lines
-        self.showCursor = False
 
         # Determines whether to use Matplotlib/Seaborn/etc.
         self.plotEngine = 'mpl'
@@ -181,8 +179,7 @@ class SimpleGUI(tk.Tk):
 
     def buildTabs(self, parent: ttk.Notebook) -> None:
         """
-        An obscenely large and not very well-organized layout
-        for the tabs inside a tkinter Notebook. Is essentially a giant main().
+        Builds the individual tabs inside the tabbed layout design.
 
         Parameters
         ----------
@@ -196,23 +193,25 @@ class SimpleGUI(tk.Tk):
         """
 
         # For some reason, icons need to be member variables to display
-        self.inpIcon = tk.PhotoImage(file='images/input-data-1.png')
-        self.viewIcon = tk.PhotoImage(file='images/three-dim-graph.png')
+        self.inputTabIcon = tk.PhotoImage(file='images/input-data-1.png')
+        self.viewTabIcon = tk.PhotoImage(file='images/three-dim-graph.png')
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         # Tab 1: Data Input
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         inputTab = ttk.Frame(parent,)
-        iK = {'text': 'Data Input', 'image': self.inpIcon, 'compound': tk.LEFT}
-        parent.add(inputTab, **iK)
+        inputTab_kwargs = {'text': 'Data Input', 'image': self.inputTabIcon,
+                           'compound': tk.LEFT}
+        parent.add(inputTab, **inputTab_kwargs)
         eb.buildInputElements(self, inputTab, )
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         # Tab 2: Visualizer
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         viewTab = ttk.Frame(parent,)
-        vK = {'text': 'Viewer', 'image': self.viewIcon, 'compound': tk.LEFT}
-        parent.add(viewTab, **vK)
+        viewTab_kwargs = {'text': 'Viewer', 'image': self.viewTabIcon,
+                          'compound': tk.LEFT}
+        parent.add(viewTab, **viewTab_kwargs)
 
         # - - - - - - - - - - - - - - - -
         # Holder for editor/viewer
@@ -490,6 +489,8 @@ class SimpleGUI(tk.Tk):
                        in itertools.product(pDF.Model.unique(),
                                             pDF.Instance.unique())]])
 
+        # This guarantees the spectrum remains the same regardless
+        # of how many items you simultaneously plot
         self.autoColors = cm.rainbow(np.linspace(0, 1, numDFs))
 
         # Switching out status label for a plot progress bar
@@ -521,12 +522,9 @@ class SimpleGUI(tk.Tk):
                 myplot.scatter(*assetArgs, marker='*', color='green',
                                s=400, label=label)
 
-        # Removing the counter and setting status back to normal
+        # Removing the plot progress bar and setting status back to normal
         self.plotProgressFrame.pack_forget()
         self.status.show()
-
-        if self.showCursor:
-            self.cursor = mplcursors.cursor(myplot, hover=True)
 
         # Show legend if selected
         if self.showLegend.get():

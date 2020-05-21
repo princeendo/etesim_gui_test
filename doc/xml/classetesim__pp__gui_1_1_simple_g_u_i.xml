@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="99" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="99" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="105" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="105" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-attrib">
@@ -30,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="102" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="102" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="108" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="108" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a651380ae93dfd4925243906b8bbc81ec" prot="public" static="no" mutable="no">
         <type></type>
@@ -43,7 +43,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="103" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="103" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="109" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="109" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a13e34761b7b987236e01370dca3d7de2" prot="public" static="no" mutable="no">
         <type></type>
@@ -56,7 +56,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="104" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="104" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="110" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="110" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a8b6538b425767730af3b783cd1256237" prot="public" static="no" mutable="no">
         <type></type>
@@ -69,7 +69,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="105" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="105" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="111" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="111" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a46660bc303d9add44ee9f08dc919a654" prot="public" static="no" mutable="no">
         <type></type>
@@ -82,7 +82,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="106" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="106" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="112" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="112" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1af0cc4276fd0fcab1438335e2d77f432a" prot="public" static="no" mutable="no">
         <type></type>
@@ -95,7 +95,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="107" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="107" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="113" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a82ef47a4069a0530337c2361129de7bf" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>etesim_pp_gui.SimpleGUI::assets</definition>
+        <argsstring></argsstring>
+        <name>assets</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="114" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="114" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1ae2e4169418b23389455a50aeb1de04a9" prot="public" static="no" mutable="no">
         <type></type>
@@ -108,7 +121,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="108" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="108" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="115" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="115" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a0ae698156708ef91e224da088d773d99" prot="public" static="no" mutable="no">
         <type></type>
@@ -121,7 +134,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="109" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="109" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="116" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="116" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1ae5786494a741bed68b09d67da5af4422" prot="public" static="no" mutable="no">
         <type></type>
@@ -134,7 +147,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="110" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="110" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="117" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1aaa8e4998ae735d0c2a984539d33505fb" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>etesim_pp_gui.SimpleGUI::cursor</definition>
+        <argsstring></argsstring>
+        <name>cursor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="118" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="118" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a4ef0bb2ebd20da8a4aeddd19f6b7ef92" prot="public" static="no" mutable="no">
         <type></type>
@@ -147,7 +173,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="111" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="111" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="119" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="119" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1ac5e44fde6947b7e78fbda395b462c756" prot="public" static="no" mutable="no">
         <type></type>
@@ -160,7 +186,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="112" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="112" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="120" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="120" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a88b52cd3d65939ec89a92f452772daa0" prot="public" static="no" mutable="no">
         <type></type>
@@ -173,7 +199,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="113" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="113" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="121" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="121" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1ac768ba5a6d7991e83d2b6f25f2e82003" prot="public" static="no" mutable="no">
         <type></type>
@@ -186,7 +212,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="114" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="114" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="122" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="122" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1adc09cdce6d2add2af1e46ecd12108a63" prot="public" static="no" mutable="no">
         <type></type>
@@ -199,7 +225,33 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="115" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="115" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="123" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a850ba561b2cd85b4c4811eabd2183e88" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>etesim_pp_gui.SimpleGUI::showCursor</definition>
+        <argsstring></argsstring>
+        <name>showCursor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="126" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a5d89e7c0a57b7094e542dba0d8f0887b" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>etesim_pp_gui.SimpleGUI::plotEngine</definition>
+        <argsstring></argsstring>
+        <name>plotEngine</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="129" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="129" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a429773eab0ae57dc7984aa806dd0a4de" prot="public" static="no" mutable="no">
         <type></type>
@@ -212,7 +264,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="119" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="119" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="135" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="135" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a009e72b398abc25a3cbfc8e39630e95a" prot="public" static="no" mutable="no">
         <type></type>
@@ -225,7 +277,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="131" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="131" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="146" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="146" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1ad3a22b7c81bdae08d53048efbdf246b1" prot="public" static="no" mutable="no">
         <type></type>
@@ -238,20 +290,72 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="133" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="133" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="151" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="151" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a8d0bfa1c74faf848b46a5a7207179cd8" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a80ffc095cdbf05638776da29a1d851ba" prot="public" static="no" mutable="no">
         <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::statusLbl</definition>
+        <definition>etesim_pp_gui.SimpleGUI::plotProgress</definition>
         <argsstring></argsstring>
-        <name>statusLbl</name>
+        <name>plotProgress</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="134" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="134" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="155" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a5543fefda37adf94afeb678d4b552fa4" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>etesim_pp_gui.SimpleGUI::plotProgressFrame</definition>
+        <argsstring></argsstring>
+        <name>plotProgressFrame</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="156" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a4fbe06a968100028a282d49b47148ff8" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>etesim_pp_gui.SimpleGUI::plotProgressLbl</definition>
+        <argsstring></argsstring>
+        <name>plotProgressLbl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="157" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a900d9d3c074415c1f9c9efaef7721a08" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>etesim_pp_gui.SimpleGUI::plotProgressText</definition>
+        <argsstring></argsstring>
+        <name>plotProgressText</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="158" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a5e7b0a879b34470587cac144063451a5" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>etesim_pp_gui.SimpleGUI::plotProgressBar</definition>
+        <argsstring></argsstring>
+        <name>plotProgressBar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="161" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="161" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a00ed9fb3522161a745e16be1a9a67c77" prot="public" static="no" mutable="no">
         <type></type>
@@ -264,7 +368,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="140" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="140" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="174" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="174" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a7ea591dc08ac3aef2a312ee33f26c0dd" prot="public" static="no" mutable="no">
         <type></type>
@@ -277,202 +381,33 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="141" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="141" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="175" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="175" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a77558d73efc3ab2f7d771a60af33d8dd" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a34f2a7f637f6cbca9253dd58c5d4f508" prot="public" static="no" mutable="no">
         <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::inputTab</definition>
+        <definition>etesim_pp_gui.SimpleGUI::inpIcon</definition>
         <argsstring></argsstring>
-        <name>inputTab</name>
+        <name>inpIcon</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="167" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="167" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="199" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="199" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a331c33dcff5a4674a0e857d70592c47d" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a6caa5e8f4e38b2db654419136fe31b69" prot="public" static="no" mutable="no">
         <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::datainput_icon</definition>
+        <definition>etesim_pp_gui.SimpleGUI::viewIcon</definition>
         <argsstring></argsstring>
-        <name>datainput_icon</name>
+        <name>viewIcon</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="168" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="168" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1aab02ba8fbce37e376b506e36f9e864e1" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::topDirLabel</definition>
-        <argsstring></argsstring>
-        <name>topDirLabel</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="176" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="176" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1aac87bd3cb46410aac41a052961cf959e" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::topDir</definition>
-        <argsstring></argsstring>
-        <name>topDir</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="181" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="181" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a71c6f7d745ac966670d74362ac8bd2b6" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::topDirPath</definition>
-        <argsstring></argsstring>
-        <name>topDirPath</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="183" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="183" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a52bbbc4a684d424a65dad8495d92e964" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::topDirBrowseButton</definition>
-        <argsstring></argsstring>
-        <name>topDirBrowseButton</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="188" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="188" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1aecde427990d70a918f249e449206745a" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::topDirLoadButton</definition>
-        <argsstring></argsstring>
-        <name>topDirLoadButton</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="194" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="194" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a3df6e21e65dcf8bb721448bc515f59e8" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::threatTypeOptions</definition>
-        <argsstring></argsstring>
-        <name>threatTypeOptions</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="202" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="202" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1aa3615a94c71941e99336eb1b219b291f" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::threatTypeLabel</definition>
-        <argsstring></argsstring>
-        <name>threatTypeLabel</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="203" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="203" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a06ae6705eb338728dae4afd52879ae8f" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::threatType</definition>
-        <argsstring></argsstring>
-        <name>threatType</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="205" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="205" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1ab52f1b76be6f8596f2ac8b3035209102" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::threatTypeCB</definition>
-        <argsstring></argsstring>
-        <name>threatTypeCB</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="206" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="206" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a6360a105ba4d84d4a73a48510740ee16" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::viewer_icon</definition>
-        <argsstring></argsstring>
-        <name>viewer_icon</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="218" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="218" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1ab9c145a1c69b692ce1819e86cca336bb" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::viewerTab</definition>
-        <argsstring></argsstring>
-        <name>viewerTab</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="219" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="219" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a95d50049f31bfb30a6dff1d2e3ec4acd" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::graphPanes</definition>
-        <argsstring></argsstring>
-        <name>graphPanes</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="226" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="226" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1aa9577cf3361efc932d923a85801a1615" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::editPane</definition>
-        <argsstring></argsstring>
-        <name>editPane</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="231" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="231" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="200" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="200" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1aa14a185b07c4325f36b934be2c9911c0" prot="public" static="no" mutable="no">
         <type></type>
@@ -485,1112 +420,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="236" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="236" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="222" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="222" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a16047563c083b8241251fdcbbea5ea2e" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a50c6f42bea385df7c11243146cfd4436" prot="public" static="no" mutable="no">
         <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::xCol</definition>
+        <definition>etesim_pp_gui.SimpleGUI::autoColors</definition>
         <argsstring></argsstring>
-        <name>xCol</name>
+        <name>autoColors</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="242" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="242" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a7a0d72896b865bced2e2a3dace1554b9" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::xLabel</definition>
-        <argsstring></argsstring>
-        <name>xLabel</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="243" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="243" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a8b7cd14be2129035d2d20ef1e62cb25a" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::xCB</definition>
-        <argsstring></argsstring>
-        <name>xCB</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="246" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="246" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a2b4971787ab7ad360ab7af720e669c8e" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::yCol</definition>
-        <argsstring></argsstring>
-        <name>yCol</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="255" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="255" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1ae6c7842e00e76c6f46c096d5f71c6275" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::yLabel</definition>
-        <argsstring></argsstring>
-        <name>yLabel</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="256" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="256" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a401b86ec3f161f5c99d5d3dc6d393eee" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::yCB</definition>
-        <argsstring></argsstring>
-        <name>yCB</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="258" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="258" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a01015a663c0d14cdf54455ab6a44302c" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::zCol</definition>
-        <argsstring></argsstring>
-        <name>zCol</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="267" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="267" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a798ff151cd3cafbf3601114c6f9729c6" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::zLabel</definition>
-        <argsstring></argsstring>
-        <name>zLabel</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="268" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="268" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1aaaf419debc80b66f5fb2f982f51c40e7" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::zCB</definition>
-        <argsstring></argsstring>
-        <name>zCB</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="270" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="270" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a73e2c833d2d6433b9eddd096fc6218ed" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::xyzMinMaxFrame</definition>
-        <argsstring></argsstring>
-        <name>xyzMinMaxFrame</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="279" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="279" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a9f90d39ea64cbc6b87253114f1a1c54f" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::xLimitsRow</definition>
-        <argsstring></argsstring>
-        <name>xLimitsRow</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="287" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="287" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a0efa883ab428c401022c3dd44c1acc46" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::xLimits</definition>
-        <argsstring></argsstring>
-        <name>xLimits</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="288" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="288" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a939adf97aee54045eea0133b2eb156a9" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::xLimitsBox</definition>
-        <argsstring></argsstring>
-        <name>xLimitsBox</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="291" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="291" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a1df96a97c5c40d521409a3086b846602" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::xMin</definition>
-        <argsstring></argsstring>
-        <name>xMin</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="298" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="298" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a1e38058f139b57d89a2dc2226d645ec7" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::xMinEntry</definition>
-        <argsstring></argsstring>
-        <name>xMinEntry</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="299" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="299" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a06b50a35c502021b7502ae79998e75c6" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::xMax</definition>
-        <argsstring></argsstring>
-        <name>xMax</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="309" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="309" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a8199cf810f67f4c1ba12afefc5fb9849" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::xMaxEntry</definition>
-        <argsstring></argsstring>
-        <name>xMaxEntry</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="310" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="310" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a7fbb2a12c04030277b6242983cd9ac9e" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::yLimitsRow</definition>
-        <argsstring></argsstring>
-        <name>yLimitsRow</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="321" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="321" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a752f4669651c5ac4f47ddae4c64c8b32" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::yLimits</definition>
-        <argsstring></argsstring>
-        <name>yLimits</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="322" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="322" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a64b5870b369b401a87db3b7f9ba27d29" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::yLimitsBox</definition>
-        <argsstring></argsstring>
-        <name>yLimitsBox</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="325" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="325" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a7dbd14242e359349334b134f1712659a" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::yMin</definition>
-        <argsstring></argsstring>
-        <name>yMin</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="332" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="332" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a7cbf6fd4635429e7461438dc10264deb" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::yMinEntry</definition>
-        <argsstring></argsstring>
-        <name>yMinEntry</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="333" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="333" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a29003f203f48741b1d4d10e117faf47e" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::yMax</definition>
-        <argsstring></argsstring>
-        <name>yMax</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="343" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="343" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1af40fcb54ad49ef5b7b0535c503964b0f" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::yMaxEntry</definition>
-        <argsstring></argsstring>
-        <name>yMaxEntry</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="344" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="344" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1af5ab83052a63cecdff382028d287bf61" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::zLimitsRow</definition>
-        <argsstring></argsstring>
-        <name>zLimitsRow</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="355" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="355" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a27d198ae84b7a224dc6b789f937bd51a" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::zLimits</definition>
-        <argsstring></argsstring>
-        <name>zLimits</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="356" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="356" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a59daad14b9f1b7eda25f8ff432d0eacc" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::zLimitsBox</definition>
-        <argsstring></argsstring>
-        <name>zLimitsBox</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="359" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="359" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1ae16c83a0e2b7708bf1788fcdc2196488" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::zMin</definition>
-        <argsstring></argsstring>
-        <name>zMin</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="366" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="366" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a1ebdd7251f831544a43f0dd5afe1e9f7" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::zMinEntry</definition>
-        <argsstring></argsstring>
-        <name>zMinEntry</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="367" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="367" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1af945ae286d484eb0eec8ad965f09ca0a" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::zMax</definition>
-        <argsstring></argsstring>
-        <name>zMax</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="377" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="377" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1ae9742c2d6fd93d87ff6aac16c3b97f76" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::zMaxEntry</definition>
-        <argsstring></argsstring>
-        <name>zMaxEntry</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="378" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="378" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1aabee8c9c1cd84f591153c33ded1d5d6a" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::titleLF</definition>
-        <argsstring></argsstring>
-        <name>titleLF</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="390" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="390" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a06b0edede01002d737cddb56ca113cd7" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::titleText</definition>
-        <argsstring></argsstring>
-        <name>titleText</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="396" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="396" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a2aec19e687304d9a310a5c23cc8137dd" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::titleEntry</definition>
-        <argsstring></argsstring>
-        <name>titleEntry</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="398" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="398" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1ac87bfd797e73100a71f5cf75811acd5b" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::titleSize</definition>
-        <argsstring></argsstring>
-        <name>titleSize</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="407" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="407" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a1848f7fb881d75ce6af9c91992cd7e3c" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::itTitleOn</definition>
-        <argsstring></argsstring>
-        <name>itTitleOn</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="412" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="412" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a101802d8144fb05edf0f3892a9fd6798" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::boldTitleButton</definition>
-        <argsstring></argsstring>
-        <name>boldTitleButton</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="416" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="416" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a1871aa45e2a49d18f28b2e0d7bb19c12" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::itTitleButton</definition>
-        <argsstring></argsstring>
-        <name>itTitleButton</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="425" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="425" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1af3f8575372f50d45655cedae4e100690" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::titleColorEntry</definition>
-        <argsstring></argsstring>
-        <name>titleColorEntry</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="434" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="434" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a6310c74e67e422e1ad64536c25f8f75e" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::titleColorWheel</definition>
-        <argsstring></argsstring>
-        <name>titleColorWheel</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="441" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="441" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a46f7ce0fc660685ab07796fb81590776" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::titleColorButton</definition>
-        <argsstring></argsstring>
-        <name>titleColorButton</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="442" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="442" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1ad783fe833f925c4e61aaab767f2b9472" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::styleLF</definition>
-        <argsstring></argsstring>
-        <name>styleLF</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="450" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="450" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a9f91f022371edfdedb76337f9ae65d1c" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::plotStyle</definition>
-        <argsstring></argsstring>
-        <name>plotStyle</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="456" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="456" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1aed64065a07163c0513ed0c693f2cafae" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::lineOn</definition>
-        <argsstring></argsstring>
-        <name>lineOn</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="465" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="465" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a04efb63543963b0269b9268a515c638d" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::scatterOn</definition>
-        <argsstring></argsstring>
-        <name>scatterOn</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="466" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="466" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1aa37ad51dc11a7415fbb6a3f12d293802" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::lineStyleOptions</definition>
-        <argsstring></argsstring>
-        <name>lineStyleOptions</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="469" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="469" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a86cf7ec40c4399d8d973dab39d0ce58b" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::lineStyle</definition>
-        <argsstring></argsstring>
-        <name>lineStyle</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="470" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="470" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a4dfda5d4a7471efa59aa55a087ab40a9" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::lineStyleCB</definition>
-        <argsstring></argsstring>
-        <name>lineStyleCB</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="475" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="475" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a465ae199bd5e8d7deb406e6d75a3f878" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::scatterStyleOptions</definition>
-        <argsstring></argsstring>
-        <name>scatterStyleOptions</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="478" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="478" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1aff6490a9a938ed18be7342d512472532" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::scatterStyle</definition>
-        <argsstring></argsstring>
-        <name>scatterStyle</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="480" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="480" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a2f743ebacc8f8adfbc64e5e35ef3efd2" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::scatterStyleCB</definition>
-        <argsstring></argsstring>
-        <name>scatterStyleCB</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="487" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="487" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1aa3bb344e7a67ab64d67d2980e6c37b63" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::showLegend</definition>
-        <argsstring></argsstring>
-        <name>showLegend</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="499" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="499" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1adb908d8f12eafa9a75f1d19929f5efea" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::legendLoc</definition>
-        <argsstring></argsstring>
-        <name>legendLoc</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="500" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="500" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a14dd48cb9939598261c57ad0a551b427" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::legendCB</definition>
-        <argsstring></argsstring>
-        <name>legendCB</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="504" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="504" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a13fdf3ce6b742c4249d95d4fb7f57063" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::legendLocations</definition>
-        <argsstring></argsstring>
-        <name>legendLocations</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="507" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="507" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a334a83dd1b8043a5fb3e7c688620dbe3" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::legendLocCB</definition>
-        <argsstring></argsstring>
-        <name>legendLocCB</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="512" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="512" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a780a12ed77dfa74921d04a60e22da7c0" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::autoColor</definition>
-        <argsstring></argsstring>
-        <name>autoColor</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="520" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="520" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1af5e062d35b7729a58e1b3e4fdb3579db" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::autoColorCB</definition>
-        <argsstring></argsstring>
-        <name>autoColorCB</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="523" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="523" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1af30e3bf4a6e33c9b23dfa768a158230d" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::plotColorEntry</definition>
-        <argsstring></argsstring>
-        <name>plotColorEntry</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="529" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="529" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a14425dede0758f1a9ccab345a99a0912" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::plotColorWheel</definition>
-        <argsstring></argsstring>
-        <name>plotColorWheel</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="536" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="536" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1ae449cdb7ea2d0e581af978e89276d9dc" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::plotColorButton</definition>
-        <argsstring></argsstring>
-        <name>plotColorButton</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="539" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="539" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a40a5e890ab0eedf79a0ae6ebca06d6d6" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::addOptsLF</definition>
-        <argsstring></argsstring>
-        <name>addOptsLF</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="545" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="545" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a8ac438f10abe2fb2f426524b08cfafaa" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::gridLabel</definition>
-        <argsstring></argsstring>
-        <name>gridLabel</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="551" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="551" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a8b34e7c504701ec2aabc25db883f84af" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::gridMajor</definition>
-        <argsstring></argsstring>
-        <name>gridMajor</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="554" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="554" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a8035a84ae815e200db3614d7a3910a4e" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::gridMinor</definition>
-        <argsstring></argsstring>
-        <name>gridMinor</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="555" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="555" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a3cfa074f4d23e7e1fef411860b19fb42" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::gridMajorCB</definition>
-        <argsstring></argsstring>
-        <name>gridMajorCB</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="563" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="563" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a8245e6a4be09cb0210104e3ff36e7af5" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::gridMinorCB</definition>
-        <argsstring></argsstring>
-        <name>gridMinorCB</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="566" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="566" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a4daff7d3c65a1862c6ce68f36d7f0e6d" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::showAxLabel</definition>
-        <argsstring></argsstring>
-        <name>showAxLabel</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="571" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="571" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1aa9e74e8629021c3dc630d13289d731f8" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::showAxFrame</definition>
-        <argsstring></argsstring>
-        <name>showAxFrame</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="573" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="573" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a84a701392c2543e6035fea04bb3d8d9a" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::showXLabel</definition>
-        <argsstring></argsstring>
-        <name>showXLabel</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="578" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="578" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a26bd747c417cc92dba65a426a8da582d" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::showYLabel</definition>
-        <argsstring></argsstring>
-        <name>showYLabel</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="579" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="579" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a7a60f1cb1e235c43614f28db616536de" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::showZLabel</definition>
-        <argsstring></argsstring>
-        <name>showZLabel</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="580" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="580" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a94b1b2a2377126158ae964e7afa1ce1f" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::showXLabelCB</definition>
-        <argsstring></argsstring>
-        <name>showXLabelCB</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="588" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="588" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1adfc0042f724acba43037265e88cfc3a9" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::showYLabelCB</definition>
-        <argsstring></argsstring>
-        <name>showYLabelCB</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="590" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="590" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1aaee3568c45d4a878ad48336aa4ec2f73" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::showZLabelCB</definition>
-        <argsstring></argsstring>
-        <name>showZLabelCB</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="592" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="592" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a4ebe0129fff91d12d114b3990c19ad7e" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::runChoiceLF</definition>
-        <argsstring></argsstring>
-        <name>runChoiceLF</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="598" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="598" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a719ce63cbde75eeb0651aa5d2a4f7964" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::showAllRuns</definition>
-        <argsstring></argsstring>
-        <name>showAllRuns</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="603" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="603" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a6486b4ae6860285851af48b19a91d10e" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::allRunsRB</definition>
-        <argsstring></argsstring>
-        <name>allRunsRB</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="610" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="610" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a05d61de81dd865fdf67968f569255762" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::someRunsRB</definition>
-        <argsstring></argsstring>
-        <name>someRunsRB</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="618" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="618" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1af263065ce7386d15d4a575197d8d161f" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::run</definition>
-        <argsstring></argsstring>
-        <name>run</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="622" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="622" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a2b1f0303e58bb31acaa11d473c63dc9c" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::runChoice</definition>
-        <argsstring></argsstring>
-        <name>runChoice</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="626" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="626" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a22cabad319406b83740453545206553c" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::transparentRuns</definition>
-        <argsstring></argsstring>
-        <name>transparentRuns</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="635" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="635" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1ab87d9d7e90bb2ed4b8c75346b2ffe08d" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::transRunsCB</definition>
-        <argsstring></argsstring>
-        <name>transRunsCB</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="640" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="640" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1a7195a15057d2a100000580e464269e76" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::boldTitleOn</definition>
-        <argsstring></argsstring>
-        <name>boldTitleOn</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="762" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="762" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classetesim__pp__gui_1_1_simple_g_u_i_1ab953d93a6f409fb527f7fb4b39c7ea72" prot="public" static="no" mutable="no">
-        <type></type>
-        <definition>etesim_pp_gui.SimpleGUI::outDir</definition>
-        <argsstring></argsstring>
-        <name>outDir</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1083" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1083" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="493" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="493" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -1628,13 +471,13 @@ None</verbatim> </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="76" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="76" bodyend="147"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="82" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="82" bodyend="181"/>
       </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a79fed476913d982bb70469eb77fc61d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a0931881907bd6ac6a359be6500b95821" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>None</type>
-        <definition> None etesim_pp_gui.SimpleGUI.build_tabs</definition>
+        <definition> None etesim_pp_gui.SimpleGUI.buildTabs</definition>
         <argsstring>(self, ttk.Notebook parent)</argsstring>
-        <name>build_tabs</name>
+        <name>buildTabs</name>
         <param>
           <type>self</type>
           <defname>self</defname>
@@ -1660,533 +503,7 @@ None</verbatim> </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="148" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="148" bodyend="644"/>
-      </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a2f8efe89f16f6476cb6995d23128eccc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>None</type>
-        <definition> None etesim_pp_gui.SimpleGUI.modifyLimitsEntry</definition>
-        <argsstring>(self, tk.Event event, str entry=None)</argsstring>
-        <name>modifyLimitsEntry</name>
-        <param>
-          <type>self</type>
-          <defname>self</defname>
-        </param>
-        <param>
-          <type>tk.Event</type>
-          <declname>event</declname>
-        </param>
-        <param>
-          <type>str</type>
-          <declname>entry</declname>
-          <defval>None</defval>
-        </param>
-        <briefdescription>
-<para>Callback functions. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Modifies the Min/Max options for each variable (X/Y/Z) when the
-user clicks into or out of the field.
-
-If the field has Min (or Max) already in there, remove the
-text when the user enters the field.
-
-If the field has a non-float entry when the user leaves the field,
-restore Min (or Max) back to the field.
-
-Parameters
-----------
-event : tk.Event
-    Usually a focusIn or focusOut event which details whether
-    the user has entered or left the field of interest
-entry : str, optional
-    A metadescriptor which describes the location of where
-    the user is or came from. The default is None.
-
-Returns
--------
-None</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="648" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="648" bodyend="743"/>
-      </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a687a21cee69aa6f44693e9e040ddf99f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>None</type>
-        <definition> None etesim_pp_gui.SimpleGUI.editTitleOptions</definition>
-        <argsstring>(self, str style=&apos;&apos;)</argsstring>
-        <name>editTitleOptions</name>
-        <param>
-          <type>self</type>
-          <defname>self</defname>
-        </param>
-        <param>
-          <type>str</type>
-          <declname>style</declname>
-          <defval>&apos;&apos;</defval>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Updates UI on whether user has pressed/unpressed the Bold Or Iatlic
-button and then has the plot title reflect that change.
-
-Parameters
-----------
-style : str, optional
-    A modifier parameter to indicate whether the bold or italic
-    button has been pressed. The default is &apos;&apos; (for neither).
-
-Returns
--------
-None</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="744" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="744" bodyend="776"/>
-      </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a8da9889996115467690ffb8be87b21d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>None</type>
-        <definition> None etesim_pp_gui.SimpleGUI.pickTitleColor</definition>
-        <argsstring>(self)</argsstring>
-        <name>pickTitleColor</name>
-        <param>
-          <type>self</type>
-          <defname>self</defname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Takes the color chosen by the user from the colorwheel button
-and renders the title with that color.
-
-Returns
--------
-None</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="777" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="777" bodyend="799"/>
-      </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1ad5469b5b5c0faf32e518a985988c1c54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>None</type>
-        <definition> None etesim_pp_gui.SimpleGUI.pickPlotColor</definition>
-        <argsstring>(self)</argsstring>
-        <name>pickPlotColor</name>
-        <param>
-          <type>self</type>
-          <defname>self</defname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Takes the color chosen by the user from the colorwheel button
-and renders the plot with that color.
-
-Returns
--------
-None</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="800" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="800" bodyend="821"/>
-      </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a7281d255bba270b6afc45d6953d11701" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>None</type>
-        <definition> None etesim_pp_gui.SimpleGUI.setLegendOptions</definition>
-        <argsstring>(self)</argsstring>
-        <name>setLegendOptions</name>
-        <param>
-          <type>self</type>
-          <defname>self</defname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Enables or disables the combobox for legend locations based
-on whether the box is checked
-
-Returns
--------
-None
-    DESCRIPTION.</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="822" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="822" bodyend="839"/>
-      </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a732d8ceb83b9f01f466fbf4a7baccfe2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>None</type>
-        <definition> None etesim_pp_gui.SimpleGUI.setDimensions</definition>
-        <argsstring>(self)</argsstring>
-        <name>setDimensions</name>
-        <param>
-          <type>self</type>
-          <defname>self</defname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Sets the dimensions for the plot based upon the columns
-selected by the user. If the user does not select both the
-x and y axis columns, then the dimensions are set to 0.
-If the user selects both x and y but not z, the dimension is 2.
-If the user selects x, y, and z, the dimension is 3
-
-Returns
--------
-None</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="840" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="840" bodyend="878"/>
-      </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1aacd1daea39148d9689af46ff8dd963e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>None</type>
-        <definition> None etesim_pp_gui.SimpleGUI.setRunOptions</definition>
-        <argsstring>(self, event=None)</argsstring>
-        <name>setRunOptions</name>
-        <param>
-          <type>self</type>
-          <defname>self</defname>
-        </param>
-        <param>
-          <type>event</type>
-          <defname>event</defname>
-          <defval>None</defval>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Sets the run numbers specified for looking at runs.
-Can enable/disable run number input based upon user selection.
-Will also set default values for the run number if there is
-an available set of run numbers to choose from
-
-Parameters
-----------
-event : tk.Event, optional
-    An event to be passed to turn this function into a handle.
-    Not currently needed.
-    The default is None.
-
-Returns
--------
-None</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="879" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="879" bodyend="933"/>
-      </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a6b498974d82e85c3ed734cc3bc464ee2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>None</type>
-        <definition> None etesim_pp_gui.SimpleGUI.setVals</definition>
-        <argsstring>(self)</argsstring>
-        <name>setVals</name>
-        <param>
-          <type>self</type>
-          <defname>self</defname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Checks whether user has selected X, Y, or Z columns from the
-ComboBox (drop-down) and sets the x, y, and z vectors from
-those choices.
-
-If both X and Y are not selected, nothing happens.
-If X and Y are selected but not Z, then a 2D plot will be rendered.
-If X, Y, and Z are selected, a 3D plot will be rendered.
-
-Returns
--------
-None</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="934" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="934" bodyend="968"/>
-      </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1ad93b96581595e6163ef042b900d0e3ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>None</type>
-        <definition> None etesim_pp_gui.SimpleGUI.getTopDir</definition>
-        <argsstring>(self)</argsstring>
-        <name>getTopDir</name>
-        <param>
-          <type>self</type>
-          <defname>self</defname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Opens a file browswer for the run files. Once selected,
-the chosen file path will show in the text field.
-The path can be typed in also.
-** Only a directory can be selected
-
-Returns
--------
-None</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="969" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="969" bodyend="999"/>
-      </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a99c46c6fe4fe0f9c4b83710bce16534c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>None</type>
-        <definition> None etesim_pp_gui.SimpleGUI.loadFromTopDir</definition>
-        <argsstring>(self)</argsstring>
-        <name>loadFromTopDir</name>
-        <param>
-          <type>self</type>
-          <defname>self</defname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Loads missile file from topDir, if possible.
-If directory is invalid, display a warning message.
-If missile file loads successfully, update status.
-
-Returns
--------
-None</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1000" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1000" bodyend="1022"/>
-      </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a1b7fa572961311d4f00bf7fb1c6f5b51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>str</type>
-        <definition> str etesim_pp_gui.SimpleGUI.loadMissileFiles</definition>
-        <argsstring>(self)</argsstring>
-        <name>loadMissileFiles</name>
-        <param>
-          <type>self</type>
-          <defname>self</defname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Checks for whether &apos;NotionalETEOutput###.xlsx&apos; is present in topDir.
-(The ### is a random number between 000 and 999, always three digits)
-If present, loads the missile file into a dataframe, updates the
-dataframe columns, and makes available for plotting only the
-dataframe columns that have floating-point data
-
-** Will definitely need to be updated upon porting
-
-Returns
--------
-str
-    The absolute path to the missile file</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1023" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1023" bodyend="1067"/>
-      </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a6c9f589ea3fa12b9d236f5f66f328238" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>None</type>
-        <definition> None etesim_pp_gui.SimpleGUI.getOutDir</definition>
-        <argsstring>(self)</argsstring>
-        <name>getOutDir</name>
-        <param>
-          <type>self</type>
-          <defname>self</defname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Opens a file browswer for the output files.
-Once selected, the chosen file path will show in the text field.
-(The path can be typed in also.)
-** Only a directory (not a file) can be selected
-
-Returns
--------
-None</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1068" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1068" bodyend="1089"/>
-      </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a2e4ecc475e94e4f96c6d26ebfd5cca05" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>None</type>
-        <definition> None etesim_pp_gui.SimpleGUI.setStatusBarOptions</definition>
-        <argsstring>(self, event=None)</argsstring>
-        <name>setStatusBarOptions</name>
-        <param>
-          <type>self</type>
-          <defname>self</defname>
-        </param>
-        <param>
-          <type>event</type>
-          <defname>event</defname>
-          <defval>None</defval>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Updates the the elements displayed in the status bar.
-
-Parameters
-----------
-event : tk.Event, optional
-    An event that can drive the call. The default is None.
-
-Returns
--------
-None</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1090" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1090" bodyend="1114"/>
-      </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1abfca19b594e81f5b25082ae5e8d680a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>None</type>
-        <definition> None etesim_pp_gui.SimpleGUI.setPlotStyleOptions</definition>
-        <argsstring>(self)</argsstring>
-        <name>setPlotStyleOptions</name>
-        <param>
-          <type>self</type>
-          <defname>self</defname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Checks whether the radio button for &apos;line&apos; or &apos;scatter&apos; is selected.
-For the selected option, it makes the ComboBox (drop-down)
-active and selectable by the user
-
-Returns
--------
-None</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1115" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1115" bodyend="1133"/>
-      </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1ab662c025383e1fa8041d8e59dbd0bacf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>None</type>
-        <definition> None etesim_pp_gui.SimpleGUI.showHidePlotColors</definition>
-        <argsstring>(self)</argsstring>
-        <name>showHidePlotColors</name>
-        <param>
-          <type>self</type>
-          <defname>self</defname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Changes the ability to interact with the plotColor entry and button
-elements based upon whether autoColor has been selected
-
-Returns
--------
-None</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1134" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1134" bodyend="1153"/>
-      </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a6c625920b665885908dc52009d8e0774" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>None</type>
-        <definition> None etesim_pp_gui.SimpleGUI.showHideXLimits</definition>
-        <argsstring>(self)</argsstring>
-        <name>showHideXLimits</name>
-        <param>
-          <type>self</type>
-          <defname>self</defname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Determines whether or not to display the boxes for setting
-the minimum and maximum limits for the X variable.
-Checks the status of the tk.CheckBox in the GUI to determine
-behavior
-
-Returns
--------
-None</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1154" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1154" bodyend="1173"/>
-      </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a1c3b8f5cf79b6376d27345a7fa6897f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>None</type>
-        <definition> None etesim_pp_gui.SimpleGUI.showHideYLimits</definition>
-        <argsstring>(self)</argsstring>
-        <name>showHideYLimits</name>
-        <param>
-          <type>self</type>
-          <defname>self</defname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Determines whether or not to display the boxes for setting
-the minimum and maximum limits for the Y variable.
-Checks the status of the tk.CheckBox in the GUI to determine
-behavior
-
-Returns
--------
-None</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1174" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1174" bodyend="1193"/>
-      </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a3f974ad62304694f004b90c33afbb0d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>None</type>
-        <definition> None etesim_pp_gui.SimpleGUI.showHideZLimits</definition>
-        <argsstring>(self)</argsstring>
-        <name>showHideZLimits</name>
-        <param>
-          <type>self</type>
-          <defname>self</defname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Determines whether or not to display the boxes for setting
-the minimum and maximum limits for the Z variable.
-Checks the status of the tk.CheckBox in the GUI to determine
-behavior
-
-Returns
--------
-None</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1194" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1194" bodyend="1213"/>
-      </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1ab7098887784fd78ae9001f518b8c9936" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>str</type>
-        <definition> str etesim_pp_gui.SimpleGUI.default_path</definition>
-        <argsstring>(self)</argsstring>
-        <name>default_path</name>
-        <param>
-          <type>self</type>
-          <defname>self</defname>
-        </param>
-        <briefdescription>
-<para>Utility functions. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Gives an OS-specific default path to display in filedialog
-windows
-
-Returns
--------
-str
-    &apos;C:&apos; for Windows, &apos;/&apos; for Unix, &apos;//&apos; for Linux
-    Not currently defined for other operating systems</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1217" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1217" bodyend="1237"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="182" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="182" bodyend="230"/>
       </memberdef>
       <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a79bb515b6c87212314a41f2c93401070" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>None</type>
@@ -2203,6 +520,7 @@ str
           <defval>None</defval>
         </param>
         <briefdescription>
+<para>Utility functions. </para>
         </briefdescription>
         <detaileddescription>
 <para><verbatim>Creates a queue to wait for an event to finish. This allows users
@@ -2223,16 +541,20 @@ None</verbatim> </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1238" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1238" bodyend="1264"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="234" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="234" bodyend="260"/>
       </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a1c54b72eca79fa03bd8798bb305d3daa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1ab8d9082847739db98acea28f6cd0b862" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>None</type>
         <definition> None etesim_pp_gui.SimpleGUI.autosizer</definition>
-        <argsstring>(self, event=None)</argsstring>
+        <argsstring>(self, tabs, event=None)</argsstring>
         <name>autosizer</name>
         <param>
           <type>self</type>
           <defname>self</defname>
+        </param>
+        <param>
+          <type>tabs</type>
+          <defname>tabs</defname>
         </param>
         <param>
           <type>event</type>
@@ -2255,54 +577,58 @@ None</verbatim> </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1265" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1265" bodyend="1281"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="261" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="261" bodyend="277"/>
       </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a098c1de306c0f972858faafc58351f5a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>tuple</type>
-        <definition> tuple etesim_pp_gui.SimpleGUI.hex2rgb</definition>
-        <argsstring>(self, str hexstring)</argsstring>
-        <name>hex2rgb</name>
-        <param>
-          <type>self</type>
-          <defname>self</defname>
-        </param>
-        <param>
-          <type>str</type>
-          <declname>hexstring</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>A method to convert 6-digit hexadecimal values to a triplet
-of values in the range (0-255)
-
-Parameters
-----------
-hexstring : str
-    A hex color string in the form #XXXXXX, where each X is
-    a hexadecimal number
-
-Returns
--------
-tuple
-    A triplet of the form (A, B, C) where A, B, and C are integers
-    between 0 and 255 (inclusive)</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1282" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1282" bodyend="1309"/>
-      </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1ab61bc2edc48512e0b454f0fdf317dc51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a82840bb11b53ae592e0e96ba38236105" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>pd.DataFrame</type>
-        <definition> pd.DataFrame etesim_pp_gui.SimpleGUI.plotDF</definition>
-        <argsstring>(self)</argsstring>
-        <name>plotDF</name>
+        <definition> pd.DataFrame etesim_pp_gui.SimpleGUI.assetPlotDF</definition>
+        <argsstring>(self, bool showAllRuns, int specialRun)</argsstring>
+        <name>assetPlotDF</name>
         <param>
           <type>self</type>
           <defname>self</defname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>showAllRuns</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>specialRun</declname>
         </param>
         <briefdescription>
 <para>Plotting functions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>The DataFrame used to plot fixed assets on top of trajectories.
+
+Parameters
+----------
+showAllRuns : bool
+    A flag for whether only select trajectories are being displayed
+specialRun : int
+    The run of interest in case showAllRuns is false
+
+Returns
+-------
+Pandas DataFrame
+    An index of information containing metadata and location data for
+    the assets we intend to plot.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="281" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="281" bodyend="321"/>
+      </memberdef>
+      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a09225ef7cce799f02c4108d3eb2c38a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>pd.DataFrame</type>
+        <definition> pd.DataFrame etesim_pp_gui.SimpleGUI.missilePlotDF</definition>
+        <argsstring>(self)</argsstring>
+        <name>missilePlotDF</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
         </briefdescription>
         <detaileddescription>
 <para><verbatim>Generates a smaller dataframe for plotting from the massive
@@ -2316,7 +642,7 @@ plotDF : pd.DataFrame
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1314" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1314" bodyend="1347"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="322" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="322" bodyend="364"/>
       </memberdef>
       <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a59ed9eb32a3503a50d6269a3a89497f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>None</type>
@@ -2369,21 +695,57 @@ None</verbatim> </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1348" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1348" bodyend="1403"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="365" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="365" bodyend="401"/>
       </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a120929836e0419ebacbead5fab597ff1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a44f73bd7398872086c73e96bf4d72fc5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>None</type>
-        <definition> None etesim_pp_gui.SimpleGUI.finishPlot</definition>
-        <argsstring>(self)</argsstring>
-        <name>finishPlot</name>
+        <definition> None etesim_pp_gui.SimpleGUI.startMatPlot</definition>
+        <argsstring>(self, float startTime, event=None, item=None, mode=None)</argsstring>
+        <name>startMatPlot</name>
         <param>
           <type>self</type>
           <defname>self</defname>
         </param>
+        <param>
+          <type>float</type>
+          <declname>startTime</declname>
+        </param>
+        <param>
+          <type>event</type>
+          <defname>event</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>item</type>
+          <defname>item</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>mode</type>
+          <defname>mode</defname>
+          <defval>None</defval>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para><verbatim>Generates a new plot on the figure set up in startPlot.
+<para><verbatim>Sets up initial pieces for plotting with matplotlib.
+
+Parameters
+----------
+startTime : float
+    The time (in seconds) before the plot process beings
+event : int or tkinter.Event, optional
+    Often called as a 1 instead of tk.Event.
+    If not None, indicates that the plot should update
+    The default is None.
+item : tkinter.Event, optional
+    Only passed when using a trace.
+    (tkinter Events are passed as triples.)
+    The default is None.
+mode : tkinter.Event, optional
+    Only passed when using a trace.
+    (tkinter Events are passed as triples.)
+    The default is None.
 
 Returns
 -------
@@ -2391,44 +753,82 @@ None</verbatim> </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1404" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1404" bodyend="1508"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="402" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="402" bodyend="457"/>
       </memberdef>
-      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a8c7f19fd27d138eae292bbf3dfddfc05" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>tuple</type>
-        <definition> tuple etesim_pp_gui.SimpleGUI.getLimits</definition>
-        <argsstring>(self, ax)</argsstring>
-        <name>getLimits</name>
+      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1aec5b9b3e48b952b29085d6d78ad438c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None etesim_pp_gui.SimpleGUI.finishMatPlot</definition>
+        <argsstring>(self, float startTime)</argsstring>
+        <name>finishMatPlot</name>
         <param>
           <type>self</type>
           <defname>self</defname>
         </param>
         <param>
-          <type>ax</type>
-          <defname>ax</defname>
+          <type>float</type>
+          <declname>startTime</declname>
         </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para><verbatim>Returns the limits to be used in a plot based upon the default
-limits given by pyplot and the limits (potentially) specified
-by the user in the GUI
+<para><verbatim>Generates a new plot on the figure set up in startPlot.
 
 Parameters
 ----------
-ax : matplotlib.axes._subplots.AxesSubplot
-    A handle to the subplot which will have new limits
-    This cannot be type hinted because the type is created
-    on the fly
+startTime : float
+    The time plotting began. Used to update the user on total
+    rendering time.
 
 Returns
 -------
-tuple
-    A six-element tuple of the minimum and maximum values for
-    x, y, and z, respectively</verbatim> </para>
+None</verbatim> </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1509" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1509" bodyend="1557"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="458" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="458" bodyend="588"/>
+      </memberdef>
+      <memberdef kind="function" id="classetesim__pp__gui_1_1_simple_g_u_i_1a1e40ffed52b12170008e3e2148eb0692" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>tuple</type>
+        <definition> tuple etesim_pp_gui.SimpleGUI.plotOptions</definition>
+        <argsstring>(self)</argsstring>
+        <name>plotOptions</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>A shorthand for aggregating all the different plot options
+the user can specify
+
+Returns
+-------
+plotStyle : str
+    Choices are &quot;line&quot; or &quot;scatter&quot;
+showAllRuns : bool
+    Whether to display all runs at once or only certain ones
+transparentRuns : bool
+    Whether, when showAllRuns is False, to display the other runs
+    faded out
+specialRun : int
+    The user-specified run to analyze
+autoColor : bool
+    Whether the trajectories should be colored automatically
+plotColor : str
+    A user-specified color for trajectories
+dimensions : int
+    Choices are 2 or 3
+lineStyle : str
+    Options for different line styles. (Full, dashed, etc.)
+scatterStyle : str
+    Options for different scatter plot markers.
+colors : str
+    The colors to use if autoColor is set to True</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="589" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="589" bodyend="635"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -2470,158 +870,51 @@ None</verbatim> </para>
         <label>tk::Tk</label>
       </node>
     </collaborationgraph>
-    <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="58" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="58" bodyend="1562"/>
+    <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="64" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="64" bodyend="636"/>
     <listofallmembers>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a502c28f21cb1a6d937cb50d6a3185bdc" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>__init__</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1ad22836ba09072de1121f6cc483c88f61" prot="private" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>_after_id</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a40a5e890ab0eedf79a0ae6ebca06d6d6" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>addOptsLF</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a6486b4ae6860285851af48b19a91d10e" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>allRunsRB</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a780a12ed77dfa74921d04a60e22da7c0" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>autoColor</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1af5e062d35b7729a58e1b3e4fdb3579db" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>autoColorCB</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a1c54b72eca79fa03bd8798bb305d3daa" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>autosizer</name></member>
+      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a82840bb11b53ae592e0e96ba38236105" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>assetPlotDF</name></member>
+      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a82ef47a4069a0530337c2361129de7bf" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>assets</name></member>
+      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a50c6f42bea385df7c11243146cfd4436" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>autoColors</name></member>
+      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1ab8d9082847739db98acea28f6cd0b862" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>autosizer</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1adc09cdce6d2add2af1e46ecd12108a63" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>availableRuns</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a101802d8144fb05edf0f3892a9fd6798" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>boldTitleButton</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a7195a15057d2a100000580e464269e76" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>boldTitleOn</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a79fed476913d982bb70469eb77fc61d0" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>build_tabs</name></member>
+      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a0931881907bd6ac6a359be6500b95821" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>buildTabs</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1ae5786494a741bed68b09d67da5af4422" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>canvas</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a331c33dcff5a4674a0e857d70592c47d" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>datainput_icon</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1ab7098887784fd78ae9001f518b8c9936" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>default_path</name></member>
+      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1aaa8e4998ae735d0c2a984539d33505fb" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>cursor</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a651380ae93dfd4925243906b8bbc81ec" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>dimensions</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1aa9577cf3361efc932d923a85801a1615" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>editPane</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a687a21cee69aa6f44693e9e040ddf99f" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>editTitleOptions</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a0ae698156708ef91e224da088d773d99" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>figure</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a120929836e0419ebacbead5fab597ff1" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>finishPlot</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a8c7f19fd27d138eae292bbf3dfddfc05" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>getLimits</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a6c9f589ea3fa12b9d236f5f66f328238" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>getOutDir</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1ad93b96581595e6163ef042b900d0e3ad" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>getTopDir</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a95d50049f31bfb30a6dff1d2e3ec4acd" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>graphPanes</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a8ac438f10abe2fb2f426524b08cfafaa" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>gridLabel</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a8b34e7c504701ec2aabc25db883f84af" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>gridMajor</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a3cfa074f4d23e7e1fef411860b19fb42" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>gridMajorCB</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a8035a84ae815e200db3614d7a3910a4e" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>gridMinor</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a8245e6a4be09cb0210104e3ff36e7af5" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>gridMinorCB</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a098c1de306c0f972858faafc58351f5a" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>hex2rgb</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a77558d73efc3ab2f7d771a60af33d8dd" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>inputTab</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a1871aa45e2a49d18f28b2e0d7bb19c12" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>itTitleButton</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a1848f7fb881d75ce6af9c91992cd7e3c" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>itTitleOn</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a14dd48cb9939598261c57ad0a551b427" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>legendCB</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1adb908d8f12eafa9a75f1d19929f5efea" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>legendLoc</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a13fdf3ce6b742c4249d95d4fb7f57063" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>legendLocations</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a334a83dd1b8043a5fb3e7c688620dbe3" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>legendLocCB</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1aed64065a07163c0513ed0c693f2cafae" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>lineOn</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a86cf7ec40c4399d8d973dab39d0ce58b" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>lineStyle</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a4dfda5d4a7471efa59aa55a087ab40a9" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>lineStyleCB</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1aa37ad51dc11a7415fbb6a3f12d293802" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>lineStyleOptions</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a99c46c6fe4fe0f9c4b83710bce16534c" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>loadFromTopDir</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a1b7fa572961311d4f00bf7fb1c6f5b51" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>loadMissileFiles</name></member>
+      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1aec5b9b3e48b952b29085d6d78ad438c2" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>finishMatPlot</name></member>
+      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a34f2a7f637f6cbca9253dd58c5d4f508" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>inpIcon</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1af0cc4276fd0fcab1438335e2d77f432a" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>missileDF</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a2f8efe89f16f6476cb6995d23128eccc" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>modifyLimitsEntry</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1ab953d93a6f409fb527f7fb4b39c7ea72" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>outDir</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1ad5469b5b5c0faf32e518a985988c1c54" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>pickPlotColor</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a8da9889996115467690ffb8be87b21d2" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>pickTitleColor</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1ae449cdb7ea2d0e581af978e89276d9dc" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>plotColorButton</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1af30e3bf4a6e33c9b23dfa768a158230d" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>plotColorEntry</name></member>
+      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a09225ef7cce799f02c4108d3eb2c38a1" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>missilePlotDF</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1ac768ba5a6d7991e83d2b6f25f2e82003" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>plotColorHex</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a88b52cd3d65939ec89a92f452772daa0" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>plotColorRGB</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a14425dede0758f1a9ccab345a99a0912" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>plotColorWheel</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1acb6e45a85bf86f5a489d12b533ff622d" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>plotCols</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1ab61bc2edc48512e0b454f0fdf317dc51" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>plotDF</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a9f91f022371edfdedb76337f9ae65d1c" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>plotStyle</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1af263065ce7386d15d4a575197d8d161f" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>run</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a2b1f0303e58bb31acaa11d473c63dc9c" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>runChoice</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a4ebe0129fff91d12d114b3990c19ad7e" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>runChoiceLF</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a04efb63543963b0269b9268a515c638d" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>scatterOn</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1aff6490a9a938ed18be7342d512472532" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>scatterStyle</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a2f743ebacc8f8adfbc64e5e35ef3efd2" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>scatterStyleCB</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a465ae199bd5e8d7deb406e6d75a3f878" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>scatterStyleOptions</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a732d8ceb83b9f01f466fbf4a7baccfe2" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>setDimensions</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a7281d255bba270b6afc45d6953d11701" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>setLegendOptions</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1abfca19b594e81f5b25082ae5e8d680a2" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>setPlotStyleOptions</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1aacd1daea39148d9689af46ff8dd963e3" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>setRunOptions</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a2e4ecc475e94e4f96c6d26ebfd5cca05" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>setStatusBarOptions</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a6b498974d82e85c3ed734cc3bc464ee2" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>setVals</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a719ce63cbde75eeb0651aa5d2a4f7964" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>showAllRuns</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1aa9e74e8629021c3dc630d13289d731f8" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>showAxFrame</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a4daff7d3c65a1862c6ce68f36d7f0e6d" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>showAxLabel</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1ab662c025383e1fa8041d8e59dbd0bacf" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>showHidePlotColors</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a6c625920b665885908dc52009d8e0774" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>showHideXLimits</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a1c3b8f5cf79b6376d27345a7fa6897f2" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>showHideYLimits</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a3f974ad62304694f004b90c33afbb0d4" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>showHideZLimits</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1aa3bb344e7a67ab64d67d2980e6c37b63" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>showLegend</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a84a701392c2543e6035fea04bb3d8d9a" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>showXLabel</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a94b1b2a2377126158ae964e7afa1ce1f" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>showXLabelCB</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a26bd747c417cc92dba65a426a8da582d" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>showYLabel</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1adfc0042f724acba43037265e88cfc3a9" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>showYLabelCB</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a7a60f1cb1e235c43614f28db616536de" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>showZLabel</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1aaee3568c45d4a878ad48336aa4ec2f73" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>showZLabelCB</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a05d61de81dd865fdf67968f569255762" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>someRunsRB</name></member>
+      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a5d89e7c0a57b7094e542dba0d8f0887b" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>plotEngine</name></member>
+      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a1e40ffed52b12170008e3e2148eb0692" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>plotOptions</name></member>
+      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a80ffc095cdbf05638776da29a1d851ba" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>plotProgress</name></member>
+      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a5e7b0a879b34470587cac144063451a5" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>plotProgressBar</name></member>
+      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a5543fefda37adf94afeb678d4b552fa4" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>plotProgressFrame</name></member>
+      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a4fbe06a968100028a282d49b47148ff8" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>plotProgressLbl</name></member>
+      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a900d9d3c074415c1f9c9efaef7721a08" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>plotProgressText</name></member>
+      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a850ba561b2cd85b4c4811eabd2183e88" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>showCursor</name></member>
+      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a44f73bd7398872086c73e96bf4d72fc5" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>startMatPlot</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a59ed9eb32a3503a50d6269a3a89497f6" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>startPlot</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1ad3a22b7c81bdae08d53048efbdf246b1" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>status</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a009e72b398abc25a3cbfc8e39630e95a" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>statusBar</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a8d0bfa1c74faf848b46a5a7207179cd8" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>statusLbl</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1ad783fe833f925c4e61aaab767f2b9472" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>styleLF</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a429773eab0ae57dc7984aa806dd0a4de" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>tabs</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a06ae6705eb338728dae4afd52879ae8f" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>threatType</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1ab52f1b76be6f8596f2ac8b3035209102" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>threatTypeCB</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1aa3615a94c71941e99336eb1b219b291f" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>threatTypeLabel</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a3df6e21e65dcf8bb721448bc515f59e8" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>threatTypeOptions</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a46f7ce0fc660685ab07796fb81590776" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>titleColorButton</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1af3f8575372f50d45655cedae4e100690" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>titleColorEntry</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1ac5e44fde6947b7e78fbda395b462c756" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>titleColorHex</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a4ef0bb2ebd20da8a4aeddd19f6b7ef92" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>titleColorRGB</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a6310c74e67e422e1ad64536c25f8f75e" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>titleColorWheel</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a2aec19e687304d9a310a5c23cc8137dd" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>titleEntry</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1aabee8c9c1cd84f591153c33ded1d5d6a" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>titleLF</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1ac87bfd797e73100a71f5cf75811acd5b" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>titleSize</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a06b0edede01002d737cddb56ca113cd7" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>titleText</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1ae2e4169418b23389455a50aeb1de04a9" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>toolbar</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1aac87bd3cb46410aac41a052961cf959e" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>topDir</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a52bbbc4a684d424a65dad8495d92e964" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>topDirBrowseButton</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1aab02ba8fbce37e376b506e36f9e864e1" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>topDirLabel</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1aecde427990d70a918f249e449206745a" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>topDirLoadButton</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a71c6f7d745ac966670d74362ac8bd2b6" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>topDirPath</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a22cabad319406b83740453545206553c" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>transparentRuns</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1ab87d9d7e90bb2ed4b8c75346b2ffe08d" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>transRunsCB</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a6360a105ba4d84d4a73a48510740ee16" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>viewer_icon</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1ab9c145a1c69b692ce1819e86cca336bb" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>viewerTab</name></member>
+      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a6caa5e8f4e38b2db654419136fe31b69" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>viewIcon</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1aa14a185b07c4325f36b934be2c9911c0" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>viewPane</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a79bb515b6c87212314a41f2c93401070" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>waitToPlot</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a13e34761b7b987236e01370dca3d7de2" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>x</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a8b7cd14be2129035d2d20ef1e62cb25a" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>xCB</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a16047563c083b8241251fdcbbea5ea2e" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>xCol</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a00ed9fb3522161a745e16be1a9a67c77" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>xkcdMode</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a7ea591dc08ac3aef2a312ee33f26c0dd" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>xkcdModeCB</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a7a0d72896b865bced2e2a3dace1554b9" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>xLabel</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a0efa883ab428c401022c3dd44c1acc46" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>xLimits</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a939adf97aee54045eea0133b2eb156a9" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>xLimitsBox</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a9f90d39ea64cbc6b87253114f1a1c54f" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>xLimitsRow</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a06b50a35c502021b7502ae79998e75c6" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>xMax</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a8199cf810f67f4c1ba12afefc5fb9849" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>xMaxEntry</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a1df96a97c5c40d521409a3086b846602" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>xMin</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a1e38058f139b57d89a2dc2226d645ec7" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>xMinEntry</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a73e2c833d2d6433b9eddd096fc6218ed" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>xyzMinMaxFrame</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a8b6538b425767730af3b783cd1256237" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>y</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a401b86ec3f161f5c99d5d3dc6d393eee" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>yCB</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a2b4971787ab7ad360ab7af720e669c8e" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>yCol</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1ae6c7842e00e76c6f46c096d5f71c6275" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>yLabel</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a752f4669651c5ac4f47ddae4c64c8b32" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>yLimits</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a64b5870b369b401a87db3b7f9ba27d29" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>yLimitsBox</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a7fbb2a12c04030277b6242983cd9ac9e" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>yLimitsRow</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a29003f203f48741b1d4d10e117faf47e" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>yMax</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1af40fcb54ad49ef5b7b0535c503964b0f" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>yMaxEntry</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a7dbd14242e359349334b134f1712659a" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>yMin</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a7cbf6fd4635429e7461438dc10264deb" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>yMinEntry</name></member>
       <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a46660bc303d9add44ee9f08dc919a654" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>z</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1aaaf419debc80b66f5fb2f982f51c40e7" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>zCB</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a01015a663c0d14cdf54455ab6a44302c" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>zCol</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a798ff151cd3cafbf3601114c6f9729c6" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>zLabel</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a27d198ae84b7a224dc6b789f937bd51a" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>zLimits</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a59daad14b9f1b7eda25f8ff432d0eacc" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>zLimitsBox</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1af5ab83052a63cecdff382028d287bf61" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>zLimitsRow</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1af945ae286d484eb0eec8ad965f09ca0a" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>zMax</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1ae9742c2d6fd93d87ff6aac16c3b97f76" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>zMaxEntry</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1ae16c83a0e2b7708bf1788fcdc2196488" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>zMin</name></member>
-      <member refid="classetesim__pp__gui_1_1_simple_g_u_i_1a1ebdd7251f831544a43f0dd5afe1e9f7" prot="public" virt="non-virtual"><scope>etesim_pp_gui::SimpleGUI</scope><name>zMinEntry</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

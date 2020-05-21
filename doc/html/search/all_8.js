@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['loadfromtopdir_10',['loadFromTopDir',['../classetesim__pp__gui_1_1_simple_g_u_i.html#a99c46c6fe4fe0f9c4b83710bce16534c',1,'etesim_pp_gui::SimpleGUI']]],
-  ['loadmissilefiles_11',['loadMissileFiles',['../classetesim__pp__gui_1_1_simple_g_u_i.html#a1b7fa572961311d4f00bf7fb1c6f5b51',1,'etesim_pp_gui::SimpleGUI']]]
+  ['plotoptions_27',['plotOptions',['../classetesim__pp__gui_1_1_simple_g_u_i.html#a1e40ffed52b12170008e3e2148eb0692',1,'etesim_pp_gui::SimpleGUI']]]
 ];

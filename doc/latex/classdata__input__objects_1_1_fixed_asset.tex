@@ -1,0 +1,246 @@
+\hypertarget{classdata__input__objects_1_1_fixed_asset}{}\doxysection{data\+\_\+input\+\_\+objects.\+Fixed\+Asset Class Reference}
+\label{classdata__input__objects_1_1_fixed_asset}\index{data\_input\_objects.FixedAsset@{data\_input\_objects.FixedAsset}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \mbox{\hyperlink{classdata__input__objects_1_1_fixed_asset_a709eebd84cf1fb5e1fbd8f411fe67508}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, str simulation, str name, str category, int unique\+\_\+id, int run\+\_\+number, $\ast$Vector ecef=None, Vector lla=None, Vector enu=None)
+\item 
+None \mbox{\hyperlink{classdata__input__objects_1_1_fixed_asset_aed574ef34f2a1806fc895009702eb3ee}{set\+\_\+ecef}} (self, float x, float y, float z)
+\item 
+None \mbox{\hyperlink{classdata__input__objects_1_1_fixed_asset_a6a34c0a954cd5b45ec2d93c7b559f7ff}{set\+\_\+lla}} (self, float lat, float lon, float alt)
+\item 
+None \mbox{\hyperlink{classdata__input__objects_1_1_fixed_asset_aed2ce10f2ad6b14f28eabaee86152d1a}{set\+\_\+enu}} (self, float east, float north, float up)
+\item 
+None \mbox{\hyperlink{classdata__input__objects_1_1_fixed_asset_a56c35067f70c5556f07f0ecaec8f6cfb}{gen\+\_\+ecef}} (self)
+\item 
+None \mbox{\hyperlink{classdata__input__objects_1_1_fixed_asset_ac5d5fe7312c31b71fc4012ff615a8f69}{gen\+\_\+enu}} (self, float ref\+Lat, float ref\+Lon, float ref\+Alt)
+\item 
+None \mbox{\hyperlink{classdata__input__objects_1_1_fixed_asset_ad2fcc78f683f3141c91b9dfc46f1b834}{gen\+\_\+lla}} (self)
+\item 
+bool \mbox{\hyperlink{classdata__input__objects_1_1_fixed_asset_ae53190491618e034727f274d99375ffd}{\+\_\+\+\_\+eq\+\_\+\+\_\+}} (self, asset)
+\item 
+\mbox{\Hypertarget{classdata__input__objects_1_1_fixed_asset_a11717b0c3f0eeb4a4b507590c9642245}\label{classdata__input__objects_1_1_fixed_asset_a11717b0c3f0eeb4a4b507590c9642245}} 
+pd.\+Data\+Frame {\bfseries df} (self, int index=0)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classdata__input__objects_1_1_fixed_asset_abaf127f947846a6860716ee7ff61a6b3}\label{classdata__input__objects_1_1_fixed_asset_abaf127f947846a6860716ee7ff61a6b3}} 
+{\bfseries sim}
+\item 
+\mbox{\Hypertarget{classdata__input__objects_1_1_fixed_asset_af6e78da0bab17cc53b01b7fffd021397}\label{classdata__input__objects_1_1_fixed_asset_af6e78da0bab17cc53b01b7fffd021397}} 
+{\bfseries name}
+\item 
+\mbox{\Hypertarget{classdata__input__objects_1_1_fixed_asset_a349dd8f837a5a2b418cc0c92ef1faee9}\label{classdata__input__objects_1_1_fixed_asset_a349dd8f837a5a2b418cc0c92ef1faee9}} 
+{\bfseries type}
+\item 
+\mbox{\Hypertarget{classdata__input__objects_1_1_fixed_asset_a645e81d3485eaae955e944b9e5b8c820}\label{classdata__input__objects_1_1_fixed_asset_a645e81d3485eaae955e944b9e5b8c820}} 
+{\bfseries id}
+\item 
+\mbox{\Hypertarget{classdata__input__objects_1_1_fixed_asset_a7401d0120368341dab484def976bca1f}\label{classdata__input__objects_1_1_fixed_asset_a7401d0120368341dab484def976bca1f}} 
+{\bfseries runnum}
+\item 
+\mbox{\Hypertarget{classdata__input__objects_1_1_fixed_asset_ae798e2be9610699a40d57f7861ceea62}\label{classdata__input__objects_1_1_fixed_asset_ae798e2be9610699a40d57f7861ceea62}} 
+{\bfseries z}
+\item 
+\mbox{\Hypertarget{classdata__input__objects_1_1_fixed_asset_ab6b50a39d7cd34650aee6c66ed951a40}\label{classdata__input__objects_1_1_fixed_asset_ab6b50a39d7cd34650aee6c66ed951a40}} 
+{\bfseries alt}
+\item 
+\mbox{\Hypertarget{classdata__input__objects_1_1_fixed_asset_a391c4dfb8d2c91aa15e474b389eb0e90}\label{classdata__input__objects_1_1_fixed_asset_a391c4dfb8d2c91aa15e474b389eb0e90}} 
+{\bfseries up}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classdata__input__objects_1_1_fixed_asset_a709eebd84cf1fb5e1fbd8f411fe67508}\label{classdata__input__objects_1_1_fixed_asset_a709eebd84cf1fb5e1fbd8f411fe67508}} 
+\index{data\_input\_objects.FixedAsset@{data\_input\_objects.FixedAsset}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!data\_input\_objects.FixedAsset@{data\_input\_objects.FixedAsset}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily  None data\+\_\+input\+\_\+objects.\+Fixed\+Asset.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{simulation,  }\item[{str}]{name,  }\item[{str}]{category,  }\item[{int}]{unique\+\_\+id,  }\item[{int}]{run\+\_\+number,  }\item[{$\ast$Vector }]{ecef = {\ttfamily None},  }\item[{Vector }]{lla = {\ttfamily None},  }\item[{Vector }]{enu = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}A class for handling fixed assets. Stores metadata and locations
+in several possible coordinate systems.
+
+Parameters
+----------
+simulation : str
+    The simulation which generated the asset.
+name : str
+    The name of the asset.
+category : str
+    The category (e.g., radar) of the asset.
+unique_id : int
+    An ID often specified by the simulation.
+run_number : int
+    The run number, often specified by the simulation.
+ecef : Vector, optional
+    ECEF asset coordinates (in meters) as 3-tuple. The default is None.
+lla : Vector, optional
+    Latitude (deg), Longitude (deg), and Altitude (m)
+    asset coordinates as 3-tuple. The default is None.
+enu : Vector, optional
+     ENU asset coordinates (in meters) as 3-tuple. The default is None.
+
+Raises
+------
+ValueError
+    If no coordinate system is specified, the instance is invalid.
+
+Returns
+-------
+None\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classdata__input__objects_1_1_fixed_asset_ae53190491618e034727f274d99375ffd}\label{classdata__input__objects_1_1_fixed_asset_ae53190491618e034727f274d99375ffd}} 
+\index{data\_input\_objects.FixedAsset@{data\_input\_objects.FixedAsset}!\_\_eq\_\_@{\_\_eq\_\_}}
+\index{\_\_eq\_\_@{\_\_eq\_\_}!data\_input\_objects.FixedAsset@{data\_input\_objects.FixedAsset}}
+\doxysubsubsection{\texorpdfstring{\_\_eq\_\_()}{\_\_eq\_\_()}}
+{\footnotesize\ttfamily  bool data\+\_\+input\+\_\+objects.\+Fixed\+Asset.\+\_\+\+\_\+eq\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{asset }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Overloads the "=" operator to determine instance equality.
+Instances are considered equal if all these criteria are met:
+    (1) They are generated by the same simulation
+    (2) They have the same name
+    (3) They have the same type (category)
+    (4) Each member variable describing coordinate data matches
+
+Parameters
+----------
+asset : FixedAsset
+    An instance of the FixedAsset class
+
+Returns
+-------
+bool
+    True if assets are equal, False otherwise\end{DoxyVerb}
+ \mbox{\Hypertarget{classdata__input__objects_1_1_fixed_asset_a56c35067f70c5556f07f0ecaec8f6cfb}\label{classdata__input__objects_1_1_fixed_asset_a56c35067f70c5556f07f0ecaec8f6cfb}} 
+\index{data\_input\_objects.FixedAsset@{data\_input\_objects.FixedAsset}!gen\_ecef@{gen\_ecef}}
+\index{gen\_ecef@{gen\_ecef}!data\_input\_objects.FixedAsset@{data\_input\_objects.FixedAsset}}
+\doxysubsubsection{\texorpdfstring{gen\_ecef()}{gen\_ecef()}}
+{\footnotesize\ttfamily  None data\+\_\+input\+\_\+objects.\+Fixed\+Asset.\+gen\+\_\+ecef (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Generates ECEF XYZ coordinates for the class instance given
+Latitude (deg), Longitude (deg), and Altitude (m) coordinates
+coordinates for the instance given the following conditions:
+    (1) ECEF coordinates do not already exist
+    (2) Lat/Lon/Alt coordinates exist
+
+Raises
+------
+ValueError
+    If Lat/Lon/Alt values do not exist and ECEF values do not
+    exist, there is no valid way to generate the coordinates.
+
+Returns
+-------
+None\end{DoxyVerb}
+ \mbox{\Hypertarget{classdata__input__objects_1_1_fixed_asset_ac5d5fe7312c31b71fc4012ff615a8f69}\label{classdata__input__objects_1_1_fixed_asset_ac5d5fe7312c31b71fc4012ff615a8f69}} 
+\index{data\_input\_objects.FixedAsset@{data\_input\_objects.FixedAsset}!gen\_enu@{gen\_enu}}
+\index{gen\_enu@{gen\_enu}!data\_input\_objects.FixedAsset@{data\_input\_objects.FixedAsset}}
+\doxysubsubsection{\texorpdfstring{gen\_enu()}{gen\_enu()}}
+{\footnotesize\ttfamily  None data\+\_\+input\+\_\+objects.\+Fixed\+Asset.\+gen\+\_\+enu (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{float}]{ref\+Lat,  }\item[{float}]{ref\+Lon,  }\item[{float}]{ref\+Alt }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Generates ENU coordinates for the asset given the
+latitude (deg), longitude (deg), and altitude (m) coordinates
+for the origin.
+
+Parameters
+----------
+refLat : float
+    The reference latitude in degrees.
+refLon : float
+    The reference longitude in degrees.
+refAlt : float
+    The reference altitude in meters.
+
+Returns
+-------
+None\end{DoxyVerb}
+ \mbox{\Hypertarget{classdata__input__objects_1_1_fixed_asset_ad2fcc78f683f3141c91b9dfc46f1b834}\label{classdata__input__objects_1_1_fixed_asset_ad2fcc78f683f3141c91b9dfc46f1b834}} 
+\index{data\_input\_objects.FixedAsset@{data\_input\_objects.FixedAsset}!gen\_lla@{gen\_lla}}
+\index{gen\_lla@{gen\_lla}!data\_input\_objects.FixedAsset@{data\_input\_objects.FixedAsset}}
+\doxysubsubsection{\texorpdfstring{gen\_lla()}{gen\_lla()}}
+{\footnotesize\ttfamily  None data\+\_\+input\+\_\+objects.\+Fixed\+Asset.\+gen\+\_\+lla (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Generates Latitude (deg), Longitude (deg), and Altitude (m)
+coordinates for the instance given the following conditions:
+    (1) Lat/Lon/Alt coordinates do not already exist
+    (2) ECEF Coordinates exist
+
+An error is raised if neither condition (1) or (2) are valid.
+
+Raises
+------
+ValueError
+    If Lat/Lon/Alt values do not exist and ECEF values do not
+    exist, there is no valid way to generate the coordinates.
+
+Returns
+-------
+None\end{DoxyVerb}
+ \mbox{\Hypertarget{classdata__input__objects_1_1_fixed_asset_aed574ef34f2a1806fc895009702eb3ee}\label{classdata__input__objects_1_1_fixed_asset_aed574ef34f2a1806fc895009702eb3ee}} 
+\index{data\_input\_objects.FixedAsset@{data\_input\_objects.FixedAsset}!set\_ecef@{set\_ecef}}
+\index{set\_ecef@{set\_ecef}!data\_input\_objects.FixedAsset@{data\_input\_objects.FixedAsset}}
+\doxysubsubsection{\texorpdfstring{set\_ecef()}{set\_ecef()}}
+{\footnotesize\ttfamily  None data\+\_\+input\+\_\+objects.\+Fixed\+Asset.\+set\+\_\+ecef (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{z }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Sets the ECEF location of the asset.
+
+Parameters
+----------
+x : float
+    The x location in meters
+y : float
+    The y location in meters
+z : float
+    The z location in meters
+
+Returns
+-------
+None\end{DoxyVerb}
+ \mbox{\Hypertarget{classdata__input__objects_1_1_fixed_asset_aed2ce10f2ad6b14f28eabaee86152d1a}\label{classdata__input__objects_1_1_fixed_asset_aed2ce10f2ad6b14f28eabaee86152d1a}} 
+\index{data\_input\_objects.FixedAsset@{data\_input\_objects.FixedAsset}!set\_enu@{set\_enu}}
+\index{set\_enu@{set\_enu}!data\_input\_objects.FixedAsset@{data\_input\_objects.FixedAsset}}
+\doxysubsubsection{\texorpdfstring{set\_enu()}{set\_enu()}}
+{\footnotesize\ttfamily  None data\+\_\+input\+\_\+objects.\+Fixed\+Asset.\+set\+\_\+enu (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{float}]{east,  }\item[{float}]{north,  }\item[{float}]{up }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Sets the ENU location of the asset.
+
+Parameters
+----------
+east : float
+    The east location in meters
+north : float
+    The north location in meters
+up : float
+    The up location in meters
+
+Returns
+-------
+None\end{DoxyVerb}
+ \mbox{\Hypertarget{classdata__input__objects_1_1_fixed_asset_a6a34c0a954cd5b45ec2d93c7b559f7ff}\label{classdata__input__objects_1_1_fixed_asset_a6a34c0a954cd5b45ec2d93c7b559f7ff}} 
+\index{data\_input\_objects.FixedAsset@{data\_input\_objects.FixedAsset}!set\_lla@{set\_lla}}
+\index{set\_lla@{set\_lla}!data\_input\_objects.FixedAsset@{data\_input\_objects.FixedAsset}}
+\doxysubsubsection{\texorpdfstring{set\_lla()}{set\_lla()}}
+{\footnotesize\ttfamily  None data\+\_\+input\+\_\+objects.\+Fixed\+Asset.\+set\+\_\+lla (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{float}]{lat,  }\item[{float}]{lon,  }\item[{float}]{alt }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Sets the latitude, longitude, and altitude of the asset.
+
+Parameters
+----------
+lat : float
+    The latitude location in degrees
+lon : float
+    The longitude location in degrees
+alt : float
+    The altitude location in meters
+
+Returns
+-------
+None\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/white/\+Documents/etesim\+\_\+gui\+\_\+test/basic\+\_\+gui/data\+\_\+input\+\_\+objects.\+py\end{DoxyCompactItemize}

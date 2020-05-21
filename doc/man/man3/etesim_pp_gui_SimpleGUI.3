@@ -1,4 +1,4 @@
-.TH "etesim_pp_gui.SimpleGUI" 3 "Fri Apr 24 2020" "ETESim Plotting GUI" \" -*- nroff -*-
+.TH "etesim_pp_gui.SimpleGUI" 3 "Thu May 21 2020" "ETESim Plotting GUI" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -15,88 +15,33 @@ Inherits Tk\&.
 .RI "def \fB__init__\fP (self, *args, **kwargs)"
 .br
 .ti -1c
-.RI "None \fBbuild_tabs\fP (self, ttk\&.Notebook parent)"
+.RI "None \fBbuildTabs\fP (self, ttk\&.Notebook parent)"
 .br
-.ti -1c
-.RI "None \fBmodifyLimitsEntry\fP (self, tk\&.Event event, str entry=None)"
-.br
-.RI "Callback functions\&. "
-.ti -1c
-.RI "None \fBeditTitleOptions\fP (self, str style='')"
-.br
-.ti -1c
-.RI "None \fBpickTitleColor\fP (self)"
-.br
-.ti -1c
-.RI "None \fBpickPlotColor\fP (self)"
-.br
-.ti -1c
-.RI "None \fBsetLegendOptions\fP (self)"
-.br
-.ti -1c
-.RI "None \fBsetDimensions\fP (self)"
-.br
-.ti -1c
-.RI "None \fBsetRunOptions\fP (self, event=None)"
-.br
-.ti -1c
-.RI "None \fBsetVals\fP (self)"
-.br
-.ti -1c
-.RI "None \fBgetTopDir\fP (self)"
-.br
-.ti -1c
-.RI "None \fBloadFromTopDir\fP (self)"
-.br
-.ti -1c
-.RI "str \fBloadMissileFiles\fP (self)"
-.br
-.ti -1c
-.RI "None \fBgetOutDir\fP (self)"
-.br
-.ti -1c
-.RI "None \fBsetStatusBarOptions\fP (self, event=None)"
-.br
-.ti -1c
-.RI "None \fBsetPlotStyleOptions\fP (self)"
-.br
-.ti -1c
-.RI "None \fBshowHidePlotColors\fP (self)"
-.br
-.ti -1c
-.RI "None \fBshowHideXLimits\fP (self)"
-.br
-.ti -1c
-.RI "None \fBshowHideYLimits\fP (self)"
-.br
-.ti -1c
-.RI "None \fBshowHideZLimits\fP (self)"
-.br
-.ti -1c
-.RI "str \fBdefault_path\fP (self)"
-.br
-.RI "Utility functions\&. "
 .ti -1c
 .RI "None \fBwaitToPlot\fP (self, event=None)"
 .br
+.RI "Utility functions\&. "
 .ti -1c
-.RI "None \fBautosizer\fP (self, event=None)"
+.RI "None \fBautosizer\fP (self, tabs, event=None)"
 .br
 .ti -1c
-.RI "tuple \fBhex2rgb\fP (self, str hexstring)"
-.br
-.ti -1c
-.RI "pd\&.DataFrame \fBplotDF\fP (self)"
+.RI "pd\&.DataFrame \fBassetPlotDF\fP (self, bool showAllRuns, int specialRun)"
 .br
 .RI "Plotting functions\&. "
+.ti -1c
+.RI "pd\&.DataFrame \fBmissilePlotDF\fP (self)"
+.br
 .ti -1c
 .RI "None \fBstartPlot\fP (self, event=None, item=None, mode=None)"
 .br
 .ti -1c
-.RI "None \fBfinishPlot\fP (self)"
+.RI "None \fBstartMatPlot\fP (self, float startTime, event=None, item=None, mode=None)"
 .br
 .ti -1c
-.RI "tuple \fBgetLimits\fP (self, ax)"
+.RI "None \fBfinishMatPlot\fP (self, float startTime)"
+.br
+.ti -1c
+.RI "tuple \fBplotOptions\fP (self)"
 .br
 .in -1c
 .SS "Public Attributes"
@@ -121,6 +66,9 @@ Inherits Tk\&.
 .RI "\fBmissileDF\fP"
 .br
 .ti -1c
+.RI "\fBassets\fP"
+.br
+.ti -1c
 .RI "\fBtoolbar\fP"
 .br
 .ti -1c
@@ -128,6 +76,9 @@ Inherits Tk\&.
 .br
 .ti -1c
 .RI "\fBcanvas\fP"
+.br
+.ti -1c
+.RI "\fBcursor\fP"
 .br
 .ti -1c
 .RI "\fBtitleColorRGB\fP"
@@ -145,6 +96,12 @@ Inherits Tk\&.
 .RI "\fBavailableRuns\fP"
 .br
 .ti -1c
+.RI "\fBshowCursor\fP"
+.br
+.ti -1c
+.RI "\fBplotEngine\fP"
+.br
+.ti -1c
 .RI "\fBtabs\fP"
 .br
 .ti -1c
@@ -154,7 +111,19 @@ Inherits Tk\&.
 .RI "\fBstatus\fP"
 .br
 .ti -1c
-.RI "\fBstatusLbl\fP"
+.RI "\fBplotProgress\fP"
+.br
+.ti -1c
+.RI "\fBplotProgressFrame\fP"
+.br
+.ti -1c
+.RI "\fBplotProgressLbl\fP"
+.br
+.ti -1c
+.RI "\fBplotProgressText\fP"
+.br
+.ti -1c
+.RI "\fBplotProgressBar\fP"
 .br
 .ti -1c
 .RI "\fBxkcdMode\fP"
@@ -163,307 +132,16 @@ Inherits Tk\&.
 .RI "\fBxkcdModeCB\fP"
 .br
 .ti -1c
-.RI "\fBinputTab\fP"
+.RI "\fBinpIcon\fP"
 .br
 .ti -1c
-.RI "\fBdatainput_icon\fP"
-.br
-.ti -1c
-.RI "\fBtopDirLabel\fP"
-.br
-.ti -1c
-.RI "\fBtopDir\fP"
-.br
-.ti -1c
-.RI "\fBtopDirPath\fP"
-.br
-.ti -1c
-.RI "\fBtopDirBrowseButton\fP"
-.br
-.ti -1c
-.RI "\fBtopDirLoadButton\fP"
-.br
-.ti -1c
-.RI "\fBthreatTypeOptions\fP"
-.br
-.ti -1c
-.RI "\fBthreatTypeLabel\fP"
-.br
-.ti -1c
-.RI "\fBthreatType\fP"
-.br
-.ti -1c
-.RI "\fBthreatTypeCB\fP"
-.br
-.ti -1c
-.RI "\fBviewer_icon\fP"
-.br
-.ti -1c
-.RI "\fBviewerTab\fP"
-.br
-.ti -1c
-.RI "\fBgraphPanes\fP"
-.br
-.ti -1c
-.RI "\fBeditPane\fP"
+.RI "\fBviewIcon\fP"
 .br
 .ti -1c
 .RI "\fBviewPane\fP"
 .br
 .ti -1c
-.RI "\fBxCol\fP"
-.br
-.ti -1c
-.RI "\fBxLabel\fP"
-.br
-.ti -1c
-.RI "\fBxCB\fP"
-.br
-.ti -1c
-.RI "\fByCol\fP"
-.br
-.ti -1c
-.RI "\fByLabel\fP"
-.br
-.ti -1c
-.RI "\fByCB\fP"
-.br
-.ti -1c
-.RI "\fBzCol\fP"
-.br
-.ti -1c
-.RI "\fBzLabel\fP"
-.br
-.ti -1c
-.RI "\fBzCB\fP"
-.br
-.ti -1c
-.RI "\fBxyzMinMaxFrame\fP"
-.br
-.ti -1c
-.RI "\fBxLimitsRow\fP"
-.br
-.ti -1c
-.RI "\fBxLimits\fP"
-.br
-.ti -1c
-.RI "\fBxLimitsBox\fP"
-.br
-.ti -1c
-.RI "\fBxMin\fP"
-.br
-.ti -1c
-.RI "\fBxMinEntry\fP"
-.br
-.ti -1c
-.RI "\fBxMax\fP"
-.br
-.ti -1c
-.RI "\fBxMaxEntry\fP"
-.br
-.ti -1c
-.RI "\fByLimitsRow\fP"
-.br
-.ti -1c
-.RI "\fByLimits\fP"
-.br
-.ti -1c
-.RI "\fByLimitsBox\fP"
-.br
-.ti -1c
-.RI "\fByMin\fP"
-.br
-.ti -1c
-.RI "\fByMinEntry\fP"
-.br
-.ti -1c
-.RI "\fByMax\fP"
-.br
-.ti -1c
-.RI "\fByMaxEntry\fP"
-.br
-.ti -1c
-.RI "\fBzLimitsRow\fP"
-.br
-.ti -1c
-.RI "\fBzLimits\fP"
-.br
-.ti -1c
-.RI "\fBzLimitsBox\fP"
-.br
-.ti -1c
-.RI "\fBzMin\fP"
-.br
-.ti -1c
-.RI "\fBzMinEntry\fP"
-.br
-.ti -1c
-.RI "\fBzMax\fP"
-.br
-.ti -1c
-.RI "\fBzMaxEntry\fP"
-.br
-.ti -1c
-.RI "\fBtitleLF\fP"
-.br
-.ti -1c
-.RI "\fBtitleText\fP"
-.br
-.ti -1c
-.RI "\fBtitleEntry\fP"
-.br
-.ti -1c
-.RI "\fBtitleSize\fP"
-.br
-.ti -1c
-.RI "\fBitTitleOn\fP"
-.br
-.ti -1c
-.RI "\fBboldTitleButton\fP"
-.br
-.ti -1c
-.RI "\fBitTitleButton\fP"
-.br
-.ti -1c
-.RI "\fBtitleColorEntry\fP"
-.br
-.ti -1c
-.RI "\fBtitleColorWheel\fP"
-.br
-.ti -1c
-.RI "\fBtitleColorButton\fP"
-.br
-.ti -1c
-.RI "\fBstyleLF\fP"
-.br
-.ti -1c
-.RI "\fBplotStyle\fP"
-.br
-.ti -1c
-.RI "\fBlineOn\fP"
-.br
-.ti -1c
-.RI "\fBscatterOn\fP"
-.br
-.ti -1c
-.RI "\fBlineStyleOptions\fP"
-.br
-.ti -1c
-.RI "\fBlineStyle\fP"
-.br
-.ti -1c
-.RI "\fBlineStyleCB\fP"
-.br
-.ti -1c
-.RI "\fBscatterStyleOptions\fP"
-.br
-.ti -1c
-.RI "\fBscatterStyle\fP"
-.br
-.ti -1c
-.RI "\fBscatterStyleCB\fP"
-.br
-.ti -1c
-.RI "\fBshowLegend\fP"
-.br
-.ti -1c
-.RI "\fBlegendLoc\fP"
-.br
-.ti -1c
-.RI "\fBlegendCB\fP"
-.br
-.ti -1c
-.RI "\fBlegendLocations\fP"
-.br
-.ti -1c
-.RI "\fBlegendLocCB\fP"
-.br
-.ti -1c
-.RI "\fBautoColor\fP"
-.br
-.ti -1c
-.RI "\fBautoColorCB\fP"
-.br
-.ti -1c
-.RI "\fBplotColorEntry\fP"
-.br
-.ti -1c
-.RI "\fBplotColorWheel\fP"
-.br
-.ti -1c
-.RI "\fBplotColorButton\fP"
-.br
-.ti -1c
-.RI "\fBaddOptsLF\fP"
-.br
-.ti -1c
-.RI "\fBgridLabel\fP"
-.br
-.ti -1c
-.RI "\fBgridMajor\fP"
-.br
-.ti -1c
-.RI "\fBgridMinor\fP"
-.br
-.ti -1c
-.RI "\fBgridMajorCB\fP"
-.br
-.ti -1c
-.RI "\fBgridMinorCB\fP"
-.br
-.ti -1c
-.RI "\fBshowAxLabel\fP"
-.br
-.ti -1c
-.RI "\fBshowAxFrame\fP"
-.br
-.ti -1c
-.RI "\fBshowXLabel\fP"
-.br
-.ti -1c
-.RI "\fBshowYLabel\fP"
-.br
-.ti -1c
-.RI "\fBshowZLabel\fP"
-.br
-.ti -1c
-.RI "\fBshowXLabelCB\fP"
-.br
-.ti -1c
-.RI "\fBshowYLabelCB\fP"
-.br
-.ti -1c
-.RI "\fBshowZLabelCB\fP"
-.br
-.ti -1c
-.RI "\fBrunChoiceLF\fP"
-.br
-.ti -1c
-.RI "\fBshowAllRuns\fP"
-.br
-.ti -1c
-.RI "\fBallRunsRB\fP"
-.br
-.ti -1c
-.RI "\fBsomeRunsRB\fP"
-.br
-.ti -1c
-.RI "\fBrun\fP"
-.br
-.ti -1c
-.RI "\fBrunChoice\fP"
-.br
-.ti -1c
-.RI "\fBtransparentRuns\fP"
-.br
-.ti -1c
-.RI "\fBtransRunsCB\fP"
-.br
-.ti -1c
-.RI "\fBboldTitleOn\fP"
-.br
-.ti -1c
-.RI "\fBoutDir\fP"
+.RI "\fBautoColors\fP"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -509,7 +187,30 @@ None
  
 .SH "Member Function Documentation"
 .PP 
-.SS " None etesim_pp_gui\&.SimpleGUI\&.autosizer ( self,  event = \fCNone\fP)"
+.SS " pd\&.DataFrame etesim_pp_gui\&.SimpleGUI\&.assetPlotDF ( self, bool showAllRuns, int specialRun)"
+
+.PP
+Plotting functions\&. 
+.PP
+.nf
+The DataFrame used to plot fixed assets on top of trajectories.
+
+Parameters
+----------
+showAllRuns : bool
+    A flag for whether only select trajectories are being displayed
+specialRun : int
+    The run of interest in case showAllRuns is false
+
+Returns
+-------
+Pandas DataFrame
+    An index of information containing metadata and location data for
+    the assets we intend to plot.
+.fi
+.PP
+ 
+.SS " None etesim_pp_gui\&.SimpleGUI\&.autosizer ( self,  tabs,  event = \fCNone\fP)"
 
 .PP
 .nf
@@ -526,7 +227,7 @@ None
 .fi
 .PP
  
-.SS " None etesim_pp_gui\&.SimpleGUI\&.build_tabs ( self, ttk\&.Notebook parent)"
+.SS " None etesim_pp_gui\&.SimpleGUI\&.buildTabs ( self, ttk\&.Notebook parent)"
 
 .PP
 .nf
@@ -544,85 +245,17 @@ None
 .fi
 .PP
  
-.SS " str etesim_pp_gui\&.SimpleGUI\&.default_path ( self)"
-
-.PP
-Utility functions\&. 
-.PP
-.nf
-Gives an OS-specific default path to display in filedialog
-windows
-
-Returns
--------
-str
-    'C:' for Windows, '/' for Unix, '//' for Linux
-    Not currently defined for other operating systems
-.fi
-.PP
- 
-.SS " None etesim_pp_gui\&.SimpleGUI\&.editTitleOptions ( self, str  style = \fC''\fP)"
-
-.PP
-.nf
-Updates UI on whether user has pressed/unpressed the Bold Or Iatlic
-button and then has the plot title reflect that change.
-
-Parameters
-----------
-style : str, optional
-    A modifier parameter to indicate whether the bold or italic
-    button has been pressed. The default is '' (for neither).
-
-Returns
--------
-None
-.fi
-.PP
- 
-.SS " None etesim_pp_gui\&.SimpleGUI\&.finishPlot ( self)"
+.SS " None etesim_pp_gui\&.SimpleGUI\&.finishMatPlot ( self, float startTime)"
 
 .PP
 .nf
 Generates a new plot on the figure set up in startPlot.
 
-Returns
--------
-None
-.fi
-.PP
- 
-.SS " tuple etesim_pp_gui\&.SimpleGUI\&.getLimits ( self,  ax)"
-
-.PP
-.nf
-Returns the limits to be used in a plot based upon the default
-limits given by pyplot and the limits (potentially) specified
-by the user in the GUI
-
 Parameters
 ----------
-ax : matplotlib.axes._subplots.AxesSubplot
-    A handle to the subplot which will have new limits
-    This cannot be type hinted because the type is created
-    on the fly
-
-Returns
--------
-tuple
-    A six-element tuple of the minimum and maximum values for
-    x, y, and z, respectively
-.fi
-.PP
- 
-.SS " None etesim_pp_gui\&.SimpleGUI\&.getOutDir ( self)"
-
-.PP
-.nf
-Opens a file browswer for the output files.
-Once selected, the chosen file path will show in the text field.
-(The path can be typed in also.)
-** Only a directory (not a file) can be selected
+startTime : float
+    The time plotting began. Used to update the user on total
+    rendering time.
 
 Returns
 -------
@@ -630,135 +263,8 @@ None
 .fi
 .PP
  
-.SS " None etesim_pp_gui\&.SimpleGUI\&.getTopDir ( self)"
+.SS " pd\&.DataFrame etesim_pp_gui\&.SimpleGUI\&.missilePlotDF ( self)"
 
-.PP
-.nf
-Opens a file browswer for the run files. Once selected,
-the chosen file path will show in the text field.
-The path can be typed in also.
-** Only a directory can be selected
-
-Returns
--------
-None
-.fi
-.PP
- 
-.SS " tuple etesim_pp_gui\&.SimpleGUI\&.hex2rgb ( self, str hexstring)"
-
-.PP
-.nf
-A method to convert 6-digit hexadecimal values to a triplet
-of values in the range (0-255)
-
-Parameters
-----------
-hexstring : str
-    A hex color string in the form #XXXXXX, where each X is
-    a hexadecimal number
-
-Returns
--------
-tuple
-    A triplet of the form (A, B, C) where A, B, and C are integers
-    between 0 and 255 (inclusive)
-.fi
-.PP
- 
-.SS " None etesim_pp_gui\&.SimpleGUI\&.loadFromTopDir ( self)"
-
-.PP
-.nf
-Loads missile file from topDir, if possible.
-If directory is invalid, display a warning message.
-If missile file loads successfully, update status.
-
-Returns
--------
-None
-.fi
-.PP
- 
-.SS " str etesim_pp_gui\&.SimpleGUI\&.loadMissileFiles ( self)"
-
-.PP
-.nf
-Checks for whether 'NotionalETEOutput###.xlsx' is present in topDir.
-(The ### is a random number between 000 and 999, always three digits)
-If present, loads the missile file into a dataframe, updates the
-dataframe columns, and makes available for plotting only the
-dataframe columns that have floating-point data
-
-** Will definitely need to be updated upon porting
-
-Returns
--------
-str
-    The absolute path to the missile file
-.fi
-.PP
- 
-.SS " None etesim_pp_gui\&.SimpleGUI\&.modifyLimitsEntry ( self, tk\&.Event event, str  entry = \fCNone\fP)"
-
-.PP
-Callback functions\&. 
-.PP
-.nf
-Modifies the Min/Max options for each variable (X/Y/Z) when the
-user clicks into or out of the field.
-
-If the field has Min (or Max) already in there, remove the
-text when the user enters the field.
-
-If the field has a non-float entry when the user leaves the field,
-restore Min (or Max) back to the field.
-
-Parameters
-----------
-event : tk.Event
-    Usually a focusIn or focusOut event which details whether
-    the user has entered or left the field of interest
-entry : str, optional
-    A metadescriptor which describes the location of where
-    the user is or came from. The default is None.
-
-Returns
--------
-None
-.fi
-.PP
- 
-.SS " None etesim_pp_gui\&.SimpleGUI\&.pickPlotColor ( self)"
-
-.PP
-.nf
-Takes the color chosen by the user from the colorwheel button
-and renders the plot with that color.
-
-Returns
--------
-None
-.fi
-.PP
- 
-.SS " None etesim_pp_gui\&.SimpleGUI\&.pickTitleColor ( self)"
-
-.PP
-.nf
-Takes the color chosen by the user from the colorwheel button
-and renders the title with that color.
-
-Returns
--------
-None
-.fi
-.PP
- 
-.SS " pd\&.DataFrame etesim_pp_gui\&.SimpleGUI\&.plotDF ( self)"
-
-.PP
-Plotting functions\&. 
 .PP
 .nf
 Generates a smaller dataframe for plotting from the massive
@@ -772,158 +278,61 @@ plotDF : pd.DataFrame
 .fi
 .PP
  
-.SS " None etesim_pp_gui\&.SimpleGUI\&.setDimensions ( self)"
+.SS " tuple etesim_pp_gui\&.SimpleGUI\&.plotOptions ( self)"
 
 .PP
 .nf
-Sets the dimensions for the plot based upon the columns
-selected by the user. If the user does not select both the
-x and y axis columns, then the dimensions are set to 0.
-If the user selects both x and y but not z, the dimension is 2.
-If the user selects x, y, and z, the dimension is 3
+A shorthand for aggregating all the different plot options
+the user can specify
 
 Returns
 -------
-None
+plotStyle : str
+    Choices are "line" or "scatter"
+showAllRuns : bool
+    Whether to display all runs at once or only certain ones
+transparentRuns : bool
+    Whether, when showAllRuns is False, to display the other runs
+    faded out
+specialRun : int
+    The user-specified run to analyze
+autoColor : bool
+    Whether the trajectories should be colored automatically
+plotColor : str
+    A user-specified color for trajectories
+dimensions : int
+    Choices are 2 or 3
+lineStyle : str
+    Options for different line styles. (Full, dashed, etc.)
+scatterStyle : str
+    Options for different scatter plot markers.
+colors : str
+    The colors to use if autoColor is set to True
 .fi
 .PP
  
-.SS " None etesim_pp_gui\&.SimpleGUI\&.setLegendOptions ( self)"
+.SS " None etesim_pp_gui\&.SimpleGUI\&.startMatPlot ( self, float startTime,  event = \fCNone\fP,  item = \fCNone\fP,  mode = \fCNone\fP)"
 
 .PP
 .nf
-Enables or disables the combobox for legend locations based
-on whether the box is checked
-
-Returns
--------
-None
-    DESCRIPTION.
-.fi
-.PP
- 
-.SS " None etesim_pp_gui\&.SimpleGUI\&.setPlotStyleOptions ( self)"
-
-.PP
-.nf
-Checks whether the radio button for 'line' or 'scatter' is selected.
-For the selected option, it makes the ComboBox (drop-down)
-active and selectable by the user
-
-Returns
--------
-None
-.fi
-.PP
- 
-.SS " None etesim_pp_gui\&.SimpleGUI\&.setRunOptions ( self,  event = \fCNone\fP)"
-
-.PP
-.nf
-Sets the run numbers specified for looking at runs.
-Can enable/disable run number input based upon user selection.
-Will also set default values for the run number if there is
-an available set of run numbers to choose from
+Sets up initial pieces for plotting with matplotlib.
 
 Parameters
 ----------
-event : tk.Event, optional
-    An event to be passed to turn this function into a handle.
-    Not currently needed.
+startTime : float
+    The time (in seconds) before the plot process beings
+event : int or tkinter.Event, optional
+    Often called as a 1 instead of tk.Event.
+    If not None, indicates that the plot should update
     The default is None.
-
-Returns
--------
-None
-.fi
-.PP
- 
-.SS " None etesim_pp_gui\&.SimpleGUI\&.setStatusBarOptions ( self,  event = \fCNone\fP)"
-
-.PP
-.nf
-Updates the the elements displayed in the status bar.
-
-Parameters
-----------
-event : tk.Event, optional
-    An event that can drive the call. The default is None.
-
-Returns
--------
-None
-.fi
-.PP
- 
-.SS " None etesim_pp_gui\&.SimpleGUI\&.setVals ( self)"
-
-.PP
-.nf
-Checks whether user has selected X, Y, or Z columns from the
-ComboBox (drop-down) and sets the x, y, and z vectors from
-those choices.
-
-If both X and Y are not selected, nothing happens.
-If X and Y are selected but not Z, then a 2D plot will be rendered.
-If X, Y, and Z are selected, a 3D plot will be rendered.
-
-Returns
--------
-None
-.fi
-.PP
- 
-.SS " None etesim_pp_gui\&.SimpleGUI\&.showHidePlotColors ( self)"
-
-.PP
-.nf
-Changes the ability to interact with the plotColor entry and button
-elements based upon whether autoColor has been selected
-
-Returns
--------
-None
-.fi
-.PP
- 
-.SS " None etesim_pp_gui\&.SimpleGUI\&.showHideXLimits ( self)"
-
-.PP
-.nf
-Determines whether or not to display the boxes for setting
-the minimum and maximum limits for the X variable.
-Checks the status of the tk.CheckBox in the GUI to determine
-behavior
-
-Returns
--------
-None
-.fi
-.PP
- 
-.SS " None etesim_pp_gui\&.SimpleGUI\&.showHideYLimits ( self)"
-
-.PP
-.nf
-Determines whether or not to display the boxes for setting
-the minimum and maximum limits for the Y variable.
-Checks the status of the tk.CheckBox in the GUI to determine
-behavior
-
-Returns
--------
-None
-.fi
-.PP
- 
-.SS " None etesim_pp_gui\&.SimpleGUI\&.showHideZLimits ( self)"
-
-.PP
-.nf
-Determines whether or not to display the boxes for setting
-the minimum and maximum limits for the Z variable.
-Checks the status of the tk.CheckBox in the GUI to determine
-behavior
+item : tkinter.Event, optional
+    Only passed when using a trace.
+    (tkinter Events are passed as triples.)
+    The default is None.
+mode : tkinter.Event, optional
+    Only passed when using a trace.
+    (tkinter Events are passed as triples.)
+    The default is None.
 
 Returns
 -------
@@ -961,6 +370,8 @@ None
  
 .SS " None etesim_pp_gui\&.SimpleGUI\&.waitToPlot ( self,  event = \fCNone\fP)"
 
+.PP
+Utility functions\&. 
 .PP
 .nf
 Creates a queue to wait for an event to finish. This allows users

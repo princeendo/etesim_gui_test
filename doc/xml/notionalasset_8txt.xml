@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="notionalasset_8txt" kind="file" language="C++">
+    <compoundname>notionalasset.txt</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Asset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal">Category:<sp/><sp/><sp/>Launcher</highlight></codeline>
+<codeline lineno="3"><highlight class="normal">Name:<sp/><sp/><sp/><sp/><sp/><sp/><sp/>Launcher_1</highlight></codeline>
+<codeline lineno="4"><highlight class="normal">UniqueID:<sp/><sp/><sp/>13224</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">ECEF<sp/>XYZ:<sp/><sp/><sp/>1116578.706<sp/>4841123.275<sp/>3985227.184</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">Run:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/notionalasset.txt"/>
+  </compounddef>
+</doxygen>

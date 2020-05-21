@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespaceplot__options__functions" kind="namespace" language="Python">
+    <compoundname>plot_options_functions</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="plot__options__functions_8py_1a231bc4f5495737e0e32bb17e818ba6f1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>tuple</type>
+        <definition> tuple plot_options_functions.getLimits</definition>
+        <argsstring>(gui, ax)</argsstring>
+        <name>getLimits</name>
+        <param>
+          <type>gui</type>
+          <defname>gui</defname>
+        </param>
+        <param>
+          <type>ax</type>
+          <defname>ax</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Returns the limits to be used in a plot based upon the default
+limits given by pyplot and the limits (potentially) specified
+by the user in the GUI
+
+Parameters
+----------
+ax : matplotlib.axes._subplots.AxesSubplot
+    A handle to the subplot which will have new limits
+    This cannot be type hinted because the type is created
+    on the fly
+
+Returns
+-------
+tuple
+    A six-element tuple of the minimum and maximum values for
+    x, y, and z, respectively</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/plot_options_functions.py" line="4" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/plot_options_functions.py" bodystart="4" bodyend="51"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/plot_options_functions.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

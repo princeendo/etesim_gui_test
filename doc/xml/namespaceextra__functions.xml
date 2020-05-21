@@ -1,0 +1,522 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespaceextra__functions" kind="namespace" language="Python">
+    <compoundname>extra_functions</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="extra__functions_8py_1ad766b135074db8b963cb13f9d2b282a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str extra_functions.absjoin</definition>
+        <argsstring>(*args)</argsstring>
+        <name>absjoin</name>
+        <param>
+          <type>*</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+<para>Utility functions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Performs os.path.join() on the arguments and then returns
+its absolute path
+
+Parameters
+----------
+*args : iterable
+    An iterable type of strings to be joined
+
+Returns
+-------
+str
+    An os-specific path</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" line="20" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" bodystart="20" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="extra__functions_8py_1a9756235bc8ee18965c5b150fca546549" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>tuple</type>
+        <definition> tuple extra_functions.hex2rgb</definition>
+        <argsstring>(str hexstring)</argsstring>
+        <name>hex2rgb</name>
+        <param>
+          <type>str</type>
+          <declname>hexstring</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>A method to convert 6-digit hexadecimal values to a triplet
+of values in the range (0-255)
+
+Parameters
+----------
+hexstring : str
+    A hex color string in the form #XXXXXX, where each X is
+    a hexadecimal number
+
+Returns
+-------
+tuple
+    A triplet of the form (A, B, C) where A, B, and C are integers
+    between 0 and 255 (inclusive)</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" line="39" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" bodystart="39" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="extra__functions_8py_1ab12a9b30cc0b012c26f7d1d0e3c1293c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str extra_functions.default_path</definition>
+        <argsstring>()</argsstring>
+        <name>default_path</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Gives an OS-specific default path to display in filedialog windows.
+
+Returns
+-------
+str
+    &apos;C:&apos; for Windows, &apos;/&apos; for Unix, &apos;//&apos; for Linux
+    Not currently defined for other operating systems</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" line="68" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" bodystart="68" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="extra__functions_8py_1add720e75a974b8ca49c908133850dfe6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def extra_functions.dictMap</definition>
+        <argsstring>()</argsstring>
+        <name>dictMap</name>
+        <briefdescription>
+<para>Item Renamers. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>A mapper to take columns from the input file and generate
+meaningful, human-readable columns. Intended to be used
+with the .rename() function for a dataframe.
+
+Returns
+-------
+dMap : dict
+    A mapping str-&gt;str intended to be used for dataframes</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" line="92" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" bodystart="92" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="extra__functions_8py_1a356bde56ef5ba0b82fd5af5836675c93" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>tuple</type>
+        <definition> tuple extra_functions.recordExtractor</definition>
+        <argsstring>(str datarecID, str sim=&apos;ETESim&apos;)</argsstring>
+        <name>recordExtractor</name>
+        <param>
+          <type>str</type>
+          <declname>datarecID</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>sim</declname>
+          <defval>&apos;ETESim&apos;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Extracts metadata from sim data records to get meaningful strings.
+
+The user will be able to get a record of the form (&lt;Model&gt;, &lt;Instance&gt;)
+
+Parameters
+----------
+datarecID: str
+    A string for which metadata will be extracted
+
+sim : str, optional
+    The simulation from which data extraction will occur
+    The default is &apos;ETESim&apos;.
+
+Returns
+-------
+tuple
+    An ordered pair of strings which contain the model and instance</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" line="120" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" bodystart="120" bodyend="160"/>
+      </memberdef>
+      <memberdef kind="function" id="extra__functions_8py_1adfd02a2f8d730aa28b391e041477cf1f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>list</type>
+        <definition> list extra_functions.dirTree</definition>
+        <argsstring>(str root)</argsstring>
+        <name>dirTree</name>
+        <param>
+          <type>str</type>
+          <declname>root</declname>
+        </param>
+        <briefdescription>
+<para>Directory parsing functions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generates a list containing a directory and all its subdirectories.
+
+Parameters
+----------
+root : str
+    A top-level directory to traverse.
+
+Returns
+-------
+list
+    The directory and all subdirectories.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" line="164" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" bodystart="164" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="function" id="extra__functions_8py_1ab91977d81e03c72953079b3a0a0dd425" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def extra_functions.assetGroups</definition>
+        <argsstring>(assetTextList)</argsstring>
+        <name>assetGroups</name>
+        <param>
+          <type>assetTextList</type>
+          <defname>assetTextList</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Reads a text list containing assets and separates them into
+a list of dictionaries where each dictionary contains the appropriate
+metadata for each asset.
+
+Parameters
+----------
+assetTextList : list
+    A list of strings where each element is a sequential line
+    from a text file.
+
+Returns
+-------
+groups : list
+    A list of dictionaries, each containing metadata for an asset.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" line="193" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" bodystart="193" bodyend="230"/>
+      </memberdef>
+      <memberdef kind="function" id="extra__functions_8py_1a47f39284287d07e959e01a7572951e4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def extra_functions.assetData</definition>
+        <argsstring>(str assetFile, str simulation=&apos;etesim&apos;)</argsstring>
+        <name>assetData</name>
+        <param>
+          <type>str</type>
+          <declname>assetFile</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>simulation</declname>
+          <defval>&apos;etesim&apos;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>A parser that performs the following:
+    (1) Strips out all empty lines
+    (2) Strips out leading/trailing whitespace and newline characters
+    (3) Converts each remaining line to an element in a list
+
+Parameters
+----------
+assetFile : str
+    A file to parse
+simulation : str, optional
+    A simulation specifier for &quot;smart&quot; splitting. The default is &apos;etesim&apos;.
+
+Returns
+-------
+objs : TYPE
+    DESCRIPTION.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" line="231" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" bodystart="231" bodyend="271"/>
+      </memberdef>
+      <memberdef kind="function" id="extra__functions_8py_1a20737d41735db316bc6012b720084115" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def extra_functions.allAssets</definition>
+        <argsstring>(dirlist, str assetfileRegex=&apos;assets.txt&apos;, str simulation=&apos;etesim&apos;)</argsstring>
+        <name>allAssets</name>
+        <param>
+          <type>dirlist</type>
+          <defname>dirlist</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>assetfileRegex</declname>
+          <defval>&apos;assets.txt&apos;</defval>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>simulation</declname>
+          <defval>&apos;etesim&apos;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Finds files that represent assets in a given list of directories to search
+
+Parameters
+----------
+dirlist : list
+    A list of strings, each one representing a valid directory
+assetfileRegex : str, optional
+    If any file in the dirlist matches this pattern, it is held.
+    The default is &apos;assets.txt&apos;.
+simulation : str, optional
+    A simulation specifier for &quot;smart&quot; searching. The default is &apos;etesim&apos;.
+
+Returns
+-------
+list
+    A list of strings, each one a path to a file containing asset metadata</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" line="272" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" bodystart="272" bodyend="307"/>
+      </memberdef>
+      <memberdef kind="function" id="extra__functions_8py_1ab55c42827b599f733f986909375f6bc5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def extra_functions.uniqueAssets</definition>
+        <argsstring>(assetList)</argsstring>
+        <name>uniqueAssets</name>
+        <param>
+          <type>assetList</type>
+          <defname>assetList</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Removes any duplicate assets from a list
+
+Parameters
+----------
+assetList : list
+    A list of assets.
+
+Returns
+-------
+assets : list
+    A list of assets with duplicates removed.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" line="308" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" bodystart="308" bodyend="338"/>
+      </memberdef>
+      <memberdef kind="function" id="extra__functions_8py_1a0390e9c0206f156296f0637e27abea5c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>pd.DataFrame</type>
+        <definition> pd.DataFrame extra_functions.assetsDF</definition>
+        <argsstring>(assetList, bool unique=False)</argsstring>
+        <name>assetsDF</name>
+        <param>
+          <type>assetList</type>
+          <defname>assetList</defname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>unique</declname>
+          <defval>False</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Converts a list of FixedAsset type into a single DataFrame
+containing the relevant metadata
+
+Parameters
+----------
+assetList : list
+    A list of assets
+unique : bool, optional
+    A flag for removing duplicate assets. The default is False.
+
+Returns
+-------
+Pandas DataFrame
+    An indexed list of fixed assets.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" line="339" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" bodystart="339" bodyend="368"/>
+      </memberdef>
+      <memberdef kind="function" id="extra__functions_8py_1af8f14a856bbcd398ae18a86b0ebeca52" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def extra_functions.assetColMap</definition>
+        <argsstring>(tk.StringVar colVal)</argsstring>
+        <name>assetColMap</name>
+        <param>
+          <type>tk.StringVar</type>
+          <declname>colVal</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>For a given user selection, lists the location the values of that
+selection should go in a DataFrame.
+
+Example: User selects &apos;Target Position - North&apos; as a plotting region.
+        That will map to being in the &apos;y&apos; direction.
+
+Parameters
+----------
+colVal : tk.StringVar
+    A GUI variable that holds a string or a None.
+
+Returns
+-------
+str
+    This is meant to be passed to a DataFrame. This lists the column
+    in the DataFrame that the value will be mapped to for consistent
+    plotting. Returns None if the value is invalid.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" line="369" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" bodystart="369" bodyend="407"/>
+      </memberdef>
+      <memberdef kind="function" id="extra__functions_8py_1ad3947891d92b7485b20e9281761943a3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>list</type>
+        <definition> list extra_functions.allMissileFiles</definition>
+        <argsstring>(list dirlist, str mfile_regex=&apos;NotionalETEOutput(\\d+).xlsx&apos;)</argsstring>
+        <name>allMissileFiles</name>
+        <param>
+          <type>list</type>
+          <declname>dirlist</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>mfile_regex</declname>
+          <defval>&apos;NotionalETEOutput(\\d+).xlsx&apos;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generates a list of files from the supplied directory list
+which match the specified pattern.
+
+Parameters
+----------
+dirlist : list
+    A list of directories to check for files
+mfile_regex : str, optional
+    The matching criterion (regular expression).
+    The default is &apos;NotionalETEOutput(\\d+).xlsx&apos;.
+
+Returns
+-------
+list
+    The path for each file matching the criterion.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" line="408" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" bodystart="408" bodyend="439"/>
+      </memberdef>
+      <memberdef kind="function" id="extra__functions_8py_1a1f27c21795c733f6ab5657067b00466f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>pd.DataFrame</type>
+        <definition> pd.DataFrame extra_functions.combinedMissleDF</definition>
+        <argsstring>(list missileFileList)</argsstring>
+        <name>combinedMissleDF</name>
+        <param>
+          <type>list</type>
+          <declname>missileFileList</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Combines a list of input files into a single DataFrame by
+generating a single DataFrame for each file and using the
+concatenation function to generate a single object.
+
+Transforms Path and uniqueID into categorical variables because
+it&apos;s going to have a lot of repeats
+
+Parameters
+----------
+missileFileList : list
+    The path to each file to be combined into the DataFrame
+
+Returns
+-------
+pd.DataFrame
+    A Pandas DataFrame of the combined object</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" line="440" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" bodystart="440" bodyend="463"/>
+      </memberdef>
+      <memberdef kind="function" id="extra__functions_8py_1a1f41997b30ca57f0395082c41b76d99d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>pd.DataFrame</type>
+        <definition> pd.DataFrame extra_functions.makeDataFrameAddPath</definition>
+        <argsstring>(str inFile)</argsstring>
+        <name>makeDataFrameAddPath</name>
+        <param>
+          <type>str</type>
+          <declname>inFile</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Makes a DataFrame from an Excel file and adds the path
+of the file as a new column
+
+Parameters
+----------
+inFile : str
+    An Excel spreadsheet that has panel data
+
+Returns
+-------
+df : pd.DataFrame
+    A Pandas DataFrame of the data with one additional column added</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" line="464" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" bodystart="464" bodyend="484"/>
+      </memberdef>
+      <memberdef kind="function" id="extra__functions_8py_1a5575a190596e8914f6b42fe7da53027a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>pd.DataFrame</type>
+        <definition> pd.DataFrame extra_functions.makeDF</definition>
+        <argsstring>(str inFile)</argsstring>
+        <name>makeDF</name>
+        <param>
+          <type>str</type>
+          <declname>inFile</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generates a DataFrame from an ETESim input and does some data
+extraction to add additional metadata columns.
+
+Parameters
+----------
+inFile : str
+    A path to the ETESim input file
+
+Returns
+-------
+df : Pandas DataFrame
+    An indexed record of each time step of the output data</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" line="485" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" bodystart="485" bodyend="509"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/extra_functions.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

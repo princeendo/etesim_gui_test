@@ -1,0 +1,90 @@
+.TH "element_builder.guiTextLabel" 3 "Thu May 21 2020" "ETESim Plotting GUI" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+element_builder.guiTextLabel
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "None \fB__init__\fP (tk\&.Tk gui, tk\&.Frame parent, str style, **kwargs)"
+.br
+.ti -1c
+.RI "None \fBset\fP (tk\&.Tk gui, str newText)"
+.br
+.ti -1c
+.RI "str \fBget\fP (gui)"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS " None element_builder\&.guiTextLabel\&.__init__ (tk\&.Tk gui, tk\&.Frame parent, str style, ** kwargs)"
+
+.PP
+.nf
+An all-in-one class designed to create a label and place it in the
+GUI without having to write a large portion of commands.
+
+Parameters
+----------
+gui : tk.Tk
+    A tkinter GUI
+parent : tk.Frame
+    The parent for the label
+style : str
+    Options are 'pack' or 'grid' to specify tkinter method for display
+**kwargs : dict
+    Keyword arguments for the label options and the display options
+
+Returns
+-------
+None
+.fi
+.PP
+ 
+.SH "Member Function Documentation"
+.PP 
+.SS " str element_builder\&.guiTextLabel\&.get ( gui)"
+
+.PP
+.nf
+Gets the current value of the label
+
+Parameters
+----------
+gui : tk.Tk
+    A tkinter GUI
+
+Returns
+-------
+str
+    The value of the label.
+.fi
+.PP
+ 
+.SS " None element_builder\&.guiTextLabel\&.set (tk\&.Tk gui, str newText)"
+
+.PP
+.nf
+Sets the text value for the label
+
+Parameters
+----------
+gui : tk.Tk
+    A tkinter GUI
+newText : str
+    The new value for the label
+
+Returns
+-------
+None
+.fi
+.PP
+ 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ETESim Plotting GUI from the source code\&.

@@ -16,158 +16,75 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1704" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1704" bodyend="-1"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="706" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="706" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="func">
-      <memberdef kind="function" id="etesim__pp__gui_8py_1ae41520948569e1fb2a8ed6eb19457cf3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>def</type>
-        <definition>def etesim_pp_gui.dictMap</definition>
-        <argsstring>()</argsstring>
-        <name>dictMap</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>A mapper to take columns from the input file and generate
-meaningful, human-readable columns. Intended to be used
-with the .rename() function for a dataframe.
-
-Returns
--------
-dMap : dict
-    A mapping str-&gt;str intended to be used for dataframes</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1562" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1562" bodyend="1589"/>
-      </memberdef>
-      <memberdef kind="function" id="etesim__pp__gui_8py_1a45ad8e5be3ccde5104607bda2d09a334" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>list</type>
-        <definition> list etesim_pp_gui.dirTree</definition>
-        <argsstring>(str root)</argsstring>
-        <name>dirTree</name>
+      <memberdef kind="function" id="etesim__pp__gui_8py_1abf2f82b0858b2416951f267ecc1f1d93" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None etesim_pp_gui.makePlot</definition>
+        <argsstring>(plt.Figure ax, tuple itPack, tuple options)</argsstring>
+        <name>makePlot</name>
         <param>
-          <type>str</type>
-          <declname>root</declname>
+          <type>plt.Figure</type>
+          <declname>ax</declname>
+        </param>
+        <param>
+          <type>tuple</type>
+          <declname>itPack</declname>
+        </param>
+        <param>
+          <type>tuple</type>
+          <declname>options</declname>
         </param>
         <briefdescription>
-<para>Directory parsing functions. </para>
         </briefdescription>
         <detaileddescription>
-<para><verbatim>Generates a list containing a directory and all its subdirectories.
+<para><verbatim>Generates a plot for the specified packed data with given options on
+the supplied plot handle
 
 Parameters
 ----------
-root : str
-    A top-level directory to traverse.
+ax : plt.Figure
+    A handle for the figure to plot upon
+itPack : tuple
+    A pack containing the following:
+        k:          An index for keeping track of colors/progress
+        run:        The run number of the trajectory
+        model:      The model of the object whose trajectory is plotted
+        instance:   The simulation instance of the object
+        df:         A DataFrame containing the trajectory data
+options : tuple
+    A pack containing the following:
+        plotStyle : str
+            Choices are &quot;line&quot; or &quot;scatter&quot;
+        showAllRuns : bool
+            Whether to display all runs at once or only certain ones
+        transparentRuns : bool
+            Whether, when showAllRuns is False, to display the other runs
+            faded out
+        specialRun : int
+            The user-specified run to analyze
+        autoColor : bool
+            Whether the trajectories should be colored automatically
+        plotColor : str
+            A user-specified color for trajectories
+        dimensions : int
+            Choices are 2 or 3
+        lineStyle : str
+            Options for different line styles. (Full, dashed, etc.)
+        scatterStyle : str
+            Options for different scatter plot markers.
+        colors : str
+            The colors to use if autoColor is set to True
 
 Returns
 -------
-list
-    The directory and all subdirectories.</verbatim> </para>
+None</verbatim> </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1594" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1594" bodyend="1622"/>
-      </memberdef>
-      <memberdef kind="function" id="etesim__pp__gui_8py_1aee7722339c87a1c8fb9fa836e989842f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>list</type>
-        <definition> list etesim_pp_gui.allMissileFiles</definition>
-        <argsstring>(list dirlist, str mfile_regex=&apos;NotionalETEOutput(\\d+).xlsx&apos;)</argsstring>
-        <name>allMissileFiles</name>
-        <param>
-          <type>list</type>
-          <declname>dirlist</declname>
-        </param>
-        <param>
-          <type>str</type>
-          <declname>mfile_regex</declname>
-          <defval>&apos;NotionalETEOutput(\\d+).xlsx&apos;</defval>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Generates a list of files from the supplied directory list
-which match the specified pattern.
-
-Parameters
-----------
-dirlist : list
-    A list of directories to check for files
-mfile_regex : str, optional
-    The matching criterion (regular expression).
-    The default is &apos;NotionalETEOutput(\\d+).xlsx&apos;.
-
-Returns
--------
-list
-    The path for each file matching the criterion.</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1623" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1623" bodyend="1654"/>
-      </memberdef>
-      <memberdef kind="function" id="etesim__pp__gui_8py_1a5fcaa592e0ccec4849009fbb71c1e0a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>pd.DataFrame</type>
-        <definition> pd.DataFrame etesim_pp_gui.combinedMissleDF</definition>
-        <argsstring>(list missileFileList)</argsstring>
-        <name>combinedMissleDF</name>
-        <param>
-          <type>list</type>
-          <declname>missileFileList</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Combines a list of input files into a single DataFrame by
-generating a single DataFrame for each file and using the
-concatenation function to generate a single object.
-
-Transforms Path and uniqueID into categorical variables because
-it&apos;s going to have a lot of repeats
-
-Parameters
-----------
-missileFileList : list
-    The path to each file to be combined into the DataFrame
-
-Returns
--------
-pd.DataFrame
-    A Pandas DataFrame of the combined object</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1655" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1655" bodyend="1680"/>
-      </memberdef>
-      <memberdef kind="function" id="etesim__pp__gui_8py_1ab3d5d91917dbdcdbad50e449c75374f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>pd.DataFrame</type>
-        <definition> pd.DataFrame etesim_pp_gui.makeDataFrameAddPath</definition>
-        <argsstring>(str inFile)</argsstring>
-        <name>makeDataFrameAddPath</name>
-        <param>
-          <type>str</type>
-          <declname>inFile</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Makes a DataFrame from an Excel file and adds the path
-of the file as a new column
-
-Parameters
-----------
-inFile : str
-    An Excel spreadsheet that has panel data
-
-Returns
--------
-df : pd.DataFrame
-    A Pandas DataFrame of the data with one additional column added</verbatim> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="1681" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="1681" bodyend="1702"/>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" line="636" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/etesim_pp_gui.py" bodystart="636" bodyend="704"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

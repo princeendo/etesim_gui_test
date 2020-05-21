@@ -2,7 +2,12 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
   <compounddef id="dir_80bbec55cfc5eb0243706b04b7cdcc9f" kind="dir">
     <compoundname>C:/Users/white/Documents/etesim_gui_test/basic_gui</compoundname>
+    <innerfile refid="callback__functions_8py">callback_functions.py</innerfile>
+    <innerfile refid="data__input__objects_8py">data_input_objects.py</innerfile>
+    <innerfile refid="element__builder_8py">element_builder.py</innerfile>
     <innerfile refid="etesim__pp__gui_8py">etesim_pp_gui.py</innerfile>
+    <innerfile refid="extra__functions_8py">extra_functions.py</innerfile>
+    <innerfile refid="plot__options__functions_8py">plot_options_functions.py</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

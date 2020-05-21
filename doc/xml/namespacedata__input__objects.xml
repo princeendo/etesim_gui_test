@@ -1,0 +1,414 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespacedata__input__objects" kind="namespace" language="Python">
+    <compoundname>data_input_objects</compoundname>
+    <innerclass refid="classdata__input__objects_1_1_e_n_u" prot="public">data_input_objects::ENU</innerclass>
+    <innerclass refid="classdata__input__objects_1_1_e_t_e_sim___input" prot="public">data_input_objects::ETESim_Input</innerclass>
+    <innerclass refid="classdata__input__objects_1_1_fixed_asset" prot="public">data_input_objects::FixedAsset</innerclass>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="data__input__objects_8py_1afb3e693cc54d95e6c0debaf53127b619" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>data_input_objects.Vector</definition>
+        <argsstring></argsstring>
+        <name>Vector</name>
+        <initializer>=  List[float]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="9" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="data__input__objects_8py_1a62a4b12d930e75b4f85e34893d775614" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>data_input_objects.Matrix</definition>
+        <argsstring></argsstring>
+        <name>Matrix</name>
+        <initializer>=  NewType(&apos;Matrix&apos;, float)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="10" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="data__input__objects_8py_1a7c4932689bbf38e2de5e5f0b236f8acc" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>data_input_objects.EastNorthUp</definition>
+        <argsstring></argsstring>
+        <name>EastNorthUp</name>
+        <initializer>=  namedtuple(&apos;EastNorthUp&apos;, [&apos;east&apos;, &apos;north&apos;, &apos;up&apos;])</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="12" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="data__input__objects_8py_1a2bc26fa22530317a156cada42b61a1a1" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>data_input_objects.EarthCenterEarthFixed</definition>
+        <argsstring></argsstring>
+        <name>EarthCenterEarthFixed</name>
+        <initializer>=  namedtuple(&apos;EarthCenterEarthFixed&apos;, [&apos;x&apos;, &apos;y&apos;, &apos;z&apos;])</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="13" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="data__input__objects_8py_1af7ac8f8f339fd0703a6265a99079a2dd" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>data_input_objects.LatLonAlt</definition>
+        <argsstring></argsstring>
+        <name>LatLonAlt</name>
+        <initializer>=  namedtuple(&apos;LatLonAlt&apos;, [&apos;lat&apos;, &apos;lon&apos;, &apos;alt&apos;])</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="14" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="data__input__objects_8py_1a69992b7857912179e5eaf681bf929f7f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Vector</type>
+        <definition> Vector data_input_objects.ecef2enu</definition>
+        <argsstring>(Vector objECEF, Vector refECEF)</argsstring>
+        <name>ecef2enu</name>
+        <param>
+          <type>Vector</type>
+          <declname>objECEF</declname>
+        </param>
+        <param>
+          <type>Vector</type>
+          <declname>refECEF</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Converts ECEF coordinates to ENU coordinates
+
+Parameters
+----------
+objECEF : Vector
+    The ECEF location of the object to transform.
+refECEF : Vector
+    The ECEF location of the origin.
+
+Returns
+-------
+Vector
+    The ENU coordinates of the object.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="605" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="605" bodyend="632"/>
+      </memberdef>
+      <memberdef kind="function" id="data__input__objects_8py_1a4c5aad762bfe286c1c36259fb543a226" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Vector</type>
+        <definition> Vector data_input_objects.lla2enu</definition>
+        <argsstring>(float objLat, float objLon, float objAlt, float refLat, float refLon, float refAlt)</argsstring>
+        <name>lla2enu</name>
+        <param>
+          <type>float</type>
+          <declname>objLat</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>objLon</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>objAlt</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>refLat</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>refLon</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>refAlt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Converts coordinates in latitude, longitude, and altitude to
+ENU coordinates.
+
+Parameters
+----------
+objLat : float
+    Latitude of the object in degrees.
+objLon : float
+    Longitude of the object in degrees.
+objAlt : float
+    Altitude of the object in meters.
+refLat : float
+    Latitude of the ENU origin in degrees.
+refLon : float
+    Longitude of the ENU origin in degrees.
+refAlt : float
+    Altitude of the ENU origin in meters.
+
+Returns
+-------
+Vector
+    The coordinates in ENU.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="633" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="633" bodyend="671"/>
+      </memberdef>
+      <memberdef kind="function" id="data__input__objects_8py_1a9a1b28fac7dac9210f13d046ad1db557" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Matrix</type>
+        <definition> Matrix data_input_objects.ecef2enuMatrix</definition>
+        <argsstring>(float refLat, float refLon)</argsstring>
+        <name>ecef2enuMatrix</name>
+        <param>
+          <type>float</type>
+          <declname>refLat</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>refLon</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generates a matrix to transform ECEF coordinates to ENU coordinates.
+
+Parameters
+----------
+refLat : float
+    The ENU origin&apos;s latitude in degrees.
+refLon : float
+    The ENU origin&apos;s longitude in degrees.
+
+Returns
+-------
+Matrix
+    A 3x3 Numpy Matrix that is the transformation from ECEF to ENU</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="672" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="672" bodyend="702"/>
+      </memberdef>
+      <memberdef kind="function" id="data__input__objects_8py_1a12a74a992fe88a6569f9b81de8f454fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Matrix</type>
+        <definition> Matrix data_input_objects.enu2ecefMatrix</definition>
+        <argsstring>(float refLat, float refLon)</argsstring>
+        <name>enu2ecefMatrix</name>
+        <param>
+          <type>float</type>
+          <declname>refLat</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>refLon</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generates a matrix to transform ENU coordinates to ECEF coordinates.
+
+Parameters
+----------
+refLat : float
+    The ENU origin&apos;s latitude in degrees.
+refLon : float
+    The ENU origin&apos;s longitude in degrees.
+
+Returns
+-------
+Matrix
+    A 3x3 Numpy Matrix that is the transformation from ENU to ECEF</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="703" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="703" bodyend="723"/>
+      </memberdef>
+      <memberdef kind="function" id="data__input__objects_8py_1ae5eb8761ee676c257129d5aeedf296c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Vector</type>
+        <definition> Vector data_input_objects.enu2ecef</definition>
+        <argsstring>(float objEast, float objNorth, float objUp, float refLat, float refLon, float refAlt)</argsstring>
+        <name>enu2ecef</name>
+        <param>
+          <type>float</type>
+          <declname>objEast</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>objNorth</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>objUp</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>refLat</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>refLon</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>refAlt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Converts ENU coordinates into ECEF coordinates.
+
+Parameters
+----------
+objEast : float
+    The object&apos;s ENU-East location
+objNorth : float
+    The object&apos;s ENU-North location
+objUp : float
+    The object&apos;s ENU-Up location
+refLat : float
+    The ENU origin&apos;s latitude.
+refLon : float
+    The ENU origin&apos;s longitude.
+refAlt : float
+    The ENU origin&apos;s altitude.
+
+Returns
+-------
+Vector
+    The coordinates in ECEF.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="724" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="724" bodyend="758"/>
+      </memberdef>
+      <memberdef kind="function" id="data__input__objects_8py_1a7ce1ed66141be30d49e277e9358fb0cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Vector</type>
+        <definition> Vector data_input_objects.ecef2lla</definition>
+        <argsstring>(float x, float y, float z, float radius=6378137.0, float flattening=0.0033528106647474805, float eccentricity=0.08181919084261345)</argsstring>
+        <name>ecef2lla</name>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>radius</declname>
+          <defval>6378137.0</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>flattening</declname>
+          <defval>0.0033528106647474805</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>eccentricity</declname>
+          <defval>0.08181919084261345</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Converts XYZ ECEF coordinates to latitude, longitude, and altitude.
+Uses WGS84 Earth parameters
+
+Parameters
+----------
+x : float
+    X coordinate in ECEF
+y : float
+    Y coordinate in ECEF
+z : float
+    Z coordinate in ECEF
+radius : float, optional
+    The radius of the earth, in meters.
+    The default is 6378137.0.
+flattening : float, optional
+    The flattening constant of the earth.
+    The default is 0.0033528106647474805.
+eccentricity : float, optional
+    The eccentricity of the Earth ellipsoid model.
+    The default is 0.08181919084261345.
+
+Returns
+-------
+Vector
+    Latitude, longitude, and altitude of object in degrees, degrees,
+    and meters, respectively</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="759" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="759" bodyend="823"/>
+      </memberdef>
+      <memberdef kind="function" id="data__input__objects_8py_1adf8450f99e87f078730b39e48eac9a02" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Vector</type>
+        <definition> Vector data_input_objects.lla2ecef</definition>
+        <argsstring>(float lat, float lon, float alt)</argsstring>
+        <name>lla2ecef</name>
+        <param>
+          <type>float</type>
+          <declname>lat</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>lon</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>alt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Converts latitude/longitude/altitude coordinates to
+ECEF XYZ coordinates. Uses WGS84 Earth model.
+
+Parameters
+----------
+lat : float
+    Latitude of the object in degrees
+lon : float
+    Longitude of the object in degrees
+alt : float
+    Altitude of the object in meters
+
+Returns
+-------
+Vector
+    The XYZ coordinates in ECEF</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="824" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="824" bodyend="856"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

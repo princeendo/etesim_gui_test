@@ -1,0 +1,519 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="classdata__input__objects_1_1_fixed_asset" kind="class" language="Python" prot="public">
+    <compoundname>data_input_objects::FixedAsset</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classdata__input__objects_1_1_fixed_asset_1abaf127f947846a6860716ee7ff61a6b3" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>data_input_objects.FixedAsset::sim</definition>
+        <argsstring></argsstring>
+        <name>sim</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="63" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdata__input__objects_1_1_fixed_asset_1af6e78da0bab17cc53b01b7fffd021397" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>data_input_objects.FixedAsset::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="64" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdata__input__objects_1_1_fixed_asset_1a349dd8f837a5a2b418cc0c92ef1faee9" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>data_input_objects.FixedAsset::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="65" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdata__input__objects_1_1_fixed_asset_1a645e81d3485eaae955e944b9e5b8c820" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>data_input_objects.FixedAsset::id</definition>
+        <argsstring></argsstring>
+        <name>id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="66" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdata__input__objects_1_1_fixed_asset_1a7401d0120368341dab484def976bca1f" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>data_input_objects.FixedAsset::runnum</definition>
+        <argsstring></argsstring>
+        <name>runnum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="67" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdata__input__objects_1_1_fixed_asset_1ae798e2be9610699a40d57f7861ceea62" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>data_input_objects.FixedAsset::z</definition>
+        <argsstring></argsstring>
+        <name>z</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="70" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdata__input__objects_1_1_fixed_asset_1ab6b50a39d7cd34650aee6c66ed951a40" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>data_input_objects.FixedAsset::alt</definition>
+        <argsstring></argsstring>
+        <name>alt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="71" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classdata__input__objects_1_1_fixed_asset_1a391c4dfb8d2c91aa15e474b389eb0e90" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>data_input_objects.FixedAsset::up</definition>
+        <argsstring></argsstring>
+        <name>up</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="72" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classdata__input__objects_1_1_fixed_asset_1a709eebd84cf1fb5e1fbd8f411fe67508" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None data_input_objects.FixedAsset.__init__</definition>
+        <argsstring>(self, str simulation, str name, str category, int unique_id, int run_number, *Vector ecef=None, Vector lla=None, Vector enu=None)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>simulation</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>category</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>unique_id</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>run_number</declname>
+        </param>
+        <param>
+          <type>*Vector</type>
+          <declname>ecef</declname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>Vector</type>
+          <declname>lla</declname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>Vector</type>
+          <declname>enu</declname>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>A class for handling fixed assets. Stores metadata and locations
+in several possible coordinate systems.
+
+Parameters
+----------
+simulation : str
+    The simulation which generated the asset.
+name : str
+    The name of the asset.
+category : str
+    The category (e.g., radar) of the asset.
+unique_id : int
+    An ID often specified by the simulation.
+run_number : int
+    The run number, often specified by the simulation.
+ecef : Vector, optional
+    ECEF asset coordinates (in meters) as 3-tuple. The default is None.
+lla : Vector, optional
+    Latitude (deg), Longitude (deg), and Altitude (m)
+    asset coordinates as 3-tuple. The default is None.
+enu : Vector, optional
+     ENU asset coordinates (in meters) as 3-tuple. The default is None.
+
+Raises
+------
+ValueError
+    If no coordinate system is specified, the instance is invalid.
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="23" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="23" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_fixed_asset_1aed574ef34f2a1806fc895009702eb3ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None data_input_objects.FixedAsset.set_ecef</definition>
+        <argsstring>(self, float x, float y, float z)</argsstring>
+        <name>set_ecef</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Sets the ECEF location of the asset.
+
+Parameters
+----------
+x : float
+    The x location in meters
+y : float
+    The y location in meters
+z : float
+    The z location in meters
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="85" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="85" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_fixed_asset_1a6a34c0a954cd5b45ec2d93c7b559f7ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None data_input_objects.FixedAsset.set_lla</definition>
+        <argsstring>(self, float lat, float lon, float alt)</argsstring>
+        <name>set_lla</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>lat</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>lon</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>alt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Sets the latitude, longitude, and altitude of the asset.
+
+Parameters
+----------
+lat : float
+    The latitude location in degrees
+lon : float
+    The longitude location in degrees
+alt : float
+    The altitude location in meters
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="105" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="105" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_fixed_asset_1aed2ce10f2ad6b14f28eabaee86152d1a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None data_input_objects.FixedAsset.set_enu</definition>
+        <argsstring>(self, float east, float north, float up)</argsstring>
+        <name>set_enu</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>east</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>north</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>up</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Sets the ENU location of the asset.
+
+Parameters
+----------
+east : float
+    The east location in meters
+north : float
+    The north location in meters
+up : float
+    The up location in meters
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="125" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="125" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_fixed_asset_1a56c35067f70c5556f07f0ecaec8f6cfb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None data_input_objects.FixedAsset.gen_ecef</definition>
+        <argsstring>(self)</argsstring>
+        <name>gen_ecef</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generates ECEF XYZ coordinates for the class instance given
+Latitude (deg), Longitude (deg), and Altitude (m) coordinates
+coordinates for the instance given the following conditions:
+    (1) ECEF coordinates do not already exist
+    (2) Lat/Lon/Alt coordinates exist
+
+Raises
+------
+ValueError
+    If Lat/Lon/Alt values do not exist and ECEF values do not
+    exist, there is no valid way to generate the coordinates.
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="145" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="145" bodyend="170"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_fixed_asset_1ac5d5fe7312c31b71fc4012ff615a8f69" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None data_input_objects.FixedAsset.gen_enu</definition>
+        <argsstring>(self, float refLat, float refLon, float refAlt)</argsstring>
+        <name>gen_enu</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>refLat</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>refLon</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>refAlt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generates ENU coordinates for the asset given the
+latitude (deg), longitude (deg), and altitude (m) coordinates
+for the origin.
+
+Parameters
+----------
+refLat : float
+    The reference latitude in degrees.
+refLon : float
+    The reference longitude in degrees.
+refAlt : float
+    The reference altitude in meters.
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="171" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="171" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_fixed_asset_1ad2fcc78f683f3141c91b9dfc46f1b834" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None data_input_objects.FixedAsset.gen_lla</definition>
+        <argsstring>(self)</argsstring>
+        <name>gen_lla</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generates Latitude (deg), Longitude (deg), and Altitude (m)
+coordinates for the instance given the following conditions:
+    (1) Lat/Lon/Alt coordinates do not already exist
+    (2) ECEF Coordinates exist
+
+An error is raised if neither condition (1) or (2) are valid.
+
+Raises
+------
+ValueError
+    If Lat/Lon/Alt values do not exist and ECEF values do not
+    exist, there is no valid way to generate the coordinates.
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="194" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="194" bodyend="220"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_fixed_asset_1ae53190491618e034727f274d99375ffd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool data_input_objects.FixedAsset.__eq__</definition>
+        <argsstring>(self, asset)</argsstring>
+        <name>__eq__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>asset</type>
+          <defname>asset</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Overloads the &quot;=&quot; operator to determine instance equality.
+Instances are considered equal if all these criteria are met:
+    (1) They are generated by the same simulation
+    (2) They have the same name
+    (3) They have the same type (category)
+    (4) Each member variable describing coordinate data matches
+
+Parameters
+----------
+asset : FixedAsset
+    An instance of the FixedAsset class
+
+Returns
+-------
+bool
+    True if assets are equal, False otherwise</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="221" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="221" bodyend="267"/>
+      </memberdef>
+      <memberdef kind="function" id="classdata__input__objects_1_1_fixed_asset_1a11717b0c3f0eeb4a4b507590c9642245" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>pd.DataFrame</type>
+        <definition> pd.DataFrame data_input_objects.FixedAsset.df</definition>
+        <argsstring>(self, int index=0)</argsstring>
+        <name>df</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="268" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="268" bodyend="286"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" line="22" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/data_input_objects.py" bodystart="22" bodyend="287"/>
+    <listofallmembers>
+      <member refid="classdata__input__objects_1_1_fixed_asset_1ae53190491618e034727f274d99375ffd" prot="public" virt="non-virtual"><scope>data_input_objects::FixedAsset</scope><name>__eq__</name></member>
+      <member refid="classdata__input__objects_1_1_fixed_asset_1a709eebd84cf1fb5e1fbd8f411fe67508" prot="public" virt="non-virtual"><scope>data_input_objects::FixedAsset</scope><name>__init__</name></member>
+      <member refid="classdata__input__objects_1_1_fixed_asset_1ab6b50a39d7cd34650aee6c66ed951a40" prot="public" virt="non-virtual"><scope>data_input_objects::FixedAsset</scope><name>alt</name></member>
+      <member refid="classdata__input__objects_1_1_fixed_asset_1a11717b0c3f0eeb4a4b507590c9642245" prot="public" virt="non-virtual"><scope>data_input_objects::FixedAsset</scope><name>df</name></member>
+      <member refid="classdata__input__objects_1_1_fixed_asset_1a56c35067f70c5556f07f0ecaec8f6cfb" prot="public" virt="non-virtual"><scope>data_input_objects::FixedAsset</scope><name>gen_ecef</name></member>
+      <member refid="classdata__input__objects_1_1_fixed_asset_1ac5d5fe7312c31b71fc4012ff615a8f69" prot="public" virt="non-virtual"><scope>data_input_objects::FixedAsset</scope><name>gen_enu</name></member>
+      <member refid="classdata__input__objects_1_1_fixed_asset_1ad2fcc78f683f3141c91b9dfc46f1b834" prot="public" virt="non-virtual"><scope>data_input_objects::FixedAsset</scope><name>gen_lla</name></member>
+      <member refid="classdata__input__objects_1_1_fixed_asset_1a645e81d3485eaae955e944b9e5b8c820" prot="public" virt="non-virtual"><scope>data_input_objects::FixedAsset</scope><name>id</name></member>
+      <member refid="classdata__input__objects_1_1_fixed_asset_1af6e78da0bab17cc53b01b7fffd021397" prot="public" virt="non-virtual"><scope>data_input_objects::FixedAsset</scope><name>name</name></member>
+      <member refid="classdata__input__objects_1_1_fixed_asset_1a7401d0120368341dab484def976bca1f" prot="public" virt="non-virtual"><scope>data_input_objects::FixedAsset</scope><name>runnum</name></member>
+      <member refid="classdata__input__objects_1_1_fixed_asset_1aed574ef34f2a1806fc895009702eb3ee" prot="public" virt="non-virtual"><scope>data_input_objects::FixedAsset</scope><name>set_ecef</name></member>
+      <member refid="classdata__input__objects_1_1_fixed_asset_1aed2ce10f2ad6b14f28eabaee86152d1a" prot="public" virt="non-virtual"><scope>data_input_objects::FixedAsset</scope><name>set_enu</name></member>
+      <member refid="classdata__input__objects_1_1_fixed_asset_1a6a34c0a954cd5b45ec2d93c7b559f7ff" prot="public" virt="non-virtual"><scope>data_input_objects::FixedAsset</scope><name>set_lla</name></member>
+      <member refid="classdata__input__objects_1_1_fixed_asset_1abaf127f947846a6860716ee7ff61a6b3" prot="public" virt="non-virtual"><scope>data_input_objects::FixedAsset</scope><name>sim</name></member>
+      <member refid="classdata__input__objects_1_1_fixed_asset_1a349dd8f837a5a2b418cc0c92ef1faee9" prot="public" virt="non-virtual"><scope>data_input_objects::FixedAsset</scope><name>type</name></member>
+      <member refid="classdata__input__objects_1_1_fixed_asset_1a391c4dfb8d2c91aa15e474b389eb0e90" prot="public" virt="non-virtual"><scope>data_input_objects::FixedAsset</scope><name>up</name></member>
+      <member refid="classdata__input__objects_1_1_fixed_asset_1ae798e2be9610699a40d57f7861ceea62" prot="public" virt="non-virtual"><scope>data_input_objects::FixedAsset</scope><name>z</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hex2rgb_9',['hex2rgb',['../classetesim__pp__gui_1_1_simple_g_u_i.html#a098c1de306c0f972858faafc58351f5a',1,'etesim_pp_gui::SimpleGUI']]]
+  ['norm_26',['norm',['../classdata__input__objects_1_1_e_n_u.html#aa7c8c2dbeae8317101d4d078ebf29ba2',1,'data_input_objects::ENU']]]
 ];

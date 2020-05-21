@@ -1,0 +1,540 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.18">
+  <compounddef id="namespaceelement__builder" kind="namespace" language="Python">
+    <compoundname>element_builder</compoundname>
+    <innerclass refid="classelement__builder_1_1gui_text_label" prot="public">element_builder::guiTextLabel</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="element__builder_8py_1a428d94b957f4d28fdc53f6104543eeae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def element_builder.splitKwargs</definition>
+        <argsstring>(**kwargs)</argsstring>
+        <name>splitKwargs</name>
+        <param>
+          <type>**</type>
+          <declname>kwargs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Allows a user to pass a single keyword argument dictionary when creating
+a label and &quot;smartly&quot; splits the keywords into the keywords needed
+for creating labels and for packing or gridding the label.
+
+Parameters
+----------
+**kwargs : TYPE
+    DESCRIPTION.
+
+Returns
+-------
+labelArgs : TYPE
+    DESCRIPTION.
+showArgs : TYPE
+    DESCRIPTION.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" line="166" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" bodystart="166" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="element__builder_8py_1abf276897dbd9c4edd74e2b9c3319a01b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def element_builder.buildXYZFieldSelectors</definition>
+        <argsstring>(parent, values, plotFunc)</argsstring>
+        <name>buildXYZFieldSelectors</name>
+        <param>
+          <type>parent</type>
+          <defname>parent</defname>
+        </param>
+        <param>
+          <type>values</type>
+          <defname>values</defname>
+        </param>
+        <param>
+          <type>plotFunc</type>
+          <defname>plotFunc</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Builds the elements for selecting which columns to plot from input data
+
+Parameters
+----------
+parent : tk.Frame
+    The holder of these field selectors
+values : list
+    The options that will be placed in each ComboBox
+plotFunc : function pointer
+    The plotting function for the GUI
+
+Returns
+-------
+axData : list
+    The handles to each of the field selectors made in this function</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" line="206" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" bodystart="206" bodyend="237"/>
+      </memberdef>
+      <memberdef kind="function" id="element__builder_8py_1aa6db80931c955e93452702c08f5de373" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def element_builder.buildFieldSelector</definition>
+        <argsstring>(parent, row, axis, plotFunc, **comboKwargs)</argsstring>
+        <name>buildFieldSelector</name>
+        <param>
+          <type>parent</type>
+          <defname>parent</defname>
+        </param>
+        <param>
+          <type>row</type>
+          <defname>row</defname>
+        </param>
+        <param>
+          <type>axis</type>
+          <defname>axis</defname>
+        </param>
+        <param>
+          <type>plotFunc</type>
+          <defname>plotFunc</defname>
+        </param>
+        <param>
+          <type>**</type>
+          <declname>comboKwargs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Builds the elements needed to select a parameter for plotting along
+a specified axis.
+
+Examples might be on row 0 for axis &apos;X&apos;.
+The keyword arguments are passed instead of specified here
+
+Parameters
+----------
+parent : tk.Frame
+    The holder of this field selector
+row : int
+    The row to place the field selector upon inside the parent.
+    Intended for stacking vertically.
+axis : str
+    Can be anything, but intended for &quot;X&quot;, &quot;Y&quot;, or &quot;Z&quot;
+plotFunc : function pointer
+    The plotting function for the GUI
+**comboKwargs : dict
+    Keyword arguments for the ComboBox
+
+Returns
+-------
+axCol : tk.StringVar
+    The handle to the value selected in the ComboBox that is built
+cb : TYPE
+    The handle to the ComboBox that is built</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" line="238" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" bodystart="238" bodyend="278"/>
+      </memberdef>
+      <memberdef kind="function" id="element__builder_8py_1aac5d3fe8769654dd959e8174fecc0197" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None element_builder.buildXYZMinMaxModifiers</definition>
+        <argsstring>(tk.Tk gui, tk.Frame parent, waitFunc)</argsstring>
+        <name>buildXYZMinMaxModifiers</name>
+        <param>
+          <type>tk.Tk</type>
+          <declname>gui</declname>
+        </param>
+        <param>
+          <type>tk.Frame</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type>waitFunc</type>
+          <defname>waitFunc</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Adds elements for modifying the limits for X, Y, and Z values
+
+Parameters
+----------
+gui : tk.Tk
+    A tkinter GUI
+parent : tk.Frame
+    A placeholder for all of these elements
+waitFunc : function
+    A function pointer for having the GUI wait before acting
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" line="279" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" bodystart="279" bodyend="405"/>
+      </memberdef>
+      <memberdef kind="function" id="element__builder_8py_1a92f94c542147e3e2fd81440721e94cb0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None element_builder.buildCustomTitleOptions</definition>
+        <argsstring>(tk.Tk gui, tk.Frame parent, waitFunc, startPlotFunc)</argsstring>
+        <name>buildCustomTitleOptions</name>
+        <param>
+          <type>tk.Tk</type>
+          <declname>gui</declname>
+        </param>
+        <param>
+          <type>tk.Frame</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type>waitFunc</type>
+          <defname>waitFunc</defname>
+        </param>
+        <param>
+          <type>startPlotFunc</type>
+          <defname>startPlotFunc</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Adds elements for creating a custom title
+
+Parameters
+----------
+gui : tk.Tk
+    A tkinter GUI
+parent : tk.Frame
+    A placeholder for all of these elements
+waitFunc : function
+    A function pointer for having the GUI wait before acting
+startPlotFunc : function
+    Kicks off the plot in the viewer pane
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" line="406" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" bodystart="406" bodyend="482"/>
+      </memberdef>
+      <memberdef kind="function" id="element__builder_8py_1a35bf6b3d8e52e5f4f42d3b56cd0cb4eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None element_builder.buildStyleOptions</definition>
+        <argsstring>(tk.Tk gui, tk.Frame parent, waitFunc, startPlotFunc)</argsstring>
+        <name>buildStyleOptions</name>
+        <param>
+          <type>tk.Tk</type>
+          <declname>gui</declname>
+        </param>
+        <param>
+          <type>tk.Frame</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type>waitFunc</type>
+          <defname>waitFunc</defname>
+        </param>
+        <param>
+          <type>startPlotFunc</type>
+          <defname>startPlotFunc</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Adds style options for the graph
+    Line/Scatter plot selector
+    Line/Scatter plot options
+    Legend display
+    Legend location
+    Autocoloring of line/scatter plots
+    Selective coloring of line/scatter plots
+
+Parameters
+----------
+gui : tk.Tk
+    A tkinter GUI
+parent : tk.Frame
+    A placeholder for all of these elements
+waitFunc : function
+    A function pointer for having the GUI wait before acting
+startPlotFunc : function
+    Kicks off the plot in the viewer pane
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" line="483" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" bodystart="483" bodyend="598"/>
+      </memberdef>
+      <memberdef kind="function" id="element__builder_8py_1af782bc383340d69c4a4417a3f853ddbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None element_builder.buildAdditionalOptions</definition>
+        <argsstring>(tk.Tk gui, tk.Frame parent, waitFunc, startPlotFunc)</argsstring>
+        <name>buildAdditionalOptions</name>
+        <param>
+          <type>tk.Tk</type>
+          <declname>gui</declname>
+        </param>
+        <param>
+          <type>tk.Frame</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type>waitFunc</type>
+          <defname>waitFunc</defname>
+        </param>
+        <param>
+          <type>startPlotFunc</type>
+          <defname>startPlotFunc</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Adds elements for additional plot options:
+    Grid lines (major/minor)
+    Axis labels
+
+Parameters
+----------
+gui : tk.Tk
+    A tkinter GUI
+parent : tk.Frame
+    A placeholder for all of these elements
+waitFunc : function
+    A function pointer for having the GUI wait before acting
+startPlotFunc : function
+    Kicks off the plot in the viewer pane
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" line="599" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" bodystart="599" bodyend="651"/>
+      </memberdef>
+      <memberdef kind="function" id="element__builder_8py_1ac2f41b857dfd8005e3577f9b09200b13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None element_builder.buildXYZGridLabels</definition>
+        <argsstring>(tk.Tk gui, tk.Frame parent, startPlotFunc)</argsstring>
+        <name>buildXYZGridLabels</name>
+        <param>
+          <type>tk.Tk</type>
+          <declname>gui</declname>
+        </param>
+        <param>
+          <type>tk.Frame</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type>startPlotFunc</type>
+          <defname>startPlotFunc</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Builds the elements necessary for a user to decide whether grid labels
+are needed for X, Y, or Z
+
+Parameters
+----------
+gui : tk.Tk
+    A tkinter GUI
+parent : tk.Frame
+    A placeholder for all of these elements
+startPlotFunc : TYPE
+    Kicks off the plot in the viewer pane
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" line="652" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" bodystart="652" bodyend="690"/>
+      </memberdef>
+      <memberdef kind="function" id="element__builder_8py_1ab765fc120b648152979b38d4241d39f1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None element_builder.buildRunSelector</definition>
+        <argsstring>(tk.Tk gui, tk.Frame parent, waitFunc, startPlotFunc, availableRuns)</argsstring>
+        <name>buildRunSelector</name>
+        <param>
+          <type>tk.Tk</type>
+          <declname>gui</declname>
+        </param>
+        <param>
+          <type>tk.Frame</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type>waitFunc</type>
+          <defname>waitFunc</defname>
+        </param>
+        <param>
+          <type>startPlotFunc</type>
+          <defname>startPlotFunc</defname>
+        </param>
+        <param>
+          <type>availableRuns</type>
+          <defname>availableRuns</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Builds the elements necessary to downselect runs for viewing
+
+Parameters
+----------
+gui : tk.Tk
+    A tkinter GUI
+parent : tk.Frame
+    A placeholder for all of these elements
+waitFunc : function
+    A function pointer for having the GUI wait before acting
+startPlotFunc : function
+    Kicks off the plot in the viewer pane
+availableRuns : list (str)
+    The available runs for plotting to be displayed in the SpinBox
+
+Returns
+-------
+None
+    DESCRIPTION.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" line="691" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" bodystart="691" bodyend="757"/>
+      </memberdef>
+      <memberdef kind="function" id="element__builder_8py_1a1a1bd540501ddfbe75b895aa321a4fb7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None element_builder.buildEditorElements</definition>
+        <argsstring>(tk.Tk gui, tk.Frame parent, plotColumns, availableRuns, waitFunc, startPlotFunc)</argsstring>
+        <name>buildEditorElements</name>
+        <param>
+          <type>tk.Tk</type>
+          <declname>gui</declname>
+        </param>
+        <param>
+          <type>tk.Frame</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type>plotColumns</type>
+          <defname>plotColumns</defname>
+        </param>
+        <param>
+          <type>availableRuns</type>
+          <defname>availableRuns</defname>
+        </param>
+        <param>
+          <type>waitFunc</type>
+          <defname>waitFunc</defname>
+        </param>
+        <param>
+          <type>startPlotFunc</type>
+          <defname>startPlotFunc</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Builds the components to add to the editor frame and calls
+functions to build their subcomponents
+
+Parameters
+----------
+gui : tk.Tk
+    A tkinter GUI
+parent : tk.Frame
+    A placeholder for all of these elements
+plotColumns : list (str)
+    The available options for plotting to be displayed in the ComboBox
+availableRuns : list (str)
+    The available runs for plotting to be displayed in the SpinBox
+waitFunc : function
+    A function pointer for having the GUI wait before acting
+startPlotFunc : function
+    Kicks off the plot in the viewer pane
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" line="758" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" bodystart="758" bodyend="834"/>
+      </memberdef>
+      <memberdef kind="function" id="element__builder_8py_1a0ad6f3dbd0226bc6d85abb8b1b3bca17" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>tuple</type>
+        <definition> tuple element_builder.buildEditAndViewPanes</definition>
+        <argsstring>(parent)</argsstring>
+        <name>buildEditAndViewPanes</name>
+        <param>
+          <type>parent</type>
+          <defname>parent</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Creates the frames to hold the editing options and the viewer
+The width is set to 260 for the editPane and the viewPane will
+take up the rest of the available real estate.
+
+Parameters
+----------
+parent : tkinter object
+    Could be any type of tkinter object capable of holding frames
+
+Returns
+-------
+tuple
+    Handles to the edit and view panes</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" line="835" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" bodystart="835" bodyend="866"/>
+      </memberdef>
+      <memberdef kind="function" id="element__builder_8py_1ac7fb76c0bf87a59e7a10e7da8fdedec3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None element_builder.buildInputElements</definition>
+        <argsstring>(tk.Tk gui, parent)</argsstring>
+        <name>buildInputElements</name>
+        <param>
+          <type>tk.Tk</type>
+          <declname>gui</declname>
+        </param>
+        <param>
+          <type>parent</type>
+          <defname>parent</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Adds the elements needed to perform a data load.
+
+Parameters
+----------
+gui : tk.Tk
+    The top-level GUI instance
+parent : TYPE
+    DESCRIPTION.
+
+Returns
+-------
+None</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" line="867" column="1" bodyfile="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" bodystart="867" bodyend="918"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/white/Documents/etesim_gui_test/basic_gui/element_builder.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>
